@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#111827">
+<meta name="theme-color" content="#101827">
 <title>競馬牧場DX</title>
 
 <style>
@@ -20,143 +20,143 @@ body{
   "Yu Gothic",Meiryo,sans-serif;
 }
 
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
 .app{
+  width:100%;
   max-width:760px;
   margin:auto;
-  padding:12px 12px 40px;
+  padding-bottom:40px;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 
-header{
-  background:linear-gradient(135deg,#0b1220,#253653);
-  color:white;
-  padding:20px 16px;
-  border-radius:0 0 20px 20px;
+.header{
+  background:linear-gradient(135deg,#0b1220,#263858);
+  color:#fff;
+  padding:20px 16px 17px;
   border-bottom:4px solid #d5a82c;
-  box-shadow:0 8px 25px #0002;
+  box-shadow:0 7px 22px #0002;
 }
 
-.brand{
+.logo{
   font-size:27px;
   font-weight:1000;
   color:#fff;
-  text-shadow:0 2px 6px #000;
+  text-shadow:0 2px 5px #000;
 }
 
-.sub{
+.subtitle{
   margin-top:5px;
-  color:#dbe3ef;
   font-size:10px;
+  color:#dce4ef;
   font-weight:bold;
 }
 
-/* ===== NAV ===== */
+/* NAV */
 
 .nav{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:7px;
-  margin:12px 0;
+  padding:10px 12px;
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 2px 10px #0001;
 }
 
 .nav button{
-  border:1px solid #dce1e8;
-  background:white;
-  border-radius:12px;
-  padding:11px 4px;
-  color:#667085;
-  font-weight:900;
+  border:0;
+  border-radius:11px;
+  padding:11px 3px;
+  background:#f1f3f6;
+  color:#687386;
+  font-size:11px;
+  font-weight:1000;
 }
 
 .nav button.active{
   background:#111827;
-  color:white;
+  color:#fff;
 }
 
-/* ===== PAGE ===== */
+/* PAGE */
 
 .page{
   display:none;
+  padding:0 12px;
 }
 
 .page.active{
   display:block;
 }
 
-/* ===== TITLES ===== */
+/* TITLES */
 
 .title{
+  margin:17px 2px 9px;
   color:#111827;
   font-size:17px;
   font-weight:1000;
-  margin:18px 2px 9px;
-  text-shadow:0 1px 0 white;
+  text-shadow:0 1px #fff;
 }
 
-/* ===== CARD ===== */
+/* CARD */
 
-.panel{
-  background:white;
+.card{
+  background:#fff;
   border-radius:17px;
   padding:14px;
   box-shadow:0 5px 20px #17203312;
 }
 
-/* ===== HOME ===== */
+/* HOME */
 
-.hero{
-  background:linear-gradient(135deg,#111827,#2b3d5b);
-  color:white;
-  border-radius:20px;
-  padding:17px;
+.balanceCard{
+  margin-top:8px;
+  background:linear-gradient(135deg,#101827,#2c3e5e);
+  border-radius:19px;
+  color:#fff;
+  padding:18px;
 }
 
-.heroTitle{
-  font-size:11px;
+.balanceLabel{
   color:#d7b34a;
-  font-weight:900;
+  font-size:9px;
+  font-weight:1000;
 }
 
 .balance{
+  margin-top:7px;
   font-size:30px;
   font-weight:1000;
-  margin-top:10px;
-}
-
-.green{
-  color:#159c6c!important;
-}
-
-.red{
-  color:#dc3b49!important;
-}
-
-.hero .green{
-  color:#6be0b5!important;
-}
-
-.hero .red{
-  color:#ff929b!important;
 }
 
 .stats{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:8px;
-  margin-top:10px;
+  margin-top:9px;
 }
 
 .stat{
-  background:white;
-  padding:13px;
-  border-radius:15px;
-  box-shadow:0 5px 18px #1720330e;
+  background:#fff;
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 4px 15px #1720330d;
 }
 
 .stat small{
   display:block;
-  color:#778195;
+  color:#788396;
   font-size:9px;
   font-weight:bold;
 }
@@ -164,23 +164,33 @@ header{
 .stat strong{
   display:block;
   margin-top:4px;
-  font-size:17px;
+  font-size:16px;
+  font-weight:1000;
 }
 
-/* ===== SELECT ===== */
+.green{
+  color:#129568!important;
+}
+
+.red{
+  color:#d93847!important;
+}
+
+/* SELECT */
 
 .label{
-  font-size:10px;
+  margin:11px 0 6px;
   color:#687386;
+  font-size:9px;
   font-weight:1000;
-  margin:9px 0 6px;
 }
 
 .scroll{
   display:flex;
-  overflow-x:auto;
   gap:6px;
-  padding-bottom:5px;
+  overflow-x:auto;
+  padding-bottom:3px;
+  scrollbar-width:none;
 }
 
 .scroll::-webkit-scrollbar{
@@ -190,205 +200,171 @@ header{
 .choice{
   flex:0 0 auto;
   border:1px solid #dce1e8;
+  border-radius:11px;
   background:#f8fafc;
   color:#172033;
-  border-radius:11px;
-  padding:10px 14px;
+  padding:10px 13px;
   font-size:11px;
   font-weight:1000;
 }
 
 .choice.active{
   background:#111827;
-  color:white;
+  color:#fff;
   border-color:#111827;
 }
 
-/* ===== FORM ===== */
+/* FORM */
 
 .form{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:9px;
-}
-
-label{
-  display:block;
-  font-size:9px;
-  color:#687386;
-  font-weight:bold;
-  margin-bottom:5px;
-}
-
-input,
-select{
-  width:100%;
-  border:1px solid #dce1e8;
-  background:#f8fafc;
-  border-radius:11px;
-  padding:11px;
-  color:#172033;
-  font-size:15px;
-  outline:none;
-}
-
-input:focus,
-select:focus{
-  background:white;
-  border-color:#6457dc;
+  gap:8px;
 }
 
 .full{
   grid-column:1/-1;
 }
 
-/* ===== HORSES ===== */
-
-.horseAdd{
-  display:grid;
-  grid-template-columns:65px 1fr auto;
-  gap:6px;
-}
-
-.addBtn{
-  border:0;
-  background:#e9e7ff;
-  color:#5d51d8;
-  border-radius:11px;
-  padding:0 13px;
+label{
+  display:block;
+  margin-bottom:5px;
+  color:#687386;
+  font-size:9px;
   font-weight:1000;
 }
 
+input,select{
+  width:100%;
+  border:1px solid #dce1e8;
+  border-radius:11px;
+  background:#f8fafc;
+  color:#172033;
+  padding:11px;
+  font-size:14px;
+  outline:none;
+}
+
+input:focus,select:focus{
+  background:#fff;
+  border-color:#5d51d8;
+}
+
+/* HORSE */
+
 .horseRow{
   display:grid;
-  grid-template-columns:44px 1fr;
+  grid-template-columns:45px 1fr;
   gap:9px;
   padding:11px 0;
-  border-bottom:1px solid #e5e8ed;
+  border-bottom:1px solid #e4e7ec;
 }
 
 .frame{
   width:42px;
   height:42px;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   border-radius:9px;
+  border:1px solid #aaa;
   font-size:17px;
   font-weight:1000;
-  border:1px solid #aaa;
 }
 
-.f1{
-  background:white;
-  color:#111;
-}
-
-.f2{
-  background:#151515;
-  color:white;
-}
-
-.f3{
-  background:#d73543;
-  color:white;
-}
-
-.f4{
-  background:#2872ce;
-  color:white;
-}
-
-.f5{
-  background:#f0cb28;
-  color:#111;
-}
-
-.f6{
-  background:#2da65d;
-  color:white;
-}
-
-.f7{
-  background:#ef8a23;
-  color:white;
-}
-
-.f8{
-  background:#ed70a4;
-  color:white;
-}
+.f1{background:#fff;color:#111;}
+.f2{background:#111;color:#fff;}
+.f3{background:#d93643;color:#fff;}
+.f4{background:#2b71ca;color:#fff;}
+.f5{background:#f0cd27;color:#111;}
+.f6{background:#2fa25b;color:#fff;}
+.f7{background:#ee8a22;color:#fff;}
+.f8{background:#e76ca0;color:#fff;}
 
 .horseName{
   font-size:13px;
   font-weight:1000;
-  margin-bottom:6px;
+  margin-bottom:5px;
 }
 
-.marks{
+.markList{
   display:flex;
   gap:4px;
   overflow-x:auto;
+  scrollbar-width:none;
 }
 
-.marks::-webkit-scrollbar{
+.markList::-webkit-scrollbar{
   display:none;
 }
 
 .mark{
-  flex:0 0 38px;
+  flex:0 0 39px;
   border:1px solid #dce1e8;
-  background:#f7f9fb;
   border-radius:8px;
+  background:#f7f9fb;
   padding:7px 2px;
   font-weight:1000;
+  color:#172033;
 }
 
 .mark.active{
   background:#5d51d8;
-  color:white;
+  color:#fff;
   border-color:#5d51d8;
 }
 
-.remove{
+.horseInput{
+  margin-bottom:5px;
+}
+
+.horseInput input{
+  padding:8px;
+  font-size:12px;
+}
+
+.horseActions{
   margin-top:5px;
+}
+
+.removeBtn{
   border:0;
-  background:#f0f2f5;
-  color:#8993a3;
-  border-radius:7px;
+  background:#f1f3f6;
+  color:#7c8798;
   padding:5px 9px;
+  border-radius:7px;
   font-size:9px;
 }
 
-/* ===== BUTTON ===== */
+/* BUTTONS */
 
 .primary{
   width:100%;
   border:0;
-  background:#5d51d8;
-  color:white;
   border-radius:12px;
+  background:#5d51d8;
+  color:#fff;
   padding:14px;
-  margin-top:12px;
+  margin-top:11px;
   font-weight:1000;
 }
 
-.resultBtn{
-  background:#13976b;
+.resultButton{
+  background:#129568;
 }
 
-.deleteBtn{
+.deleteButton{
   width:100%;
   border:0;
-  background:#fff1f2;
-  color:#d73543;
-  border-radius:10px;
+  border-radius:11px;
+  background:#fff0f2;
+  color:#d93847;
   padding:11px;
-  margin-top:9px;
-  font-weight:bold;
+  margin-top:8px;
+  font-weight:1000;
 }
 
-/* ===== RESULT ===== */
+/* RESULT */
 
 .resultGrid{
   display:grid;
@@ -407,11 +383,18 @@ select:focus{
   text-align:center;
 }
 
-/* ===== HISTORY ===== */
+/* HISTORY */
+
+.history{
+  background:#fff;
+  border-radius:17px;
+  padding:0 14px;
+  box-shadow:0 5px 20px #17203312;
+}
 
 .historyItem{
-  padding:13px 0;
-  border-bottom:1px solid #e1e5eb;
+  padding:14px 0;
+  border-bottom:1px solid #e3e6eb;
   cursor:pointer;
 }
 
@@ -431,9 +414,9 @@ select:focus{
 }
 
 .historyMeta{
-  color:#778195;
-  font-size:9px;
   margin-top:4px;
+  color:#7a8494;
+  font-size:9px;
 }
 
 .historyProfit{
@@ -442,9 +425,9 @@ select:focus{
   font-weight:1000;
 }
 
-/* ===== DETAIL ===== */
+/* DETAIL */
 
-.detailHeader{
+.detailHead{
   background:#f5f7fa;
   border:1px solid #dce1e8;
   border-radius:14px;
@@ -457,9 +440,9 @@ select:focus{
 }
 
 .detailMeta{
-  font-size:10px;
-  color:#707b8d;
   margin-top:4px;
+  color:#758093;
+  font-size:9px;
 }
 
 .detailHorse{
@@ -467,7 +450,7 @@ select:focus{
   justify-content:space-between;
   align-items:center;
   padding:9px 0;
-  border-bottom:1px solid #e3e6eb;
+  border-bottom:1px solid #e4e7ec;
 }
 
 .detailMark{
@@ -477,70 +460,71 @@ select:focus{
   font-weight:1000;
 }
 
-/* ===== GRAPH ===== */
+/* GRAPH */
 
-.graphWrap{
-  width:100%;
+.graphCard{
+  background:#fff;
+  border-radius:17px;
+  padding:10px 8px 12px;
+  box-shadow:0 5px 20px #17203312;
 }
 
-canvas{
-  width:100%;
-  height:210px;
+#graph{
   display:block;
+  width:100%;
+  height:190px;
 }
 
-.graphInfo{
+.graphStats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
 }
 
-.graphBox{
-  background:#f6f8fa;
-  border-radius:10px;
-  padding:8px;
+.graphStat{
   text-align:center;
+  background:#f6f8fa;
+  border-radius:9px;
+  padding:8px 4px;
 }
 
-.graphBox small{
+.graphStat small{
   display:block;
-  color:#778195;
   font-size:8px;
+  color:#7a8494;
 }
 
-.graphBox strong{
-  font-size:12px;
+.graphStat strong{
+  display:block;
+  margin-top:3px;
+  font-size:11px;
 }
+
+/* EMPTY */
 
 .empty{
+  padding:16px 4px;
   text-align:center;
   color:#7b8595;
-  padding:15px;
   font-size:10px;
 }
 
-.note{
-  color:#7b8595;
-  font-size:9px;
-  margin-top:5px;
-}
-
-/* ===== TOAST ===== */
+/* TOAST */
 
 .toast{
   position:fixed;
   left:50%;
   bottom:25px;
   transform:translate(-50%,20px);
-  background:#172033;
-  color:white;
+  background:#111827;
+  color:#fff;
   padding:11px 17px;
   border-radius:30px;
   font-size:10px;
   opacity:0;
-  transition:.2s;
   pointer-events:none;
-  z-index:999;
+  transition:.2s;
+  z-index:100;
 }
 
 .toast.show{
@@ -549,7 +533,6 @@ canvas{
 }
 
 @media(max-width:430px){
-
   .form{
     grid-template-columns:1fr;
   }
@@ -557,11 +540,6 @@ canvas{
   .full{
     grid-column:auto;
   }
-
-  .horseAdd{
-    grid-template-columns:58px 1fr auto;
-  }
-
 }
 </style>
 </head>
@@ -570,26 +548,26 @@ canvas{
 
 <div class="app">
 
-<header>
-  <div class="brand">🏇 競馬牧場DX</div>
-  <div class="sub">
-    予想 → 結果 → 収支 → 成績をまとめて管理
+<div class="header">
+  <div class="logo">🏇 競馬牧場DX</div>
+  <div class="subtitle">
+    予想・結果・収支をひとつにまとめる自分専用競馬管理帳
   </div>
-</header>
+</div>
 
 <div class="nav">
-  <button class="active" onclick="page('home')">🏠 ホーム</button>
-  <button onclick="page('predict')">🔮 予想登録</button>
-  <button onclick="page('history')">📋 予想履歴</button>
+  <button id="navHome" class="active" onclick="showPage('home')">🏠 ホーム</button>
+  <button id="navPredict" onclick="showPage('predict')">🔮 予想登録</button>
+  <button id="navHistory" onclick="showPage('history')">📋 履歴</button>
 </div>
 
 
 <!-- ================= HOME ================= -->
 
-<div id="home" class="page active">
+<section id="home" class="page active">
 
-  <div class="hero">
-    <div class="heroTitle">CURRENT BALANCE</div>
+  <div class="balanceCard">
+    <div class="balanceLabel">TOTAL PROFIT</div>
     <div id="balance" class="balance">¥0</div>
   </div>
 
@@ -627,10 +605,9 @@ canvas{
 
   </div>
 
+  <h2 class="title">📊 成績</h2>
 
-  <h2 class="title">📊 成績集計</h2>
-
-  <div class="panel">
+  <div class="stats">
 
     <div class="stat">
       <small>結果入力済</small>
@@ -649,50 +626,47 @@ canvas{
 
   </div>
 
-
   <h2 class="title">📈 収支推移</h2>
 
-  <div class="panel">
+  <div class="graphCard">
 
-    <div class="graphWrap">
-      <canvas id="graph"></canvas>
-    </div>
+    <canvas id="graph"></canvas>
 
-    <div class="graphInfo">
+    <div class="graphStats">
 
-      <div class="graphBox">
+      <div class="graphStat">
         <small>最大プラス</small>
         <strong id="maxPlus" class="green">+¥0</strong>
       </div>
 
-      <div class="graphBox">
+      <div class="graphStat">
         <small>現在収支</small>
-        <strong id="currentProfit">¥0</strong>
+        <strong id="graphCurrent">¥0</strong>
       </div>
 
-      <div class="graphBox">
+      <div class="graphStat">
         <small>最大マイナス</small>
-        <strong id="maxMinus" class="red">-¥0</strong>
+        <strong id="maxMinus" class="red">¥0</strong>
       </div>
 
     </div>
 
   </div>
 
-</div>
+</section>
 
 
 <!-- ================= PREDICT ================= -->
 
-<div id="predict" class="page">
+<section id="predict" class="page">
 
-  <h2 class="title">🔮 予想を登録</h2>
+  <h2 class="title">🔮 予想登録</h2>
 
-  <div class="panel">
+  <div class="card">
 
     <div class="label">🏟️ 競馬場</div>
 
-    <div class="scroll" id="tracks">
+    <div class="scroll" id="trackList">
 
       <button class="choice" onclick="selectTrack(this,'札幌')">札幌</button>
       <button class="choice" onclick="selectTrack(this,'函館')">函館</button>
@@ -710,57 +684,59 @@ canvas{
 
     <div class="label">🌱 馬場</div>
 
-    <div class="scroll">
+    <div class="scroll" id="surfaceList">
 
-      <button class="choice" onclick="selectSurface(this,'芝')">
-        🌱 芝
-      </button>
+      <button class="choice" onclick="selectSurface(this,'芝')">🌱 芝</button>
 
-      <button class="choice" onclick="selectSurface(this,'ダート')">
-        🟤 ダート
-      </button>
+      <button class="choice" onclick="selectSurface(this,'ダート')">🟤 ダート</button>
 
-      <button class="choice" onclick="selectSurface(this,'障害')">
-        🐎 障害
-      </button>
+      <button class="choice" onclick="selectSurface(this,'障害')">🐎 障害</button>
 
     </div>
 
 
     <div class="label">📏 距離</div>
 
-    <div class="scroll" id="distances">
-      <div class="empty">
-        競馬場と馬場を選択してください
-      </div>
+    <div class="scroll" id="distanceList">
+      <div class="empty">競馬場と馬場を選択してください</div>
     </div>
 
 
     <div class="label">🏁 レース</div>
 
-    <div class="scroll">
+    <div class="scroll" id="raceList">
 
-      <button class="choice" onclick="selectRace(this,'1R')">1R</button>
-      <button class="choice" onclick="selectRace(this,'2R')">2R</button>
-      <button class="choice" onclick="selectRace(this,'3R')">3R</button>
-      <button class="choice" onclick="selectRace(this,'4R')">4R</button>
-      <button class="choice" onclick="selectRace(this,'5R')">5R</button>
-      <button class="choice" onclick="selectRace(this,'6R')">6R</button>
-      <button class="choice" onclick="selectRace(this,'7R')">7R</button>
-      <button class="choice" onclick="selectRace(this,'8R')">8R</button>
-      <button class="choice" onclick="selectRace(this,'9R')">9R</button>
-      <button class="choice" onclick="selectRace(this,'10R')">10R</button>
-      <button class="choice" onclick="selectRace(this,'11R')">11R</button>
-      <button class="choice" onclick="selectRace(this,'12R')">12R</button>
+      <script>
+      for(let i=1;i<=12;i++){
+        document.write(
+          `<button class="choice" onclick="selectRace(this,'${i}R')">${i}R</button>`
+        );
+      }
+      </script>
 
     </div>
 
 
-    <div class="form">
+    <div class="label">🐴 頭数</div>
+
+    <div class="scroll" id="countList">
+
+      <script>
+      for(let i=8;i<=18;i++){
+        document.write(
+          `<button class="choice" onclick="selectCount(this,${i})">${i}頭</button>`
+        );
+      }
+      </script>
+
+    </div>
+
+
+    <div class="form" style="margin-top:9px">
 
       <div>
         <label>開催日</label>
-        <input type="date" id="date">
+        <input type="date" id="raceDate">
       </div>
 
       <div>
@@ -775,35 +751,14 @@ canvas{
 
   <h2 class="title">🐴 出走馬</h2>
 
-  <div class="panel">
+  <div class="card">
 
-    <div class="horseAdd">
+    <div id="horseList">
 
-      <input
-        id="horseNo"
-        type="number"
-        min="1"
-        max="18"
-        placeholder="馬番"
-      >
-
-      <input
-        id="horseName"
-        placeholder="馬名"
-      >
-
-      <button class="addBtn" onclick="addHorse()">＋追加</button>
-
-    </div>
-
-    <div class="note">
-      馬番1〜18。馬番から枠色を自動表示します。
-    </div>
-
-    <div id="horses">
       <div class="empty">
-        まだ馬が登録されていません。
+        まず頭数を選択してください。
       </div>
+
     </div>
 
   </div>
@@ -811,18 +766,13 @@ canvas{
 
   <h2 class="title">💰 買い目</h2>
 
-  <div class="panel">
+  <div class="card">
 
     <div class="form">
 
       <div>
         <label>投資額</label>
-        <input
-          id="bet"
-          type="number"
-          min="0"
-          placeholder="3000"
-        >
+        <input id="betMoney" type="number" min="0" placeholder="3000">
       </div>
 
       <div>
@@ -847,52 +797,46 @@ canvas{
 
         <label>買い目</label>
 
-        <input
-          id="buy"
-          placeholder="例：◎－○▲－○▲△"
-        >
+        <input id="buyText" placeholder="例：◎－○▲－○▲△">
 
       </div>
 
     </div>
 
-    <button
-      class="primary"
-      onclick="savePrediction()"
-    >
-      🔮 予想を保存して結果入力へ
+    <button class="primary" onclick="savePrediction()">
+      🔮 予想を登録
     </button>
 
   </div>
 
 
-  <!-- RESULT -->
+  <!-- RESULT AREA -->
 
   <div id="resultArea" style="display:none">
 
     <h2 class="title">🏁 結果入力</h2>
 
-    <div class="panel">
+    <div class="card">
 
-      <div id="resultRace"
-           style="font-size:17px;font-weight:1000;margin-bottom:12px">
+      <div id="resultRaceTitle"
+           style="font-size:17px;font-weight:1000;margin-bottom:10px">
       </div>
 
       <div class="resultGrid">
 
         <div class="resultBox">
           <label>🥇 1着</label>
-          <input id="first" placeholder="馬名">
+          <input id="firstPlace" placeholder="馬名">
         </div>
 
         <div class="resultBox">
           <label>🥈 2着</label>
-          <input id="second" placeholder="馬名">
+          <input id="secondPlace" placeholder="馬名">
         </div>
 
         <div class="resultBox">
           <label>🥉 3着</label>
-          <input id="third" placeholder="馬名">
+          <input id="thirdPlace" placeholder="馬名">
         </div>
 
       </div>
@@ -901,27 +845,16 @@ canvas{
       <div class="form" style="margin-top:9px">
 
         <div>
-
           <label>回収額</label>
-
-          <input
-            id="returnMoney"
-            type="number"
-            min="0"
-            placeholder="0"
-          >
-
+          <input id="returnMoney" type="number" min="0" placeholder="0">
         </div>
 
         <div>
-
           <label>結果</label>
 
-          <select id="hit">
-
+          <select id="resultHit">
             <option value="true">🎯 的中</option>
             <option value="false">❌ 不的中</option>
-
           </select>
 
         </div>
@@ -929,10 +862,7 @@ canvas{
       </div>
 
 
-      <button
-        class="primary resultBtn"
-        onclick="saveResult()"
-      >
+      <button class="primary resultButton" onclick="saveResult()">
         💰 結果を保存して収支へ反映
       </button>
 
@@ -940,16 +870,16 @@ canvas{
 
   </div>
 
-</div>
+</section>
 
 
 <!-- ================= HISTORY ================= -->
 
-<div id="history" class="page">
+<section id="history" class="page">
 
   <h2 class="title">📋 予想履歴</h2>
 
-  <div class="panel" id="historyList">
+  <div id="historyList" class="history">
 
     <div class="empty">
       まだ予想がありません。
@@ -957,17 +887,14 @@ canvas{
 
   </div>
 
-</div>
+</section>
 
 
 <!-- ================= DETAIL ================= -->
 
-<div id="detail" class="page">
+<section id="detail" class="page">
 
-  <button
-    class="choice"
-    onclick="page('history')"
-  >
+  <button class="choice" onclick="showPage('history')">
     ← 履歴へ戻る
   </button>
 
@@ -975,8 +902,7 @@ canvas{
 
   <div id="detailContent"></div>
 
-</div>
-
+</section>
 
 </div>
 
@@ -986,134 +912,172 @@ canvas{
 
 <script>
 
-/* =========================================
+/* ==========================================
    DATA
-========================================= */
+========================================== */
 
-const STORAGE_KEY="keiba_bokujou_dx_final";
+const STORAGE_KEY="keiba_bokujou_v2";
 
-let data=JSON.parse(
-  localStorage.getItem(STORAGE_KEY) ||
-  '{"predictions":[]}'
-);
+let db;
 
-let current={
+try{
+
+  db=JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+  );
+
+}catch(e){
+
+  db=null;
+
+}
+
+if(!db || !Array.isArray(db.races)){
+
+  db={
+    races:[]
+  };
+
+}
+
+let state={
   track:"",
   surface:"",
   distance:"",
   race:"",
-  horses:[]
+  count:0,
+  horses:[],
+  editingId:null,
+  resultId:null
 };
 
-let currentResultId=null;
 
-
-/* =========================================
+/* ==========================================
    SAVE
-========================================= */
+========================================== */
 
-function saveData(){
+function saveDB(){
 
   localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify(data)
+    JSON.stringify(db)
   );
 
 }
 
 
-/* =========================================
+/* ==========================================
    PAGE
-========================================= */
+========================================== */
 
-function page(name){
+function showPage(name){
 
-  document
-    .querySelectorAll(".page")
+  document.querySelectorAll(".page")
     .forEach(p=>p.classList.remove("active"));
 
-  document
-    .getElementById(name)
+  document.getElementById(name)
     .classList.add("active");
+
+  document.querySelectorAll(".nav button")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(name==="home"){
+    document.getElementById("navHome").classList.add("active");
+    updateDashboard();
+  }
+
+  if(name==="predict"){
+    document.getElementById("navPredict").classList.add("active");
+  }
+
+  if(name==="history"){
+    document.getElementById("navHistory").classList.add("active");
+    renderHistory();
+  }
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
 
-  if(name==="home"){
-    updateHome();
-  }
-
-  if(name==="history"){
-    renderHistory();
-  }
-
 }
 
 
-/* =========================================
+/* ==========================================
    TOAST
-========================================= */
+========================================== */
 
-function toast(text){
+function toast(message){
 
-  const t=document.getElementById("toast");
+  const el=document.getElementById("toast");
 
-  t.textContent=text;
+  el.textContent=message;
 
-  t.classList.add("show");
+  el.classList.add("show");
 
   setTimeout(()=>{
-    t.classList.remove("show");
+    el.classList.remove("show");
   },1800);
 
 }
 
 
-/* =========================================
+/* ==========================================
+   ACTIVE BUTTON
+========================================== */
+
+function activate(parent,btn){
+
+  document.querySelectorAll(
+    parent+" .choice"
+  ).forEach(x=>{
+    x.classList.remove("active");
+  });
+
+  btn.classList.add("active");
+
+}
+
+
+/* ==========================================
    TRACK
-========================================= */
+========================================== */
 
-function selectTrack(btn,name){
+function selectTrack(btn,value){
 
-  current.track=name;
+  activate("#trackList",btn);
 
-  document
-    .querySelectorAll("#tracks .choice")
-    .forEach(b=>b.classList.remove("active"));
+  state.track=value;
 
-  btn.classList.add("active");
+  state.distance="";
 
-  updateDistances();
+  renderDistances();
 
 }
 
 
-/* =========================================
+/* ==========================================
    SURFACE
-========================================= */
+========================================== */
 
-function selectSurface(btn,name){
+function selectSurface(btn,value){
 
-  current.surface=name;
+  activate("#surfaceList",btn);
 
-  document
-    .querySelectorAll(".scroll:nth-of-type(2) .choice")
-    .forEach(b=>b.classList.remove("active"));
+  state.surface=value;
 
-  btn.classList.add("active");
+  state.distance="";
 
-  updateDistances();
+  renderDistances();
 
 }
 
 
-/* =========================================
+/* ==========================================
    DISTANCES
-========================================= */
+========================================== */
 
-const distances={
+const distanceData={
 
 札幌:{
 芝:[1200,1500,1800,2000,2600],
@@ -1178,23 +1142,23 @@ const distances={
 };
 
 
-function updateDistances(){
+function renderDistances(){
 
-  const box=document.getElementById("distances");
+  const box=document.getElementById("distanceList");
 
-  current.distance="";
-
-  if(!current.track || !current.surface){
+  if(!state.track || !state.surface){
 
     box.innerHTML=
-      '<div class="empty">競馬場と馬場を選択してください</div>';
+      `<div class="empty">
+        競馬場と馬場を選択してください
+      </div>`;
 
     return;
 
   }
 
   const list=
-    distances[current.track][current.surface] || [];
+    distanceData[state.track]?.[state.surface] || [];
 
   box.innerHTML=list.map(d=>`
 
@@ -1210,148 +1174,138 @@ function updateDistances(){
 }
 
 
-function selectDistance(btn,d){
+function selectDistance(btn,value){
 
-  current.distance=d;
+  activate("#distanceList",btn);
 
-  document
-    .querySelectorAll("#distances .choice")
-    .forEach(b=>b.classList.remove("active"));
-
-  btn.classList.add("active");
+  state.distance=value;
 
 }
 
 
-/* =========================================
+/* ==========================================
    RACE
-========================================= */
+========================================== */
 
-function selectRace(btn,race){
+function selectRace(btn,value){
 
-  current.race=race;
+  activate("#raceList",btn);
 
-  btn
-    .parentElement
-    .querySelectorAll(".choice")
-    .forEach(b=>b.classList.remove("active"));
-
-  btn.classList.add("active");
+  state.race=value;
 
 }
 
 
-/* =========================================
-   HORSE
-========================================= */
+/* ==========================================
+   COUNT
+========================================== */
 
-function addHorse(){
+function selectCount(btn,value){
 
-  const no=Number(
-    document.getElementById("horseNo").value
-  );
+  activate("#countList",btn);
 
-  const name=
-    document.getElementById("horseName").value.trim();
+  state.count=value;
 
-  if(no<1 || no>18){
+  createHorses(value);
 
-    toast("馬番は1〜18で入力してください");
+}
 
-    return;
+
+/* ==========================================
+   HORSES
+========================================== */
+
+function createHorses(count){
+
+  state.horses=[];
+
+  for(let i=1;i<=count;i++){
+
+    state.horses.push({
+
+      id:
+        Date.now()+
+        Math.random(),
+
+      no:i,
+
+      name:"",
+
+      mark:""
+
+    });
 
   }
-
-  if(!name){
-
-    toast("馬名を入力してください");
-
-    return;
-
-  }
-
-  if(current.horses.some(h=>h.no===no)){
-
-    toast("その馬番は登録済みです");
-
-    return;
-
-  }
-
-  current.horses.push({
-
-    id:Date.now()+Math.random(),
-    no:no,
-    name:name,
-    mark:""
-
-  });
-
-  document.getElementById("horseNo").value="";
-  document.getElementById("horseName").value="";
 
   renderHorses();
 
 }
 
 
-function frameNo(no){
+function frameClass(no){
 
-  return Math.ceil(no/2);
+  if(no<=2)return "f1";
+  if(no<=4)return "f2";
+  if(no<=6)return "f3";
+  if(no<=8)return "f4";
+  if(no<=10)return "f5";
+  if(no<=12)return "f6";
+  if(no<=14)return "f7";
+  return "f8";
 
 }
 
 
 function renderHorses(){
 
-  const box=document.getElementById("horses");
+  const box=document.getElementById("horseList");
 
-  if(!current.horses.length){
+  if(!state.horses.length){
 
     box.innerHTML=
-      '<div class="empty">まだ馬が登録されていません。</div>';
+      `<div class="empty">
+        まず頭数を選択してください。
+      </div>`;
 
     return;
 
   }
 
-  current.horses.sort((a,b)=>a.no-b.no);
 
-  box.innerHTML=current.horses.map(h=>`
+  box.innerHTML=state.horses.map(h=>`
 
     <div class="horseRow">
 
-      <div class="frame f${frameNo(h.no)}">
+      <div class="frame ${frameClass(h.no)}">
         ${h.no}
       </div>
 
       <div>
 
-        <div class="horseName">
-          ${h.name}
+        <div class="horseInput">
+
+          <input
+            value="${escapeHTML(h.name)}"
+            placeholder="${h.no}番の馬名"
+            oninput="changeHorseName('${h.id}',this.value)"
+          >
+
         </div>
 
-        <div class="marks">
+        <div class="markList">
 
-          ${["◎","○","▲","☆","△","消"].map(m=>`
+          ${["◎","○","▲","☆","△","消"].map(mark=>`
 
             <button
-              class="mark ${h.mark===m?"active":""}"
-              onclick="setMark(${h.id},'${m}')"
+              class="mark ${h.mark===mark?"active":""}"
+              onclick="setHorseMark('${h.id}','${mark}')"
             >
-              ${m}
+              ${mark}
             </button>
 
           `).join("")}
 
         </div>
-
-        <button
-          class="remove"
-          onclick="removeHorse(${h.id})"
-        >
-          削除
-        </button>
 
       </div>
 
@@ -1362,153 +1316,208 @@ function renderHorses(){
 }
 
 
-function setMark(id,mark){
+function changeHorseName(id,name){
 
-  const horse=
-    current.horses.find(h=>h.id===id);
+  const h=state.horses.find(
+    x=>String(x.id)===String(id)
+  );
 
-  if(horse){
-
-    horse.mark=mark;
-
-    renderHorses();
-
+  if(h){
+    h.name=name;
   }
 
 }
 
 
-function removeHorse(id){
+function setHorseMark(id,mark){
 
-  current.horses=
-    current.horses.filter(h=>h.id!==id);
+  const h=state.horses.find(
+    x=>String(x.id)===String(id)
+  );
+
+  if(!h)return;
+
+  h.mark=mark;
 
   renderHorses();
 
 }
 
 
-/* =========================================
+function escapeHTML(text){
+
+  return String(text||"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==========================================
    SAVE PREDICTION
-========================================= */
+========================================== */
 
 function savePrediction(){
 
-  if(!current.track){
-
+  if(!state.track){
     toast("競馬場を選択してください");
     return;
-
   }
 
-  if(!current.surface){
-
+  if(!state.surface){
     toast("芝・ダート・障害を選択してください");
     return;
-
   }
 
-  if(!current.distance){
-
+  if(!state.distance){
     toast("距離を選択してください");
     return;
-
   }
 
-  if(!current.race){
-
+  if(!state.race){
     toast("レースを選択してください");
     return;
-
   }
 
-  if(!document.getElementById("raceName").value.trim()){
+  if(!state.count){
+    toast("頭数を選択してください");
+    return;
+  }
 
-    toast("レース名を入力してください");
+  if(!state.horses.some(h=>h.name.trim())){
+
+    toast("馬名を1頭以上入力してください");
+
     return;
 
   }
 
-  if(!current.horses.length){
 
-    toast("馬を登録してください");
-    return;
-
-  }
-
-
-  const prediction={
+  const race={
 
     id:Date.now(),
 
     date:
-      document.getElementById("date").value ||
+      document.getElementById("raceDate").value ||
       new Date().toISOString().slice(0,10),
 
-    track:current.track,
+    track:state.track,
 
-    surface:current.surface,
+    surface:state.surface,
 
-    distance:current.distance,
+    distance:state.distance,
 
-    race:current.race,
+    race:state.race,
+
+    count:state.count,
 
     raceName:
-      document.getElementById("raceName").value.trim(),
+      document.getElementById("raceName").value.trim() ||
+      "レース",
 
-    horses:JSON.parse(
-      JSON.stringify(current.horses)
-    ),
+    horses:
+      JSON.parse(JSON.stringify(state.horses)),
 
     bet:
-      Number(document.getElementById("bet").value)||0,
+      Number(
+        document.getElementById("betMoney").value
+      )||0,
 
     betType:
       document.getElementById("betType").value,
 
     buy:
-      document.getElementById("buy").value,
+      document.getElementById("buyText").value.trim(),
 
     result:null
 
   };
 
 
-  data.predictions.push(prediction);
+  db.races.push(race);
 
-  saveData();
+  saveDB();
 
-  currentResultId=prediction.id;
+  state.resultId=race.id;
 
-  document.getElementById("resultArea").style.display="block";
+  openResultArea(race);
 
-  document.getElementById("resultRace").textContent=
-    prediction.track+" "+prediction.race+" "+
-    prediction.raceName;
-
-  window.scrollTo({
-    top:document.getElementById("resultArea").offsetTop-10,
-    behavior:"smooth"
-  });
-
-  toast("予想を保存しました！結果を入力できます");
-
-  updateHome();
+  toast("予想を登録しました");
 
 }
 
 
-/* =========================================
-   RESULT
-========================================= */
+/* ==========================================
+   RESULT AREA
+========================================== */
+
+function openResultArea(race){
+
+  const area=document.getElementById("resultArea");
+
+  area.style.display="block";
+
+  document.getElementById("resultRaceTitle").textContent=
+    `${race.track} ${race.race} ${race.raceName}`;
+
+  if(race.result){
+
+    document.getElementById("firstPlace").value=
+      race.result.first||"";
+
+    document.getElementById("secondPlace").value=
+      race.result.second||"";
+
+    document.getElementById("thirdPlace").value=
+      race.result.third||"";
+
+    document.getElementById("returnMoney").value=
+      race.result.returnMoney||0;
+
+    document.getElementById("resultHit").value=
+      String(race.result.hit);
+
+  }else{
+
+    document.getElementById("firstPlace").value="";
+    document.getElementById("secondPlace").value="";
+    document.getElementById("thirdPlace").value="";
+    document.getElementById("returnMoney").value="0";
+    document.getElementById("resultHit").value="false";
+
+  }
+
+  area.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+/* ==========================================
+   SAVE RESULT
+========================================== */
 
 function saveResult(){
 
-  const p=data.predictions.find(
-    x=>x.id===currentResultId
+  if(!state.resultId){
+
+    toast("対象レースがありません");
+
+    return;
+
+  }
+
+
+  const race=db.races.find(
+    x=>x.id===state.resultId
   );
 
-  if(!p){
+  if(!race){
 
     toast("対象レースが見つかりません");
 
@@ -1516,13 +1525,17 @@ function saveResult(){
 
   }
 
-  p.result={
 
-    first:document.getElementById("first").value,
+  race.result={
 
-    second:document.getElementById("second").value,
+    first:
+      document.getElementById("firstPlace").value.trim(),
 
-    third:document.getElementById("third").value,
+    second:
+      document.getElementById("secondPlace").value.trim(),
+
+    third:
+      document.getElementById("thirdPlace").value.trim(),
 
     returnMoney:
       Number(
@@ -1530,103 +1543,179 @@ function saveResult(){
       )||0,
 
     hit:
-      document.getElementById("hit").value==="true"
+      document.getElementById("resultHit").value==="true"
 
   };
 
 
-  saveData();
+  saveDB();
 
-  updateHome();
+  updateDashboard();
 
   renderHistory();
 
+  drawGraph();
+
   toast("結果を保存しました！収支に反映しました");
+
+
+  setTimeout(()=>{
+
+    showPage("home");
+
+  },700);
 
 }
 
 
-/* =========================================
-   HOME
-========================================= */
+/* ==========================================
+   DASHBOARD
+========================================== */
 
-function updateHome(){
+function calculate(){
 
-  let bet=0;
-  let ret=0;
+  let totalBet=0;
+  let totalReturn=0;
   let resultCount=0;
-  let hit=0;
+  let hitCount=0;
 
-  data.predictions.forEach(p=>{
+  db.races.forEach(r=>{
 
-    bet+=Number(p.bet)||0;
+    totalBet+=Number(r.bet)||0;
 
-    if(p.result){
+    if(r.result){
 
       resultCount++;
 
-      ret+=Number(p.result.returnMoney)||0;
+      totalReturn+=
+        Number(r.result.returnMoney)||0;
 
-      if(p.result.hit) hit++;
+      if(r.result.hit){
+        hitCount++;
+      }
 
     }
 
   });
 
 
-  const profit=ret-bet;
+  return{
 
-  document.getElementById("balance").textContent=
-    (profit>=0?"+":"")+yen(profit);
+    totalBet,
 
-  document.getElementById("balance").className=
-    "balance "+(profit>=0?"green":"red");
+    totalReturn,
 
-  document.getElementById("totalBet").textContent=yen(bet);
+    profit:
+      totalReturn-totalBet,
 
-  document.getElementById("totalReturn").textContent=yen(ret);
+    resultCount,
+
+    hitCount,
+
+    missCount:
+      resultCount-hitCount,
+
+    raceCount:
+      db.races.length,
+
+    roi:
+      totalBet?
+      totalReturn/totalBet*100:
+      0,
+
+    hitRate:
+      resultCount?
+      hitCount/resultCount*100:
+      0
+
+  };
+
+}
+
+
+function yen(value){
+
+  return "¥"+
+    Math.abs(Number(value)||0)
+      .toLocaleString("ja-JP");
+
+}
+
+
+function updateDashboard(){
+
+  const s=calculate();
+
+  const balance=document.getElementById("balance");
+
+  balance.textContent=
+    (s.profit>=0?"+":"-")+yen(s.profit);
+
+  balance.className=
+    "balance "+(s.profit>=0?"green":"red");
+
+
+  document.getElementById("totalBet").textContent=
+    yen(s.totalBet);
+
+  document.getElementById("totalReturn").textContent=
+    yen(s.totalReturn);
+
 
   const tp=document.getElementById("totalProfit");
 
-  tp.textContent=(profit>=0?"+":"")+yen(profit);
+  tp.textContent=
+    (s.profit>=0?"+":"-")+yen(s.profit);
 
-  tp.className=profit>=0?"green":"red";
+  tp.className=
+    s.profit>=0?"green":"red";
+
 
   document.getElementById("roi").textContent=
-    bet ? (ret/bet*100).toFixed(1)+"%" : "—";
+    s.totalBet?
+    s.roi.toFixed(1)+"%":
+    "—";
+
 
   document.getElementById("raceCount").textContent=
-    data.predictions.length+"R";
+    s.raceCount+"R";
+
 
   document.getElementById("resultCount").textContent=
-    resultCount+"R";
+    s.resultCount+"R";
 
   document.getElementById("hitCount").textContent=
-    hit+"R";
+    s.hitCount+"R";
 
   document.getElementById("missCount").textContent=
-    (resultCount-hit)+"R";
+    s.missCount+"R";
+
 
   document.getElementById("hitRate").textContent=
-    resultCount ? (hit/resultCount*100).toFixed(1)+"%" : "—";
+    s.resultCount?
+    s.hitRate.toFixed(1)+"%":
+    "—";
+
 
   drawGraph();
 
 }
 
 
-/* =========================================
+/* ==========================================
    HISTORY
-========================================= */
+========================================== */
 
 function renderHistory(){
 
   const box=document.getElementById("historyList");
 
-  if(!data.predictions.length){
+  if(!db.races.length){
 
     box.innerHTML=
-      '<div class="empty">まだ予想がありません。</div>';
+      `<div class="empty">
+        まだ予想がありません。
+      </div>`;
 
     return;
 
@@ -1634,30 +1723,33 @@ function renderHistory(){
 
 
   box.innerHTML=
-    data.predictions
+    db.races
       .slice()
       .reverse()
-      .map(p=>{
+      .map(r=>{
 
         let profit=0;
         let status="⏳ 結果待ち";
 
-        if(p.result){
+        if(r.result){
 
           profit=
-            Number(p.result.returnMoney||0)-
-            Number(p.bet||0);
+            Number(r.result.returnMoney||0)-
+            Number(r.bet||0);
 
           status=
-            p.result.hit ? "🎯 的中" : "❌ 不的中";
+            r.result.hit?
+            "🎯 的中":
+            "❌ 不的中";
 
         }
 
-        return `
+
+        return`
 
         <div
           class="historyItem"
-          onclick="openDetail(${p.id})"
+          onclick="openDetail(${r.id})"
         >
 
           <div class="historyTop">
@@ -1665,16 +1757,17 @@ function renderHistory(){
             <div>
 
               <div class="historyName">
-                ${p.track} ${p.race}
-                ${p.raceName}
+                ${escapeHTML(r.track)}
+                ${escapeHTML(r.race)}
+                ${escapeHTML(r.raceName)}
               </div>
 
               <div class="historyMeta">
-                ${p.date}
-                · ${p.surface}
-                ${p.distance}m
-                · ${p.betType}
-                · 投資 ${yen(p.bet)}
+                ${r.date}
+                · ${r.surface}
+                · ${r.distance}m
+                · ${r.count}頭
+                · 投資 ${yen(r.bet)}
               </div>
 
             </div>
@@ -1684,8 +1777,8 @@ function renderHistory(){
               <div class="historyProfit
                 ${profit>=0?"green":"red"}">
 
-                ${p.result?
-                  (profit>=0?"+":"")+yen(profit):
+                ${r.result?
+                  (profit>=0?"+":"-")+yen(profit):
                   "—"}
 
               </div>
@@ -1708,32 +1801,30 @@ function renderHistory(){
 }
 
 
-/* =========================================
+/* ==========================================
    DETAIL
-========================================= */
+========================================== */
 
 function openDetail(id){
 
-  const p=data.predictions.find(
+  const race=db.races.find(
     x=>x.id===id
   );
 
-  if(!p)return;
+  if(!race)return;
 
-  const r=p.result;
+  let horseHTML="";
 
-  let horses="";
+  race.horses.forEach(h=>{
 
-  p.horses.forEach(h=>{
-
-    horses+=`
+    horseHTML+=`
 
       <div class="detailHorse">
 
         <div>
 
           <span
-            class="frame f${frameNo(h.no)}"
+            class="frame ${frameClass(h.no)}"
             style="
               display:inline-flex;
               width:34px;
@@ -1745,7 +1836,7 @@ function openDetail(id){
           </span>
 
           <strong style="margin-left:7px">
-            ${h.name}
+            ${escapeHTML(h.name)||"馬名未入力"}
           </strong>
 
         </div>
@@ -1761,25 +1852,77 @@ function openDetail(id){
   });
 
 
-  const profit=r?
-    Number(r.returnMoney||0)-Number(p.bet||0):
-    0;
+  let resultHTML="";
+
+  if(race.result){
+
+    const profit=
+      Number(race.result.returnMoney||0)-
+      Number(race.bet||0);
+
+
+    resultHTML=`
+
+      <div class="resultGrid">
+
+        <div class="resultBox">
+          <label>🥇 1着</label>
+          <strong>${escapeHTML(race.result.first)||"—"}</strong>
+        </div>
+
+        <div class="resultBox">
+          <label>🥈 2着</label>
+          <strong>${escapeHTML(race.result.second)||"—"}</strong>
+        </div>
+
+        <div class="resultBox">
+          <label>🥉 3着</label>
+          <strong>${escapeHTML(race.result.third)||"—"}</strong>
+        </div>
+
+      </div>
+
+      <div class="stat" style="margin-top:8px">
+        <small>回収額</small>
+        <strong>${yen(race.result.returnMoney)}</strong>
+      </div>
+
+      <div class="stat">
+        <small>レース収支</small>
+        <strong class="${profit>=0?"green":"red"}">
+          ${profit>=0?"+":"-"}${yen(profit)}
+        </strong>
+      </div>
+
+    `;
+
+  }else{
+
+    resultHTML=
+      `<div class="empty">
+        まだ結果が入力されていません。
+      </div>`;
+
+  }
 
 
   document.getElementById("detailContent").innerHTML=`
 
-    <div class="panel">
+    <div class="card">
 
-      <div class="detailHeader">
+      <div class="detailHead">
 
         <div class="detailTitle">
-          ${p.track} ${p.race} ${p.raceName}
+          ${escapeHTML(race.track)}
+          ${escapeHTML(race.race)}
+          ${escapeHTML(race.raceName)}
         </div>
 
         <div class="detailMeta">
-          ${p.date}
-          · ${p.surface}
-          · ${p.distance}m
+          ${race.date}
+          · ${race.surface}
+          · ${race.distance}m
+          · ${race.count}頭
         </div>
 
       </div>
@@ -1787,118 +1930,51 @@ function openDetail(id){
 
       <h2 class="title">🐴 印</h2>
 
-      ${horses}
+      ${horseHTML}
 
 
       <h2 class="title">💰 買い目</h2>
 
       <div class="stat">
         <small>券種</small>
-        <strong>${p.betType}</strong>
+        <strong>${race.betType}</strong>
       </div>
 
       <div class="stat">
         <small>投資</small>
-        <strong>${yen(p.bet)}</strong>
+        <strong>${yen(race.bet)}</strong>
       </div>
 
       <div class="stat">
         <small>買い目</small>
-        <strong>${p.buy||"—"}</strong>
+        <strong>${escapeHTML(race.buy)||"—"}</strong>
       </div>
 
 
       <h2 class="title">🏁 結果</h2>
 
-      ${
-        r?
-
-        `
-
-        <div class="resultGrid">
-
-          <div class="resultBox">
-            <label>🥇 1着</label>
-            <strong>${r.first||"—"}</strong>
-          </div>
-
-          <div class="resultBox">
-            <label>🥈 2着</label>
-            <strong>${r.second||"—"}</strong>
-          </div>
-
-          <div class="resultBox">
-            <label>🥉 3着</label>
-            <strong>${r.third||"—"}</strong>
-          </div>
-
-        </div>
-
-        <div class="stat" style="margin-top:9px">
-
-          <small>回収</small>
-
-          <strong>
-            ${yen(r.returnMoney)}
-          </strong>
-
-        </div>
-
-        <div class="stat">
-
-          <small>レース収支</small>
-
-          <strong
-            class="${profit>=0?"green":"red"}"
-          >
-            ${profit>=0?"+":""}${yen(profit)}
-          </strong>
-
-        </div>
-
-        `
-
-        :
-
-        `<div class="empty">
-          まだ結果が入力されていません。
-        </div>`
-
-      }
+      ${resultHTML}
 
 
       <button
         class="primary"
-        onclick="editPrediction(${p.id})"
+        onclick="editPrediction(${race.id})"
       >
-        ✏️ この予想を編集
+        ✏️ 予想を編集
       </button>
 
 
-      ${
-        r?
-
-        `<button
-          class="primary resultBtn"
-          onclick="editResult(${p.id})"
-        >
-          ✏️ 結果を編集
-        </button>`
-
-        :
-
-        `<button
-          class="primary resultBtn"
-          onclick="editResult(${p.id})"
-        >
-          🏁 結果を入力
-        </button>`
-      }
+      <button
+        class="primary resultButton"
+        onclick="editResult(${race.id})"
+      >
+        ✏️ 結果を編集
+      </button>
 
 
       <button
-        class="deleteBtn"
-        onclick="deletePrediction(${p.id})"
+        class="deleteButton"
+        onclick="deleteRace(${race.id})"
       >
         🗑️ このレースを削除
       </button>
@@ -1907,305 +1983,418 @@ function openDetail(id){
 
   `;
 
-  page("detail");
+
+  showPage("detail");
 
 }
 
 
-/* =========================================
+/* ==========================================
    EDIT PREDICTION
-========================================= */
+========================================== */
 
 function editPrediction(id){
 
-  const p=data.predictions.find(
+  const race=db.races.find(
     x=>x.id===id
   );
 
-  if(!p)return;
+  if(!race)return;
 
-  current={
-    track:p.track,
-    surface:p.surface,
-    distance:p.distance,
-    race:p.race,
-    horses:JSON.parse(JSON.stringify(p.horses))
+
+  state={
+
+    track:race.track,
+
+    surface:race.surface,
+
+    distance:race.distance,
+
+    race:race.race,
+
+    count:race.count,
+
+    horses:
+      JSON.parse(JSON.stringify(race.horses)),
+
+    editingId:id,
+
+    resultId:null
+
   };
 
-  document.getElementById("date").value=p.date;
-  document.getElementById("raceName").value=p.raceName;
-  document.getElementById("bet").value=p.bet;
-  document.getElementById("betType").value=p.betType;
-  document.getElementById("buy").value=p.buy;
 
-  page("predict");
+  document.getElementById("raceDate").value=
+    race.date;
 
-  renderHorses();
+  document.getElementById("raceName").value=
+    race.raceName;
 
-  toast("編集画面を開きました");
+  document.getElementById("betMoney").value=
+    race.bet;
+
+  document.getElementById("betType").value=
+    race.betType;
+
+  document.getElementById("buyText").value=
+    race.buy;
+
+
+  showPage("predict");
+
+
+  activateByValue("#trackList",race.track);
+  activateByValue("#surfaceList",race.surface);
+
+  renderDistances();
+
+  setTimeout(()=>{
+
+    activateByValue("#distanceList",String(race.distance));
+
+    activateByValue("#raceList",race.race);
+
+    activateByValue("#countList",String(race.count));
+
+    renderHorses();
+
+  },30);
+
+
+  openResultArea(race);
+
+  toast("予想編集モードです");
 
 }
 
 
-/* =========================================
-   EDIT RESULT
-========================================= */
+/* ==========================================
+   ACTIVE BY VALUE
+========================================== */
 
-function editResult(id){
+function activateByValue(selector,value){
 
-  const p=data.predictions.find(
-    x=>x.id===id
-  );
+  document.querySelectorAll(
+    selector+" .choice"
+  ).forEach(btn=>{
 
-  if(!p)return;
+    if(
+      btn.textContent.trim()===String(value) ||
+      btn.textContent.trim()===String(value)+"m" ||
+      btn.textContent.trim()===String(value)+"頭"
+    ){
 
-  currentResultId=id;
+      btn.classList.add("active");
 
-  page("predict");
+    }else{
 
-  document.getElementById("resultArea").style.display="block";
+      btn.classList.remove("active");
 
-  document.getElementById("resultRace").textContent=
-    p.track+" "+p.race+" "+p.raceName;
+    }
 
-  document.getElementById("first").value=
-    p.result?.first||"";
-
-  document.getElementById("second").value=
-    p.result?.second||"";
-
-  document.getElementById("third").value=
-    p.result?.third||"";
-
-  document.getElementById("returnMoney").value=
-    p.result?.returnMoney||0;
-
-  document.getElementById("hit").value=
-    String(p.result?.hit||false);
-
-  window.scrollTo({
-    top:document.getElementById("resultArea").offsetTop,
-    behavior:"smooth"
   });
 
 }
 
 
-/* =========================================
+/* ==========================================
+   EDIT RESULT
+========================================== */
+
+function editResult(id){
+
+  const race=db.races.find(
+    x=>x.id===id
+  );
+
+  if(!race)return;
+
+  state.resultId=id;
+
+  showPage("predict");
+
+  openResultArea(race);
+
+}
+
+
+/* ==========================================
    DELETE
-========================================= */
+========================================== */
 
-function deletePrediction(id){
+function deleteRace(id){
 
-  if(!confirm("このレースの記録を削除しますか？")){
+  if(!confirm(
+    "このレースの予想・結果・収支記録を削除しますか？"
+  )){
 
     return;
 
   }
 
-  data.predictions=
-    data.predictions.filter(
-      p=>p.id!==id
-    );
+  db.races=
+    db.races.filter(r=>r.id!==id);
 
-  saveData();
+  saveDB();
 
-  updateHome();
+  updateDashboard();
 
   renderHistory();
 
-  page("history");
+  showPage("history");
 
   toast("削除しました");
 
 }
 
 
-/* =========================================
+/* ==========================================
    GRAPH
-========================================= */
+========================================== */
 
 function drawGraph(){
 
   const canvas=document.getElementById("graph");
 
-  const ctx=canvas.getContext("2d");
-
-  const dpr=window.devicePixelRatio||1;
+  if(!canvas)return;
 
   const width=canvas.clientWidth;
 
-  const height=210;
+  const height=190;
+
+  const dpr=window.devicePixelRatio||1;
 
   canvas.width=width*dpr;
 
   canvas.height=height*dpr;
 
-  ctx.scale(dpr,dpr);
+  const ctx=canvas.getContext("2d");
+
+  ctx.setTransform(
+    dpr,0,0,dpr,0,0
+  );
 
   ctx.clearRect(0,0,width,height);
 
 
-  let cumulative=0;
+  let total=0;
 
-  let points=[0];
+  const values=[0];
 
-  data.predictions.forEach(p=>{
+  db.races.forEach(r=>{
 
-    if(p.result){
+    if(r.result){
 
-      cumulative+=
-        Number(p.result.returnMoney||0)-
-        Number(p.bet||0);
+      total+=
+        Number(r.result.returnMoney||0)-
+        Number(r.bet||0);
 
-      points.push(cumulative);
+      values.push(total);
 
     }
 
   });
 
 
-  const max=Math.max(...points,0);
+  const max=Math.max(...values,0);
 
-  const min=Math.min(...points,0);
+  const min=Math.min(...values,0);
 
-  const range=Math.max(max-min,1);
+  const range=
+    Math.max(max-min,1);
 
-  const padding=22;
 
-  const top=padding;
+  const left=30;
+  const right=10;
+  const top=15;
+  const bottom=20;
 
-  const bottom=height-padding;
+  const graphWidth=
+    width-left-right;
 
-  const zeroY=
-    top+
-    (max/range)*(bottom-top);
+  const graphHeight=
+    height-top-bottom;
+
+
+  function y(value){
+
+    return top+
+      ((max-value)/range)*graphHeight;
+
+  }
+
+
+  const zeroY=y(0);
 
 
   /* GRID */
 
-  ctx.lineWidth=1;
+  ctx.strokeStyle="#dfe4ea";
 
-  ctx.strokeStyle="#dfe4eb";
+  ctx.lineWidth=1;
 
   ctx.beginPath();
 
-  ctx.moveTo(0,zeroY);
+  ctx.moveTo(left,zeroY);
 
-  ctx.lineTo(width,zeroY);
+  ctx.lineTo(width-right,zeroY);
 
   ctx.stroke();
 
 
-  ctx.fillStyle="#7a8495";
+  ctx.fillStyle="#7c8696";
 
   ctx.font="9px sans-serif";
 
-  ctx.fillText("0",4,zeroY-4);
+  ctx.fillText("0",5,zeroY-4);
 
 
-  if(points.length===1){
+  if(values.length===1){
 
     ctx.fillText(
       "結果を入力すると収支推移が表示されます",
-      20,
+      35,
       height/2
     );
 
-    updateGraphInfo(points);
+    updateGraphStats(values);
 
     return;
 
   }
 
 
-  const xStep=
-    (width-padding*2)/(points.length-1);
+  const step=
+    values.length>1?
+    graphWidth/(values.length-1):
+    0;
 
 
-  /* AREA */
+  /* SEGMENTS */
 
-  ctx.beginPath();
+  for(let i=0;i<values.length-1;i++){
 
-  points.forEach((v,i)=>{
+    const x1=left+i*step;
+    const x2=left+(i+1)*step;
 
-    const x=padding+i*xStep;
+    const y1=y(values[i]);
+    const y2=y(values[i+1]);
 
-    const y=
-      top+
-      ((max-v)/range)*(bottom-top);
+    const positive=
+      (values[i]+values[i+1])/2>=0;
 
-    if(i===0)ctx.moveTo(x,y);
-    else ctx.lineTo(x,y);
+    ctx.beginPath();
 
-  });
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
 
-  ctx.lineWidth=2.5;
+    ctx.lineWidth=2.5;
 
-  ctx.strokeStyle=
-    points[points.length-1]>=0
-      ? "#13966a"
-      : "#dc3b49";
+    ctx.strokeStyle=
+      positive?
+      "#129568":
+      "#d93847";
 
-  ctx.stroke();
+    ctx.stroke();
+
+  }
 
 
   /* POINTS */
 
-  points.forEach((v,i)=>{
+  values.forEach((value,i)=>{
 
-    const x=padding+i*xStep;
+    const x=left+i*step;
 
-    const y=
-      top+
-      ((max-v)/range)*(bottom-top);
+    const yy=y(value);
 
     ctx.beginPath();
 
-    ctx.arc(x,y,3.5,0,Math.PI*2);
+    ctx.arc(x,yy,3.2,0,Math.PI*2);
 
     ctx.fillStyle=
-      v>=0?"#13966a":"#dc3b49";
+      value>=0?
+      "#129568":
+      "#d93847";
 
     ctx.fill();
 
   });
 
 
-  updateGraphInfo(points);
+  /* X AXIS */
+
+  ctx.fillStyle="#7c8696";
+
+  ctx.font="8px sans-serif";
+
+  values.forEach((value,i)=>{
+
+    if(i===0)return;
+
+    const x=left+i*step;
+
+    ctx.fillText(
+      i+"R",
+      x-6,
+      height-5
+    );
+
+  });
+
+
+  updateGraphStats(values);
 
 }
 
 
-function updateGraphInfo(points){
+/* ==========================================
+   GRAPH STATS
+========================================== */
 
-  const maxPlus=Math.max(...points,0);
+function updateGraphStats(values){
 
-  const maxMinus=Math.min(...points,0);
+  const maxPlus=Math.max(...values,0);
 
-  const current=points[points.length-1];
+  const maxMinus=Math.min(...values,0);
+
+  const current=
+    values[values.length-1];
+
 
   document.getElementById("maxPlus").textContent=
     "+"+yen(maxPlus);
 
   document.getElementById("maxMinus").textContent=
-    yen(maxMinus);
+    (maxMinus<0?"-":"")+yen(maxMinus);
 
-  document.getElementById("currentProfit").textContent=
-    (current>=0?"+":"")+yen(current);
+  const currentEl=
+    document.getElementById("graphCurrent");
+
+  currentEl.textContent=
+    (current>=0?"+":"-")+yen(current);
+
+  currentEl.className=
+    current>=0?"green":"red";
 
 }
 
 
-/* =========================================
-   INIT
-========================================= */
+/* ==========================================
+   INITIALIZE
+========================================== */
 
-updateHome();
+document.getElementById("raceDate").value=
+  new Date().toISOString().slice(0,10);
+
+updateDashboard();
 
 renderHistory();
 
-renderHorses();
+window.addEventListener(
+  "resize",
+  drawGraph
+);
 
 </script>
 

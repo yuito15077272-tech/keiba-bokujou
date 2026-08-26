@@ -2,580 +2,667 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#101828">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="競馬牧場DX">
 <title>競馬牧場DX</title>
 
 <style>
 :root{
- --bg:#f3f5f9;
- --card:#ffffff;
- --text:#172033;
- --sub:#6b7280;
- --line:#e5e7eb;
- --purple:#6757e8;
- --green:#0f9f70;
- --red:#dc4654;
- --orange:#f59e0b;
- --blue:#2563eb;
- --dark:#111827;
+  --bg:#f2f5f9;
+  --card:#ffffff;
+  --ink:#172033;
+  --muted:#718096;
+  --line:#e2e8f0;
+  --dark:#101828;
+  --accent:#635bdb;
+  --blue:#3182ce;
+  --green:#14966a;
+  --red:#d94b57;
+  --orange:#dd8b21;
+  --gold:#e0a72e;
 }
 
 *{
- box-sizing:border-box;
- -webkit-tap-highlight-color:transparent;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
- margin:0;
- padding:0;
- background:var(--bg);
- color:var(--text);
- font-family:-apple-system,BlinkMacSystemFont,
- "Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,
+  "Hiragino Sans","Hiragino Kaku Gothic ProN",
+  "Yu Gothic",Meiryo,sans-serif;
 }
 
 body{
- padding-bottom:30px;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 
-button,input,textarea,select{
- font:inherit;
+button,input,select,textarea{
+  font:inherit;
 }
 
 button{
- cursor:pointer;
+  cursor:pointer;
 }
 
 .app{
- width:100%;
- max-width:720px;
- margin:auto;
- padding:18px 14px 40px;
+  max-width:760px;
+  margin:auto;
+  padding:calc(16px + env(safe-area-inset-top)) 14px 40px;
 }
 
 header{
- color:white;
- background:#111827;
- margin:-18px -14px 18px;
- padding:28px 20px 25px;
+  color:white;
+  padding:4px 5px 18px;
 }
 
-.logo-small{
- font-size:11px;
- letter-spacing:.12em;
- opacity:.7;
- font-weight:800;
+.eyebrow{
+  font-size:10px;
+  letter-spacing:.14em;
+  opacity:.65;
+  font-weight:800;
 }
 
-h1{
- margin:5px 0;
- font-size:28px;
- font-weight:950;
- color:#fff;
+.brand{
+  font-size:28px;
+  font-weight:900;
+  margin:5px 0;
 }
 
-.header-sub{
- font-size:12px;
- color:#d1d5db;
-}
-
-.nav{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:8px;
- margin-bottom:15px;
-}
-
-.nav button{
- border:0;
- background:#fff;
- color:#374151;
- border-radius:13px;
- padding:11px 5px;
- font-size:11px;
- font-weight:900;
- box-shadow:0 4px 15px #0000000d;
-}
-
-.nav button.active{
- background:var(--purple);
- color:#fff;
-}
-
-.page{
- display:none;
-}
-
-.page.active{
- display:block;
+.sub{
+  font-size:12px;
+  opacity:.75;
 }
 
 .hero{
- background:linear-gradient(135deg,#283449,#111827);
- color:#fff;
- border-radius:24px;
- padding:19px;
- box-shadow:0 12px 30px #00000018;
+  background:linear-gradient(135deg,#28354d,#101827);
+  color:white;
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 14px 35px rgba(11,19,34,.2);
 }
 
-.hero-title{
- font-size:12px;
- opacity:.7;
- font-weight:800;
+.heroTop{
+  display:flex;
+  align-items:center;
+  gap:13px;
 }
 
-.hero-money{
- font-size:32px;
- font-weight:950;
- margin-top:5px;
+.horse{
+  font-size:46px;
 }
 
-.hero-money.plus{
- color:#6ee7b7;
+.rank{
+  font-size:19px;
+  font-weight:900;
 }
 
-.hero-money.minus{
- color:#ff929b;
+.rankDesc{
+  font-size:11px;
+  color:#bac5d7;
+  margin-top:3px;
 }
 
-.grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px;
- margin-top:12px;
-}
-
-.card{
- background:#fff;
- border-radius:17px;
- padding:14px;
- box-shadow:0 5px 20px #0000000b;
-}
-
-.card-label{
- font-size:10px;
- color:var(--sub);
- font-weight:800;
-}
-
-.card-value{
- margin-top:4px;
- font-size:19px;
- font-weight:950;
+.balance{
+  font-size:30px;
+  font-weight:900;
+  margin-top:13px;
 }
 
 .plus{
- color:var(--green)!important;
+  color:#16a974!important;
 }
 
 .minus{
- color:var(--red)!important;
+  color:#d94b57!important;
 }
 
-.section{
- margin-top:18px;
+.hero .plus{
+  color:#73dfb5!important;
 }
 
-.section-title{
- margin:0 3px 9px;
- font-size:17px;
- font-weight:950;
- color:#111827;
-}
-
-.panel{
- background:#fff;
- border-radius:19px;
- padding:15px;
- box-shadow:0 5px 20px #0000000b;
-}
-
-label{
- display:block;
- font-size:10px;
- color:var(--sub);
- font-weight:900;
- margin-bottom:5px;
-}
-
-input,select,textarea{
- width:100%;
- border:1px solid var(--line);
- background:#f8fafc;
- border-radius:12px;
- padding:12px;
- outline:none;
- color:#111827;
-}
-
-input:focus,select:focus,textarea:focus{
- border-color:var(--purple);
- background:#fff;
-}
-
-textarea{
- min-height:80px;
- resize:vertical;
-}
-
-.form-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
-}
-
-.full{
- grid-column:1/-1;
-}
-
-.btn{
- width:100%;
- border:0;
- border-radius:13px;
- padding:13px;
- font-weight:950;
- margin-top:4px;
-}
-
-.btn-primary{
- background:var(--purple);
- color:white;
-}
-
-.btn-secondary{
- background:#eef0ff;
- color:#5547c9;
-}
-
-.btn-danger{
- background:#fff0f1;
- color:var(--red);
-}
-
-.horse-box{
- display:flex;
- align-items:center;
- gap:12px;
-}
-
-.horse-icon{
- font-size:44px;
-}
-
-.status{
- font-weight:950;
- font-size:18px;
-}
-
-.status-sub{
- color:#6b7280;
- font-size:11px;
- margin-top:3px;
+.hero .minus{
+  color:#ff929b!important;
 }
 
 .progress{
- height:9px;
- background:#e5e7eb;
- border-radius:20px;
- overflow:hidden;
- margin-top:15px;
+  height:9px;
+  background:#364157;
+  border-radius:20px;
+  margin-top:14px;
+  overflow:hidden;
 }
 
-.progress-bar{
- height:100%;
- width:0;
- background:linear-gradient(90deg,#6957e8,#e0a72e);
- border-radius:20px;
- transition:.3s;
+.progress i{
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#8c78ff,#e4c05c);
+  border-radius:20px;
+  transition:.35s;
 }
 
-.rank-info{
- display:flex;
- justify-content:space-between;
- margin-top:6px;
- font-size:10px;
- color:#9ca3af;
+.next{
+  display:flex;
+  justify-content:space-between;
+  color:#bcc5d4;
+  font-size:10px;
+  margin-top:7px;
 }
 
-.mark-grid{
- display:grid;
- grid-template-columns:repeat(5,1fr);
- gap:7px;
- margin-top:8px;
+.nav{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:12px;
 }
 
-.mark{
- border:2px solid #e5e7eb;
- background:#fff;
- border-radius:12px;
- padding:11px 4px;
- text-align:center;
- font-weight:950;
- font-size:18px;
+.nav button{
+  border:0;
+  border-radius:13px;
+  background:#fff;
+  padding:11px 4px;
+  font-weight:900;
+  font-size:12px;
+  color:var(--ink);
+  box-shadow:0 6px 20px rgba(38,54,77,.08);
 }
 
-.mark.selected{
- border-color:var(--purple);
- background:#eeeaff;
- color:var(--purple);
- transform:scale(1.03);
+.nav button.active{
+  background:var(--accent);
+  color:white;
 }
 
-.horse-list{
- margin-top:12px;
+.page{
+  display:none;
 }
 
-.horse-row{
- display:grid;
- grid-template-columns:35px 1fr auto;
- gap:8px;
- align-items:center;
- padding:10px 0;
- border-bottom:1px solid var(--line);
+.page.active{
+  display:block;
 }
 
-.horse-row:last-child{
- border-bottom:0;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:12px;
 }
 
-.horse-num{
- font-weight:950;
- text-align:center;
+.card{
+  background:#fff;
+  border-radius:17px;
+  padding:13px;
+  box-shadow:0 7px 24px rgba(38,54,77,.07);
 }
 
-.horse-name{
- font-size:13px;
- font-weight:900;
+.card small{
+  color:var(--muted);
+  font-size:10px;
 }
 
-.horse-meta{
- font-size:10px;
- color:var(--sub);
- margin-top:2px;
+.card b{
+  display:block;
+  font-size:18px;
+  margin-top:3px;
 }
 
-.horse-mark{
- font-size:18px;
- font-weight:950;
- color:var(--purple);
+section{
+  margin-top:17px;
 }
 
-.history-item{
- border-bottom:1px solid var(--line);
- padding:13px 0;
+.title{
+  font-size:16px;
+  font-weight:900;
+  margin:0 3px 9px;
 }
 
-.history-item:first-child{
- padding-top:0;
+.panel{
+  background:#fff;
+  border-radius:20px;
+  padding:15px;
+  box-shadow:0 7px 24px rgba(38,54,77,.07);
 }
 
-.history-item:last-child{
- border-bottom:0;
+.form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.history-top{
- display:flex;
- justify-content:space-between;
- gap:10px;
+.full{
+  grid-column:1/-1;
 }
 
-.history-name{
- font-weight:950;
- font-size:14px;
+label{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  margin-bottom:5px;
 }
 
-.history-date{
- color:var(--sub);
- font-size:10px;
- margin-top:3px;
+input,select,textarea{
+  width:100%;
+  border:1px solid var(--line);
+  background:#f8fafc;
+  border-radius:12px;
+  padding:12px;
+  outline:0;
+  font-size:16px;
 }
 
-.history-result{
- font-weight:950;
- font-size:13px;
- text-align:right;
+textarea{
+  min-height:90px;
+  resize:vertical;
 }
 
-.history-buttons{
- display:flex;
- gap:7px;
- margin-top:9px;
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#968aff;
+  background:#fff;
 }
 
-.mini-btn{
- border:0;
- border-radius:9px;
- padding:7px 10px;
- font-size:10px;
- font-weight:900;
- background:#f1f3f8;
- color:#374151;
+.primary{
+  width:100%;
+  border:0;
+  border-radius:13px;
+  background:var(--accent);
+  color:#fff;
+  font-weight:900;
+  padding:13px;
 }
 
-.detail-box{
- background:#f8fafc;
- border-radius:13px;
- padding:12px;
- margin-top:10px;
+.secondary{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:#fff;
+  color:var(--ink);
+  font-weight:900;
+  padding:12px;
 }
 
-.detail-row{
- display:flex;
- justify-content:space-between;
- padding:6px 0;
- font-size:12px;
- border-bottom:1px solid #e5e7eb;
+.danger{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:var(--red);
+  font-size:11px;
+  padding:12px;
 }
 
-.detail-row:last-child{
- border-bottom:0;
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
 }
 
-.buy{
- padding:9px 0;
- border-bottom:1px solid var(--line);
- font-size:12px;
+.statline{
+  padding:10px 4px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
 }
 
-.buy:last-child{
- border-bottom:0;
+.statline span{
+  color:var(--muted);
 }
 
-.chart-wrap{
- position:relative;
- width:100%;
+.statline:nth-last-child(-n+2){
+  border-bottom:0;
 }
 
-canvas{
- width:100%;
- height:220px;
- display:block;
+.sectionSpace{
+  margin-top:18px;
 }
 
-.chart-legend{
- display:flex;
- justify-content:space-between;
- font-size:10px;
- color:var(--sub);
- margin-top:-3px;
+.horseInput{
+  display:grid;
+  grid-template-columns:55px 1fr 70px;
+  gap:7px;
+  margin-bottom:8px;
+  align-items:center;
+}
+
+.horseNo{
+  text-align:center;
+  font-weight:900;
+  background:#f1f5f9;
+  border-radius:10px;
+  padding:11px 3px;
+}
+
+.markButtons{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:4px;
+}
+
+.markBtn{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:8px;
+  min-height:38px;
+  font-weight:900;
+  font-size:12px;
+}
+
+.markBtn.selected{
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
+}
+
+.markBtn[data-mark="◎"].selected{
+  background:#d9a514;
+}
+
+.markBtn[data-mark="○"].selected{
+  background:#3182ce;
+}
+
+.markBtn[data-mark="▲"].selected{
+  background:#dd6b20;
+}
+
+.markBtn[data-mark="☆"].selected{
+  background:#805ad5;
+}
+
+.markBtn[data-mark="△"].selected{
+  background:#718096;
+}
+
+.markBtn[data-mark="消"].selected{
+  background:#d94b57;
+}
+
+.horseRow{
+  border-bottom:1px solid var(--line);
+  padding:10px 0;
+}
+
+.horseRow:last-child{
+  border-bottom:0;
+}
+
+.horseName{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.markDisplay{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:27px;
+  height:27px;
+  border-radius:50%;
+  background:#f1f5f9;
+  font-size:12px;
+}
+
+.buyBox{
+  background:#f8fafc;
+  border-radius:14px;
+  padding:12px;
+  margin-top:10px;
+}
+
+.buyRow{
+  display:grid;
+  grid-template-columns:1fr 90px;
+  gap:8px;
+  margin-bottom:8px;
+}
+
+.historyRow{
+  border-bottom:1px solid var(--line);
+  padding:13px 0;
+  cursor:pointer;
+}
+
+.historyRow:first-child{
+  padding-top:0;
+}
+
+.historyRow:last-child{
+  border-bottom:0;
+}
+
+.historyTop{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.historyName{
+  font-weight:900;
+  font-size:14px;
+}
+
+.historyMeta{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.historyResult{
+  font-weight:900;
+  font-size:13px;
+}
+
+.detailHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.backBtn{
+  border:0;
+  background:#f1f5f9;
+  border-radius:10px;
+  padding:9px 12px;
+  font-weight:900;
+}
+
+.detailTitle{
+  font-size:18px;
+  font-weight:900;
+}
+
+.resultGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.resultBox{
+  background:#f8fafc;
+  border-radius:13px;
+  padding:8px;
+}
+
+.resultBox label{
+  text-align:center;
+}
+
+.resultBox input{
+  text-align:center;
+  font-weight:900;
+}
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+
+.summaryBox{
+  background:#f8fafc;
+  border-radius:13px;
+  padding:12px;
+}
+
+.summaryBox small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.summaryBox b{
+  display:block;
+  font-size:17px;
+  margin-top:3px;
+}
+
+.chartWrap{
+  position:relative;
+}
+
+.chart{
+  width:100%;
+  height:230px;
+  display:block;
+}
+
+.chartLegend{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.legendPlus::before,
+.legendMinus::before{
+  content:"";
+  display:inline-block;
+  width:9px;
+  height:9px;
+  border-radius:2px;
+  margin-right:4px;
+}
+
+.legendPlus::before{
+  background:var(--green);
+}
+
+.legendMinus::before{
+  background:var(--red);
+}
+
+.typeRow{
+  display:flex;
+  justify-content:space-between;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.typeRow:last-child{
+  border-bottom:0;
+}
+
+.typeName{
+  font-weight:900;
+  font-size:12px;
+}
+
+.typeMeta{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
 }
 
 .empty{
- text-align:center;
- padding:22px 5px;
- color:var(--sub);
- font-size:12px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  padding:18px 0;
 }
 
-.stats-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
-}
-
-.stat{
- background:#f8fafc;
- border-radius:13px;
- padding:12px;
-}
-
-.stat small{
- display:block;
- color:var(--sub);
- font-size:10px;
-}
-
-.stat b{
- display:block;
- margin-top:4px;
- font-size:18px;
-}
-
-.toast{
- position:fixed;
- left:50%;
- bottom:25px;
- transform:translate(-50%,20px);
- background:#172033;
- color:#fff;
- padding:11px 17px;
- border-radius:999px;
- font-size:12px;
- font-weight:800;
- opacity:0;
- pointer-events:none;
- transition:.25s;
- z-index:999;
-}
-
-.toast.show{
- opacity:1;
- transform:translate(-50%,0);
-}
-
-.modal{
- position:fixed;
- inset:0;
- background:#00000066;
- display:none;
- align-items:flex-end;
- justify-content:center;
- z-index:100;
-}
-
-.modal.show{
- display:flex;
-}
-
-.modal-content{
- width:100%;
- max-width:720px;
- max-height:90vh;
- overflow:auto;
- background:#fff;
- border-radius:24px 24px 0 0;
- padding:18px 15px 30px;
-}
-
-.modal-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:12px;
-}
-
-.modal-title{
- font-weight:950;
- font-size:18px;
-}
-
-.close{
- border:0;
- background:#f1f3f8;
- width:35px;
- height:35px;
- border-radius:50%;
- font-size:18px;
+.badges{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
 }
 
 .badge{
- display:inline-block;
- padding:4px 8px;
- border-radius:8px;
- background:#eeeaff;
- color:#5547c9;
- font-size:10px;
- font-weight:900;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+}
+
+.badge.locked{
+  opacity:.38;
+}
+
+.bi{
+  font-size:23px;
+}
+
+.bt{
+  font-weight:900;
+  font-size:12px;
+  margin-top:4px;
+}
+
+.bd{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:calc(20px + env(safe-area-inset-bottom));
+  transform:translateX(-50%) translateY(20px);
+  background:#182234;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:999px;
+  font-size:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:100;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%);
+}
+
+.note{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.7;
 }
 
 @media(min-width:600px){
- .form-grid{
-  grid-template-columns:repeat(4,1fr);
- }
- .full{
-  grid-column:1/-1;
- }
+  .form{
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+  }
+
+  .badges{
+    grid-template-columns:repeat(3,1fr);
+  }
 }
 </style>
 </head>
@@ -585,1336 +672,1973 @@ canvas{
 <div class="app">
 
 <header>
- <div class="logo-small">HORSE RACING · MANAGEMENT</div>
- <h1>競馬牧場DX</h1>
- <div class="header-sub">予想・結果・収支をひとつにつなげる競馬管理アプリ</div>
+  <div class="eyebrow">HORSE RACING · MANAGEMENT GAME</div>
+  <div class="brand">競馬牧場DX</div>
+  <div class="sub">予想 → 結果 → 収支をひとつにつなげる。</div>
 </header>
 
 <div class="nav">
- <button class="active" onclick="showPage('home',this)">🏠 ホーム</button>
- <button onclick="showPage('predict',this)">📝 予想</button>
- <button onclick="showPage('history',this)">📋 履歴</button>
+  <button class="navBtn active" data-page="home">🏠 ホーム</button>
+  <button class="navBtn" data-page="predict">📝 予想</button>
+  <button class="navBtn" data-page="historyPage">📚 履歴</button>
 </div>
 
-<!-- ================= HOME ================= -->
-
+<!-- HOME -->
 <div id="home" class="page active">
 
-<div class="hero">
- <div class="hero-title">現在の総収支</div>
- <div id="heroProfit" class="hero-money">¥0</div>
- <div class="progress">
-  <div id="rankBar" class="progress-bar"></div>
- </div>
- <div class="rank-info">
-  <span id="rankName">新馬</span>
-  <span id="rankNext">次のランクまで ¥10,000</span>
- </div>
-</div>
+  <div class="hero">
+    <div class="heroTop">
+      <div class="horse" id="horse">🐎</div>
+      <div>
+        <div class="rank" id="rank">新馬</div>
+        <div class="rankDesc" id="rankDesc">ここから育成スタート！</div>
+      </div>
+    </div>
 
-<div class="grid">
+    <div class="balance" id="balance">¥0</div>
 
-<div class="card">
- <div class="card-label">総投資</div>
- <div id="totalBet" class="card-value">¥0</div>
-</div>
+    <div class="progress">
+      <i id="bar"></i>
+    </div>
 
-<div class="card">
- <div class="card-label">総回収</div>
- <div id="totalReturn" class="card-value">¥0</div>
-</div>
-
-<div class="card">
- <div class="card-label">回収率</div>
- <div id="roi" class="card-value">—</div>
-</div>
-
-<div class="card">
- <div class="card-label">的中率</div>
- <div id="hitRate" class="card-value">—</div>
-</div>
-
-<div class="card">
- <div class="card-label">予想レース</div>
- <div id="raceCount" class="card-value">0R</div>
-</div>
-
-<div class="card">
- <div class="card-label">的中レース</div>
- <div id="hitCount" class="card-value">0R</div>
-</div>
-
-</div>
-
-<div class="section">
- <h2 class="section-title">🏇 愛馬ステータス</h2>
-
- <div class="panel">
-
- <div class="horse-box">
-  <div id="horseIcon" class="horse-icon">🐎</div>
-  <div>
-   <div id="rankBig" class="status">新馬</div>
-   <div id="rankDesc" class="status-sub">ここから育成スタート！</div>
-  </div>
- </div>
-
- </div>
-</div>
-
-<div class="section">
- <h2 class="section-title">📊 収支推移</h2>
-
- <div class="panel">
-
-  <div class="chart-wrap">
-   <canvas id="chart"></canvas>
+    <div class="next">
+      <span>育成進捗</span>
+      <span id="next">次のランクまで ¥10,000</span>
+    </div>
   </div>
 
-  <div class="chart-legend">
-   <span id="chartMin">マイナス ¥0</span>
-   <span id="chartRaces">0レース</span>
-   <span id="chartMax">プラス ¥0</span>
+  <div class="grid">
+    <div class="card">
+      <small>総投資</small>
+      <b id="totalBet">¥0</b>
+    </div>
+
+    <div class="card">
+      <small>総回収</small>
+      <b id="totalReturn">¥0</b>
+    </div>
+
+    <div class="card">
+      <small>総収支</small>
+      <b id="totalProfit">¥0</b>
+    </div>
+
+    <div class="card">
+      <small>回収率</small>
+      <b id="roi">—</b>
+    </div>
+
+    <div class="card">
+      <small>予想レース数</small>
+      <b id="raceCount">0R</b>
+    </div>
+
+    <div class="card">
+      <small>的中率</small>
+      <b id="hitRate">—</b>
+    </div>
   </div>
 
- </div>
+  <section>
+    <h2 class="title">愛馬ステータス</h2>
+
+    <div class="panel stats">
+      <div class="statline">
+        <span>通算勝利</span>
+        <b id="wins">0勝</b>
+      </div>
+
+      <div class="statline">
+        <span>現在の連勝</span>
+        <b id="streak">0連勝</b>
+      </div>
+
+      <div class="statline">
+        <span>最高月間収支</span>
+        <b id="bestMonth">¥0</b>
+      </div>
+
+      <div class="statline">
+        <span>1レース最高収支</span>
+        <b id="bestRace">¥0</b>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="title">📊 収支推移</h2>
+
+    <div class="panel">
+      <div class="chartWrap">
+        <canvas id="chart" class="chart"></canvas>
+      </div>
+
+      <div class="chartLegend">
+        <span class="legendPlus">プラス</span>
+        <span class="legendMinus">マイナス</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="title">券種別成績</h2>
+    <div class="panel" id="types">
+      <div class="empty">データが貯まると表示されます。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="title">実績・称号</h2>
+    <div class="badges" id="badges"></div>
+  </section>
+
+  <section>
+    <div class="panel note">
+      予想・買い目・結果・収支は同じレースIDで管理しています。
+      予想履歴から詳細を開いて、あとから編集できます。
+    </div>
+
+    <button class="danger" id="reset">
+      すべての記録を削除
+    </button>
+  </section>
+
 </div>
 
-<div class="section">
- <h2 class="section-title">📈 成績</h2>
 
- <div class="panel">
-
-  <div class="stats-grid">
-
-   <div class="stat">
-    <small>勝ちレース</small>
-    <b id="wins">0</b>
-   </div>
-
-   <div class="stat">
-    <small>負けレース</small>
-    <b id="losses">0</b>
-   </div>
-
-   <div class="stat">
-    <small>最高収支</small>
-    <b id="bestRace">¥0</b>
-   </div>
-
-   <div class="stat">
-    <small>現在連勝</small>
-    <b id="streak">0</b>
-   </div>
-
-  </div>
-
- </div>
-</div>
-
-</div>
-
-<!-- ================= PREDICT ================= -->
-
+<!-- PREDICT -->
 <div id="predict" class="page">
 
-<div class="section">
- <h2 class="section-title">📝 予想を登録</h2>
+  <section>
+    <h2 class="title">📝 競馬予想を記録</h2>
 
- <div class="panel">
+    <div class="panel">
 
- <div class="form-grid">
+      <div class="form">
 
-  <div>
-   <label>日付</label>
-   <input id="pDate" type="date">
-  </div>
+        <div>
+          <label>開催日</label>
+          <input id="pDate" type="date">
+        </div>
 
-  <div>
-   <label>競馬場</label>
-   <input id="pTrack" placeholder="新潟">
-  </div>
+        <div>
+          <label>競馬場</label>
+          <select id="pTrack">
+            <option>札幌</option>
+            <option>函館</option>
+            <option>福島</option>
+            <option>新潟</option>
+            <option>東京</option>
+            <option>中山</option>
+            <option>中京</option>
+            <option>京都</option>
+            <option>阪神</option>
+            <option>小倉</option>
+            <option>浦和</option>
+            <option>船橋</option>
+            <option>大井</option>
+            <option>川崎</option>
+            <option>その他</option>
+          </select>
+        </div>
 
-  <div>
-   <label>レース</label>
-   <input id="pRaceNo" placeholder="11R">
-  </div>
+        <div>
+          <label>レース番号</label>
+          <select id="pRaceNo">
+            <option>1R</option>
+            <option>2R</option>
+            <option>3R</option>
+            <option>4R</option>
+            <option>5R</option>
+            <option>6R</option>
+            <option>7R</option>
+            <option>8R</option>
+            <option>9R</option>
+            <option>10R</option>
+            <option>11R</option>
+            <option>12R</option>
+          </select>
+        </div>
 
-  <div>
-   <label>レース名</label>
-   <input id="pRaceName" placeholder="新潟記念">
-  </div>
+        <div>
+          <label>レース名</label>
+          <input id="pName" placeholder="例：新潟記念">
+        </div>
 
-  <div class="full">
-   <label>出走馬</label>
-   <input id="horseInput" placeholder="例：パンジャタワー">
-  </div>
+      </div>
 
-  <div class="full">
-   <button class="btn btn-secondary" onclick="addHorse()">＋ 出走馬を追加</button>
-  </div>
+      <div class="sectionSpace">
 
- </div>
+        <label>出走馬</label>
 
- <div id="horseList" class="horse-list"></div>
+        <div id="horseInputs"></div>
 
- </div>
-</div>
+        <button class="secondary" id="addHorse">
+          ＋ 出走馬を追加
+        </button>
 
-<div class="section">
- <h2 class="section-title">🎯 印を選択</h2>
+      </div>
 
- <div class="panel">
+      <div class="sectionSpace">
 
-  <div class="note">
-   馬をタップしてから印を選んでください。
-  </div>
+        <label>買い目</label>
 
-  <div id="selectedHorse" class="detail-box">
-   まだ馬を選択していません
-  </div>
+        <div id="buyInputs"></div>
 
-  <div class="mark-grid">
-   <button class="mark" onclick="setMark('◎')">◎</button>
-   <button class="mark" onclick="setMark('○')">○</button>
-   <button class="mark" onclick="setMark('▲')">▲</button>
-   <button class="mark" onclick="setMark('☆')">☆</button>
-   <button class="mark" onclick="setMark('△')">△</button>
-  </div>
+        <button class="secondary" id="addBuy">
+          ＋ 買い目を追加
+        </button>
 
- </div>
-</div>
+      </div>
 
-<div class="section">
- <h2 class="section-title">💰 買い目・予想</h2>
+      <div class="sectionSpace">
 
- <div class="panel">
+        <label>予想メモ</label>
 
-  <label>買い目</label>
-  <textarea id="pBets" placeholder="例：3連複 3-8-14"></textarea>
+        <textarea id="pMemo" placeholder="展開、馬場、トラックバイアスなど"></textarea>
 
-  <label style="margin-top:10px">予想メモ</label>
-  <textarea id="pMemo" placeholder="展開・馬場・調教など"></textarea>
+      </div>
 
-  <button class="btn btn-primary" onclick="savePrediction()">
-   💾 予想を保存
-  </button>
+      <div class="sectionSpace">
+        <button class="primary" id="savePrediction">
+          💾 予想を保存
+        </button>
+      </div>
 
- </div>
-</div>
-
-</div>
-
-<!-- ================= HISTORY ================= -->
-
-<div id="history" class="page">
-
-<div class="section">
- <h2 class="section-title">📋 予想履歴</h2>
-
- <div class="panel">
-
-  <div id="historyList"></div>
-
- </div>
-</div>
+    </div>
+  </section>
 
 </div>
 
+
+<!-- HISTORY -->
+<div id="historyPage" class="page">
+
+  <section>
+    <h2 class="title">📚 予想履歴</h2>
+
+    <div class="panel">
+
+      <div id="history">
+        <div class="empty">まだ予想がありません。</div>
+      </div>
+
+    </div>
+  </section>
+
 </div>
 
-<!-- ================= MODAL ================= -->
 
-<div id="modal" class="modal">
+<!-- DETAIL -->
+<div id="detailPage" class="page">
 
-<div class="modal-content">
+  <section>
 
- <div class="modal-head">
-  <div id="modalTitle" class="modal-title">レース詳細</div>
-  <button class="close" onclick="closeModal()">×</button>
- </div>
+    <div class="detailHeader">
+      <button class="backBtn" id="backHistory">← 履歴へ</button>
+      <div class="detailTitle">レース詳細</div>
+    </div>
 
- <div id="modalBody"></div>
+    <div class="panel">
+
+      <div id="detailContent"></div>
+
+    </div>
+
+  </section>
 
 </div>
 
 </div>
 
-<div id="toast" class="toast"></div>
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-/* =========================================
-   DATA
-========================================= */
+const KEY = "keiba_bokujou_dx_records_v2";
 
-const KEY="keiba_bokujou_complete_v1";
+let records = [];
 
-let data=JSON.parse(localStorage.getItem(KEY)||'{"races":[]}');
-
-if(!Array.isArray(data.races)){
- data={races:[]};
+try{
+  records = JSON.parse(localStorage.getItem(KEY) || "[]");
+  if(!Array.isArray(records)) records=[];
+}catch(e){
+  records=[];
 }
 
-let currentPrediction={
- horses:[],
- selectedHorse:null
-};
 
-let editingId=null;
+/* -------------------------
+   基本関数
+------------------------- */
 
-
-/* =========================================
-   BASIC
-========================================= */
-
-function saveData(){
- localStorage.setItem(KEY,JSON.stringify(data));
-}
+const $ = id => document.getElementById(id);
 
 function yen(n){
- n=Number(n)||0;
- return (n>=0?"+":"-")+"¥"+Math.abs(Math.round(n)).toLocaleString("ja-JP");
+  n = Number(n)||0;
+  return "¥" + Math.round(n).toLocaleString("ja-JP");
 }
 
-function money(n){
- n=Number(n)||0;
- return "¥"+Math.abs(Math.round(n)).toLocaleString("ja-JP");
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g,m=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  }[m]));
 }
 
-function today(){
- const d=new Date();
- const y=d.getFullYear();
- const m=String(d.getMonth()+1).padStart(2,"0");
- const day=String(d.getDate()).padStart(2,"0");
- return `${y}-${m}-${day}`;
+function save(){
+  try{
+    localStorage.setItem(KEY,JSON.stringify(records));
+  }catch(e){
+    alert("データ保存に失敗しました。Safariの容量を確認してください。");
+  }
+}
+
+function totalProfit(){
+  return records.reduce((s,r)=>s+(Number(r.returnAmount)||0)-(Number(r.betAmount)||0),0);
 }
 
 function toast(text){
- const el=document.getElementById("toast");
- el.textContent=text;
- el.classList.add("show");
+  const el=$("toast");
+  el.textContent=text;
+  el.classList.add("show");
 
- setTimeout(()=>{
-  el.classList.remove("show");
- },1800);
+  setTimeout(()=>{
+    el.classList.remove("show");
+  },1800);
 }
 
 
-/* =========================================
-   PAGE
-========================================= */
+/* -------------------------
+   ページ切り替え
+------------------------- */
 
-function showPage(id,btn){
+document.querySelectorAll(".navBtn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    showPage(btn.dataset.page);
+  });
+});
 
- document.querySelectorAll(".page").forEach(p=>{
-  p.classList.remove("active");
- });
+function showPage(page){
 
- document.getElementById(id).classList.add("active");
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
 
- document.querySelectorAll(".nav button").forEach(b=>{
-  b.classList.remove("active");
- });
+  const target=$(page);
 
- if(btn) btn.classList.add("active");
-
- if(id==="home") renderHome();
- if(id==="history") renderHistory();
-
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
-}
-
-
-/* =========================================
-   PREDICTION
-========================================= */
-
-function addHorse(){
-
- const input=document.getElementById("horseInput");
-
- const name=input.value.trim();
-
- if(!name){
-  toast("馬名を入力してください");
-  return;
- }
-
- currentPrediction.horses.push({
-  id:Date.now()+Math.random(),
-  number:"",
-  name:name,
-  mark:""
- });
-
- input.value="";
-
- renderHorseList();
-
- toast("出走馬を追加しました");
-}
-
-
-function renderHorseList(){
-
- const el=document.getElementById("horseList");
-
- if(!currentPrediction.horses.length){
-  el.innerHTML='<div class="empty">出走馬を追加してください</div>';
-  return;
- }
-
- el.innerHTML=currentPrediction.horses.map((h,i)=>`
-
-  <div class="horse-row"
-       onclick="selectHorse('${h.id}')">
-
-   <div class="horse-num">${i+1}</div>
-
-   <div>
-    <div class="horse-name">${escapeHTML(h.name)}</div>
-    <div class="horse-meta">
-     タップして印を選択
-    </div>
-   </div>
-
-   <div class="horse-mark">
-    ${h.mark||"－"}
-   </div>
-
-  </div>
-
- `).join("");
-}
-
-
-function selectHorse(id){
-
- const horse=currentPrediction.horses.find(h=>String(h.id)===String(id));
-
- if(!horse)return;
-
- currentPrediction.selectedHorse=id;
-
- document.getElementById("selectedHorse").innerHTML=
- `
- <b>${escapeHTML(horse.name)}</b>
- <br>
- <span style="font-size:11px;color:#6b7280">
- 現在の印：${horse.mark||"なし"}
- </span>
- `;
-
- document.querySelectorAll(".mark").forEach(b=>{
-  b.classList.remove("selected");
- });
-
- const mark=horse.mark;
-
- document.querySelectorAll(".mark").forEach(b=>{
-  if(b.textContent===mark){
-   b.classList.add("selected");
-  }
- });
-}
-
-
-function setMark(mark){
-
- if(currentPrediction.selectedHorse===null){
-  toast("先に馬をタップしてください");
-  return;
- }
-
- const horse=currentPrediction.horses.find(
-  h=>String(h.id)===String(currentPrediction.selectedHorse)
- );
-
- if(!horse)return;
-
- horse.mark=mark;
-
- renderHorseList();
- selectHorse(horse.id);
-
- toast(mark+" を設定しました");
-}
-
-
-/* =========================================
-   SAVE PREDICTION
-========================================= */
-
-function savePrediction(){
-
- const track=document.getElementById("pTrack").value.trim();
- const raceNo=document.getElementById("pRaceNo").value.trim();
- const raceName=document.getElementById("pRaceName").value.trim();
-
- if(!track||!raceNo||!raceName){
-  toast("競馬場・レース・レース名を入力してください");
-  return;
- }
-
- const race={
-  id:editingId||Date.now(),
-  date:document.getElementById("pDate").value||today(),
-  track:track,
-  raceNo:raceNo,
-  name:raceName,
-  horses:JSON.parse(JSON.stringify(currentPrediction.horses)),
-  bets:document.getElementById("pBets").value.trim(),
-  memo:document.getElementById("pMemo").value.trim(),
-
-  result:{
-   entered:false,
-   hit:false,
-   bet:0,
-   ret:0
-  }
- };
-
- if(editingId){
-
-  const index=data.races.findIndex(r=>r.id===editingId);
-
-  if(index>=0){
-
-   race.result=data.races[index].result;
-
-   data.races[index]=race;
-
+  if(target){
+    target.classList.add("active");
   }
 
-  editingId=null;
+  document.querySelectorAll(".navBtn").forEach(btn=>{
+    btn.classList.toggle(
+      "active",
+      btn.dataset.page===page
+    );
+  });
 
-  toast("予想を更新しました");
-
- }else{
-
-  data.races.push(race);
-
-  toast("予想を保存しました");
-
- }
-
- saveData();
-
- clearPrediction();
-
- renderHome();
-
- showPage("history",document.querySelectorAll(".nav button")[2]);
-}
-
-
-function clearPrediction(){
-
- currentPrediction={
-  horses:[],
-  selectedHorse:null
- };
-
- document.getElementById("pDate").value=today();
- document.getElementById("pTrack").value="";
- document.getElementById("pRaceNo").value="";
- document.getElementById("pRaceName").value="";
- document.getElementById("pBets").value="";
- document.getElementById("pMemo").value="";
-
- renderHorseList();
-
- document.getElementById("selectedHorse").innerHTML=
- "まだ馬を選択していません";
-}
-
-
-/* =========================================
-   HISTORY
-========================================= */
-
-function renderHistory(){
-
- const el=document.getElementById("historyList");
-
- if(!data.races.length){
-
-  el.innerHTML=
-  '<div class="empty">まだ予想がありません。</div>';
-
-  return;
- }
-
- const races=[...data.races].reverse();
-
- el.innerHTML=races.map(r=>{
-
-  const p=Number(r.result.ret||0)-Number(r.result.bet||0);
-
-  let resultText="結果未入力";
-
-  if(r.result.entered){
-
-   resultText=r.result.hit
-    ?"🎯 的中 "+yen(p)
-    :"❌ 不的中 "+yen(p);
-
+  if(page==="home"){
+    render();
   }
 
-  return `
-
-  <div class="history-item">
-
-   <div
-    class="history-top"
-    onclick="openDetail(${r.id})">
-
-    <div>
-     <div class="history-name">
-      ${escapeHTML(r.track)} ${escapeHTML(r.raceNo)}
-      ${escapeHTML(r.name)}
-     </div>
-
-     <div class="history-date">
-      ${escapeHTML(r.date)}
-     </div>
-    </div>
-
-    <div class="history-result ${r.result.entered?(p>=0?"plus":"minus"):""}">
-     ${resultText}
-    </div>
-
-   </div>
-
-   <div class="history-buttons">
-
-    <button class="mini-btn"
-      onclick="openDetail(${r.id})">
-      👆 詳細
-    </button>
-
-    <button class="mini-btn"
-      onclick="editPrediction(${r.id})">
-      ✏️ 予想編集
-    </button>
-
-    <button class="mini-btn"
-      onclick="editResult(${r.id})">
-      💰 結果編集
-    </button>
-
-   </div>
-
-  </div>
-
-  `;
-
- }).join("");
-}
-
-
-/* =========================================
-   DETAIL
-========================================= */
-
-function openDetail(id){
-
- const r=data.races.find(x=>x.id===id);
-
- if(!r)return;
-
- document.getElementById("modalTitle").textContent=
- `${r.track} ${r.raceNo} ${r.name}`;
-
- const p=Number(r.result.ret||0)-Number(r.result.bet||0);
-
- const horses=r.horses.map(h=>`
-
-  <div class="horse-row">
-
-   <div class="horse-num">
-    ${h.number||""}
-   </div>
-
-   <div class="horse-name">
-    ${escapeHTML(h.name)}
-   </div>
-
-   <div class="horse-mark">
-    ${h.mark||"－"}
-   </div>
-
-  </div>
-
- `).join("");
-
- document.getElementById("modalBody").innerHTML=`
-
- <div class="detail-box">
-  <div class="detail-row">
-   <span>日付</span>
-   <b>${escapeHTML(r.date)}</b>
-  </div>
-
-  <div class="detail-row">
-   <span>競馬場</span>
-   <b>${escapeHTML(r.track)}</b>
-  </div>
-
-  <div class="detail-row">
-   <span>レース</span>
-   <b>${escapeHTML(r.raceNo)}</b>
-  </div>
- </div>
-
- <div class="section">
-  <h2 class="section-title">🎯 印</h2>
-
-  <div class="panel">
-   ${horses||'<div class="empty">馬が登録されていません</div>'}
-  </div>
- </div>
-
- <div class="section">
-  <h2 class="section-title">💰 買い目</h2>
-
-  <div class="panel">
-   ${escapeHTML(r.bets||"未登録")}
-  </div>
- </div>
-
- <div class="section">
-  <h2 class="section-title">📝 予想メモ</h2>
-
-  <div class="panel">
-   ${escapeHTML(r.memo||"未登録")}
-  </div>
- </div>
-
- <div class="section">
-  <h2 class="section-title">🏁 結果・収支</h2>
-
-  <div class="panel">
-
-   <div class="detail-row">
-    <span>投資</span>
-    <b>${money(r.result.bet)}</b>
-   </div>
-
-   <div class="detail-row">
-    <span>回収</span>
-    <b>${money(r.result.ret)}</b>
-   </div>
-
-   <div class="detail-row">
-    <span>収支</span>
-    <b class="${p>=0?"plus":"minus"}">
-     ${yen(p)}
-    </b>
-   </div>
-
-   <div class="detail-row">
-    <span>結果</span>
-    <b>
-     ${r.result.entered
-      ?(r.result.hit?"🎯 的中":"❌ 不的中")
-      :"未入力"}
-    </b>
-   </div>
-
-  </div>
-
- </div>
-
- <button class="btn btn-secondary"
- onclick="editPrediction(${r.id});closeModal()">
-  ✏️ 予想を編集
- </button>
-
- <button class="btn btn-primary"
- onclick="editResult(${r.id});closeModal()">
-  💰 結果・収支を編集
- </button>
-
- <button class="btn btn-danger"
- onclick="deleteRace(${r.id});closeModal()">
-  🗑️ このレースを削除
- </button>
-
- `;
-
- document.getElementById("modal").classList.add("show");
-}
-
-
-function closeModal(){
- document.getElementById("modal").classList.remove("show");
-}
-
-
-/* =========================================
-   EDIT PREDICTION
-========================================= */
-
-function editPrediction(id){
-
- const r=data.races.find(x=>x.id===id);
-
- if(!r)return;
-
- editingId=id;
-
- currentPrediction={
-  horses:JSON.parse(JSON.stringify(r.horses||[])),
-  selectedHorse:null
- };
-
- document.getElementById("pDate").value=r.date;
- document.getElementById("pTrack").value=r.track;
- document.getElementById("pRaceNo").value=r.raceNo;
- document.getElementById("pRaceName").value=r.name;
- document.getElementById("pBets").value=r.bets||"";
- document.getElementById("pMemo").value=r.memo||"";
-
- renderHorseList();
-
- showPage("predict",document.querySelectorAll(".nav button")[1]);
-
- toast("予想編集モードです");
-}
-
-
-/* =========================================
-   EDIT RESULT
-========================================= */
-
-function editResult(id){
-
- const r=data.races.find(x=>x.id===id);
-
- if(!r)return;
-
- document.getElementById("modalTitle").textContent=
- "💰 結果・収支を入力";
-
- document.getElementById("modalBody").innerHTML=`
-
- <div class="detail-box">
-
-  <b>
-   ${escapeHTML(r.track)}
-   ${escapeHTML(r.raceNo)}
-   ${escapeHTML(r.name)}
-  </b>
-
- </div>
-
- <div class="section">
-
-  <label>投資額</label>
-
-  <input
-   id="resultBet"
-   type="number"
-   inputmode="numeric"
-   min="0"
-   value="${Number(r.result.bet||0)}">
-
- </div>
-
- <div class="section">
-
-  <label>回収額</label>
-
-  <input
-   id="resultRet"
-   type="number"
-   inputmode="numeric"
-   min="0"
-   value="${Number(r.result.ret||0)}">
-
- </div>
-
- <div class="section">
-
-  <label>結果</label>
-
-  <select id="resultHit">
-   <option value="true" ${r.result.hit?"selected":""}>
-    🎯 的中
-   </option>
-
-   <option value="false" ${!r.result.hit?"selected":""}>
-    ❌ 不的中
-   </option>
-  </select>
-
- </div>
-
- <button
-  class="btn btn-primary"
-  onclick="saveResult(${id})">
-  💾 結果を保存
- </button>
-
- `;
-
- document.getElementById("modal").classList.add("show");
-}
-
-
-function saveResult(id){
-
- const r=data.races.find(x=>x.id===id);
-
- if(!r)return;
-
- const bet=Number(document.getElementById("resultBet").value)||0;
- const ret=Number(document.getElementById("resultRet").value)||0;
- const hit=document.getElementById("resultHit").value==="true";
-
- r.result={
-  entered:true,
-  hit:hit,
-  bet:bet,
-  ret:ret
- };
-
- saveData();
-
- closeModal();
-
- renderHome();
- renderHistory();
-
- toast("結果を保存しました");
-}
-
-
-/* =========================================
-   DELETE
-========================================= */
-
-function deleteRace(id){
-
- if(!confirm("このレースの記録を削除しますか？")){
-  return;
- }
-
- data.races=data.races.filter(r=>r.id!==id);
-
- saveData();
-
- renderHome();
- renderHistory();
-
- toast("削除しました");
-}
-
-
-/* =========================================
-   HOME
-========================================= */
-
-function renderHome(){
-
- let totalBet=0;
- let totalReturn=0;
- let hits=0;
- let settled=0;
-
- data.races.forEach(r=>{
-
-  if(r.result.entered){
-
-   settled++;
-
-   totalBet+=Number(r.result.bet||0);
-   totalReturn+=Number(r.result.ret||0);
-
-   if(r.result.hit)hits++;
-
+  if(page==="historyPage"){
+    renderHistory();
   }
-
- });
-
- const profit=totalReturn-totalBet;
-
- document.getElementById("totalBet").textContent=money(totalBet);
- document.getElementById("totalReturn").textContent=money(totalReturn);
-
- const hero=document.getElementById("heroProfit");
-
- hero.textContent=yen(profit);
- hero.className="hero-money "+(profit>=0?"plus":"minus");
-
- document.getElementById("roi").textContent=
- totalBet
- ?(totalReturn/totalBet*100).toFixed(1)+"%"
- :"—";
-
- document.getElementById("hitRate").textContent=
- settled
- ?(hits/settled*100).toFixed(1)+"%"
- :"—";
-
- document.getElementById("raceCount").textContent=
- data.races.length+"R";
-
- document.getElementById("hitCount").textContent=
- hits+"R";
-
- document.getElementById("wins").textContent=
- data.races.filter(r=>
-  r.result.entered &&
-  Number(r.result.ret)>Number(r.result.bet)
- ).length+"R";
-
- document.getElementById("losses").textContent=
- data.races.filter(r=>
-  r.result.entered &&
-  Number(r.result.ret)<=Number(r.result.bet)
- ).length+"R";
-
- let best=0;
-
- data.races.forEach(r=>{
-  if(r.result.entered){
-   const p=Number(r.result.ret)-Number(r.result.bet);
-   if(p>best)best=p;
-  }
- });
-
- document.getElementById("bestRace").textContent=yen(best);
-
- /* streak */
-
- let streak=0;
-
- for(let i=data.races.length-1;i>=0;i--){
-
-  const r=data.races[i];
-
-  if(!r.result.entered)continue;
-
-  if(Number(r.result.ret)>Number(r.result.bet)){
-   streak++;
-  }else{
-   break;
-  }
-
- }
-
- document.getElementById("streak").textContent=
- streak+"連勝";
-
- updateRank(profit);
- drawChart();
-
 }
 
 
-/* =========================================
-   RANK
-========================================= */
+/* -------------------------
+   ランク
+------------------------- */
 
-const ranks=[
- {
-  name:"新馬",
-  min:0,
-  desc:"ここから育成スタート！",
-  icon:"🐎"
- },
- {
-  name:"1勝馬",
-  min:10000,
-  desc:"まずは1勝。着実に成長中。",
-  icon:"🐴"
- },
- {
-  name:"オープン馬",
-  min:30000,
-  desc:"一線級が見えてきた！",
-  icon:"🏇"
- },
- {
-  name:"重賞馬",
-  min:60000,
-  desc:"重賞級の実力を獲得。",
-  icon:"🐎✨"
- },
- {
-  name:"GⅠ馬",
-  min:100000,
-  desc:"GⅠの舞台へ。",
-  icon:"🏆🐎"
- },
- {
-  name:"伝説馬",
-  min:200000,
-  desc:"牧場の看板馬。伝説級！",
-  icon:"👑🐎"
- }
+const levels=[
+  {n:"新馬",m:0,d:"ここから育成スタート！",h:"🐎"},
+  {n:"1勝馬",m:10000,d:"まずは1勝。着実に成長中。",h:"🐴"},
+  {n:"オープン馬",m:30000,d:"一線級が見えてきた！",h:"🏇"},
+  {n:"重賞馬",m:60000,d:"重賞級の実力を獲得。",h:"🐎✨"},
+  {n:"GⅠ馬",m:100000,d:"GⅠの舞台へ。",h:"🏆🐎"},
+  {n:"伝説馬",m:200000,d:"牧場の看板馬。伝説級！",h:"👑🐎"}
 ];
 
 
-function updateRank(profit){
+/* -------------------------
+   称号
+------------------------- */
 
- let index=0;
+const badges=[
+  ["🌱","初陣","1レース記録",r=>r.length>=1],
+  ["🏇","調教師見習い","5レース記録",r=>r.length>=5],
+  ["📚","データ収集家","10レース記録",r=>r.length>=10],
+  ["💰","黒字化","総収支＋1万円",r=>totalProfit()>=10000],
+  ["💎","大当たり","1レース＋1万円",r=>r.some(x=>(x.returnAmount-x.betAmount)>=10000)],
+  ["👑","伝説への道","総収支＋20万円",r=>totalProfit()>=200000]
+];
 
- for(let i=0;i<ranks.length;i++){
 
-  if(profit>=ranks[i].min){
-   index=i;
+/* -------------------------
+   ホーム描画
+------------------------- */
+
+function render(){
+
+  const bet=records.reduce((s,r)=>s+(Number(r.betAmount)||0),0);
+
+  const ret=records.reduce((s,r)=>s+(Number(r.returnAmount)||0),0);
+
+  const p=ret-bet;
+
+  $("totalBet").textContent=yen(bet);
+
+  $("totalReturn").textContent=yen(ret);
+
+  $("totalProfit").textContent=(p>=0?"+":"")+yen(p);
+
+  $("totalProfit").className=p>=0?"plus":"minus";
+
+  $("raceCount").textContent=records.length+"R";
+
+  $("roi").textContent=bet
+    ? (ret/bet*100).toFixed(1)+"%"
+    : "—";
+
+  const hit=records.filter(r=>r.hit===true).length;
+
+  $("hitRate").textContent=records.length
+    ? (hit/records.length*100).toFixed(1)+"%"
+    : "—";
+
+
+  let idx=0;
+
+  for(let i=levels.length-1;i>=0;i--){
+    if(p>=levels[i].m){
+      idx=i;
+      break;
+    }
   }
 
- }
+  const lv=levels[idx];
 
- const rank=ranks[index];
+  $("rank").textContent=lv.n;
+  $("rankDesc").textContent=lv.d;
+  $("horse").textContent=lv.h;
 
- document.getElementById("rankName").textContent=rank.name;
- document.getElementById("rankBig").textContent=rank.name;
- document.getElementById("rankDesc").textContent=rank.desc;
- document.getElementById("horseIcon").textContent=rank.icon;
+  $("balance").textContent=(p>=0?"+":"")+yen(p);
+  $("balance").className="balance "+(p>=0?"plus":"minus");
 
- if(index<ranks.length-1){
 
-  const next=ranks[index+1];
+  let pct=100;
+  let nextText="最高ランク到達！";
 
-  const progress=
-   Math.max(
-    0,
-    Math.min(
-     100,
-     (profit-rank.min)/(next.min-rank.min)*100
-    )
-   );
+  if(idx<levels.length-1){
 
-  document.getElementById("rankBar").style.width=
-   progress+"%";
+    const nm=levels[idx+1].m;
 
-  document.getElementById("rankNext").textContent=
-   "次のランクまで "+money(Math.max(0,next.min-profit));
+    pct=Math.max(
+      0,
+      Math.min(
+        100,
+        ((p-lv.m)/(nm-lv.m))*100
+      )
+    );
 
- }else{
+    nextText="次のランクまで "+yen(Math.max(0,nm-p));
+  }
 
-  document.getElementById("rankBar").style.width="100%";
-  document.getElementById("rankNext").textContent=
-   "最高ランク到達！";
+  $("bar").style.width=pct+"%";
+  $("next").textContent=nextText;
 
- }
 
+  const wins=records.filter(r=>r.hit===true).length;
+
+  $("wins").textContent=wins+"勝";
+
+
+  let streak=0;
+
+  for(let i=records.length-1;i>=0;i--){
+
+    if(records[i].hit===true){
+      streak++;
+    }else{
+      break;
+    }
+  }
+
+  $("streak").textContent=streak+"連勝";
+
+
+  const raceProfits=records.map(
+    r=>(Number(r.returnAmount)||0)-(Number(r.betAmount)||0)
+  );
+
+  $("bestRace").textContent=
+    yen(Math.max(0,...raceProfits,0));
+
+
+  const months={};
+
+  records.forEach(r=>{
+
+    const month=(r.date||"").slice(0,7);
+
+    months[month]=(months[month]||0)+
+      (Number(r.returnAmount)||0)-
+      (Number(r.betAmount)||0);
+
+  });
+
+  $("bestMonth").textContent=
+    yen(Math.max(0,...Object.values(months),0));
+
+
+  renderBadges();
+  renderTypes();
+  drawChart();
 }
 
 
-/* =========================================
-   CHART
-========================================= */
+/* -------------------------
+   称号
+------------------------- */
+
+function renderBadges(){
+
+  $("badges").innerHTML=badges.map(b=>{
+
+    const ok=b[3](records);
+
+    return `
+      <div class="badge ${ok?"":"locked"}">
+        <div class="bi">${b[0]}</div>
+        <div class="bt">${b[1]}</div>
+        <div class="bd">
+          ${ok?"達成！":b[2]}
+        </div>
+      </div>
+    `;
+
+  }).join("");
+}
+
+
+/* -------------------------
+   券種
+------------------------- */
+
+function renderTypes(){
+
+  const types={};
+
+  records.forEach(r=>{
+
+    const type=r.type||"その他";
+
+    if(!types[type]){
+      types[type]={
+        n:0,
+        bet:0,
+        ret:0
+      };
+    }
+
+    types[type].n++;
+
+    types[type].bet+=Number(r.betAmount)||0;
+
+    types[type].ret+=Number(r.returnAmount)||0;
+
+  });
+
+
+  if(!Object.keys(types).length){
+
+    $("types").innerHTML=
+      '<div class="empty">データが貯まると表示されます。</div>';
+
+    return;
+  }
+
+
+  $("types").innerHTML=
+    Object.entries(types).map(([k,x])=>{
+
+      const p=x.ret-x.bet;
+
+      return `
+        <div class="typeRow">
+          <div>
+            <div class="typeName">${esc(k)}</div>
+            <div class="typeMeta">
+              ${x.n}R · 回収率 ${(x.ret/x.bet*100||0).toFixed(1)}%
+            </div>
+          </div>
+
+          <div class="${p>=0?"plus":"minus"}"
+               style="font-weight:900">
+            ${p>=0?"+":""}${yen(p)}
+          </div>
+        </div>
+      `;
+
+    }).join("");
+}
+
+
+/* -------------------------
+   グラフ
+------------------------- */
 
 function drawChart(){
 
- const canvas=document.getElementById("chart");
+  const c=$("chart");
 
- const rect=canvas.getBoundingClientRect();
+  if(!c)return;
 
- const dpr=window.devicePixelRatio||1;
+  const d=window.devicePixelRatio||1;
 
- const width=Math.max(300,rect.width);
- const height=220;
+  const w=c.clientWidth||300;
+  const h=c.clientHeight||230;
 
- canvas.width=width*dpr;
- canvas.height=height*dpr;
+  c.width=w*d;
+  c.height=h*d;
 
- const ctx=canvas.getContext("2d");
+  const ctx=c.getContext("2d");
 
- ctx.scale(dpr,dpr);
+  ctx.setTransform(d,0,0,d,0,0);
 
- ctx.clearRect(0,0,width,height);
+  ctx.clearRect(0,0,w,h);
 
- if(!data.races.length){
 
-  ctx.fillStyle="#6b7280";
-  ctx.font="12px sans-serif";
+  if(!records.length){
+
+    ctx.fillStyle="#718096";
+    ctx.font="12px sans-serif";
+    ctx.textAlign="center";
+
+    ctx.fillText(
+      "予想・結果を登録するとグラフが表示されます",
+      w/2,
+      h/2
+    );
+
+    return;
+  }
+
+
+  let cumulative=0;
+
+  const values=records.map(r=>{
+
+    cumulative +=
+      (Number(r.returnAmount)||0)-
+      (Number(r.betAmount)||0);
+
+    return cumulative;
+
+  });
+
+
+  const max=Math.max(...values,0);
+
+  const min=Math.min(...values,0);
+
+  const range=max-min||1;
+
+  const padLeft=42;
+  const padRight=10;
+  const padTop=15;
+  const padBottom=28;
+
+  const graphW=w-padLeft-padRight;
+  const graphH=h-padTop-padBottom;
+
+
+  function y(v){
+
+    return padTop+
+      (max-v)/range*graphH;
+
+  }
+
+
+  /* 横線 */
+
+  ctx.lineWidth=1;
+  ctx.strokeStyle="#e2e8f0";
+
+  const lines=4;
+
+  for(let i=0;i<=lines;i++){
+
+    const yy=padTop+i/lines*graphH;
+
+    ctx.beginPath();
+
+    ctx.moveTo(padLeft,yy);
+    ctx.lineTo(w-padRight,yy);
+
+    ctx.stroke();
+
+    const value=max-(range*i/lines);
+
+    ctx.fillStyle="#718096";
+    ctx.font="9px sans-serif";
+    ctx.textAlign="right";
+
+    ctx.fillText(
+      (value>=0?"+":"")+Math.round(value).toLocaleString(),
+      padLeft-5,
+      yy+3
+    );
+
+  }
+
+
+  /* 0ライン */
+
+  if(min<0 && max>0){
+
+    const zero=y(0);
+
+    ctx.strokeStyle="#a0aec0";
+    ctx.setLineDash([4,4]);
+
+    ctx.beginPath();
+    ctx.moveTo(padLeft,zero);
+    ctx.lineTo(w-padRight,zero);
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+
+  }
+
+
+  /* エリア */
+
+  if(values.length>1){
+
+    ctx.beginPath();
+
+    values.forEach((v,i)=>{
+
+      const x=
+        padLeft+
+        i/(values.length-1)*graphW;
+
+      const yy=y(v);
+
+      if(i===0){
+        ctx.moveTo(x,yy);
+      }else{
+        ctx.lineTo(x,yy);
+      }
+
+    });
+
+    ctx.lineTo(w-padRight,h-padBottom);
+    ctx.lineTo(padLeft,h-padBottom);
+    ctx.closePath();
+
+    ctx.globalAlpha=.08;
+    ctx.fillStyle="#635bdb";
+    ctx.fill();
+
+    ctx.globalAlpha=1;
+
+  }
+
+
+  /* 線 */
+
+  ctx.lineWidth=3;
+  ctx.lineJoin="round";
+  ctx.lineCap="round";
+
+  values.forEach((v,i)=>{
+
+    const x=
+      values.length===1
+      ? padLeft+graphW/2
+      : padLeft+i/(values.length-1)*graphW;
+
+    const yy=y(v);
+
+    if(i===0){
+
+      ctx.beginPath();
+      ctx.moveTo(x,yy);
+
+    }else{
+
+      const prev=values[i-1];
+
+      const px=
+        values.length===1
+        ? x
+        : padLeft+(i-1)/(values.length-1)*graphW;
+
+      const py=y(prev);
+
+      ctx.strokeStyle=
+        v>=prev
+        ? "#14966a"
+        : "#d94b57";
+
+      ctx.beginPath();
+      ctx.moveTo(px,py);
+      ctx.lineTo(x,yy);
+      ctx.stroke();
+
+    }
+
+    ctx.fillStyle=
+      v>=0
+      ? "#14966a"
+      : "#d94b57";
+
+    ctx.beginPath();
+    ctx.arc(x,yy,4,0,Math.PI*2);
+    ctx.fill();
+
+  });
+
+
+  /* 下部レース数 */
+
+  ctx.fillStyle="#718096";
+  ctx.font="9px sans-serif";
   ctx.textAlign="center";
 
+  const count=records.length;
+
   ctx.fillText(
-   "予想を登録するとグラフが表示されます",
-   width/2,
-   height/2
+    count+"レース",
+    w/2,
+    h-7
   );
-
-  return;
- }
-
- let values=[];
- let total=0;
-
- data.races.forEach(r=>{
-
-  if(r.result.entered){
-
-   total+=
-    Number(r.result.ret||0)-
-    Number(r.result.bet||0);
-
-  }
-
-  values.push(total);
-
- });
-
- if(!values.length)return;
-
- const min=Math.min(0,...values);
- const max=Math.max(0,...values);
-
- const range=max-min||1;
-
- document.getElementById("chartMin").textContent=
-  "マイナス "+money(Math.abs(min));
-
- document.getElementById("chartMax").textContent=
-  "プラス "+money(max);
-
- document.getElementById("chartRaces").textContent=
-  data.races.length+"レース";
-
- /* grid */
-
- ctx.strokeStyle="#e5e7eb";
- ctx.lineWidth=1;
-
- for(let i=0;i<4;i++){
-
-  const y=20+i*55;
-
-  ctx.beginPath();
-  ctx.moveTo(0,y);
-  ctx.lineTo(width,y);
-  ctx.stroke();
-
- }
-
- /* zero */
-
- const zeroY=
-  20+(max/(range))*180;
-
- ctx.strokeStyle="#9ca3af";
-
- ctx.beginPath();
- ctx.moveTo(0,zeroY);
- ctx.lineTo(width,zeroY);
- ctx.stroke();
-
- /* bars */
-
- const barWidth=Math.max(
-  4,
-  width/Math.max(values.length,1)-3
- );
-
- values.forEach((v,i)=>{
-
-  const x=
-   i/Math.max(values.length-1,1)*width;
-
-  const previous=
-   i===0?0:values[i-1];
-
-  const y1=
-   20+(max-previous)/range*180;
-
-  const y2=
-   20+(max-v)/range*180;
-
-  const top=Math.min(y1,y2);
-  const h=Math.max(2,Math.abs(y2-y1));
-
-  ctx.fillStyle=
-   v>=previous
-   ?"#14966a"
-   :"#dc4654";
-
-  ctx.fillRect(
-   Math.max(0,x-barWidth/2),
-   top,
-   barWidth,
-   h
-  );
-
- });
-
- /* line */
-
- ctx.strokeStyle="#6757e8";
- ctx.lineWidth=3;
- ctx.lineJoin="round";
-
- ctx.beginPath();
-
- values.forEach((v,i)=>{
-
-  const x=
-   values.length===1
-   ?width/2
-   :i/(values.length-1)*width;
-
-  const y=
-   20+(max-v)/range*180;
-
-  if(i===0){
-   ctx.moveTo(x,y);
-  }else{
-   ctx.lineTo(x,y);
-  }
-
- });
-
- ctx.stroke();
 
 }
 
 
-/* =========================================
-   UTILITY
-========================================= */
+/* -------------------------
+   馬入力
+------------------------- */
 
-function escapeHTML(str){
+let horseCount=0;
 
- return String(str||"")
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
+function addHorseInput(name="",mark=""){
 
+  horseCount++;
+
+  const id=horseCount;
+
+  const div=document.createElement("div");
+
+  div.className="horseRow";
+
+  div.dataset.id=id;
+
+  div.innerHTML=`
+
+    <div class="horseName">
+
+      <span class="markDisplay">
+        ${mark||"—"}
+      </span>
+
+      <input
+        class="horseNameInput"
+        placeholder="馬名"
+        value="${esc(name)}"
+      >
+
+    </div>
+
+    <div class="markButtons">
+
+      ${["◎","○","▲","☆","△","消"].map(m=>`
+
+        <button
+          type="button"
+          class="markBtn ${mark===m?"selected":""}"
+          data-mark="${m}"
+        >${m}</button>
+
+      `).join("")}
+
+    </div>
+
+  `;
+
+
+  div.querySelectorAll(".markBtn").forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+      div.querySelectorAll(".markBtn").forEach(b=>{
+        b.classList.remove("selected");
+      });
+
+      btn.classList.add("selected");
+
+      div.querySelector(".markDisplay").textContent=
+        btn.dataset.mark;
+
+    });
+
+  });
+
+
+  $("horseInputs").appendChild(div);
 }
 
 
-/* =========================================
-   INIT
-========================================= */
+for(let i=0;i<8;i++){
+  addHorseInput();
+}
 
-document.getElementById("pDate").value=today();
 
-renderHorseList();
-renderHome();
-renderHistory();
+$("addHorse").addEventListener("click",()=>{
+  addHorseInput();
+});
 
-window.addEventListener("resize",drawChart);
 
-document.getElementById("modal").addEventListener("click",function(e){
+/* -------------------------
+   買い目
+------------------------- */
 
- if(e.target===this){
-  closeModal();
- }
+let buyCount=0;
+
+function addBuyInput(type="",text="",amount=""){
+
+  buyCount++;
+
+  const div=document.createElement("div");
+
+  div.className="buyRow";
+
+  div.innerHTML=`
+
+    <input
+      class="buyType"
+      placeholder="3連複 / 馬連 / ワイド"
+      value="${esc(type)}"
+    >
+
+    <input
+      class="buyText"
+      placeholder="買い目"
+      value="${esc(text)}"
+    >
+
+  `;
+
+  $("buyInputs").appendChild(div);
+}
+
+
+addBuyInput();
+
+
+$("addBuy").addEventListener("click",()=>{
+  addBuyInput();
+});
+
+
+/* -------------------------
+   予想保存
+------------------------- */
+
+$("savePrediction").addEventListener("click",()=>{
+
+  const date=$("pDate").value;
+
+  const track=$("pTrack").value;
+
+  const raceNo=$("pRaceNo").value;
+
+  const name=$("pName").value.trim();
+
+
+  if(!date){
+    alert("開催日を選択してください。");
+    return;
+  }
+
+
+  if(!name){
+    alert("レース名を入力してください。");
+    return;
+  }
+
+
+  const horses=[];
+
+  document.querySelectorAll("#horseInputs .horseRow")
+  .forEach(row=>{
+
+    const nameInput=
+      row.querySelector(".horseNameInput");
+
+    const selected=
+      row.querySelector(".markBtn.selected");
+
+    const horseName=
+      nameInput.value.trim();
+
+    if(horseName){
+
+      horses.push({
+        name:horseName,
+        mark:selected
+          ? selected.dataset.mark
+          : ""
+      });
+
+    }
+
+  });
+
+
+  const buys=[];
+
+  document.querySelectorAll("#buyInputs .buyRow")
+  .forEach(row=>{
+
+    const type=row.querySelector(".buyType").value.trim();
+
+    const text=row.querySelector(".buyText").value.trim();
+
+    if(type||text){
+
+      buys.push({
+        type,
+        text
+      });
+
+    }
+
+  });
+
+
+  const record={
+    id:Date.now().toString(),
+    date,
+    track,
+    raceNo,
+    name,
+    horses,
+    buys,
+    memo:$("pMemo").value.trim(),
+
+    /* 結果 */
+
+    first:"",
+    second:"",
+    third:"",
+
+    /* 収支 */
+
+    betAmount:0,
+    returnAmount:0,
+
+    hit:false,
+    resultEntered:false,
+
+    createdAt:new Date().toISOString()
+  };
+
+
+  records.push(record);
+
+  save();
+
+  render();
+
+  clearPredictionForm();
+
+  toast("予想を保存しました！");
+
+  setTimeout(()=>{
+    showPage("historyPage");
+  },400);
 
 });
+
+
+/* -------------------------
+   予想フォーム初期化
+------------------------- */
+
+function clearPredictionForm(){
+
+  $("pName").value="";
+  $("pMemo").value="";
+
+  $("horseInputs").innerHTML="";
+
+  horseCount=0;
+
+  for(let i=0;i<8;i++){
+    addHorseInput();
+  }
+
+  $("buyInputs").innerHTML="";
+
+  buyCount=0;
+
+  addBuyInput();
+
+}
+
+
+/* -------------------------
+   履歴
+------------------------- */
+
+function renderHistory(){
+
+  const el=$("history");
+
+  if(!records.length){
+
+    el.innerHTML=
+      '<div class="empty">まだ予想がありません。</div>';
+
+    return;
+  }
+
+
+  el.innerHTML=
+    records.slice().reverse().map(r=>{
+
+      const p=
+        (Number(r.returnAmount)||0)-
+        (Number(r.betAmount)||0);
+
+
+      let result="結果未入力";
+
+      if(r.resultEntered){
+
+        result=
+          r.hit
+          ? "🎯 的中"
+          : "❌ 不的中";
+
+      }
+
+
+      return `
+
+        <div
+          class="historyRow"
+          data-id="${r.id}"
+        >
+
+          <div class="historyTop">
+
+            <div>
+
+              <div class="historyName">
+                ${esc(r.track)}
+                ${esc(r.raceNo)}
+                ${esc(r.name)}
+              </div>
+
+              <div class="historyMeta">
+                ${esc(r.date)}
+                · 印 ${r.horses?.filter(h=>h.mark).length||0}頭
+              </div>
+
+            </div>
+
+            <div class="historyResult ${
+              p>=0?"plus":"minus"
+            }">
+
+              ${
+                r.resultEntered
+                ? (p>=0?"+":"")+yen(p)
+                : result
+              }
+
+            </div>
+
+          </div>
+
+          <div class="historyMeta">
+            ${result}　タップして詳細・編集
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  el.querySelectorAll(".historyRow")
+  .forEach(row=>{
+
+    row.addEventListener("click",()=>{
+
+      openDetail(row.dataset.id);
+
+    });
+
+  });
+
+}
+
+
+/* -------------------------
+   詳細
+------------------------- */
+
+let currentDetailId=null;
+
+function openDetail(id){
+
+  const r=records.find(x=>x.id===id);
+
+  if(!r)return;
+
+  currentDetailId=id;
+
+  showPage("detailPage");
+
+  renderDetail(r);
+
+}
+
+
+function renderDetail(r){
+
+  const profit=
+    (Number(r.returnAmount)||0)-
+    (Number(r.betAmount)||0);
+
+
+  $("detailContent").innerHTML=`
+
+    <div>
+
+      <div style="font-size:20px;font-weight:900">
+        ${esc(r.track)}
+        ${esc(r.raceNo)}
+        ${esc(r.name)}
+      </div>
+
+      <div class="historyMeta">
+        ${esc(r.date)}
+      </div>
+
+    </div>
+
+
+    <div class="sectionSpace">
+
+      <h3 class="title">🏇 予想馬・印</h3>
+
+      <div>
+
+        ${
+          (r.horses||[]).map((h,i)=>`
+
+            <div class="horseRow">
+
+              <div class="horseName">
+
+                <span
+                  class="markDisplay"
+                  data-detail-mark="${i}"
+                >
+                  ${esc(h.mark||"—")}
+                </span>
+
+                <input
+                  class="detailHorseName"
+                  data-index="${i}"
+                  value="${esc(h.name)}"
+                >
+
+              </div>
+
+              <div
+                class="markButtons"
+                data-index="${i}"
+              >
+
+                ${
+                  ["◎","○","▲","☆","△","消"].map(m=>`
+
+                    <button
+                      type="button"
+                      class="markBtn ${
+                        h.mark===m?"selected":""
+                      }"
+                      data-mark="${m}"
+                    >${m}</button>
+
+                  `).join("")
+                }
+
+              </div>
+
+            </div>
+
+          `).join("")
+        }
+
+      </div>
+
+    </div>
+
+
+    <div class="sectionSpace">
+
+      <h3 class="title">🎫 買い目</h3>
+
+      <div id="detailBuys">
+
+        ${
+          (r.buys||[]).map((b,i)=>`
+
+            <div class="buyRow">
+
+              <input
+                class="detailBuyType"
+                data-index="${i}"
+                value="${esc(b.type)}"
+              >
+
+              <input
+                class="detailBuyText"
+                data-index="${i}"
+                value="${esc(b.text)}"
+              >
+
+            </div>
+
+          `).join("")
+        }
+
+      </div>
+
+      <button
+        class="secondary"
+        id="detailAddBuy"
+      >
+        ＋ 買い目を追加
+      </button>
+
+    </div>
+
+
+    <div class="sectionSpace">
+
+      <h3 class="title">🏆 結果入力</h3>
+
+      <div class="resultGrid">
+
+        <div class="resultBox">
+
+          <label>1着</label>
+
+          <input
+            id="detailFirst"
+            value="${esc(r.first||"")}"
+            placeholder="馬名"
+          >
+
+        </div>
+
+        <div class="resultBox">
+
+          <label>2着</label>
+
+          <input
+            id="detailSecond"
+            value="${esc(r.second||"")}"
+            placeholder="馬名"
+          >
+
+        </div>
+
+        <div class="resultBox">
+
+          <label>3着</label>
+
+          <input
+            id="detailThird"
+            value="${esc(r.third||"")}"
+            placeholder="馬名"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="sectionSpace">
+
+      <div class="form">
+
+        <div>
+
+          <label>投資額</label>
+
+          <input
+            id="detailBet"
+            type="number"
+            min="0"
+            inputmode="numeric"
+            value="${Number(r.betAmount)||0}"
+          >
+
+        </div>
+
+        <div>
+
+          <label>払戻額</label>
+
+          <input
+            id="detailReturn"
+            type="number"
+            min="0"
+            inputmode="numeric"
+            value="${Number(r.returnAmount)||0}"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="sectionSpace">
+
+      <h3 class="title">📊 収支</h3>
+
+      <div class="summary">
+
+        <div class="summaryBox">
+
+          <small>投資</small>
+
+          <b id="detailBetView">
+            ${yen(r.betAmount)}
+          </b>
+
+        </div>
+
+        <div class="summaryBox">
+
+          <small>払戻</small>
+
+          <b id="detailReturnView">
+            ${yen(r.returnAmount)}
+          </b>
+
+        </div>
+
+        <div class="summaryBox">
+
+          <small>収支</small>
+
+          <b
+            id="detailProfitView"
+            class="${profit>=0?"plus":"minus"}"
+          >
+            ${profit>=0?"+":""}${yen(profit)}
+          </b>
+
+        </div>
+
+        <div class="summaryBox">
+
+          <small>判定</small>
+
+          <b id="detailHitView">
+            ${r.resultEntered?(r.hit?"🎯 的中":"❌ 不的中"):"未判定"}
+          </b>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="sectionSpace">
+
+      <label>予想メモ</label>
+
+      <textarea id="detailMemo">${esc(r.memo||"")}</textarea>
+
+    </div>
+
+
+    <div class="sectionSpace">
+
+      <button
+        class="primary"
+        id="saveDetail"
+      >
+        💾 変更を保存
+      </button>
+
+    </div>
+
+
+    <div class="sectionSpace">
+
+      <button
+        class="danger"
+        id="deleteDetail"
+      >
+        この予想を削除
+      </button>
+
+    </div>
+
+  `;
+
+
+  /* 印 */
+
+  document.querySelectorAll(
+    "#detailContent .markButtons"
+  ).forEach(group=>{
+
+    const index=Number(group.dataset.index);
+
+    group.querySelectorAll(".markBtn")
+    .forEach(btn=>{
+
+      btn.addEventListener("click",()=>{
+
+        group.querySelectorAll(".markBtn")
+        .forEach(b=>b.classList.remove("selected"));
+
+        btn.classList.add("selected");
+
+        const display=
+          document.querySelector(
+            `[data-detail-mark="${index}"]`
+          );
+
+        if(display){
+          display.textContent=btn.dataset.mark;
+        }
+
+      });
+
+    });
+
+  });
+
+
+  /* 収支リアルタイム */
+
+  function updateDetailProfit(){
+
+    const bet=
+      Number($("detailBet").value)||0;
+
+    const ret=
+      Number($("detailReturn").value)||0;
+
+    const p=ret-bet;
+
+    $("detailBetView").textContent=yen(bet);
+
+    $("detailReturnView").textContent=yen(ret);
+
+    $("detailProfitView").textContent=
+      (p>=0?"+":"")+yen(p);
+
+    $("detailProfitView").className=
+      p>=0?"plus":"minus";
+
+  }
+
+
+  $("detailBet").addEventListener(
+    "input",
+    updateDetailProfit
+  );
+
+  $("detailReturn").addEventListener(
+    "input",
+    updateDetailProfit
+  );
+
+
+  /* 買い目追加 */
+
+  $("detailAddBuy").addEventListener(
+    "click",
+    ()=>{
+
+      const container=$("detailBuys");
+
+      const div=document.createElement("div");
+
+      div.className="buyRow";
+
+      div.innerHTML=`
+
+        <input
+          class="detailBuyType"
+          placeholder="券種"
+        >
+
+        <input
+          class="detailBuyText"
+          placeholder="買い目"
+        >
+
+      `;
+
+      container.appendChild(div);
+
+    }
+  );
+
+
+  /* 保存 */
+
+  $("saveDetail").addEventListener(
+    "click",
+    ()=>saveDetail(r)
+  );
+
+
+  /* 削除 */
+
+  $("deleteDetail").addEventListener(
+    "click",
+    ()=>{
+
+      if(!confirm("この予想を削除しますか？")){
+        return;
+      }
+
+      records=
+        records.filter(x=>x.id!==r.id);
+
+      save();
+
+      toast("予想を削除しました");
+
+      showPage("historyPage");
+
+    }
+  );
+
+}
+
+
+/* -------------------------
+   詳細保存
+------------------------- */
+
+function saveDetail(r){
+
+  const horseNames=
+    document.querySelectorAll(".detailHorseName");
+
+  const markGroups=
+    document.querySelectorAll(
+      "#detailContent .markButtons"
+    );
+
+
+  const horses=[];
+
+  horseNames.forEach((input,i)=>{
+
+    const group=markGroups[i];
+
+    const selected=
+      group
+      ? group.querySelector(".markBtn.selected")
+      : null;
+
+    const name=input.value.trim();
+
+    if(name){
+
+      horses.push({
+
+        name,
+
+        mark:selected
+          ? selected.dataset.mark
+          : ""
+
+      });
+
+    }
+
+  });
+
+
+  const buys=[];
+
+  document.querySelectorAll(
+    "#detailContent .buyRow"
+  ).forEach(row=>{
+
+    const type=
+      row.querySelector(".detailBuyType")
+      ?.value.trim()||"";
+
+    const text=
+      row.querySelector(".detailBuyText")
+      ?.value.trim()||"";
+
+    if(type||text){
+
+      buys.push({
+        type,
+        text
+      });
+
+    }
+
+  });
+
+
+  r.horses=horses;
+
+  r.buys=buys;
+
+  r.first=$("detailFirst").value.trim();
+
+  r.second=$("detailSecond").value.trim();
+
+  r.third=$("detailThird").value.trim();
+
+  r.betAmount=
+    Number($("detailBet").value)||0;
+
+  r.returnAmount=
+    Number($("detailReturn").value)||0;
+
+  r.memo=$("detailMemo").value;
+
+
+  /* 結果が3着まで入力されたら結果確定 */
+
+  r.resultEntered=
+    !!(
+      r.first||
+      r.second||
+      r.third
+    );
+
+
+  /*
+    的中判定
+
+    ◎〜△の予想馬の中に
+    1〜3着がいれば「的中」とする簡易判定。
+
+    今後、買い目単位の完全判定にも拡張可能。
+  */
+
+  if(r.resultEntered){
+
+    const resultNames=[
+      r.first,
+      r.second,
+      r.third
+    ].filter(Boolean);
+
+    const predicted=
+      r.horses
+      .filter(h=>h.mark && h.mark!=="消")
+      .map(h=>h.name);
+
+    r.hit=
+      resultNames.some(
+        n=>predicted.includes(n)
+      );
+
+  }else{
+
+    r.hit=false;
+
+  }
+
+
+  save();
+
+  render();
+
+  renderDetail(r);
+
+  toast("変更を保存しました！");
+
+}
+
+
+/* -------------------------
+   戻る
+------------------------- */
+
+$("backHistory").addEventListener(
+  "click",
+  ()=>{
+    showPage("historyPage");
+  }
+);
+
+
+/* -------------------------
+   リセット
+------------------------- */
+
+$("reset").addEventListener(
+  "click",
+  ()=>{
+
+    if(!confirm(
+      "すべての予想・結果・収支記録を削除しますか？"
+    )){
+      return;
+    }
+
+    records=[];
+
+    save();
+
+    render();
+
+    toast("すべての記録を削除しました");
+
+  }
+);
+
+
+/* -------------------------
+   初期日付
+------------------------- */
+
+function setToday(){
+
+  const d=new Date();
+
+  const yyyy=d.getFullYear();
+
+  const mm=
+    String(d.getMonth()+1).padStart(2,"0");
+
+  const dd=
+    String(d.getDate()).padStart(2,"0");
+
+  $("pDate").value=
+    `${yyyy}-${mm}-${dd}`;
+
+}
+
+
+/* -------------------------
+   既存データ互換
+------------------------- */
+
+function migrateOldData(){
+
+  /*
+    前バージョンの収支記録が残っている場合、
+    新形式へ最低限変換する。
+
+    既存データを勝手に削除しない。
+  */
+
+  records=records.map(r=>{
+
+    if(r.betAmount===undefined){
+
+      return {
+
+        id:r.id || Date.now().toString()+Math.random(),
+
+        date:r.date || "",
+
+        track:r.track || "その他",
+
+        raceNo:r.raceNo || "",
+
+        name:r.name || r.race || "記録",
+
+        horses:r.horses || [],
+
+        buys:r.buys || [],
+
+        memo:r.memo || "",
+
+        first:r.first || "",
+
+        second:r.second || "",
+
+        third:r.third || "",
+
+        betAmount:Number(r.bet)||0,
+
+        returnAmount:Number(r.ret)||0,
+
+        hit:r.hit===true || false,
+
+        resultEntered:
+          r.resultEntered===true || false,
+
+        type:r.type || "その他",
+
+        createdAt:
+          r.createdAt ||
+          new Date().toISOString()
+
+      };
+
+    }
+
+    return r;
+
+  });
+
+  save();
+
+}
+
+
+/* -------------------------
+   起動
+------------------------- */
+
+migrateOldData();
+
+setToday();
+
+render();
+
+window.addEventListener(
+  "resize",
+  ()=>{
+    drawChart();
+  }
+);
 
 </script>
 

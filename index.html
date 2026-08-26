@@ -6,233 +6,543 @@
 <meta name="theme-color" content="#101828">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="競馬牧場DX">
 <title>競馬牧場DX</title>
 
 <style>
 :root{
---bg:#f3f5f9;--card:#fff;--ink:#172033;--muted:#718096;
---line:#e2e8f0;--accent:#6957e8;--green:#119669;--red:#d94b57;
---dark:#101828;--gold:#e0a72e;--blue:#3b82f6;
+--bg:#f2f5f9;
+--card:#fff;
+--ink:#172033;
+--muted:#718096;
+--line:#e4e9f0;
+--accent:#6957e8;
+--green:#14966a;
+--red:#d94b57;
+--dark:#101828;
+--gold:#e0a72e;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{background:var(--bg)}
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
 body{
-margin:0;background:linear-gradient(#101828 0 245px,var(--bg) 245px);
+margin:0;
+background:linear-gradient(#101828 0 220px,var(--bg) 220px);
 color:var(--ink);
 font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
-padding-bottom:30px
+padding-bottom:30px;
 }
-button,input,select,textarea{font:inherit}
-.app{max-width:720px;margin:auto;padding:calc(17px + env(safe-area-inset-top)) 14px 40px}
-header{color:#fff;padding:5px 5px 18px}
-.eyebrow{font-size:10px;letter-spacing:.13em;opacity:.65;font-weight:900}
-.brand{font-size:27px;font-weight:900;margin:5px 0}
-.sub{font-size:12px;opacity:.72}
+
+button,input,select,textarea{
+font:inherit;
+}
+
+.app{
+max-width:720px;
+margin:auto;
+padding:18px 14px 40px;
+}
+
+header{
+color:white;
+padding:5px 5px 18px;
+}
+
+.eyebrow{
+font-size:10px;
+letter-spacing:.12em;
+opacity:.65;
+font-weight:800;
+}
+
+.brand{
+font-size:27px;
+font-weight:900;
+margin:5px 0;
+}
+
+.sub{
+font-size:12px;
+opacity:.72;
+}
 
 .hero{
 background:linear-gradient(135deg,#27334a,#111a2b);
-color:#fff;border-radius:25px;padding:18px;
-box-shadow:0 14px 35px #0b132255
+color:white;
+border-radius:25px;
+padding:18px;
+box-shadow:0 14px 35px #0b132255;
 }
-.heroTop{display:flex;align-items:center;gap:13px}
-.horse{font-size:46px}
-.rank{font-size:19px;font-weight:900}
-.rankDesc{font-size:11px;color:#bac5d7;margin-top:3px}
-.balance{font-size:31px;font-weight:900;margin-top:13px}
-.plus{color:#14966a}.minus{color:#d94b57}
-.hero .plus{color:#73dfb5}.hero .minus{color:#ff929b}
-.progress{height:9px;background:#364157;border-radius:20px;margin-top:14px;overflow:hidden}
+
+.heroTitle{
+font-size:11px;
+opacity:.65;
+}
+
+.balance{
+font-size:32px;
+font-weight:900;
+margin-top:4px;
+}
+
+.plus{
+color:#14966a!important;
+}
+
+.minus{
+color:#d94b57!important;
+}
+
+.whitePlus{
+color:#73dfb5;
+}
+
+.rank{
+font-size:18px;
+font-weight:900;
+margin-top:10px;
+}
+
+.progress{
+height:8px;
+background:#364157;
+border-radius:20px;
+margin-top:12px;
+overflow:hidden;
+}
+
 .progress i{
-display:block;height:100%;width:0;
+display:block;
+height:100%;
+width:0;
 background:linear-gradient(90deg,#8c78ff,#e4c05c);
-border-radius:20px;transition:.35s
+border-radius:20px;
 }
-.next{display:flex;justify-content:space-between;color:#bcc5d4;font-size:10px;margin-top:7px}
 
-.tabs{
-display:grid;grid-template-columns:repeat(3,1fr);gap:7px;
-margin:13px 0
+.next{
+display:flex;
+justify-content:space-between;
+font-size:10px;
+color:#bcc5d4;
+margin-top:6px;
 }
-.tab{
-border:0;background:#fff;color:var(--muted);padding:11px 4px;
-border-radius:13px;font-weight:900;font-size:12px
-}
-.tab.active{background:var(--accent);color:#fff}
-
-.view{display:none}.view.active{display:block}
 
 .grid{
-display:grid;grid-template-columns:repeat(2,1fr);gap:10px
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:12px;
 }
+
 .card{
-background:#fff;border-radius:17px;padding:13px;
-box-shadow:0 7px 24px #26364d10
+background:white;
+border-radius:17px;
+padding:13px;
+box-shadow:0 7px 24px #26364d10;
 }
-.card small{color:var(--muted);font-size:10px}
-.card b{display:block;font-size:18px;margin-top:3px}
 
-section{margin-top:17px}
-.title{font-size:16px;font-weight:900;margin:0 3px 9px}
+.card small{
+color:var(--muted);
+font-size:10px;
+}
+
+.card b{
+display:block;
+font-size:18px;
+margin-top:3px;
+}
+
+section{
+margin-top:18px;
+}
+
+.title{
+font-size:16px;
+font-weight:900;
+margin:0 3px 9px;
+}
+
 .panel{
-background:#fff;border-radius:20px;padding:15px;
-box-shadow:0 7px 24px #26364d10
+background:white;
+border-radius:20px;
+padding:15px;
+box-shadow:0 7px 24px #26364d10;
 }
 
-.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.full{grid-column:1/-1}
+.form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.full{
+grid-column:1/-1;
+}
+
 label{
-display:block;color:var(--muted);font-size:10px;
-font-weight:900;margin-bottom:5px
+display:block;
+color:var(--muted);
+font-size:10px;
+font-weight:800;
+margin-bottom:5px;
 }
+
 input,select,textarea{
-width:100%;border:1px solid var(--line);
-background:#f8fafc;border-radius:12px;
-padding:11px;outline:0;font-size:16px
+width:100%;
+border:1px solid var(--line);
+background:#f8fafc;
+border-radius:12px;
+padding:11px;
+outline:none;
+font-size:15px;
 }
-textarea{min-height:85px;resize:vertical}
+
+textarea{
+min-height:90px;
+resize:vertical;
+}
+
 input:focus,select:focus,textarea:focus{
-border-color:#968aff;background:#fff
+border-color:#968aff;
+background:white;
 }
+
 .primary{
-width:100%;border:0;border-radius:13px;
-background:var(--accent);color:#fff;
-font-weight:900;padding:13px
+width:100%;
+border:0;
+border-radius:13px;
+background:var(--accent);
+color:white;
+font-weight:900;
+padding:13px;
 }
+
 .secondary{
-width:100%;border:1px solid var(--line);
-border-radius:13px;background:#fff;
-font-weight:900;padding:11px
+width:100%;
+border:1px solid var(--line);
+border-radius:13px;
+background:white;
+color:var(--ink);
+font-weight:900;
+padding:12px;
+margin-top:8px;
 }
+
 .danger{
-width:100%;border:0;background:transparent;
-color:var(--muted);font-size:11px;padding:12px
+width:100%;
+border:0;
+background:#fff5f5;
+color:var(--red);
+font-weight:800;
+border-radius:12px;
+padding:11px;
+margin-top:8px;
 }
 
-.markGrid{
-display:grid;grid-template-columns:repeat(5,1fr);gap:7px
+.hidden{
+display:none!important;
 }
-.markBtn{
-border:1px solid var(--line);background:#f8fafc;
-border-radius:12px;padding:11px 2px;
-font-weight:900;font-size:18px
-}
-.markBtn.selected{
-background:#6957e8;color:#fff;border-color:#6957e8
-}
-.horseInput{
-display:grid;grid-template-columns:60px 1fr 60px;
-gap:7px;margin-top:7px
-}
-.horseInput input{font-size:14px}
 
-.stats{display:grid;grid-template-columns:1fr 1fr}
-.statline{
-padding:10px 4px;border-bottom:1px solid var(--line);
-display:flex;justify-content:space-between;font-size:12px
+.tabs{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-bottom:10px;
 }
-.statline span{color:var(--muted)}
+
+.tab{
+border:0;
+background:#edf0f5;
+padding:11px;
+border-radius:12px;
+font-weight:900;
+color:var(--muted);
+}
+
+.tab.active{
+background:var(--accent);
+color:white;
+}
 
 .row{
-display:flex;justify-content:space-between;gap:10px;
-padding:13px 0;border-bottom:1px solid var(--line)
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:13px 0;
+border-bottom:1px solid var(--line);
 }
-.row:first-child{padding-top:0}
-.row:last-child{border-bottom:0;padding-bottom:0}
-.name{font-weight:900;font-size:13px}
-.meta{font-size:10px;color:var(--muted);margin-top:3px}
-.money{text-align:right;white-space:nowrap}
-.small{font-size:10px;color:var(--muted)}
-.profit{font-weight:900;font-size:13px;margin-top:2px}
 
-.historyItem{
-background:#fff;border-radius:17px;padding:14px;
-margin-bottom:9px;box-shadow:0 5px 18px #26364d10
+.row:first-child{
+padding-top:0;
 }
-.historyItem:active{transform:scale(.99)}
-.hTop{display:flex;justify-content:space-between;gap:10px}
-.badge{
-display:inline-block;background:#f0edff;color:#6957e8;
-border-radius:999px;padding:4px 8px;font-size:10px;font-weight:900
-}
-.hit{background:#e6f8f1;color:#14966a}
-.miss{background:#fff0f1;color:#d94b57}
 
-.empty{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}
+.row:last-child{
+border-bottom:0;
+padding-bottom:0;
+}
 
-.modal{
-position:fixed;inset:0;background:#10182899;
-display:none;align-items:flex-end;z-index:50
+.name{
+font-size:13px;
+font-weight:900;
 }
-.modal.show{display:flex}
-.modalBox{
-background:#fff;width:100%;max-width:720px;margin:auto;
-max-height:90vh;overflow:auto;
-border-radius:25px 25px 0 0;padding:20px
+
+.meta{
+font-size:10px;
+color:var(--muted);
+margin-top:3px;
 }
-.modalHead{
-display:flex;justify-content:space-between;align-items:center;
-margin-bottom:15px
+
+.money{
+text-align:right;
+white-space:nowrap;
 }
-.close{
-border:0;background:#f1f3f7;border-radius:50%;
-width:36px;height:36px;font-size:18px
+
+.small{
+font-size:10px;
+color:var(--muted);
 }
-.detailHorse{
-padding:10px;border-bottom:1px solid var(--line);
-display:flex;justify-content:space-between
+
+.profit{
+font-size:13px;
+font-weight:900;
+margin-top:3px;
+}
+
+.empty{
+text-align:center;
+color:var(--muted);
+font-size:12px;
+padding:20px 0;
 }
 
 .badges{
-display:grid;grid-template-columns:1fr 1fr;gap:9px
-}
-.badgeBox{
-padding:12px;border:1px solid var(--line);
-border-radius:16px;background:#fff
-}
-.locked{opacity:.35}
-.bi{font-size:23px}
-.bt{font-weight:900;font-size:12px;margin-top:4px}
-.bd{font-size:10px;color:var(--muted);margin-top:2px}
-
-.chart{height:160px;width:100%;display:block}
-
-.notice{
-background:#f5f3ff;color:#5145a5;
-border-radius:14px;padding:11px;
-font-size:11px;line-height:1.7;margin-bottom:10px
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:9px;
 }
 
-.filter{
-display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px
+.badge{
+padding:12px;
+border:1px solid var(--line);
+border-radius:16px;
+background:white;
+}
+
+.badge.locked{
+opacity:.35;
+}
+
+.bi{
+font-size:23px;
+}
+
+.bt{
+font-size:12px;
+font-weight:900;
+margin-top:4px;
+}
+
+.bd{
+font-size:10px;
+color:var(--muted);
+margin-top:2px;
+}
+
+.sectionBox{
+background:#f8fafc;
+border-radius:15px;
+padding:12px;
+margin-bottom:10px;
+}
+
+.sectionHead{
+font-size:11px;
+font-weight:900;
+color:var(--muted);
+margin-bottom:8px;
+}
+
+.horseGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.horseInput{
+background:white;
+border:1px solid var(--line);
+border-radius:12px;
+padding:9px;
+}
+
+.horseInput select{
+margin-top:5px;
+padding:8px;
+font-size:13px;
+}
+
+.horseInput input{
+padding:8px;
+font-size:13px;
+}
+
+.mark{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:28px;
+height:28px;
+border-radius:50%;
+font-weight:900;
+background:#edf0f5;
+margin-right:5px;
+}
+
+.mark.win{
+background:#ffdf62;
+}
+
+.mark.second{
+background:#dce3ec;
+}
+
+.mark.third{
+background:#e9c29a;
+}
+
+.resultBox{
+background:#f8fafc;
+border-radius:15px;
+padding:12px;
+}
+
+.resultLine{
+display:flex;
+align-items:center;
+gap:7px;
+margin:7px 0;
+}
+
+.resultLine span{
+font-size:12px;
+font-weight:900;
+width:35px;
+}
+
+.resultLine input{
+flex:1;
+}
+
+.status{
+display:inline-block;
+padding:6px 10px;
+border-radius:999px;
+font-size:11px;
+font-weight:900;
+background:#edf0f5;
+}
+
+.status.hit{
+background:#dff7ed;
+color:var(--green);
+}
+
+.status.miss{
+background:#ffe5e7;
+color:var(--red);
+}
+
+.detailTitle{
+font-size:20px;
+font-weight:900;
+margin-bottom:4px;
+}
+
+.detailMeta{
+font-size:11px;
+color:var(--muted);
+}
+
+.back{
+border:0;
+background:#edf0f5;
+border-radius:10px;
+padding:8px 12px;
+font-size:12px;
+font-weight:900;
+margin-bottom:12px;
+}
+
+.actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.actionBtn{
+border:0;
+border-radius:12px;
+padding:11px;
+font-weight:900;
+background:#edf0f5;
+}
+
+.actionBtn.primaryAction{
+background:var(--accent);
+color:white;
+}
+
+.actionBtn.dangerAction{
+background:#fff0f1;
+color:var(--red);
+}
+
+.note{
+font-size:11px;
+line-height:1.7;
+color:var(--muted);
 }
 
 @media(min-width:600px){
-.form{grid-template-columns:repeat(4,1fr)}
-.full{grid-column:1/-1}
-.badges{grid-template-columns:repeat(3,1fr)}
+.form{
+grid-template-columns:repeat(4,1fr);
+}
+
+.full{
+grid-column:1/-1;
+}
+
+.badges{
+grid-template-columns:repeat(3,1fr);
+}
+
+.horseGrid{
+grid-template-columns:repeat(3,1fr);
+}
 }
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
 <header>
-<div class="eyebrow">HORSE RACING · PERSONAL DATABASE</div>
-<div class="brand">競馬牧場DX</div>
-<div class="sub">予想を記録して、結果から自分の強みを見つけよう。</div>
+<div class="eyebrow">HORSE RACING · DATA MANAGEMENT</div>
+<div class="brand">🏇 競馬牧場DX</div>
+<div class="sub">予想・結果・収支をひとつに。</div>
 </header>
 
+<!-- HOME -->
+
+<div id="homePage">
+
 <div class="hero">
-<div class="heroTop">
-<div class="horse" id="horse">🐎</div>
-<div>
-<div class="rank" id="rank">新馬</div>
-<div class="rankDesc" id="rankDesc">ここから育成スタート！</div>
-</div>
-</div>
+<div class="heroTitle">CURRENT PERFORMANCE</div>
 <div class="balance" id="balance">¥0</div>
+<div class="rank" id="rank">新馬</div>
 <div class="progress"><i id="bar"></i></div>
 <div class="next">
 <span>育成進捗</span>
@@ -240,67 +550,83 @@ display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px
 </div>
 </div>
 
-<div class="tabs">
-<button class="tab active" data-view="home">🏠 ホーム</button>
-<button class="tab" data-view="predict">📝 予想</button>
-<button class="tab" data-view="analysis">📊 分析</button>
+<div class="grid">
+
+<div class="card">
+<small>総投資</small>
+<b id="totalBet">¥0</b>
 </div>
 
-<!-- HOME -->
-<div class="view active" id="home">
+<div class="card">
+<small>総払戻</small>
+<b id="totalReturn">¥0</b>
+</div>
+
+<div class="card">
+<small>総収支</small>
+<b id="totalProfit">¥0</b>
+</div>
+
+<div class="card">
+<small>回収率</small>
+<b id="roi">—</b>
+</div>
+
+<div class="card">
+<small>予想レース</small>
+<b id="raceCount">0R</b>
+</div>
+
+<div class="card">
+<small>的中率</small>
+<b id="hitRate">—</b>
+</div>
+
+</div>
+
+<section>
+<h2 class="title">📊 予想成績</h2>
+
+<div class="panel">
 
 <div class="grid">
-<div class="card"><small>総投資</small><b id="totalBet">¥0</b></div>
-<div class="card"><small>総回収</small><b id="totalReturn">¥0</b></div>
-<div class="card"><small>総収支</small><b id="totalProfit">¥0</b></div>
-<div class="card"><small>回収率</small><b id="roi">—</b></div>
-<div class="card"><small>予想数</small><b id="raceCount">0R</b></div>
-<div class="card"><small>的中率</small><b id="hitRate">—</b></div>
+
+<div>
+<small>的中</small>
+<b id="hitCount">0R</b>
 </div>
 
-<section>
-<h2 class="title">🏇 愛馬ステータス</h2>
-<div class="panel stats">
-<div class="statline"><span>通算勝利</span><b id="wins">0勝</b></div>
-<div class="statline"><span>現在の連勝</span><b id="streak">0連勝</b></div>
-<div class="statline"><span>最高月間収支</span><b id="bestMonth">¥0</b></div>
-<div class="statline"><span>最高レース収支</span><b id="bestRace">¥0</b></div>
+<div>
+<small>不的中</small>
+<b id="missCount">0R</b>
+</div>
+
+<div>
+<small>最高収支</small>
+<b id="bestRace">¥0</b>
+</div>
+
+<div>
+<small>最高回収率</small>
+<b id="bestRoi">—</b>
+</div>
+
+</div>
+
 </div>
 </section>
 
 <section>
-<h2 class="title">📈 収支推移</h2>
-<div class="panel">
-<canvas class="chart" id="chart"></canvas>
-</div>
+<h2 class="title">🏆 印別成績</h2>
+<div class="panel" id="markStats"></div>
 </section>
 
 <section>
-<h2 class="title">🏆 実績・称号</h2>
-<div class="badges" id="badges"></div>
-</section>
-
-<section>
-<h2 class="title">📚 最近の予想</h2>
-<div id="recent"></div>
-</section>
-
-</div>
-
-<!-- PREDICT -->
-<div class="view" id="predict">
-
-<section>
-<h2 class="title">📝 競馬予想を記録</h2>
+<h2 class="title">📝 予想を登録</h2>
 
 <div class="panel">
 
-<div class="notice">
-ここでは1レース分の予想を保存できます。<br>
-あとから結果を入力すると、成績・回収率・収支に自動反映されます。
-</div>
-
-<form id="predictForm">
+<form id="predictionForm">
 
 <div class="form">
 
@@ -311,7 +637,7 @@ display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px
 
 <div>
 <label>競馬場</label>
-<select id="course">
+<select id="track">
 <option>札幌</option>
 <option>函館</option>
 <option>福島</option>
@@ -322,215 +648,186 @@ display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px
 <option>京都</option>
 <option>阪神</option>
 <option>小倉</option>
-<option>地方</option>
-</select>
-</div>
-
-<div>
-<label>レース</label>
-<input id="raceNo" placeholder="11R" required>
-</div>
-
-<div>
-<label>レース名</label>
-<input id="raceName" placeholder="新潟記念">
-</div>
-
-<div>
-<label>芝・ダート</label>
-<select id="surface">
-<option>芝</option>
-<option>ダート</option>
-<option>障害</option>
-</select>
-</div>
-
-<div>
-<label>距離</label>
-<input id="distance" placeholder="2000m">
-</div>
-
-<div>
-<label>券種</label>
-<select id="betType">
-<option>3連複</option>
-<option>3連単</option>
-<option>馬連</option>
-<option>馬単</option>
-<option>ワイド</option>
-<option>単勝</option>
-<option>複勝</option>
 <option>その他</option>
 </select>
 </div>
 
 <div>
+<label>レース</label>
+<select id="raceNo">
+<option>1R</option><option>2R</option><option>3R</option>
+<option>4R</option><option>5R</option><option>6R</option>
+<option>7R</option><option>8R</option><option>9R</option>
+<option>10R</option><option>11R</option><option>12R</option>
+</select>
+</div>
+
+<div>
+<label>レース名</label>
+<input id="raceName" placeholder="新潟記念" required>
+</div>
+
+<div>
 <label>投資額</label>
-<input id="bet" type="number" min="0" inputmode="numeric" placeholder="3000">
+<input id="predictionBet" type="number" min="0" inputmode="numeric" placeholder="3000">
 </div>
 
 </div>
 
-<section>
-<h3 class="title">🎯 印を入力</h3>
+<div class="sectionBox">
+<div class="sectionHead">🏇 印を付ける</div>
 
-<div id="horses"></div>
+<div class="horseGrid">
 
-<button type="button" class="secondary" id="addHorse">
-＋ 馬を追加
-</button>
-</section>
+<div class="horseInput">
+<input id="horse1" placeholder="馬番・馬名">
+<select id="mark1">
+<option value="">印なし</option>
+<option>◎</option>
+<option>○</option>
+<option>▲</option>
+<option>☆</option>
+<option>△</option>
+</select>
+</div>
 
-<section>
+<div class="horseInput">
+<input id="horse2" placeholder="馬番・馬名">
+<select id="mark2">
+<option value="">印なし</option>
+<option>◎</option>
+<option>○</option>
+<option>▲</option>
+<option>☆</option>
+<option>△</option>
+</select>
+</div>
+
+<div class="horseInput">
+<input id="horse3" placeholder="馬番・馬名">
+<select id="mark3">
+<option value="">印なし</option>
+<option>◎</option>
+<option>○</option>
+<option>▲</option>
+<option>☆</option>
+<option>△</option>
+</select>
+</div>
+
+<div class="horseInput">
+<input id="horse4" placeholder="馬番・馬名">
+<select id="mark4">
+<option value="">印なし</option>
+<option>◎</option>
+<option>○</option>
+<option>▲</option>
+<option>☆</option>
+<option>△</option>
+</select>
+</div>
+
+<div class="horseInput">
+<input id="horse5" placeholder="馬番・馬名">
+<select id="mark5">
+<option value="">印なし</option>
+<option>◎</option>
+<option>○</option>
+<option>▲</option>
+<option>☆</option>
+<option>△</option>
+</select>
+</div>
+
+<div class="horseInput">
+<input id="horse6" placeholder="馬番・馬名">
+<select id="mark6">
+<option value="">印なし</option>
+<option>◎</option>
+<option>○</option>
+<option>▲</option>
+<option>☆</option>
+<option>△</option>
+</select>
+</div>
+
+</div>
+</div>
+
+<div>
 <label>買い目</label>
-<input id="tickets" placeholder="例：③⑧⑫－③⑧⑫⑥">
-</section>
+<textarea id="bets" placeholder="例：3連複フォーメーション&#10;◎○－◎○▲☆－◎○▲☆△"></textarea>
+</div>
 
-<section>
+<div style="margin-top:10px">
 <label>予想メモ</label>
-<textarea id="memo" placeholder="展開、トラックバイアス、調教、血統など"></textarea>
-</section>
+<textarea id="memo" placeholder="展開・トラックバイアス・調教など"></textarea>
+</div>
 
-<button class="primary">＋ この予想を保存</button>
+<button class="primary" style="margin-top:10px">
+＋ 予想を保存
+</button>
 
 </form>
-</div>
-</section>
 
-<section>
-<h2 class="title">🏁 結果入力</h2>
-<div id="pending"></div>
+</div>
 </section>
 
 <section>
 <h2 class="title">📚 予想履歴</h2>
 
-<div class="filter">
-<select id="historyFilter">
-<option value="all">すべて</option>
-<option value="pending">結果待ち</option>
-<option value="hit">的中</option>
-<option value="miss">不的中</option>
-</select>
+<div class="panel">
 
-<select id="courseFilter">
-<option value="all">全競馬場</option>
-<option>札幌</option>
-<option>函館</option>
-<option>福島</option>
-<option>新潟</option>
-<option>東京</option>
-<option>中山</option>
-<option>中京</option>
-<option>京都</option>
-<option>阪神</option>
-<option>小倉</option>
-<option>地方</option>
-</select>
+<div class="tabs">
+
+<button class="tab active" id="allTab">すべて</button>
+<button class="tab" id="pendingTab">結果待ち</button>
+
 </div>
 
 <div id="history"></div>
-</section>
 
-</div>
-
-<!-- ANALYSIS -->
-<div class="view" id="analysis">
-
-<section>
-<h2 class="title">📊 予想成績</h2>
-<div class="grid">
-<div class="card"><small>総予想数</small><b id="aCount">0R</b></div>
-<div class="card"><small>結果確定</small><b id="aFinished">0R</b></div>
-<div class="card"><small>的中</small><b id="aHit">0R</b></div>
-<div class="card"><small>不的中</small><b id="aMiss">0R</b></div>
-<div class="card"><small>的中率</small><b id="aHitRate">—</b></div>
-<div class="card"><small>回収率</small><b id="aRoi">—</b></div>
 </div>
 </section>
 
 <section>
-<h2 class="title">🎯 印別成績</h2>
-<div class="panel" id="markStats"></div>
-</section>
+<div class="panel note">
+データはこのiPhoneのブラウザ内に保存されます。GitHub Pages自体には予想データを保存していません。
+</div>
 
-<section>
-<h2 class="title">📍 競馬場別成績</h2>
-<div class="panel" id="courseStats"></div>
-</section>
-
-<section>
-<h2 class="title">🏇 芝・ダート別</h2>
-<div class="panel" id="surfaceStats"></div>
-</section>
-
-<section>
-<h2 class="title">🎟️ 券種別成績</h2>
-<div class="panel" id="typeStats"></div>
-</section>
-
-<section>
-<h2 class="title">📅 月別成績</h2>
-<div class="panel" id="monthStats"></div>
-</section>
-
-<section>
-<h2 class="title">🔥 自分の予想の強み</h2>
-<div class="panel" id="strength"></div>
+<button class="danger" id="resetAll">
+すべての予想・結果データを削除
+</button>
 </section>
 
 </div>
 
-<section>
-<div class="panel" style="margin-top:20px">
-<div style="font-size:10px;color:#718096;line-height:1.7">
-データはこのiPhoneのブラウザ内に保存されます。<br>
-外部サーバーには送信しません。
-</div>
-</div>
-<button class="danger" id="reset">すべての記録を削除</button>
-</section>
+<!-- DETAIL -->
+
+<div id="detailPage" class="hidden">
+
+<button class="back" id="backBtn">← 予想履歴へ戻る</button>
+
+<div class="panel">
+
+<div class="detailTitle" id="detailTitle"></div>
+<div class="detailMeta" id="detailMeta"></div>
+
+<div id="detailContent"></div>
 
 </div>
 
-<!-- DETAIL MODAL -->
-<div class="modal" id="modal">
-<div class="modalBox">
-<div class="modalHead">
-<strong id="modalTitle">予想詳細</strong>
-<button class="close" id="closeModal">×</button>
 </div>
-<div id="modalBody"></div>
-</div>
+
 </div>
 
 <script>
 
-const KEY="keiba_bokujou_dx_v2";
+const KEY="keiba_bokujou_prediction_complete";
 
 let records=JSON.parse(localStorage.getItem(KEY)||"[]");
 
-let currentMarks={};
-
-const levels=[
-{n:"新馬",m:0,d:"ここから育成スタート！",h:"🐎"},
-{n:"1勝馬",m:10000,d:"まずは1勝。着実に成長中。",h:"🐴"},
-{n:"オープン馬",m:30000,d:"一線級が見えてきた！",h:"🏇"},
-{n:"重賞馬",m:60000,d:"重賞級の実力を獲得。",h:"🐎✨"},
-{n:"GⅠ馬",m:100000,d:"GⅠの舞台へ。",h:"🏆🐎"},
-{n:"伝説馬",m:200000,d:"牧場の看板馬。伝説級！",h:"👑🐎"}
-];
-
-const badges=[
-["🌱","初陣","1レース記録",r=>r.length>=1],
-["🏇","調教師見習い","5レース記録",r=>r.length>=5],
-["📚","データ収集家","10レース記録",r=>r.length>=10],
-["🎯","本命職人","◎を10頭記録",r=>markCount(r,"◎")>=10],
-["💰","黒字化","総収支＋1万円",r=>sum(r)>=10000],
-["💎","大当たり","1レース＋1万円",r=>r.some(x=>(x.return||0)-(x.bet||0)>=10000)],
-["👑","伝説への道","総収支＋20万円",r=>sum(r)>=200000],
-["🔥","連勝街道","3連勝達成",r=>maxStreak(r)>=3]
-];
+let currentId=null;
 
 const $=id=>document.getElementById(id);
 
@@ -538,685 +835,784 @@ function yen(n){
 return "¥"+Math.round(n||0).toLocaleString("ja-JP");
 }
 
-function sum(a=records){
-return a.reduce((s,r)=>s+(Number(r.return)||0)-(Number(r.bet)||0),0);
-}
-
-function markCount(a,mark){
-return a.reduce((n,r)=>n+(r.horses||[]).filter(h=>h.mark===mark).length,0);
-}
-
-function maxStreak(a){
-let max=0,st=0;
-a.forEach(r=>{
-if(r.result&&r.result.hit){st++;max=Math.max(max,st)}
-else if(r.result){st=0}
-});
-return max;
-}
-
-function esc(s){
-return String(s??"").replace(/[&<>"']/g,m=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",
-'"':"&quot;","'":"&#039;"
-}[m]));
-}
-
-function today(){
-let d=new Date();
-return d.toISOString().slice(0,10);
-}
-
-$("date").value=today();
-
-function addHorseRow(h={}){
-let box=document.createElement("div");
-box.className="horseInput";
-box.innerHTML=`
-<input class="horseNo" type="number" min="1" placeholder="馬番" value="${esc(h.no||"")}">
-<input class="horseName" placeholder="馬名" value="${esc(h.name||"")}">
-<button type="button" class="markBtn" data-mark="">印</button>
-`;
-let btn=box.querySelector(".markBtn");
-
-if(h.mark){
-btn.textContent=h.mark;
-btn.classList.add("selected");
-}
-
-btn.addEventListener("click",()=>{
-let marks=["◎","○","▲","☆","△",""];
-let now=btn.dataset.mark||"";
-let i=marks.indexOf(now);
-let next=marks[(i+1)%marks.length];
-btn.dataset.mark=next;
-btn.textContent=next||"印";
-btn.classList.toggle("selected",!!next);
-});
-
-$("horses").appendChild(box);
-}
-
-$("addHorse").addEventListener("click",()=>addHorseRow());
-
-addHorseRow();
-addHorseRow();
-addHorseRow();
-addHorseRow();
-addHorseRow();
-
-$("predictForm").addEventListener("submit",e=>{
-e.preventDefault();
-
-let horses=[...document.querySelectorAll(".horseInput")]
-.map(x=>({
-no:x.querySelector(".horseNo").value,
-name:x.querySelector(".horseName").value.trim(),
-mark:x.querySelector(".markBtn").dataset.mark||""
-}))
-.filter(x=>x.name);
-
-let rec={
-id:Date.now().toString(),
-date:$("date").value,
-course:$("course").value,
-raceNo:$("raceNo").value.trim(),
-raceName:$("raceName").value.trim()||"未入力",
-surface:$("surface").value,
-distance:$("distance").value.trim(),
-betType:$("betType").value,
-bet:Number($("bet").value)||0,
-return:0,
-tickets:$("tickets").value.trim(),
-memo:$("memo").value.trim(),
-horses:horses,
-result:null,
-created:new Date().toISOString()
-};
-
-records.push(rec);
-save();
-
-e.target.reset();
-$("date").value=today();
-$("horses").innerHTML="";
-for(let i=0;i<5;i++)addHorseRow();
-
-render();
-showToast("予想を保存しました！🏇");
-
-});
-
 function save(){
 localStorage.setItem(KEY,JSON.stringify(records));
 }
 
-function render(){
+function uid(){
+return Date.now().toString(36)+Math.random().toString(36).slice(2);
+}
+
+function totalProfit(){
+return records.reduce((s,r)=>s+(Number(r.returnAmount)||0)-(Number(r.bet)||0),0);
+}
+
+function esc(s){
+return String(s??"").replace(/[&<>"']/g,m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m]));
+}
+
+const levels=[
+{n:"新馬",m:0,d:"ここから育成スタート！"},
+{n:"1勝馬",m:10000,d:"まずは1勝。着実に成長中。"},
+{n:"オープン馬",m:30000,d:"一線級が見えてきた！"},
+{n:"重賞馬",m:60000,d:"重賞級の実力を獲得。"},
+{n:"GⅠ馬",m:100000,d:"GⅠの舞台へ。"},
+{n:"伝説馬",m:200000,d:"牧場の看板馬。伝説級！"}
+];
+
+function renderStats(){
 
 let bet=records.reduce((s,r)=>s+(Number(r.bet)||0),0);
-let ret=records.reduce((s,r)=>s+(Number(r.return)||0),0);
-let p=ret-bet;
+let ret=records.reduce((s,r)=>s+(Number(r.returnAmount)||0),0);
+let profit=ret-bet;
 
 $("totalBet").textContent=yen(bet);
 $("totalReturn").textContent=yen(ret);
-$("totalProfit").textContent=(p>=0?"+":"")+yen(p);
-$("totalProfit").className=p>=0?"plus":"minus";
+
+$("totalProfit").textContent=(profit>=0?"+":"")+yen(profit);
+$("totalProfit").className=profit>=0?"plus":"minus";
+
+$("balance").textContent=(profit>=0?"+":"")+yen(profit);
+$("balance").className="balance "+(profit>=0?"whitePlus":"");
+
 $("raceCount").textContent=records.length+"R";
-$("roi").textContent=bet?(ret/bet*100).toFixed(1)+"%":"—";
 
 let finished=records.filter(r=>r.result);
-let hit=finished.filter(r=>r.result.hit);
 
-$("hitRate").textContent=finished.length?
-(hit.length/finished.length*100).toFixed(1)+"%":"—";
+let hits=finished.filter(r=>r.hit);
+
+$("hitCount").textContent=hits.length+"R";
+$("missCount").textContent=(finished.length-hits.length)+"R";
+
+$("hitRate").textContent=finished.length
+?(hits.length/finished.length*100).toFixed(1)+"%"
+:"—";
+
+$("roi").textContent=bet
+?(ret/bet*100).toFixed(1)+"%"
+:"—";
+
+let best=Math.max(0,...records.map(r=>(Number(r.returnAmount)||0)-(Number(r.bet)||0)));
+
+$("bestRace").textContent=yen(best);
+
+let bestRoi=0;
+
+records.forEach(r=>{
+if(Number(r.bet)>0 && Number(r.returnAmount)>=0){
+bestRoi=Math.max(bestRoi,Number(r.returnAmount)/Number(r.bet)*100);
+}
+});
+
+$("bestRoi").textContent=records.length
+?bestRoi.toFixed(1)+"%"
+:"—";
 
 let idx=0;
+
 for(let i=levels.length-1;i>=0;i--){
-if(p>=levels[i].m){idx=i;break}
+if(profit>=levels[i].m){
+idx=i;
+break;
+}
 }
 
-let lv=levels[idx];
-
-$("rank").textContent=lv.n;
-$("rankDesc").textContent=lv.d;
-$("horse").textContent=lv.h;
-$("balance").textContent=(p>=0?"+":"")+yen(p);
-$("balance").className="balance "+(p>=0?"plus":"minus");
+$("rank").textContent=levels[idx].n;
 
 let pct=100;
-let nt="最高ランク到達！";
+let nextText="最高ランク到達！";
 
 if(idx<levels.length-1){
-let nm=levels[idx+1].m;
-pct=Math.max(0,Math.min(100,(p-lv.m)/(nm-lv.m)*100));
-nt="次のランクまで "+yen(Math.max(0,nm-p));
+
+let next=levels[idx+1].m;
+
+pct=Math.max(
+0,
+Math.min(
+100,
+(profit-levels[idx].m)/(next-levels[idx].m)*100
+)
+);
+
+nextText="次のランクまで "+yen(Math.max(0,next-profit));
+
 }
 
 $("bar").style.width=pct+"%";
-$("next").textContent=nt;
+$("next").textContent=nextText;
 
-$("wins").textContent=hit.length+"勝";
-
-let st=0;
-for(let i=records.length-1;i>=0&&records[i].result&&records[i].result.hit;i--)st++;
-$("streak").textContent=st+"連勝";
-
-let bestRace=Math.max(0,...records.map(r=>(r.return||0)-(r.bet||0)),0);
-$("bestRace").textContent=yen(bestRace);
-
-let months={};
-records.forEach(r=>{
-let m=(r.date||"").slice(0,7);
-months[m]=(months[m]||0)+(r.return||0)-(r.bet||0);
-});
-
-$("bestMonth").textContent=yen(Math.max(0,...Object.values(months),0));
-
-renderBadges();
-renderHistory();
-renderPending();
-renderAnalysis();
-renderRecent();
-draw();
+renderMarkStats();
 
 }
 
-function renderBadges(){
-$("badges").innerHTML=badges.map(b=>{
-let ok=b[3](records);
-return `
-<div class="badgeBox ${ok?"":"locked"}">
-<div class="bi">${b[0]}</div>
-<div class="bt">${b[1]}</div>
-<div class="bd">${ok?"達成！":b[2]}</div>
-</div>`;
-}).join("");
-}
+function renderMarkStats(){
 
-function renderRecent(){
-
-let a=records.slice().reverse().slice(0,5);
-
-$("recent").innerHTML=a.length?a.map(historyCard).join(""):
-'<div class="empty">まだ予想がありません。</div>';
-
-}
-
-function historyCard(r){
-
-let p=(r.return||0)-(r.bet||0);
-
-let status=!r.result?
-'<span class="badge">結果待ち</span>':
-r.result.hit?
-'<span class="badge hit">🎯 的中</span>':
-'<span class="badge miss">不的中</span>';
-
-return `
-<div class="historyItem" onclick="openDetail('${r.id}')">
-<div class="hTop">
-<div>
-<div class="name">${esc(r.course)} ${esc(r.raceNo)} ${esc(r.raceName)}</div>
-<div class="meta">${esc(r.date)} · ${esc(r.surface)} ${esc(r.distance)}</div>
-</div>
-<div>${status}</div>
-</div>
-<div style="margin-top:9px">
-${(r.horses||[]).filter(h=>h.mark).map(h=>
-`<span class="badge">${h.mark} ${esc(h.no)} ${esc(h.name)}</span>`
-).join(" ")}
-</div>
-<div style="text-align:right;margin-top:8px">
-${r.result?
-`<span class="${p>=0?"plus":"minus"}" style="font-weight:900">${p>=0?"+":""}${yen(p)}</span>`:
-`<span class="small">結果入力待ち</span>`}
-</div>
-</div>`;
-}
-
-function renderHistory(){
-
-let f=$("historyFilter").value;
-let c=$("courseFilter").value;
-
-let a=records.slice().reverse().filter(r=>{
-if(c!=="all"&&r.course!==c)return false;
-if(f==="pending"&&r.result)return false;
-if(f==="hit"&&(!r.result||!r.result.hit))return false;
-if(f==="miss"&&(!r.result||r.result.hit))return false;
-return true;
-});
-
-$("history").innerHTML=a.length?a.map(historyCard).join(""):
-'<div class="empty">条件に一致する予想がありません。</div>';
-
-}
-
-$("historyFilter").addEventListener("change",renderHistory);
-$("courseFilter").addEventListener("change",renderHistory);
-
-function renderPending(){
-
-let a=records.filter(r=>!r.result);
-
-$("pending").innerHTML=a.length?a.slice().reverse().map(r=>`
-<div class="historyItem">
-<div class="hTop">
-<div>
-<div class="name">${esc(r.course)} ${esc(r.raceNo)} ${esc(r.raceName)}</div>
-<div class="meta">${esc(r.date)} · 投資 ${yen(r.bet)}</div>
-</div>
-<button class="secondary" style="width:auto;padding:8px 12px"
-onclick="enterResult('${r.id}')">結果入力</button>
-</div>
-</div>
-`).join(""):'<div class="empty">結果待ちのレースはありません。</div>';
-
-}
-
-function enterResult(id){
-
-let r=records.find(x=>x.id===id);
-if(!r)return;
-
-let order=prompt(
-"着順を入力してください。\n例：3\n※複数頭なら 3-8-12 のように入力",
-""
-);
-
-if(order===null)return;
-
-let ret=prompt("回収額を入力してください。\n例：7200","0");
-if(ret===null)return;
-
-let hit=confirm("この予想は的中しましたか？\n\n「OK」＝的中\n「キャンセル」＝不的中");
-
-r.result={
-order:order,
-hit:hit,
-date:new Date().toISOString()
-};
-
-r.return=Number(ret)||0;
-
-save();
-render();
-
-showToast("結果を保存しました！");
-
-}
-
-function openDetail(id){
-
-let r=records.find(x=>x.id===id);
-if(!r)return;
-
-let p=(r.return||0)-(r.bet||0);
-
-$("modalTitle").textContent=
-`${r.course} ${r.raceNo} ${r.raceName}`;
-
-$("modalBody").innerHTML=`
-
-<div class="notice">
-${r.result?
-(r.result.hit?"🎯 的中":"❌ 不的中"):
-"⏳ 結果待ち"}
-</div>
-
-<div class="grid">
-
-<div class="card">
-<small>開催日</small>
-<b>${esc(r.date)}</b>
-</div>
-
-<div class="card">
-<small>条件</small>
-<b>${esc(r.surface)} ${esc(r.distance)}</b>
-</div>
-
-<div class="card">
-<small>投資</small>
-<b>${yen(r.bet)}</b>
-</div>
-
-<div class="card">
-<small>回収</small>
-<b>${yen(r.return)}</b>
-</div>
-
-<div class="card">
-<small>収支</small>
-<b class="${p>=0?"plus":"minus"}">${p>=0?"+":""}${yen(p)}</b>
-</div>
-
-<div class="card">
-<small>券種</small>
-<b>${esc(r.betType)}</b>
-</div>
-
-</div>
-
-<section>
-<h3 class="title">🎯 予想印</h3>
-<div class="panel">
-${(r.horses||[]).filter(h=>h.mark).map(h=>`
-<div class="detailHorse">
-<div><b>${h.mark}</b>　${esc(h.no)}番 ${esc(h.name)}</div>
-</div>
-`).join("")||'<div class="empty">印なし</div>'}
-</div>
-</section>
-
-<section>
-<h3 class="title">🎟️ 買い目</h3>
-<div class="panel">${esc(r.tickets)||"未入力"}</div>
-</section>
-
-<section>
-<h3 class="title">📝 予想メモ</h3>
-<div class="panel" style="font-size:12px;line-height:1.8">
-${esc(r.memo)||"メモなし"}
-</div>
-</section>
-
-${r.result?`
-<section>
-<h3 class="title">🏁 結果</h3>
-<div class="panel">
-着順：<b>${esc(r.result.order||"未入力")}</b>
-</div>
-</section>`:""}
-
-<button class="primary" onclick="deleteRecord('${r.id}')">
-この予想を削除
-</button>
-`;
-
-$("modal").classList.add("show");
-
-}
-
-function deleteRecord(id){
-
-if(!confirm("この予想記録を削除しますか？"))return;
-
-records=records.filter(r=>r.id!==id);
-save();
-$("modal").classList.remove("show");
-render();
-showToast("削除しました");
-
-}
-
-$("closeModal").addEventListener("click",()=>{
-$("modal").classList.remove("show");
-});
-
-$("modal").addEventListener("click",e=>{
-if(e.target===$("modal"))$("modal").classList.remove("show");
-});
-
-function renderAnalysis(){
-
-let finished=records.filter(r=>r.result);
-let hit=finished.filter(r=>r.result.hit);
-let bet=finished.reduce((s,r)=>s+(r.bet||0),0);
-let ret=finished.reduce((s,r)=>s+(r.return||0),0);
-
-$("aCount").textContent=records.length+"R";
-$("aFinished").textContent=finished.length+"R";
-$("aHit").textContent=hit.length+"R";
-$("aMiss").textContent=(finished.length-hit.length)+"R";
-$("aHitRate").textContent=finished.length?
-(hit.length/finished.length*100).toFixed(1)+"%":"—";
-$("aRoi").textContent=bet?(ret/bet*100).toFixed(1)+"%":"—";
-
-renderGroupStats("markStats",["◎","○","▲","☆","△"],"mark");
-renderGroupStats("courseStats",[...new Set(records.map(r=>r.course))],"course");
-renderGroupStats("surfaceStats",[...new Set(records.map(r=>r.surface))],"surface");
-renderGroupStats("typeStats",[...new Set(records.map(r=>r.betType))],"betType");
-renderMonthStats();
-renderStrength();
-
-}
-
-function renderGroupStats(id,groups,key){
+let marks=["◎","○","▲","☆","△"];
 
 let html="";
 
-groups.forEach(g=>{
+marks.forEach(mark=>{
 
-let rs=records.filter(r=>{
-if(key==="mark")return r.horses?.some(h=>h.mark===g);
-return r[key]===g;
-}).filter(r=>r.result);
+let arr=[];
 
-if(!rs.length)return;
+records.forEach(r=>{
+(r.horses||[]).forEach(h=>{
+if(h.mark===mark)arr.push({
+horse:h,
+record:r
+});
+});
+});
 
-let h=rs.filter(r=>r.result.hit).length;
-let b=rs.reduce((s,r)=>s+(r.bet||0),0);
-let rt=rs.reduce((s,r)=>s+(r.return||0),0);
-let q=rt-b;
+let hit=arr.filter(x=>{
+if(!x.record.result)return false;
+
+let result=[
+String(x.record.result.first),
+String(x.record.result.second),
+String(x.record.result.third)
+];
+
+return result.includes(String(x.horse.name).split(" ")[0]);
+}).length;
 
 html+=`
 <div class="row">
 <div>
-<div class="name">${esc(g)}</div>
-<div class="meta">${rs.length}R · 的中 ${h}R · 的中率 ${(h/rs.length*100).toFixed(1)}%</div>
+<div class="name">${mark} ${arr.length}頭</div>
+<div class="meta">${hit}頭が3着以内</div>
 </div>
 <div class="money">
-<div class="small">回収率 ${b?(rt/b*100).toFixed(1):"—"}%</div>
-<div class="profit ${q>=0?"plus":"minus"}">${q>=0?"+":""}${yen(q)}</div>
+<div class="profit">${arr.length?((hit/arr.length)*100).toFixed(1)+"%":"—"}</div>
 </div>
-</div>`;
+</div>
+`;
 
 });
 
-$(id).innerHTML=html||'<div class="empty">結果データが貯まると表示されます。</div>';
+$("markStats").innerHTML=html;
 
 }
 
-function renderMonthStats(){
+function renderHistory(filter="all"){
 
-let months={};
+let arr=records.slice().reverse();
 
-records.filter(r=>r.result).forEach(r=>{
-let m=(r.date||"").slice(0,7);
-if(!months[m])months[m]={b:0,rt:0,n:0,h:0};
-months[m].b+=r.bet||0;
-months[m].rt+=r.return||0;
-months[m].n++;
-if(r.result.hit)months[m].h++;
-});
-
-let html=Object.entries(months).sort((a,b)=>b[0].localeCompare(a[0]))
-.map(([m,x])=>{
-let q=x.rt-x.b;
-return `
-<div class="row">
-<div>
-<div class="name">${m}</div>
-<div class="meta">${x.n}R · 的中率 ${(x.h/x.n*100).toFixed(1)}%</div>
-</div>
-<div class="money">
-<div class="small">回収率 ${x.b?(x.rt/x.b*100).toFixed(1):"—"}%</div>
-<div class="profit ${q>=0?"plus":"minus"}">${q>=0?"+":""}${yen(q)}</div>
-</div>
-</div>`;
-}).join("");
-
-$("monthStats").innerHTML=html||
-'<div class="empty">結果データが貯まると表示されます。</div>';
-
+if(filter==="pending"){
+arr=arr.filter(r=>!r.result);
 }
 
-function renderStrength(){
-
-let items=[];
-
-function check(label,rs){
-let f=rs.filter(r=>r.result);
-if(!f.length)return;
-
-let b=f.reduce((s,r)=>s+(r.bet||0),0);
-let rt=f.reduce((s,r)=>s+(r.return||0),0);
-if(!b)return;
-
-items.push({
-label,
-roi:rt/b*100,
-n:f.length
-});
-}
-
-check("◎本命",records.filter(r=>r.horses?.some(h=>h.mark==="◎")));
-check("○対抗",records.filter(r=>r.horses?.some(h=>h.mark==="○")));
-check("▲単穴",records.filter(r=>r.horses?.some(h=>h.mark==="▲")));
-check("☆注目",records.filter(r=>r.horses?.some(h=>h.mark==="☆")));
-
-[...new Set(records.map(r=>r.course))].forEach(c=>
-check(c,records.filter(r=>r.course===c))
-);
-
-[...new Set(records.map(r=>r.surface))].forEach(s=>
-check(s,records.filter(r=>r.surface===s))
-);
-
-items.sort((a,b)=>b.roi-a.roi);
-
-$("strength").innerHTML=items.length?
-items.slice(0,5).map((x,i)=>`
-<div class="row">
-<div>
-<div class="name">${i+1}位　${esc(x.label)}</div>
-<div class="meta">${x.n}Rの結果から算出</div>
-</div>
-<div class="money">
-<div class="profit ${x.roi>=100?"plus":"minus"}">${x.roi.toFixed(1)}%</div>
-<div class="small">回収率</div>
-</div>
-</div>
-`).join(""):
-'<div class="empty">結果を入力すると、あなたの得意分野を分析します。</div>';
-
-}
-
-function draw(){
-
-let c=$("chart");
-let d=devicePixelRatio||1;
-let w=c.clientWidth;
-let h=c.clientHeight;
-
-c.width=w*d;
-c.height=h*d;
-
-let x=c.getContext("2d");
-x.scale(d,d);
-x.clearRect(0,0,w,h);
-
-if(!records.length){
-x.fillStyle="#718096";
-x.font="12px sans-serif";
-x.textAlign="center";
-x.fillText("予想を登録するとグラフが表示されます",w/2,h/2);
+if(!arr.length){
+$("history").innerHTML='<div class="empty">まだ予想がありません。</div>';
 return;
 }
 
-let vals=[],v=0;
+$("history").innerHTML=arr.map(r=>{
 
-records.forEach(r=>{
-v+=(r.return||0)-(r.bet||0);
-vals.push(v);
-});
+let p=(Number(r.returnAmount)||0)-(Number(r.bet)||0);
 
-let min=Math.min(0,...vals);
-let max=Math.max(0,...vals);
-let range=max-min||1;
+let status="結果待ち";
+let cls="";
 
-x.strokeStyle="#e4e9f0";
-x.lineWidth=1;
-x.beginPath();
-let zero=(max)/(range)*(h-20)+10;
-x.moveTo(0,zero);
-x.lineTo(w,zero);
-x.stroke();
+if(r.result){
+status=r.hit?"的中 🎯":"不的中";
+cls=r.hit?"hit":"miss";
+}
 
-x.strokeStyle="#6957e8";
-x.lineWidth=3;
-x.lineJoin="round";
-x.beginPath();
+return`
+<div class="row" onclick="openDetail('${r.id}')" style="cursor:pointer">
 
-vals.forEach((q,i)=>{
-let px=vals.length===1?w/2:i/(vals.length-1)*w;
-let py=(max-q)/range*(h-20)+10;
-if(i)x.lineTo(px,py);
-else x.moveTo(px,py);
-});
+<div>
+<div class="name">
+${esc(r.track)} ${esc(r.raceNo)} ${esc(r.raceName)}
+</div>
 
-x.stroke();
+<div class="meta">
+${esc(r.date)} · ${r.horses?.length||0}頭登録
+</div>
+
+<div style="margin-top:6px">
+<span class="status ${cls}">${status}</span>
+</div>
+
+</div>
+
+<div class="money">
+
+<div class="small">
+投資 ${yen(r.bet)}
+</div>
+
+<div class="profit ${p>=0?"plus":"minus"}">
+${p>=0?"+":""}${yen(p)}
+</div>
+
+<div class="small">詳細を見る →</div>
+
+</div>
+
+</div>
+`;
+
+}).join("");
 
 }
 
-function showToast(t){
+function resetForm(){
 
-let e=document.createElement("div");
+$("predictionForm").reset();
 
-e.textContent=t;
-
-Object.assign(e.style,{
-position:"fixed",
-left:"50%",
-bottom:"25px",
-transform:"translateX(-50%)",
-background:"#182234",
-color:"#fff",
-padding:"11px 17px",
-borderRadius:"999px",
-fontSize:"12px",
-fontWeight:"900",
-zIndex:"100"
-});
-
-document.body.appendChild(e);
-
-setTimeout(()=>e.remove(),1800);
+$("date").value=new Date().toISOString().slice(0,10);
 
 }
 
-document.querySelectorAll(".tab").forEach(btn=>{
+$("predictionForm").addEventListener("submit",e=>{
 
-btn.addEventListener("click",()=>{
+e.preventDefault();
 
-document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
-document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+let horses=[];
 
-btn.classList.add("active");
-$(btn.dataset.view).classList.add("active");
+for(let i=1;i<=6;i++){
 
-window.scrollTo({top:0,behavior:"smooth"});
+let name=$("horse"+i).value.trim();
+let mark=$("mark"+i).value;
+
+if(name){
+
+horses.push({
+name:name,
+mark:mark
+});
+
+}
+
+}
+
+let record={
+
+id:uid(),
+
+date:$("date").value,
+
+track:$("track").value,
+
+raceNo:$("raceNo").value,
+
+raceName:$("raceName").value.trim(),
+
+bet:Number($("predictionBet").value)||0,
+
+returnAmount:0,
+
+horses:horses,
+
+bets:$("bets").value.trim(),
+
+memo:$("memo").value.trim(),
+
+result:null,
+
+created:new Date().toISOString()
+
+};
+
+records.push(record);
+
+save();
+
+renderStats();
+renderHistory();
+
+resetForm();
+
+alert("予想を保存しました！🏇");
 
 });
 
+window.openDetail=function(id){
+
+currentId=id;
+
+let r=records.find(x=>x.id===id);
+
+if(!r)return;
+
+$("homePage").classList.add("hidden");
+$("detailPage").classList.remove("hidden");
+
+$("detailTitle").textContent=
+`${r.track} ${r.raceNo} ${r.raceName}`;
+
+$("detailMeta").textContent=
+`${r.date} · 投資 ${yen(r.bet)}`;
+
+let marksHtml=(r.horses||[]).map(h=>`
+
+<div class="row">
+
+<div>
+<span class="mark ${
+h.mark==="◎"?"win":
+h.mark==="○"?"second":
+h.mark==="▲"?"third":""
+}">
+${esc(h.mark||"—")}
+</span>
+
+<b>${esc(h.name)}</b>
+</div>
+
+</div>
+
+`).join("");
+
+let resultHtml="";
+
+if(r.result){
+
+let p=(Number(r.returnAmount)||0)-(Number(r.bet)||0);
+
+resultHtml=`
+
+<div class="sectionBox">
+
+<div class="sectionHead">🏁 レース結果</div>
+
+<div class="resultLine">
+<span>1着</span>
+<b>${esc(r.result.first)}</b>
+</div>
+
+<div class="resultLine">
+<span>2着</span>
+<b>${esc(r.result.second)}</b>
+</div>
+
+<div class="resultLine">
+<span>3着</span>
+<b>${esc(r.result.third)}</b>
+</div>
+
+<div style="margin-top:10px">
+<span class="status ${r.hit?"hit":"miss"}">
+${r.hit?"的中 🎯":"不的中"}
+</span>
+</div>
+
+<div style="margin-top:10px">
+<div>投資：<b>${yen(r.bet)}</b></div>
+<div>払戻：<b>${yen(r.returnAmount)}</b></div>
+<div class="profit ${p>=0?"plus":"minus"}">
+収支：${p>=0?"+":""}${yen(p)}
+</div>
+</div>
+
+</div>
+
+`;
+
+}else{
+
+resultHtml=`
+
+<div class="sectionBox">
+
+<div class="sectionHead">🏁 レース結果</div>
+
+<div class="empty">まだ結果が入力されていません。</div>
+
+</div>
+
+`;
+
+}
+
+$("detailContent").innerHTML=`
+
+<div class="sectionBox">
+
+<div class="sectionHead">🎯 予想印</div>
+
+${marksHtml||'<div class="empty">印が登録されていません。</div>'}
+
+</div>
+
+<div class="sectionBox">
+
+<div class="sectionHead">🎫 買い目</div>
+
+<div style="white-space:pre-wrap;font-size:13px">
+${esc(r.bets)||"買い目未登録"}
+</div>
+
+</div>
+
+<div class="sectionBox">
+
+<div class="sectionHead">📝 予想メモ</div>
+
+<div style="white-space:pre-wrap;font-size:12px;line-height:1.7">
+${esc(r.memo)||"メモなし"}
+</div>
+
+</div>
+
+${resultHtml}
+
+<div class="actions">
+
+<button class="actionBtn primaryAction" onclick="editPrediction()">
+✏️ 予想を編集
+</button>
+
+<button class="actionBtn" onclick="editResult()">
+🏁 結果を編集
+</button>
+
+</div>
+
+<button class="danger" onclick="deletePrediction()">
+この予想を削除
+</button>
+
+`;
+
+};
+
+window.editPrediction=function(){
+
+let r=records.find(x=>x.id===currentId);
+
+if(!r)return;
+
+$("detailContent").innerHTML=`
+
+<div class="sectionBox">
+
+<div class="sectionHead">✏️ 予想を編集</div>
+
+<label>開催日</label>
+<input id="editDate" type="date" value="${esc(r.date)}">
+
+<label style="margin-top:8px">競馬場</label>
+<select id="editTrack">
+
+${["札幌","函館","福島","新潟","東京","中山","中京","京都","阪神","小倉","その他"]
+.map(x=>`<option ${x===r.track?"selected":""}>${x}</option>`).join("")}
+
+</select>
+
+<label style="margin-top:8px">レース番号</label>
+<select id="editRaceNo">
+
+${Array.from({length:12},(_,i)=>i+1)
+.map(i=>`<option ${r.raceNo===i+"R"?"selected":""}>${i}R</option>`).join("")}
+
+</select>
+
+<label style="margin-top:8px">レース名</label>
+<input id="editRaceName" value="${esc(r.raceName)}">
+
+<label style="margin-top:8px">投資額</label>
+<input id="editBet" type="number" value="${r.bet||0}">
+
+</div>
+
+<div class="sectionBox">
+
+<div class="sectionHead">🏇 印・馬名</div>
+
+<div class="horseGrid">
+
+${[0,1,2,3,4,5].map(i=>{
+
+let h=r.horses?.[i]||{name:"",mark:""};
+
+return`
+
+<div class="horseInput">
+
+<input id="eh${i}" value="${esc(h.name)}" placeholder="馬番・馬名">
+
+<select id="em${i}">
+
+<option value="" ${!h.mark?"selected":""}>印なし</option>
+<option ${h.mark==="◎"?"selected":""}>◎</option>
+<option ${h.mark==="○"?"selected":""}>○</option>
+<option ${h.mark==="▲"?"selected":""}>▲</option>
+<option ${h.mark==="☆"?"selected":""}>☆</option>
+<option ${h.mark==="△"?"selected":""}>△</option>
+
+</select>
+
+</div>
+
+`;
+
+}).join("")}
+
+</div>
+
+</div>
+
+<div class="sectionBox">
+
+<div class="sectionHead">🎫 買い目</div>
+
+<textarea id="editBets">${esc(r.bets)}</textarea>
+
+</div>
+
+<div class="sectionBox">
+
+<div class="sectionHead">📝 メモ</div>
+
+<textarea id="editMemo">${esc(r.memo)}</textarea>
+
+</div>
+
+<button class="primary" onclick="savePredictionEdit()">
+💾 予想を保存
+</button>
+
+<button class="secondary" onclick="openDetail('${r.id}')">
+キャンセル
+</button>
+
+`;
+
+};
+
+window.savePredictionEdit=function(){
+
+let r=records.find(x=>x.id===currentId);
+
+if(!r)return;
+
+r.date=$("editDate").value;
+r.track=$("editTrack").value;
+r.raceNo=$("editRaceNo").value;
+r.raceName=$("editRaceName").value.trim();
+r.bet=Number($("editBet").value)||0;
+r.bets=$("editBets").value;
+r.memo=$("editMemo").value;
+
+r.horses=[];
+
+for(let i=0;i<6;i++){
+
+let name=$("eh"+i).value.trim();
+let mark=$("em"+i).value;
+
+if(name){
+r.horses.push({name,mark});
+}
+
+}
+
+save();
+
+renderStats();
+renderHistory();
+
+openDetail(r.id);
+
+alert("予想を更新しました！");
+
+};
+
+window.editResult=function(){
+
+let r=records.find(x=>x.id===currentId);
+
+if(!r)return;
+
+let result=r.result||{
+first:"",
+second:"",
+third:""
+};
+
+$("detailContent").innerHTML=`
+
+<div class="sectionBox">
+
+<div class="sectionHead">🏁 結果を入力・編集</div>
+
+<label>1着</label>
+<input id="resFirst" value="${esc(result.first)}" placeholder="馬番・馬名">
+
+<label style="margin-top:8px">2着</label>
+<input id="resSecond" value="${esc(result.second)}" placeholder="馬番・馬名">
+
+<label style="margin-top:8px">3着</label>
+<input id="resThird" value="${esc(result.third)}" placeholder="馬番・馬名">
+
+<label style="margin-top:8px">払戻額</label>
+<input id="resReturn" type="number" min="0" value="${r.returnAmount||0}">
+
+</div>
+
+<button class="primary" onclick="saveResult()">
+💾 結果を保存
+</button>
+
+<button class="secondary" onclick="openDetail('${r.id}')">
+キャンセル
+</button>
+
+`;
+
+};
+
+function normalize(s){
+
+return String(s||"")
+.trim()
+.replace(/番/g,"")
+.replace(/[　 ]/g,"");
+
+}
+
+window.saveResult=function(){
+
+let r=records.find(x=>x.id===currentId);
+
+if(!r)return;
+
+let first=$("resFirst").value.trim();
+let second=$("resSecond").value.trim();
+let third=$("resThird").value.trim();
+
+r.returnAmount=Number($("resReturn").value)||0;
+
+r.result={
+first:first,
+second:second,
+third:third
+};
+
+let top3=[
+normalize(first),
+normalize(second),
+normalize(third)
+];
+
+let marked=(r.horses||[])
+.filter(h=>h.mark)
+.map(h=>normalize(h.name).split(/[・,]/)[0]);
+
+let hit=false;
+
+if(r.bets){
+
+let is3ren=r.bets.includes("3連複");
+
+if(is3ren){
+
+let found=top3.filter(x=>marked.includes(x)).length;
+
+hit=found>=3;
+
+}else{
+
+hit=marked.some(x=>top3.includes(x));
+
+}
+
+}else{
+
+hit=marked.some(x=>top3.includes(x));
+
+}
+
+r.hit=hit;
+
+save();
+
+renderStats();
+renderHistory();
+
+openDetail(r.id);
+
+alert(hit?"🎯 的中判定！":"結果を保存しました。");
+
+};
+
+window.deletePrediction=function(){
+
+if(!confirm("この予想を削除しますか？")){
+return;
+}
+
+records=records.filter(r=>r.id!==currentId);
+
+save();
+
+currentId=null;
+
+$("detailPage").classList.add("hidden");
+$("homePage").classList.remove("hidden");
+
+renderStats();
+renderHistory();
+
+};
+
+$("backBtn").addEventListener("click",()=>{
+
+$("detailPage").classList.add("hidden");
+$("homePage").classList.remove("hidden");
+
+renderStats();
+renderHistory();
+
 });
 
-$("reset").addEventListener("click",()=>{
+$("allTab").addEventListener("click",()=>{
 
-if(!confirm("すべての予想・結果・収支記録を削除しますか？\nこの操作は元に戻せません。"))return;
+$("allTab").classList.add("active");
+$("pendingTab").classList.remove("active");
+
+renderHistory("all");
+
+});
+
+$("pendingTab").addEventListener("click",()=>{
+
+$("pendingTab").classList.add("active");
+$("allTab").classList.remove("active");
+
+renderHistory("pending");
+
+});
+
+$("resetAll").addEventListener("click",()=>{
+
+if(confirm("すべての予想・結果を削除しますか？")){
 
 records=[];
+
 save();
-render();
-showToast("すべて削除しました");
+
+renderStats();
+renderHistory();
+
+}
 
 });
 
-window.addEventListener("resize",draw);
-
-render();
+resetForm();
+renderStats();
+renderHistory();
 
 </script>
+
 </body>
 </html>

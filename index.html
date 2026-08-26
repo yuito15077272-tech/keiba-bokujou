@@ -19,8 +19,6 @@
   --green:#16a34a;
   --red:#dc2626;
   --gold:#d4a72c;
-  --pink:#f472b6;
-  --pink2:#fce7f3;
 }
 
 *{
@@ -54,6 +52,10 @@ button{
   margin:auto;
   padding-bottom:92px;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 header{
   position:sticky;
@@ -92,6 +94,10 @@ header{
   color:#cbd5e1;
   margin-top:2px;
 }
+
+/* =========================
+   PAGE
+========================= */
 
 .page{
   display:none;
@@ -141,7 +147,8 @@ input,select{
   outline:none;
 }
 
-input:focus,select:focus{
+input:focus,
+select:focus{
   border-color:var(--blue);
   box-shadow:0 0 0 3px #2563eb18;
 }
@@ -312,227 +319,154 @@ input:focus,select:focus{
   margin-top:3px;
 }
 
-.analysis-tabs{
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  padding-bottom:5px;
-  margin-bottom:10px;
-}
-
-.analysis-tabs::-webkit-scrollbar{
-  display:none;
-}
-
-.analysis-tab{
-  flex:0 0 auto;
-  border:1px solid var(--line);
-  background:#f8fafc;
-  color:#475467;
-  border-radius:999px;
-  padding:9px 13px;
-  font-size:12px;
-  font-weight:950;
-}
-
-.analysis-tab.active{
-  background:var(--navy);
-  color:#fff;
-  border-color:var(--navy);
-}
-
-.filter-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-}
-
-.filter-btn{
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:12px;
-  padding:11px 8px;
-  font-weight:950;
-  text-align:left;
-}
-
-.filter-btn.active{
-  background:#eff6ff;
-  border-color:#60a5fa;
-  color:#1d4ed8;
-}
-
-.analysis-box{
-  background:#f8fafc;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:12px;
-  margin-top:10px;
-}
-
-.analysis-title{
-  font-weight:950;
-  font-size:14px;
-  margin-bottom:9px;
-}
-
-.analysis-mini{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:7px;
-}
-
-.analysis-mini div{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:9px;
-}
-
-.analysis-mini b{
-  display:block;
-  font-size:16px;
-  margin-top:3px;
-}
-
-.rank-item{
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:12px;
-  padding:11px;
-  margin:7px 0;
-}
-
-.rank-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-}
-
-.rank-name{
-  font-weight:950;
-}
-
-.rank-num{
-  width:27px;
-  height:27px;
-  border-radius:50%;
-  background:#eef2f6;
-  display:grid;
-  place-items:center;
-  font-size:12px;
-  font-weight:950;
-}
-
-.rank-bar{
-  height:7px;
-  border-radius:99px;
-  background:#e5e7eb;
-  overflow:hidden;
-  margin-top:8px;
-}
-
-.rank-bar-fill{
-  height:100%;
-  background:#2563eb;
-}
-
 /* =========================
-   HORSE
+   HORSE INPUT
 ========================= */
 
 .horse{
   border:1px solid var(--line);
   border-radius:14px;
-  padding:10px;
-  margin:8px 0;
+  padding:11px;
+  margin:9px 0;
   background:#fff;
 }
 
-.horse-row{
-  display:grid;
-  grid-template-columns:42px 1fr auto;
-  gap:9px;
+.horse-head{
+  display:flex;
   align-items:center;
+  justify-content:space-between;
+  margin-bottom:9px;
 }
 
-.number{
-  font-size:18px;
-  font-weight:950;
-  text-align:center;
-}
-
-.horse-name{
+.horse-title{
   font-weight:950;
 }
 
-.mark-btn{
-  border:1px solid #cfd4dc;
-  background:#f8fafc;
-  border-radius:10px;
-  padding:8px 10px;
-  min-width:88px;
+.horse-actions{
+  display:flex;
+  gap:6px;
+}
+
+.mini-btn{
+  border:0;
+  border-radius:9px;
+  padding:7px 9px;
+  font-size:11px;
   font-weight:950;
 }
 
-.mark-btn.set{
-  background:#111827;
-  color:#fff;
-  border-color:#111827;
+.remove-btn{
+  background:#fee2e2;
+  color:#991b1b;
 }
 
-.horse-select-row{
+.horse-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:7px;
-  margin-top:8px;
+  gap:8px;
 }
 
-.select-chip{
-  border:1px solid #d0d5dd;
-  background:#f8fafc;
-  border-radius:10px;
-  padding:9px;
-  font-weight:950;
-  font-size:12px;
+.horse-field{
+  min-width:0;
 }
 
-.select-chip.active{
-  background:#eff6ff;
-  border-color:#60a5fa;
-  color:#1d4ed8;
+.horse-name-input{
+  margin-top:7px;
 }
 
 /* =========================
-   GATE COLORS
+   FRAME / NUMBER PICKER
 ========================= */
 
-.gate-badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:38px;
-  height:31px;
-  border-radius:8px;
-  border:1px solid #cbd5e1;
-  font-weight:950;
-  font-size:14px;
+.pick-label{
+  font-size:11px;
+  color:var(--muted);
+  font-weight:900;
+  margin-bottom:6px;
 }
 
-.gate1{background:#fff;color:#111;border-color:#111}
-.gate2{background:#111;color:#fff;border-color:#111}
-.gate3{background:#ef4444;color:#fff;border-color:#ef4444}
-.gate4{background:#3b82f6;color:#fff;border-color:#3b82f6}
-.gate5{background:#facc15;color:#111;border-color:#eab308}
-.gate6{background:#22c55e;color:#fff;border-color:#16a34a}
-.gate7{background:#f97316;color:#fff;border-color:#ea580c}
+.frame-picker{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+}
 
-/* 8枠は桃色 */
-.gate8{
+.frame-btn{
+  min-height:38px;
+  border:2px solid transparent;
+  border-radius:9px;
+  font-weight:950;
+  color:#111;
+  box-shadow:0 1px 3px #0001;
+}
+
+.frame-btn.selected{
+  border-color:#111827;
+  box-shadow:0 0 0 2px #fff,0 0 0 4px #111827;
+  transform:scale(1.02);
+}
+
+/* 枠色 */
+
+.frame1{
+  background:#fff;
+  border-color:#d1d5db;
+}
+
+.frame2{
+  background:#111827;
+  color:#fff;
+}
+
+.frame3{
+  background:#ef4444;
+  color:#fff;
+}
+
+.frame4{
+  background:#3b82f6;
+  color:#fff;
+}
+
+.frame5{
+  background:#facc15;
+}
+
+.frame6{
+  background:#22c55e;
+  color:#fff;
+}
+
+.frame7{
+  background:#f97316;
+  color:#fff;
+}
+
+.frame8{
   background:#f9a8d4;
   color:#831843;
-  border-color:#f472b6;
+}
+
+/* 馬番 */
+
+.number-picker{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:5px;
+}
+
+.number-btn{
+  border:1px solid #d0d5dd;
+  background:#f8fafc;
+  border-radius:8px;
+  min-height:34px;
+  font-weight:900;
+}
+
+.number-btn.selected{
+  background:#111827;
+  color:#fff;
+  border-color:#111827;
 }
 
 /* =========================
@@ -553,13 +487,59 @@ input:focus,select:focus{
   font-size:16px;
 }
 
-.m-◎{background:#fee2e2;color:#b91c1c}
-.m-○{background:#dbeafe;color:#1d4ed8}
-.m-▲{background:#fef3c7;color:#92400e}
-.m-☆{background:#fce7f3;color:#be185d}
-.m-△{background:#dcfce7;color:#166534}
-.m-消{background:#e5e7eb;color:#374151}
-.m-－{background:#f3f4f6;color:#6b7280}
+.m-◎{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.m-○{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.m-▲{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.m-☆{
+  background:#fce7f3;
+  color:#be185d;
+}
+
+.m-△{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.m-消{
+  background:#e5e7eb;
+  color:#374151;
+}
+
+.m-－{
+  background:#f3f4f6;
+  color:#6b7280;
+}
+
+/* =========================
+   ADD HORSE
+========================= */
+
+.add-horse{
+  width:100%;
+  border:2px dashed #cbd5e1;
+  background:#f8fafc;
+  color:#334155;
+  border-radius:13px;
+  min-height:48px;
+  font-weight:950;
+  margin-top:8px;
+}
+
+.add-horse:active{
+  transform:scale(.985);
+}
 
 /* =========================
    RACE
@@ -613,6 +593,91 @@ canvas{
   border:1px solid var(--line);
   border-radius:12px;
   background:#fff;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result-status{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.result-status button{
+  border:2px solid #d0d5dd;
+  background:#f8fafc;
+  border-radius:11px;
+  min-height:48px;
+  font-weight:950;
+}
+
+.result-status button.selected-hit{
+  background:#dcfce7;
+  color:#166534;
+  border-color:#16a34a;
+}
+
+.result-status button.selected-miss{
+  background:#fee2e2;
+  color:#991b1b;
+  border-color:#dc2626;
+}
+
+.result-position{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:11px;
+  margin-top:9px;
+}
+
+.result-position-title{
+  font-size:14px;
+  font-weight:950;
+  margin-bottom:8px;
+}
+
+/* =========================
+   FILTER
+========================= */
+
+.filter-tabs{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:7px;
+}
+
+.filter-btn{
+  border:1px solid #d0d5dd;
+  background:#f8fafc;
+  border-radius:10px;
+  min-height:40px;
+  font-weight:900;
+}
+
+.filter-btn.active{
+  background:#111827;
+  color:#fff;
+  border-color:#111827;
+}
+
+.detail-section{
+  margin-top:12px;
+}
+
+.detail-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:9px 0;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+
+.detail-row:last-child{
+  border-bottom:0;
 }
 
 /* =========================
@@ -677,26 +742,6 @@ canvas{
   padding:16px;
   max-height:90vh;
   overflow:auto;
-}
-
-.choice-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-}
-
-.choice-btn{
-  border:1px solid var(--line);
-  background:#f8fafc;
-  border-radius:11px;
-  min-height:48px;
-  font-weight:950;
-}
-
-.choice-btn.active{
-  background:#111827;
-  color:#fff;
-  border-color:#111827;
 }
 
 .toast{
@@ -803,7 +848,9 @@ canvas{
   </div>
 </header>
 
-<!-- HOME -->
+<!-- =========================
+     HOME
+========================= -->
 
 <section id="home" class="page active">
 
@@ -812,11 +859,20 @@ canvas{
     <div id="characterBox" class="character-wrap"></div>
 
     <div class="levelline">
-      <div id="level" class="level">Lv.1 赤ちゃん馬</div>
-      <div id="rank" class="pill">赤ちゃん馬</div>
+
+      <div id="level" class="level">
+        Lv.1 赤ちゃん馬
+      </div>
+
+      <div id="rank" class="pill">
+        赤ちゃん馬
+      </div>
+
     </div>
 
-    <div class="small" id="expText">EXP 0 / 100</div>
+    <div class="small" id="expText">
+      EXP 0 / 100
+    </div>
 
     <div class="expbar">
       <div id="expFill" class="expfill"></div>
@@ -859,7 +915,9 @@ canvas{
 
   </div>
 
-  <button class="btn primary full" onclick="showPage('predict')">
+  <button
+    class="btn primary full"
+    onclick="showPage('predict')">
     🏇 予想をはじめる
   </button>
 
@@ -873,7 +931,9 @@ canvas{
 
 </section>
 
-<!-- PREDICT -->
+<!-- =========================
+     PREDICT
+========================= -->
 
 <section id="predict" class="page">
 
@@ -923,10 +983,18 @@ canvas{
     <h2>🐴 出走馬</h2>
 
     <div class="small">
-      枠番・馬番・印はタップして選択できます。
+      最初は1頭だけ表示されます。<br>
+      必要な馬だけ「＋ 馬を追加」で増やしてください。
     </div>
 
     <div id="horses"></div>
+
+    <button
+      id="addHorseBtn"
+      class="add-horse"
+      onclick="addHorse()">
+      ＋ 馬を追加
+    </button>
 
   </div>
 
@@ -943,7 +1011,9 @@ canvas{
 
   </div>
 
-  <button class="btn green full" onclick="savePrediction()">
+  <button
+    class="btn green full"
+    onclick="savePrediction()">
     予想を登録する
   </button>
 
@@ -957,7 +1027,9 @@ canvas{
 
 </section>
 
-<!-- RESULT -->
+<!-- =========================
+     RESULT
+========================= -->
 
 <section id="result" class="page">
 
@@ -971,7 +1043,9 @@ canvas{
 
 </section>
 
-<!-- HISTORY -->
+<!-- =========================
+     HISTORY
+========================= -->
 
 <section id="history" class="page">
 
@@ -985,7 +1059,9 @@ canvas{
 
 </section>
 
-<!-- STATS -->
+<!-- =========================
+     STATS
+========================= -->
 
 <section id="stats" class="page">
 
@@ -1029,65 +1105,45 @@ canvas{
 
   </div>
 
-  <!-- 詳細分析 -->
+  <!-- 詳細成績 -->
 
   <div class="card">
 
-    <h2>🔎 詳細分析</h2>
+    <h2>🔎 詳細成績</h2>
 
-    <div class="analysis-tabs">
+    <div class="filter-tabs">
 
-      <button class="analysis-tab active"
-        onclick="setAnalysisMode('all',this)">
-        総合
+      <button
+        id="filterTrack"
+        class="filter-btn active"
+        onclick="showStatDetail('track')">
+        🏟 競馬場別
       </button>
 
-      <button class="analysis-tab"
-        onclick="setAnalysisMode('track',this)">
-        競馬場
+      <button
+        id="filterSurface"
+        class="filter-btn"
+        onclick="showStatDetail('surface')">
+        🌱 芝・ダート・障害
       </button>
 
-      <button class="analysis-tab"
-        onclick="setAnalysisMode('surface',this)">
-        芝/ダート
+      <button
+        id="filterDistance"
+        class="filter-btn"
+        onclick="showStatDetail('distance')">
+        📏 距離別
       </button>
 
-      <button class="analysis-tab"
-        onclick="setAnalysisMode('distance',this)">
-        距離
-      </button>
-
-      <button class="analysis-tab"
-        onclick="setAnalysisMode('mark',this)">
-        印
-      </button>
-
-      <button class="analysis-tab"
-        onclick="setAnalysisMode('field',this)">
-        頭数
+      <button
+        id="filterRaceNo"
+        class="filter-btn"
+        onclick="showStatDetail('raceNo')">
+        🔢 レース別
       </button>
 
     </div>
 
-    <div id="analysisFilters"></div>
-
-    <div id="analysisResult"></div>
-
-  </div>
-
-  <div class="card">
-
-    <h2>🏆 得意条件ランキング</h2>
-
-    <div id="strongRanking"></div>
-
-  </div>
-
-  <div class="card">
-
-    <h2>⚠️ 苦手条件ランキング</h2>
-
-    <div id="weakRanking"></div>
+    <div id="detailStats" style="margin-top:10px"></div>
 
   </div>
 
@@ -1108,7 +1164,9 @@ canvas{
 
 </section>
 
-<!-- NAV -->
+<!-- =========================
+     NAV
+========================= -->
 
 <nav class="nav">
 
@@ -1136,7 +1194,9 @@ canvas{
 
 </div>
 
-<!-- MARK MODAL -->
+<!-- =========================
+     MARK MODAL
+========================= -->
 
 <div
   id="markModal"
@@ -1160,55 +1220,9 @@ canvas{
 
 </div>
 
-<!-- GATE MODAL -->
-
-<div
-  id="gateModal"
-  class="modal"
-  onclick="if(event.target===this)closeGate()">
-
-  <div class="sheet">
-
-    <h2>🎨 枠番を選択</h2>
-
-    <div id="gateChoices" class="choice-grid"></div>
-
-    <button
-      class="btn light full"
-      style="margin-top:9px"
-      onclick="closeGate()">
-      閉じる
-    </button>
-
-  </div>
-
-</div>
-
-<!-- HORSE NUMBER MODAL -->
-
-<div
-  id="horseNoModal"
-  class="modal"
-  onclick="if(event.target===this)closeHorseNo()">
-
-  <div class="sheet">
-
-    <h2>🔢 馬番を選択</h2>
-
-    <div id="horseNoChoices" class="choice-grid"></div>
-
-    <button
-      class="btn light full"
-      style="margin-top:9px"
-      onclick="closeHorseNo()">
-      閉じる
-    </button>
-
-  </div>
-
-</div>
-
-<!-- DETAIL -->
+<!-- =========================
+     DETAIL MODAL
+========================= -->
 
 <div
   id="detailModal"
@@ -1221,7 +1235,24 @@ canvas{
 
 </div>
 
-<!-- EVOLUTION -->
+<!-- =========================
+     RESULT EDIT MODAL
+========================= -->
+
+<div
+  id="resultEditModal"
+  class="modal"
+  onclick="if(event.target===this)closeResultEdit()">
+
+  <div class="sheet">
+    <div id="resultEditContent"></div>
+  </div>
+
+</div>
+
+<!-- =========================
+     EVOLUTION
+========================= -->
 
 <div id="evoModal" class="modal">
 
@@ -1269,7 +1300,11 @@ const TRACKS=[
   "中山","中京","京都","阪神","小倉"
 ];
 
-const SURFACES=["芝","ダート","障害"];
+const SURFACES=[
+  "芝",
+  "ダート",
+  "障害"
+];
 
 const DIST={
   芝:[
@@ -1277,11 +1312,13 @@ const DIST={
     "1800m","2000m","2200m","2300m","2400m",
     "2500m","2600m","3000m","3200m","3400m","3600m"
   ],
+
   ダート:[
     "1000m","1150m","1200m","1300m","1400m",
     "1500m","1600m","1700m","1800m","1900m",
     "2000m","2100m","2400m","2500m"
   ],
+
   障害:[
     "2860m","2880m","2890m","2900m","2910m",
     "2930m","2970m","3000m","3110m","3170m",
@@ -1290,18 +1327,20 @@ const DIST={
   ]
 };
 
-const MARKS=["◎","○","▲","☆","△","消","－"];
-
-const GATES=[
-  {no:1,name:"1枠"},
-  {no:2,name:"2枠"},
-  {no:3,name:"3枠"},
-  {no:4,name:"4枠"},
-  {no:5,name:"5枠"},
-  {no:6,name:"6枠"},
-  {no:7,name:"7枠"},
-  {no:8,name:"8枠"}
+const MARKS=[
+  "◎","○","▲","☆","△","消","－"
 ];
+
+const FRAME_NAMES={
+  1:"白",
+  2:"黒",
+  3:"赤",
+  4:"青",
+  5:"黄",
+  6:"緑",
+  7:"橙",
+  8:"桃"
+};
 
 let db=loadDatabase();
 
@@ -1309,17 +1348,21 @@ let editId=null;
 
 let markHorse=null;
 
-let gateHorse=null;
-
-let numberHorse=null;
-
 let marksForm={};
 
-let horseForm={};
+let horsesForm=[];
 
-let analysisMode="all";
+let resultEditId=null;
 
-let analysisFilter=null;
+let resultStatus="";
+
+let resultPositions={
+  first:{frame:"",no:"",name:""},
+  second:{frame:"",no:"",name:""},
+  third:{frame:"",no:"",name:""}
+};
+
+let currentStatDetail="track";
 
 /* =========================
    DATABASE
@@ -1338,17 +1381,12 @@ function freshDatabase(){
 function normalizeHorse(h,i){
 
   return{
-
-    no:Number(h.no)||i+1,
-
-    gate:Number(h.gate)||Math.ceil((Number(h.no)||i+1)/2),
-
-    name:String(h.name||""),
-
-    mark:MARKS.includes(h.mark)
+    frame:Number(h?.frame)||0,
+    no:Number(h?.no)||i+1,
+    name:String(h?.name||""),
+    mark:MARKS.includes(h?.mark)
       ?h.mark
       :"－"
-
   };
 
 }
@@ -1363,9 +1401,11 @@ function normalizeRace(r){
 
   return{
 
-    id:r.id||String(Date.now()+Math.random()),
+    id:r.id||
+      String(Date.now()+Math.random()),
 
-    date:r.date||new Date().toISOString(),
+    date:r.date||
+      new Date().toISOString(),
 
     track:r.track||"東京",
 
@@ -1375,11 +1415,14 @@ function normalizeRace(r){
 
     distance:r.distance||"1600m",
 
-    fieldSize:Number(r.fieldSize)||horses.length||8,
+    fieldSize:Number(r.fieldSize)||
+      Math.max(5,horses.length)||8,
 
     stake:Number(r.stake)||0,
 
-    horses:horses.map(normalizeHorse),
+    horses:horses.map(
+      (h,i)=>normalizeHorse(h,i)
+    ),
 
     result:{
 
@@ -1389,15 +1432,15 @@ function normalizeRace(r){
 
       third:String(result.third||""),
 
-      firstGate:Number(result.firstGate)||0,
-
-      secondGate:Number(result.secondGate)||0,
-
-      thirdGate:Number(result.thirdGate)||0,
-
       returned:Number(result.returned)||0,
 
-      done:!!result.done
+      done:!!result.done,
+
+      hitStatus:
+        result.hitStatus==="hit"||
+        result.hitStatus==="miss"
+          ?result.hitStatus
+          :""
 
     }
 
@@ -1420,7 +1463,8 @@ function loadDatabase(){
 
     const x=JSON.parse(raw);
 
-    x.races=(x.races||[]).map(normalizeRace);
+    x.races=(x.races||[])
+      .map(normalizeRace);
 
     x.version=6;
 
@@ -1489,10 +1533,16 @@ function hit(r){
   if(!r.result.done)
     return false;
 
+  if(r.result.hitStatus==="hit")
+    return true;
+
+  if(r.result.hitStatus==="miss")
+    return false;
+
   const top3=[
-    String(r.result.first),
-    String(r.result.second),
-    String(r.result.third)
+    String(r.result.first||""),
+    String(r.result.second||""),
+    String(r.result.third||"")
   ];
 
   return r.horses.some(
@@ -1535,34 +1585,44 @@ function levelInfo(exp){
   if(level<=4){
     name="赤ちゃん馬";
     stage="foal";
-  }else if(level<=9){
+  }
+  else if(level<=9){
     name="子馬";
     stage="young";
-  }else if(level<=14){
+  }
+  else if(level<=14){
     name="若駒";
     stage="juvenile";
-  }else if(level<=19){
+  }
+  else if(level<=19){
     name="成長馬";
     stage="grown";
-  }else if(level<=24){
+  }
+  else if(level<=24){
     name="競走馬";
     stage="racehorse";
-  }else if(level<=29){
+  }
+  else if(level<=29){
     name="強豪競走馬";
     stage="strong";
-  }else if(level<=34){
+  }
+  else if(level<=34){
     name="重賞級";
     stage="graded";
-  }else if(level<=39){
+  }
+  else if(level<=39){
     name="チャンピオン";
     stage="champion";
-  }else if(level<=44){
+  }
+  else if(level<=44){
     name="最強馬";
     stage="elite";
-  }else if(level<=49){
+  }
+  else if(level<=49){
     name="王者";
     stage="king";
-  }else{
+  }
+  else{
     name="伝説の競走馬";
     stage="legend";
   }
@@ -1571,7 +1631,10 @@ function levelInfo(exp){
     level,
     name,
     stage,
-    current:level===50?100:exp%100,
+    current:
+      level===50
+        ?100
+        :exp%100,
     need:100
   };
 
@@ -1653,13 +1716,20 @@ function horseSVG(stage){
 
   }[stage];
 
-  const glow=
-    ["champion","elite","king","legend"]
-      .includes(stage);
+  const glow=[
+    "champion",
+    "elite",
+    "king",
+    "legend"
+  ].includes(stage);
 
-  const gold=
-    ["graded","champion","elite","king","legend"]
-      .includes(stage);
+  const gold=[
+    "graded",
+    "champion",
+    "elite",
+    "king",
+    "legend"
+  ].includes(stage);
 
   return`
 
@@ -1672,7 +1742,7 @@ function horseSVG(stage){
   cx="210"
   cy="145"
   r="118"
-  fill="#facc15"
+  fill="${stage==="legend"?"#ffd95a":"#facc15"}"
   opacity=".22"/>
  `:""}
 
@@ -1730,7 +1800,7 @@ function horseSVG(stage){
  <circle
   cx="119"
   cy="81"
-  r="8"
+  r="${stage==="foal"?5:8}"
   fill="#111"/>
 
  <ellipse
@@ -1786,26 +1856,54 @@ function horseSVG(stage){
    C343 184 322 185 305 174Z"
   fill="${data.mane}"/>
 
- ${gold?`
+ <path
+  d="
+   M155 135
+   C187 113 230 117 258 132
+   C226 130 198 140 174 158Z"
+  fill="#fff"
+  opacity=".12"/>
+
+ ${[
+   "racehorse",
+   "strong",
+   "graded",
+   "champion",
+   "elite",
+   "king",
+   "legend"
+ ].includes(stage)?`
 
  <path
   d="
    M132 130
    Q220 108 312 149"
   fill="none"
-  stroke="#d4a72c"
+  stroke="${gold?"#d4a72c":"#b91c1c"}"
   stroke-width="10"/>
 
  <circle
   cx="274"
   cy="134"
   r="9"
-  fill="#fff1a8"/>
+  fill="${gold?"#fff1a8":"#fff"}"/>
+
+ <path
+  d="
+   M91 94
+   Q123 108 149 94"
+  fill="none"
+  stroke="${gold?"#d4a72c":"#cbd5e1"}"
+  stroke-width="5"/>
 
  `:""}
 
- ${["champion","elite","king","legend"]
-   .includes(stage)?`
+ ${[
+   "champion",
+   "elite",
+   "king",
+   "legend"
+ ].includes(stage)?`
 
  <path
   d="
@@ -1833,11 +1931,57 @@ function horseSVG(stage){
   stroke-width="4"
   opacity=".7"/>
 
+ <circle
+  cx="210"
+  cy="145"
+  r="122"
+  fill="none"
+  stroke="#facc15"
+  stroke-width="2"
+  opacity=".5"/>
+
  `:""}
 
 </svg>
-
 `;
+
+}
+
+/* =========================
+   SELECT
+========================= */
+
+function fillSelect(
+  id,
+  arr,
+  value,
+  type=""
+){
+
+  const select=
+    document.getElementById(id);
+
+  if(!select)return;
+
+  select.innerHTML="";
+
+  arr.forEach(item=>{
+
+    let text=item;
+
+    if(type==="R")
+      text=item+"R";
+
+    if(type==="頭")
+      text=item+"頭";
+
+    select.add(
+      new Option(text,item)
+    );
+
+  });
+
+  select.value=value;
 
 }
 
@@ -1853,14 +1997,17 @@ function init(){
     "東京"
   );
 
+  /*
+   * レースは必ず1R〜12R
+   */
   fillSelect(
     "raceNo",
     Array.from(
       {length:12},
       (_,i)=>i+1
     ),
-    11,
-    true
+    1,
+    "R"
   );
 
   fillSelect(
@@ -1869,6 +2016,9 @@ function init(){
     "芝"
   );
 
+  /*
+   * 頭数は5頭〜18頭
+   */
   fillSelect(
     "fieldSize",
     Array.from(
@@ -1876,53 +2026,24 @@ function init(){
       (_,i)=>i+5
     ),
     8,
-    true
+    "頭"
   );
 
-  document.getElementById("surface").onchange=
-    updateDistance;
+  document.getElementById(
+    "surface"
+  ).onchange=updateDistance;
 
-  document.getElementById("fieldSize").onchange=
-    ()=>renderHorses();
+  document.getElementById(
+    "fieldSize"
+  ).onchange=fieldSizeChanged;
 
   updateDistance();
 
-  renderHorses();
+  resetHorseForm();
 
   refresh();
 
   showPage("home");
-
-}
-
-/* =========================
-   SELECT
-========================= */
-
-function fillSelect(
-  id,
-  arr,
-  value,
-  race=false
-){
-
-  const select=
-    document.getElementById(id);
-
-  select.innerHTML="";
-
-  arr.forEach(item=>{
-
-    select.add(
-      new Option(
-        race?item+"頭":item,
-        item
-      )
-    );
-
-  });
-
-  select.value=value;
 
 }
 
@@ -1933,7 +2054,9 @@ function fillSelect(
 function updateDistance(){
 
   const surface=
-    document.getElementById("surface").value;
+    document.getElementById(
+      "surface"
+    ).value;
 
   let defaultDistance="1600m";
 
@@ -1952,125 +2075,417 @@ function updateDistance(){
 }
 
 /* =========================
-   HORSES
+   HORSE FORM
 ========================= */
 
-function renderHorses(existing){
+function resetHorseForm(){
 
-  const count=
+  horsesForm=[
+    {
+      frame:1,
+      no:1,
+      name:"",
+      mark:"－"
+    }
+  ];
+
+  renderHorseForm();
+
+}
+
+function fieldSizeChanged(){
+
+  const max=
     Number(
-      document.getElementById("fieldSize").value
+      document.getElementById(
+        "fieldSize"
+      ).value
     )||8;
 
-  marksForm={};
+  if(horsesForm.length>max){
 
-  horseForm={};
-
-  const container=
-    document.getElementById("horses");
-
-  container.innerHTML="";
-
-  for(let i=1;i<=count;i++){
-
-    const h=
-      existing?.[i-1]||
-      {
-        no:i,
-        gate:Math.ceil(i/2),
-        name:"",
-        mark:"－"
-      };
-
-    marksForm[i]=h.mark||"－";
-
-    horseForm[i]={
-      no:Number(h.no)||i,
-      gate:Number(h.gate)||Math.ceil(i/2)
-    };
-
-    const row=
-      document.createElement("div");
-
-    row.className="horse";
-
-    row.innerHTML=`
-
-      <div class="horse-row">
-
-        <div class="number">
-          <span
-            id="gateBadge${i}"
-            class="gate-badge gate${horseForm[i].gate}">
-            ${horseForm[i].gate}
-          </span>
-        </div>
-
-        <div>
-          <input
-            data-name="${i}"
-            value="${esc(h.name)}"
-            placeholder="馬名を入力">
-        </div>
-
-        <button
-          id="markBtn${i}"
-          class="mark-btn ${h.mark!=="－"?"set":""}"
-          onclick="openMark(${i})">
-
-          ${h.mark==="－"?"印を選択":h.mark}
-
-        </button>
-
-      </div>
-
-      <div class="horse-select-row">
-
-        <button
-          id="gateBtn${i}"
-          class="select-chip"
-          onclick="openGate(${i})">
-
-          🎨 ${horseForm[i].gate}枠
-
-        </button>
-
-        <button
-          id="numberBtn${i}"
-          class="select-chip"
-          onclick="openHorseNo(${i})">
-
-          🔢 ${horseForm[i].no}番
-
-        </button>
-
-      </div>
-
-    `;
-
-    container.appendChild(row);
+    horsesForm=
+      horsesForm.slice(0,max);
 
   }
+
+  renderHorseForm();
+
+}
+
+function addHorse(){
+
+  const max=
+    Number(
+      document.getElementById(
+        "fieldSize"
+      ).value
+    )||8;
+
+  if(horsesForm.length>=max){
+
+    toast(
+      `最大${max}頭まで登録できます`
+    );
+
+    return;
+  }
+
+  const usedNumbers=
+    horsesForm.map(
+      h=>Number(h.no)
+    );
+
+  let nextNo=1;
+
+  while(
+    usedNumbers.includes(nextNo) &&
+    nextNo<=18
+  ){
+    nextNo++;
+  }
+
+  horsesForm.push({
+
+    frame:1,
+
+    no:nextNo,
+
+    name:"",
+
+    mark:"－"
+
+  });
+
+  renderHorseForm();
+
+  setTimeout(()=>{
+
+    const cards=
+      document.querySelectorAll(
+        "#horses .horse"
+      );
+
+    cards[cards.length-1]
+      ?.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
+
+  },50);
+
+}
+
+function removeHorse(index){
+
+  if(horsesForm.length<=1){
+
+    toast("最低1頭は必要です");
+
+    return;
+  }
+
+  horsesForm.splice(index,1);
+
+  renderHorseForm();
+
+}
+
+function renderHorseForm(){
+
+  const container=
+    document.getElementById(
+      "horses"
+    );
+
+  if(!container)return;
+
+  container.innerHTML=
+    horsesForm.map(
+      (h,index)=>horseCardHTML(
+        h,
+        index,
+        false
+      )
+    ).join("");
+
+  updateAddButton();
+
+}
+
+function updateAddButton(){
+
+  const btn=
+    document.getElementById(
+      "addHorseBtn"
+    );
+
+  if(!btn)return;
+
+  const max=
+    Number(
+      document.getElementById(
+        "fieldSize"
+      ).value
+    )||8;
+
+  const current=
+    horsesForm.length;
+
+  btn.textContent=
+    current>=max
+      ?`登録上限 ${max}頭`
+      :"＋ 馬を追加";
+
+  btn.disabled=
+    current>=max;
+
+  btn.style.opacity=
+    current>=max?.55:1;
+
+}
+
+function horseCardHTML(
+  h,
+  index,
+  resultMode
+){
+
+  const frame=
+    Number(h.frame)||1;
+
+  const no=
+    Number(h.no)||1;
+
+  const frameButtons=
+    Array.from(
+      {length:8},
+      (_,i)=>{
+
+        const n=i+1;
+
+        return`
+
+          <button
+            type="button"
+            class="frame-btn frame${n} ${
+              frame===n?"selected":""
+            }"
+            onclick="${
+              resultMode
+                ?`setResultFrame('${index}',${n})`
+                :`setHorseFrame(${index},${n})`
+            }">
+
+            ${n}枠
+
+          </button>
+
+        `;
+
+      }
+    ).join("");
+
+  const numberButtons=
+    Array.from(
+      {length:18},
+      (_,i)=>{
+
+        const n=i+1;
+
+        return`
+
+          <button
+            type="button"
+            class="number-btn ${
+              no===n?"selected":""
+            }"
+            onclick="${
+              resultMode
+                ?`setResultNumber('${index}',${n})`
+                :`setHorseNumber(${index},${n})`
+            }">
+
+            ${n}
+
+          </button>
+
+        `;
+
+      }
+    ).join("");
+
+  return`
+
+    <div class="horse">
+
+      <div class="horse-head">
+
+        <div class="horse-title">
+          🐴 馬 ${index+1}
+        </div>
+
+        ${
+          resultMode
+            ?""
+            :`
+
+              <div class="horse-actions">
+
+                <button
+                  type="button"
+                  class="mini-btn remove-btn"
+                  onclick="removeHorse(${index})">
+
+                  − 削除
+
+                </button>
+
+              </div>
+
+            `
+        }
+
+      </div>
+
+      <div class="pick-label">
+        枠番をタップ
+      </div>
+
+      <div class="frame-picker">
+        ${frameButtons}
+      </div>
+
+      <div style="margin-top:9px">
+
+        <div class="pick-label">
+          馬番をタップ
+        </div>
+
+        <div class="number-picker">
+          ${numberButtons}
+        </div>
+
+      </div>
+
+      <div class="horse-name-input">
+
+        <label>
+          馬名
+        </label>
+
+        <input
+          type="text"
+          value="${esc(h.name||"")}"
+          placeholder="馬名を入力"
+          oninput="${
+            resultMode
+              ?`setResultName('${index}',this.value)`
+              :`setHorseName(${index},this.value)`
+          }">
+
+      </div>
+
+      ${
+        resultMode
+          ?""
+          :`
+
+            <button
+              type="button"
+              class="mark-btn"
+              style="
+                width:100%;
+                margin-top:8px;
+              "
+              onclick="openMark(${index})">
+
+              ${
+                h.mark==="－"
+                  ?"🎯 印を選択"
+                  :"印「"+h.mark+"」"
+              }
+
+            </button>
+
+          `
+      }
+
+    </div>
+
+  `;
 
 }
 
 /* =========================
-   MARK
+   HORSE FORM EVENTS
 ========================= */
 
-function openMark(no){
+function setHorseFrame(
+  index,
+  frame
+){
 
-  markHorse=no;
+  horsesForm[index].frame=frame;
+
+  renderHorseForm();
+
+}
+
+function setHorseNumber(
+  index,
+  no
+){
+
+  const duplicate=
+    horsesForm.some(
+      (h,i)=>
+        i!==index &&
+        Number(h.no)===no
+    );
+
+  if(duplicate){
+
+    toast(
+      `${no}番はすでに選択されています`
+    );
+
+    return;
+  }
+
+  horsesForm[index].no=no;
+
+  renderHorseForm();
+
+}
+
+function setHorseName(
+  index,
+  name
+){
+
+  if(horsesForm[index])
+    horsesForm[index].name=name;
+
+}
+
+function openMark(index){
+
+  markHorse=index;
 
   const box=
-    document.getElementById("markChoices");
+    document.getElementById(
+      "markChoices"
+    );
 
   box.innerHTML="";
 
   MARKS.forEach(mark=>{
 
     const button=
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
     button.className=
       "mark m-"+mark;
@@ -2080,234 +2495,41 @@ function openMark(no){
         ?"－ 無印"
         :mark;
 
-    button.onclick=
-      ()=>setMark(mark);
+    button.onclick=()=>{
+
+      horsesForm[
+        markHorse
+      ].mark=mark;
+
+      renderHorseForm();
+
+      closeMark();
+
+      toast(
+        mark==="－"
+          ?"無印"
+          :"印「"+mark+"」"
+      );
+
+    };
 
     box.appendChild(button);
 
   });
 
-  document
-    .getElementById("markModal")
-    .classList.add("show");
-
-}
-
-function setMark(mark){
-
-  if(markHorse===null)
-    return;
-
-  marksForm[markHorse]=mark;
-
-  const button=
-    document.getElementById(
-      "markBtn"+markHorse
-    );
-
-  if(button){
-
-    button.textContent=
-      mark==="－"
-        ?"印を選択"
-        :mark;
-
-    button.classList.toggle(
-      "set",
-      mark!=="－"
-    );
-
-  }
-
-  closeMark();
-
-  toast(
-    mark==="－"
-      ?"無印"
-      :"印「"+mark+"」"
-  );
+  document.getElementById(
+    "markModal"
+  ).classList.add("show");
 
 }
 
 function closeMark(){
 
-  document
-    .getElementById("markModal")
-    .classList.remove("show");
+  document.getElementById(
+    "markModal"
+  ).classList.remove("show");
 
   markHorse=null;
-
-}
-
-/* =========================
-   GATE SELECT
-========================= */
-
-function openGate(no){
-
-  gateHorse=no;
-
-  const box=
-    document.getElementById("gateChoices");
-
-  box.innerHTML="";
-
-  GATES.forEach(g=>{
-
-    const button=
-      document.createElement("button");
-
-    button.className=
-      "choice-btn gate"+g.no;
-
-    button.textContent=
-      g.name;
-
-    button.onclick=
-      ()=>setGate(g.no);
-
-    box.appendChild(button);
-
-  });
-
-  document
-    .getElementById("gateModal")
-    .classList.add("show");
-
-}
-
-function setGate(gate){
-
-  if(gateHorse===null)
-    return;
-
-  horseForm[gateHorse].gate=gate;
-
-  const badge=
-    document.getElementById(
-      "gateBadge"+gateHorse
-    );
-
-  if(badge){
-
-    badge.textContent=gate;
-
-    badge.className=
-      "gate-badge gate"+gate;
-
-  }
-
-  const button=
-    document.getElementById(
-      "gateBtn"+gateHorse
-    );
-
-  if(button){
-
-    button.textContent=
-      "🎨 "+gate+"枠";
-
-  }
-
-  closeGate();
-
-  toast(gate+"枠を選択");
-
-}
-
-function closeGate(){
-
-  document
-    .getElementById("gateModal")
-    .classList.remove("show");
-
-  gateHorse=null;
-
-}
-
-/* =========================
-   HORSE NUMBER
-========================= */
-
-function openHorseNo(no){
-
-  numberHorse=no;
-
-  const count=
-    Number(
-      document.getElementById("fieldSize").value
-    )||18;
-
-  const box=
-    document.getElementById(
-      "horseNoChoices"
-    );
-
-  box.innerHTML="";
-
-  for(let i=1;i<=18;i++){
-
-    const button=
-      document.createElement("button");
-
-    button.className="choice-btn";
-
-    if(
-      horseForm[no] &&
-      Number(horseForm[no].no)===i
-    ){
-
-      button.classList.add("active");
-
-    }
-
-    button.textContent=i+"番";
-
-    button.onclick=
-      ()=>setHorseNo(i);
-
-    box.appendChild(button);
-
-  }
-
-  document
-    .getElementById("horseNoModal")
-    .classList.add("show");
-
-}
-
-function setHorseNo(no){
-
-  if(numberHorse===null)
-    return;
-
-  horseForm[numberHorse].no=no;
-
-  const button=
-    document.getElementById(
-      "numberBtn"+numberHorse
-    );
-
-  if(button){
-
-    button.textContent=
-      "🔢 "+no+"番";
-
-  }
-
-  closeHorseNo();
-
-  toast(no+"番を選択");
-
-}
-
-function closeHorseNo(){
-
-  document
-    .getElementById("horseNoModal")
-    .classList.remove("show");
-
-  numberHorse=null;
 
 }
 
@@ -2319,59 +2541,55 @@ function collectPrediction(){
 
   const count=
     Number(
-      document.getElementById("fieldSize").value
+      document.getElementById(
+        "fieldSize"
+      ).value
     )||8;
-
-  const horses=[];
-
-  for(let i=1;i<=count;i++){
-
-    const input=
-      document.querySelector(
-        `[data-name="${i}"]`
-      );
-
-    horses.push({
-
-      no:Number(
-        horseForm[i]?.no||i
-      ),
-
-      gate:Number(
-        horseForm[i]?.gate||
-        Math.ceil(i/2)
-      ),
-
-      name:(input?.value||"").trim(),
-
-      mark:marksForm[i]||"－"
-
-    });
-
-  }
 
   return{
 
     track:
-      document.getElementById("track").value,
+      document.getElementById(
+        "track"
+      ).value,
 
-    raceNo:Number(
-      document.getElementById("raceNo").value
-    ),
+    raceNo:
+      Number(
+        document.getElementById(
+          "raceNo"
+        ).value
+      ),
 
     surface:
-      document.getElementById("surface").value,
+      document.getElementById(
+        "surface"
+      ).value,
 
     distance:
-      document.getElementById("distance").value,
+      document.getElementById(
+        "distance"
+      ).value,
 
     fieldSize:count,
 
-    stake:Number(
-      document.getElementById("stake").value
-    )||0,
+    stake:
+      Number(
+        document.getElementById(
+          "stake"
+        ).value
+      )||0,
 
-    horses
+    horses:
+      horsesForm.map(
+        (h,i)=>({
+          frame:Number(h.frame)||1,
+          no:Number(h.no)||i+1,
+          name:String(h.name||"").trim(),
+          mark:MARKS.includes(h.mark)
+            ?h.mark
+            :"－"
+        })
+      )
 
   };
 
@@ -2386,38 +2604,56 @@ function savePrediction(){
   const form=
     collectPrediction();
 
-  if(
-    !form.horses.some(h=>h.name)
-  ){
+  if(!form.horses.some(
+    h=>h.name
+  )){
 
     toast(
       "馬名を1頭以上入力してください"
     );
 
     return;
+  }
 
+  const numbers=
+    form.horses.map(
+      h=>h.no
+    );
+
+  if(new Set(numbers).size!==numbers.length){
+
+    toast(
+      "馬番が重複しています"
+    );
+
+    return;
   }
 
   if(editId){
 
     const index=
       db.races.findIndex(
-        r=>String(r.id)===String(editId)
+        r=>
+          String(r.id)===
+          String(editId)
       );
 
     if(index>=0){
 
-      db.races[index]=normalizeRace({
+      db.races[index]=
+        normalizeRace({
 
-        ...db.races[index],
+          ...db.races[index],
 
-        ...form
+          ...form
 
-      });
+        });
 
     }
 
-    toast("予想を更新しました");
+    toast(
+      "予想を更新しました"
+    );
 
     editId=null;
 
@@ -2432,28 +2668,36 @@ function savePrediction(){
 
         ...form,
 
-        id:String(
-          Date.now()+Math.random()
-        ),
+        id:
+          String(
+            Date.now()+Math.random()
+          ),
 
         date:
           new Date().toISOString(),
 
         result:{
+
           done:false,
+
           first:"",
+
           second:"",
+
           third:"",
-          firstGate:0,
-          secondGate:0,
-          thirdGate:0,
-          returned:0
+
+          returned:0,
+
+          hitStatus:""
+
         }
 
       })
     );
 
-    toast("予想を登録しました");
+    toast(
+      "予想を登録しました"
+    );
 
   }
 
@@ -2468,7 +2712,7 @@ function savePrediction(){
 }
 
 /* =========================
-   RESET
+   RESET FORM
 ========================= */
 
 function resetForm(){
@@ -2481,25 +2725,16 @@ function resetForm(){
     "fieldSize"
   ).value="8";
 
-  marksForm={};
+  horsesForm=[
+    {
+      frame:1,
+      no:1,
+      name:"",
+      mark:"－"
+    }
+  ];
 
-  horseForm={};
-
-  renderHorses();
-
-}
-
-function cancelEdit(){
-
-  editId=null;
-
-  document.getElementById(
-    "editCancel"
-  ).style.display="none";
-
-  resetForm();
-
-  showPage("history");
+  renderHorseForm();
 
 }
 
@@ -2511,7 +2746,9 @@ function editRace(id){
 
   const race=
     db.races.find(
-      r=>String(r.id)===String(id)
+      r=>
+        String(r.id)===
+        String(id)
     );
 
   if(!race)return;
@@ -2544,7 +2781,26 @@ function editRace(id){
     "stake"
   ).value=race.stake;
 
-  renderHorses(race.horses);
+  horsesForm=
+    race.horses.length
+      ?race.horses.map(
+        h=>({
+          frame:Number(h.frame)||1,
+          no:Number(h.no)||1,
+          name:h.name||"",
+          mark:h.mark||"－"
+        })
+      )
+      :[
+        {
+          frame:1,
+          no:1,
+          name:"",
+          mark:"－"
+        }
+      ];
+
+  renderHorseForm();
 
   document.getElementById(
     "editCancel"
@@ -2552,7 +2808,27 @@ function editRace(id){
 
   showPage("predict");
 
-  toast("予想を編集中");
+  toast(
+    "予想を編集中"
+  );
+
+}
+
+/* =========================
+   CANCEL
+========================= */
+
+function cancelEdit(){
+
+  editId=null;
+
+  document.getElementById(
+    "editCancel"
+  ).style.display="none";
+
+  resetForm();
+
+  showPage("history");
 
 }
 
@@ -2569,14 +2845,86 @@ function deleteRace(id){
 
   db.races=
     db.races.filter(
-      r=>String(r.id)!==String(id)
+      r=>
+        String(r.id)!==
+        String(id)
     );
 
   persist();
 
   refresh();
 
-  toast("削除しました");
+  toast(
+    "削除しました"
+  );
+
+}
+
+/* =========================
+   RESULT LIST
+========================= */
+
+function renderResultList(){
+
+  const box=
+    document.getElementById(
+      "resultList"
+    );
+
+  const pending=
+    db.races.filter(
+      r=>!r.result.done
+    );
+
+  if(!pending.length){
+
+    box.innerHTML=`
+
+      <div class="empty">
+        結果待ちのレースはありません。
+        <br><br>
+        予想を登録するとここから結果入力できます。
+      </div>
+
+    `;
+
+    return;
+  }
+
+  box.innerHTML=
+    pending.map(
+      race=>`
+
+        <div class="raceitem">
+
+          <div>
+
+            <b>
+              ${esc(race.track)}
+              ${race.raceNo}R
+            </b>
+
+            <div class="meta">
+              ${esc(race.surface)}
+              ${esc(race.distance)}
+              ｜
+              ${race.fieldSize}頭
+            </div>
+
+          </div>
+
+          <button
+            class="btn primary"
+            onclick="openResultEditor('${race.id}')">
+
+            結果入力
+
+          </button>
+
+        </div>
+
+      `
+    ).join("");
 
 }
 
@@ -2584,73 +2932,175 @@ function deleteRace(id){
    RESULT EDITOR
 ========================= */
 
-function resultEditor(id){
+function openResultEditor(id){
 
   const race=
     db.races.find(
-      r=>String(r.id)===String(id)
+      r=>
+        String(r.id)===
+        String(id)
     );
 
   if(!race)return;
 
+  resultEditId=race.id;
+
+  resultStatus=
+    race.result.hitStatus||
+    "";
+
+  resultPositions={
+    first:{
+      frame:
+        race.horses.find(
+          h=>
+            String(h.no)===
+            String(race.result.first)
+        )?.frame||"",
+      no:race.result.first||"",
+      name:
+        race.horses.find(
+          h=>
+            String(h.no)===
+            String(race.result.first)
+        )?.name||""
+    },
+
+    second:{
+      frame:
+        race.horses.find(
+          h=>
+            String(h.no)===
+            String(race.result.second)
+        )?.frame||"",
+      no:race.result.second||"",
+      name:
+        race.horses.find(
+          h=>
+            String(h.no)===
+            String(race.result.second)
+        )?.name||""
+    },
+
+    third:{
+      frame:
+        race.horses.find(
+          h=>
+            String(h.no)===
+            String(race.result.third)
+        )?.frame||"",
+      no:race.result.third||"",
+      name:
+        race.horses.find(
+          h=>
+            String(h.no)===
+            String(race.result.third)
+        )?.name||""
+    }
+
+  };
+
+  renderResultEditor(race);
+
   document.getElementById(
-    "resultList"
-  ).innerHTML=`
+    "resultEditModal"
+  ).classList.add("show");
+
+}
+
+function renderResultEditor(race){
+
+  const box=
+    document.getElementById(
+      "resultEditContent"
+    );
+
+  box.innerHTML=`
+
+    <h2>
+      🏁 ${esc(race.track)}
+      ${race.raceNo}R
+    </h2>
 
     <div class="small">
-      ${esc(race.track)}
-      ${race.raceNo}R
-      ｜
       ${esc(race.surface)}
       ${esc(race.distance)}
+      ｜
+      ${race.fieldSize}頭
     </div>
 
-    <div
-      class="card"
+    <div class="card"
       style="
         margin-top:10px;
         padding:11px;
-        background:#f8fafc
+        background:#f8fafc;
       ">
 
       <div class="small">
-        枠番・馬番をタップして選択できます。
-        <br>
-        予想に登録していない馬番も入力可能です。
+        結果は枠番・馬番をタップして選択できます。
+        馬名は直接入力できます。
       </div>
 
     </div>
 
-    ${resultInput(
+    <h3 style="margin-top:14px">
+      🎯 的中判定
+    </h3>
+
+    <div class="result-status">
+
+      <button
+        class="${
+          resultStatus==="hit"
+            ?"selected-hit"
+            :""
+        }"
+        onclick="setResultStatus('hit')">
+
+        🎯 的中
+
+      </button>
+
+      <button
+        class="${
+          resultStatus==="miss"
+            ?"selected-miss"
+            :""
+        }"
+        onclick="setResultStatus('miss')">
+
+        ✕ 不的中
+
+      </button>
+
+    </div>
+
+    ${resultPositionHTML(
       "1着",
-      "res1",
-      race.result.first,
-      race.result.firstGate,
-      race
+      "first",
+      resultPositions.first
     )}
 
-    ${resultInput(
+    ${resultPositionHTML(
       "2着",
-      "res2",
-      race.result.second,
-      race.result.secondGate,
-      race
+      "second",
+      resultPositions.second
     )}
 
-    ${resultInput(
+    ${resultPositionHTML(
       "3着",
-      "res3",
-      race.result.third,
-      race.result.thirdGate,
-      race
+      "third",
+      resultPositions.third
     )}
 
-    <div style="margin-top:10px">
+    <div style="margin-top:12px">
 
-      <label>払戻金（円）</label>
+      <label>
+        払戻金（円）
+      </label>
 
       <input
-        id="ret"
+        id="resultReturn"
         type="number"
         min="0"
         value="${race.result.returned||0}"
@@ -2661,7 +3111,7 @@ function resultEditor(id){
     <button
       class="btn green full"
       style="margin-top:12px"
-      onclick="saveResult('${race.id}')">
+      onclick="saveResult()">
 
       結果を保存して収支に反映
 
@@ -2670,84 +3120,126 @@ function resultEditor(id){
     <button
       class="btn light full"
       style="margin-top:8px"
-      onclick="showPage('result')">
+      onclick="closeResultEdit()">
 
-      結果待ち一覧へ
+      閉じる
 
     </button>
 
   `;
 
-  showPage("result");
-
 }
 
-function resultInput(
+function resultPositionHTML(
   label,
-  id,
-  value,
-  gateValue,
-  race
+  key,
+  pos
 ){
 
-  const selectedGate=
-    Number(gateValue)||0;
+  const frame=
+    Number(pos.frame)||0;
 
-  const selectedNo=
-    Number(value)||0;
+  const no=
+    Number(pos.no)||0;
+
+  const frameButtons=
+    Array.from(
+      {length:8},
+      (_,i)=>{
+
+        const n=i+1;
+
+        return`
+
+          <button
+            type="button"
+            class="frame-btn frame${n} ${
+              frame===n?"selected":""
+            }"
+            onclick="
+              setResultFrame('${key}',${n})
+            ">
+
+            ${n}枠
+
+          </button>
+
+        `;
+
+      }
+    ).join("");
+
+  const numberButtons=
+    Array.from(
+      {length:18},
+      (_,i)=>{
+
+        const n=i+1;
+
+        return`
+
+          <button
+            type="button"
+            class="number-btn ${
+              no===n?"selected":""
+            }"
+            onclick="
+              setResultNumber('${key}',${n})
+            ">
+
+            ${n}
+
+          </button>
+
+        `;
+
+      }
+    ).join("");
 
   return`
 
-    <div
-      class="analysis-box"
-      style="margin-top:10px">
+    <div class="result-position">
 
-      <div class="analysis-title">
+      <div class="result-position-title">
         ${label}
       </div>
 
-      <div class="horse-select-row">
+      <div class="pick-label">
+        枠番
+      </div>
 
-        <button
-          id="${id}Gate"
-          class="select-chip"
-          onclick="openResultGate('${id}')">
+      <div class="frame-picker">
+        ${frameButtons}
+      </div>
 
-          🎨
-          ${
-            selectedGate
-              ?selectedGate+"枠"
-              :"枠番を選択"
-          }
+      <div style="margin-top:8px">
 
-        </button>
+        <div class="pick-label">
+          馬番
+        </div>
 
-        <button
-          id="${id}No"
-          class="select-chip"
-          onclick="openResultNo('${id}',${race.fieldSize})">
-
-          🔢
-          ${
-            selectedNo
-              ?selectedNo+"番"
-              :"馬番を選択"
-          }
-
-        </button>
+        <div class="number-picker">
+          ${numberButtons}
+        </div>
 
       </div>
 
-      <div
-        id="${id}Info"
-        class="small"
-        style="margin-top:7px">
+      <div style="margin-top:8px">
 
-        ${
-          selectedNo
-            ?"選択馬番："+selectedNo+"番"
-            :"未選択"
-        }
+        <label>
+          馬名
+        </label>
+
+        <input
+          type="text"
+          value="${esc(pos.name||"")}"
+          placeholder="馬名を入力"
+          oninput="
+            setResultName(
+              '${key}',
+              this.value
+            )
+          ">
 
       </div>
 
@@ -2758,148 +3250,117 @@ function resultInput(
 }
 
 /* =========================
-   RESULT SELECTION
+   RESULT EVENTS
 ========================= */
 
-let resultTarget=null;
+function setResultStatus(status){
 
-function openResultGate(id){
+  resultStatus=status;
 
-  resultTarget={
-    type:"gate",
-    id
-  };
-
-  const box=
-    document.getElementById(
-      "gateChoices"
+  const race=
+    db.races.find(
+      r=>
+        String(r.id)===
+        String(resultEditId)
     );
 
-  box.innerHTML="";
-
-  for(let i=1;i<=8;i++){
-
-    const button=
-      document.createElement("button");
-
-    button.className=
-      "choice-btn gate"+i;
-
-    button.textContent=
-      i+"枠";
-
-    button.onclick=
-      ()=>setResultGate(i);
-
-    box.appendChild(button);
-
-  }
-
-  document
-    .getElementById("gateModal")
-    .classList.add("show");
+  if(race)
+    renderResultEditor(race);
 
 }
 
-function setResultGate(gate){
-
-  if(!resultTarget)return;
-
-  const id=
-    resultTarget.id;
-
-  const button=
-    document.getElementById(
-      id+"Gate"
-    );
-
-  if(button)
-    button.textContent=
-      "🎨 "+gate+"枠";
-
-  resultTarget.gate=gate;
-
-  closeGate();
-
-  toast(
-    gate+"枠を選択"
-  );
-
-}
-
-function openResultNo(
-  id,
-  fieldSize
+function setResultFrame(
+  key,
+  frame
 ){
 
-  resultTarget={
-    type:"number",
-    id
-  };
+  resultPositions[key].frame=
+    frame;
 
-  const box=
-    document.getElementById(
-      "horseNoChoices"
+  const race=
+    db.races.find(
+      r=>
+        String(r.id)===
+        String(resultEditId)
     );
 
-  box.innerHTML="";
-
-  for(let i=1;i<=18;i++){
-
-    const button=
-      document.createElement("button");
-
-    button.className=
-      "choice-btn";
-
-    button.textContent=
-      i+"番";
-
-    button.onclick=
-      ()=>setResultNo(i);
-
-    box.appendChild(button);
-
-  }
-
-  document
-    .getElementById(
-      "horseNoModal"
-    )
-    .classList.add("show");
+  if(race)
+    renderResultEditor(race);
 
 }
 
-function setResultNo(no){
+function setResultNumber(
+  key,
+  no
+){
 
-  if(!resultTarget)return;
+  const otherKeys=
+    ["first","second","third"]
+      .filter(k=>k!==key);
 
-  const id=
-    resultTarget.id;
-
-  const button=
-    document.getElementById(
-      id+"No"
+  const duplicate=
+    otherKeys.some(
+      k=>
+        String(
+          resultPositions[k].no
+        )===String(no)
     );
 
-  if(button)
-    button.textContent=
-      "🔢 "+no+"番";
+  if(duplicate){
 
-  const info=
-    document.getElementById(
-      id+"Info"
+    toast(
+      `${no}番は別の着順で選択されています`
     );
 
-  if(info)
-    info.textContent=
-      "選択馬番："+no+"番";
+    return;
+  }
 
-  closeHorseNo();
+  resultPositions[key].no=no;
 
-  toast(
-    no+"番を選択"
-  );
+  /*
+   * 登録馬なら自動で枠番・馬名を補完
+   */
+
+  const race=
+    db.races.find(
+      r=>
+        String(r.id)===
+        String(resultEditId)
+    );
+
+  if(race){
+
+    const horse=
+      race.horses.find(
+        h=>
+          Number(h.no)===Number(no)
+      );
+
+    if(horse){
+
+      resultPositions[key].frame=
+        horse.frame;
+
+      if(!resultPositions[key].name)
+        resultPositions[key].name=
+          horse.name||"";
+
+    }
+
+  }
+
+  if(race)
+    renderResultEditor(race);
+
+}
+
+function setResultName(
+  key,
+  name
+){
+
+  resultPositions[key].name=
+    name;
 
 }
 
@@ -2907,61 +3368,100 @@ function setResultNo(no){
    SAVE RESULT
 ========================= */
 
-function saveResult(id){
+function saveResult(){
 
   const race=
     db.races.find(
-      r=>String(r.id)===String(id)
+      r=>
+        String(r.id)===
+        String(resultEditId)
     );
 
   if(!race)return;
+
+  if(!resultStatus){
+
+    toast(
+      "的中・不的中を選択してください"
+    );
+
+    return;
+  }
 
   const oldLevel=
     levelInfo(
       calcExp()
     ).level;
 
-  const firstNo=
-    readResultNo("res1");
-
-  const secondNo=
-    readResultNo("res2");
-
-  const thirdNo=
-    readResultNo("res3");
-
-  const firstGate=
-    readResultGate("res1");
-
-  const secondGate=
-    readResultGate("res2");
-
-  const thirdGate=
-    readResultGate("res3");
-
   race.result={
 
-    first:String(firstNo||""),
+    first:
+      String(
+        resultPositions.first.no||""
+      ),
 
-    second:String(secondNo||""),
+    second:
+      String(
+        resultPositions.second.no||""
+      ),
 
-    third:String(thirdNo||""),
+    third:
+      String(
+        resultPositions.third.no||""
+      ),
 
-    firstGate,
+    returned:
+      Number(
+        document.getElementById(
+          "resultReturn"
+        ).value
+      )||0,
 
-    secondGate,
+    done:true,
 
-    thirdGate,
-
-    returned:Number(
-      document.getElementById("ret").value
-    )||0,
-
-    done:true
+    hitStatus:
+      resultStatus
 
   };
 
+  /*
+   * 結果で入力された馬が
+   * 予想に登録されていれば
+   * 枠番・馬名も更新しておく
+   */
+
+  [
+    ["first",resultPositions.first],
+    ["second",resultPositions.second],
+    ["third",resultPositions.third]
+  ].forEach(
+    ([key,pos])=>{
+
+      const horse=
+        race.horses.find(
+          h=>
+            Number(h.no)===
+            Number(pos.no)
+        );
+
+      if(horse){
+
+        if(pos.frame)
+          horse.frame=
+            Number(pos.frame);
+
+        if(pos.name)
+          horse.name=
+            pos.name;
+
+      }
+
+    }
+  );
+
   persist();
+
+  closeResultEdit();
 
   refresh();
 
@@ -2988,39 +3488,15 @@ function saveResult(id){
 
 }
 
-function readResultNo(id){
+function closeResultEdit(){
 
-  const el=
-    document.getElementById(
-      id+"No"
-    );
+  document.getElementById(
+    "resultEditModal"
+  ).classList.remove("show");
 
-  if(!el)return"";
+  resultEditId=null;
 
-  const match=
-    el.textContent.match(/(\d+)番/);
-
-  return match
-    ?Number(match[1])
-    :"";
-
-}
-
-function readResultGate(id){
-
-  const el=
-    document.getElementById(
-      id+"Gate"
-    );
-
-  if(!el)return 0;
-
-  const match=
-    el.textContent.match(/(\d+)枠/);
-
-  return match
-    ?Number(match[1])
-    :0;
+  resultStatus="";
 
 }
 
@@ -3042,7 +3518,9 @@ function getRaceExp(race){
     Number(race.stake||0);
 
   const returned=
-    Number(race.result.returned||0);
+    Number(
+      race.result.returned||0
+    );
 
   if(stake>0){
 
@@ -3058,18 +3536,28 @@ function getRaceExp(race){
     if(roi>=200)
       exp+=20;
 
-    const win=
-      Math.max(
-        0,
-        returned-stake
-      );
+    const win=Math.max(
+      0,
+      returned-stake
+    );
 
-    if(win>=1000)exp+=5;
-    if(win>=3000)exp+=10;
-    if(win>=5000)exp+=15;
-    if(win>=10000)exp+=25;
-    if(win>=30000)exp+=40;
-    if(win>=50000)exp+=60;
+    if(win>=1000)
+      exp+=5;
+
+    if(win>=3000)
+      exp+=10;
+
+    if(win>=5000)
+      exp+=15;
+
+    if(win>=10000)
+      exp+=25;
+
+    if(win>=30000)
+      exp+=40;
+
+    if(win>=50000)
+      exp+=60;
 
   }
 
@@ -3081,14 +3569,22 @@ function calcExp(){
 
   let exp=0;
 
-  db.races.forEach(race=>{
+  db.races.forEach(
+    race=>{
 
-    exp+=10;
+      /*
+       * 予想登録EXP
+       */
+      exp+=10;
 
-    if(race.result.done)
-      exp+=getRaceExp(race);
+      /*
+       * 結果EXP
+       */
+      if(race.result.done)
+        exp+=getRaceExp(race);
 
-  });
+    }
+  );
 
   return exp;
 
@@ -3115,7 +3611,8 @@ function stats(){
   const returned=
     done.reduce(
       (sum,r)=>
-        sum+Number(
+        sum+
+        Number(
           r.result.returned||0
         ),
       0
@@ -3126,9 +3623,11 @@ function stats(){
 
   return{
 
-    races:db.races.length,
+    races:
+      db.races.length,
 
-    done:done.length,
+    done:
+      done.length,
 
     hits,
 
@@ -3150,6 +3649,254 @@ function stats(){
         :0
 
   };
+
+}
+
+/* =========================
+   DETAIL STATS
+========================= */
+
+function getGroupStats(
+  key
+){
+
+  const groups={};
+
+  db.races.forEach(
+    race=>{
+
+      let group="";
+
+      if(key==="track")
+        group=race.track;
+
+      if(key==="surface")
+        group=race.surface;
+
+      if(key==="distance")
+        group=race.distance;
+
+      if(key==="raceNo")
+        group=race.raceNo+"R";
+
+      if(!group)return;
+
+      if(!groups[group]){
+
+        groups[group]={
+          races:0,
+          done:0,
+          hits:0,
+          stake:0,
+          returned:0
+        };
+
+      }
+
+      groups[group].races++;
+
+      groups[group].stake+=
+        Number(race.stake||0);
+
+      if(race.result.done){
+
+        groups[group].done++;
+
+        if(hit(race))
+          groups[group].hits++;
+
+        groups[group].returned+=
+          Number(
+            race.result.returned||0
+          );
+
+      }
+
+    }
+  );
+
+  return Object.entries(groups)
+    .map(
+      ([name,s])=>({
+
+        name,
+
+        ...s,
+
+        profit:
+          s.returned-s.stake,
+
+        roi:
+          s.stake
+            ?s.returned/s.stake*100
+            :0,
+
+        hitRate:
+          s.done
+            ?s.hits/s.done*100
+            :0
+
+      })
+    );
+
+}
+
+function showStatDetail(
+  type
+){
+
+  currentStatDetail=type;
+
+  document.querySelectorAll(
+    ".filter-btn"
+  ).forEach(
+    b=>b.classList.remove(
+      "active"
+    )
+  );
+
+  const id=
+    type==="track"
+      ?"filterTrack"
+      :type==="surface"
+        ?"filterSurface"
+        :type==="distance"
+          ?"filterDistance"
+          :"filterRaceNo";
+
+  document.getElementById(id)
+    .classList.add("active");
+
+  renderDetailStats();
+
+}
+
+function renderDetailStats(){
+
+  const box=
+    document.getElementById(
+      "detailStats"
+    );
+
+  const data=
+    getGroupStats(
+      currentStatDetail
+    );
+
+  if(!data.length){
+
+    box.innerHTML=`
+
+      <div class="empty">
+        まだ成績データがありません。
+      </div>
+
+    `;
+
+    return;
+  }
+
+  data.sort(
+    (a,b)=>
+      b.roi-a.roi
+  );
+
+  box.innerHTML=
+    data.map(
+      s=>`
+
+        <div class="horse">
+
+          <div class="detail-row">
+
+            <b>
+              ${esc(String(s.name))}
+            </b>
+
+            <b>
+              ${s.races}レース
+            </b>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span>
+              的中
+            </span>
+
+            <b>
+              ${s.hits}/${s.done}
+              (${s.hitRate.toFixed(1)}%)
+            </b>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span>
+              投資
+            </span>
+
+            <b>
+              ${yen(s.stake)}
+            </b>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span>
+              回収
+            </span>
+
+            <b>
+              ${yen(s.returned)}
+            </b>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span>
+              回収率
+            </span>
+
+            <b class="${
+              s.roi>=100
+                ?"plus"
+                :"minus"
+            }">
+
+              ${s.roi.toFixed(1)}%
+
+            </b>
+
+          </div>
+
+          <div class="detail-row">
+
+            <span>
+              収支
+            </span>
+
+            <b class="${
+              s.profit>=0
+                ?"plus"
+                :"minus"
+            }">
+
+              ${s.profit>=0?"+":""}
+              ${yen(s.profit)}
+
+            </b>
+
+          </div>
+
+        </div>
+
+      `
+    ).join("");
 
 }
 
@@ -3190,7 +3937,9 @@ function renderHome(){
   document.getElementById(
     "expFill"
   ).style.width=
-    info.current/info.need*100+"%";
+    info.current/
+    info.need*
+    100+"%";
 
   document.getElementById(
     "nextText"
@@ -3198,15 +3947,17 @@ function renderHome(){
     info.level===50
       ?"MAX"
       :(info.need-info.current)+
-       " EXP";
+        " EXP";
 
   document.getElementById(
     "sRaces"
-  ).textContent=s.races;
+  ).textContent=
+    s.races;
 
   document.getElementById(
     "sHits"
-  ).textContent=s.hits;
+  ).textContent=
+    s.hits;
 
   document.getElementById(
     "sROI"
@@ -3224,9 +3975,11 @@ function renderHome(){
 
   profitElement.className=
     "v "+
-    (s.profit>=0
-      ?"plus"
-      :"minus");
+    (
+      s.profit>=0
+        ?"plus"
+        :"minus"
+    );
 
   const exp=
     calcExp();
@@ -3246,7 +3999,7 @@ function renderHome(){
 
     <br><br>
 
-    予想登録でもEXPを獲得。
+    予想登録でEXPを獲得。
     <br>
     的中・高回収・大きな勝ち額では
     さらに大量EXP！
@@ -3279,96 +4032,99 @@ function renderHistory(){
     `;
 
     return;
-
   }
 
   box.innerHTML=
-    db.races.map(race=>{
+    db.races.map(
+      race=>{
 
-      const p=
-        profit(race);
+        const p=
+          profit(race);
 
-      return`
-
-        <div
-          class="raceitem"
-          onclick="detail('${race.id}')">
-
-          <div>
-
-            <b>
-              ${esc(race.track)}
-              ${race.raceNo}R
-            </b>
-
-            <div class="meta">
-
-              ${esc(race.surface)}
-              ${esc(race.distance)}
-              ｜
-              ${race.fieldSize}頭
-              ｜
-              投資
-              ${yen(race.stake)}
-
-            </div>
-
-          </div>
+        return`
 
           <div
-            style="text-align:right">
+            class="raceitem"
+            onclick="
+              detail('${race.id}')
+            ">
 
-            <span
-              class="badge ${
-                race.result.done
-                  ?(
-                    hit(race)
-                      ?"ok"
-                      :"ng"
-                  )
-                  :""
-              }">
+            <div>
 
-              ${
-                race.result.done
-                  ?(
-                    hit(race)
-                      ?"的中"
-                      :"不的中"
-                  )
-                  :"結果待ち"
-              }
+              <b>
+                ${esc(race.track)}
+                ${race.raceNo}R
+              </b>
 
-            </span>
+              <div class="meta">
 
-            <div
-              class="${
-                p>=0
-                  ?"plus"
-                  :"minus"
-              }"
-              style="
-                font-weight:950;
-                margin-top:4px
-              ">
+                ${esc(race.surface)}
+                ${esc(race.distance)}
+                ｜
+                ${race.fieldSize}頭
+                ｜
+                投資
+                ${yen(race.stake)}
 
-              ${
-                race.result.done
-                  ?(
-                    p>=0?"+":""
-                  )+yen(p)
-                  :"—"
-              }
+              </div>
+
+            </div>
+
+            <div style="text-align:right">
+
+              <span
+                class="badge ${
+                  race.result.done
+                    ?(
+                      hit(race)
+                        ?"ok"
+                        :"ng"
+                    )
+                    :""
+                }">
+
+                ${
+                  race.result.done
+                    ?(
+                      hit(race)
+                        ?"的中"
+                        :"不的中"
+                    )
+                    :"結果待ち"
+                }
+
+              </span>
+
+              <div
+                class="${
+                  p>=0
+                    ?"plus"
+                    :"minus"
+                }"
+                style="
+                  font-weight:950;
+                  margin-top:4px;
+                ">
+
+                ${
+                  race.result.done
+                    ?(
+                      p>=0?"+":""
+                    )+
+                    yen(p)
+                    :"—"
+                }
+
+              </div>
 
             </div>
 
           </div>
 
-        </div>
+        `;
 
-      `;
-
-    }).join("");
+      }
+    ).join("");
 
 }
 
@@ -3380,98 +4136,99 @@ function detail(id){
 
   const race=
     db.races.find(
-      r=>String(r.id)===String(id)
+      r=>
+        String(r.id)===
+        String(id)
     );
 
   if(!race)return;
 
   const horses=
-    race.horses.map(h=>`
+    race.horses.map(
+      h=>`
 
-      <div class="horse">
+        <div class="horse">
 
-        <div class="horse-row">
+          <div class="horse-row">
 
-          <div class="number">
-
-            <span
-              class="gate-badge gate${h.gate}">
-              ${h.gate}
-            </span>
-
-          </div>
-
-          <div class="horse-name">
-
-            ${esc(
-              h.name||"未入力"
-            )}
-
-            <div class="small">
-              ${h.no}番
+            <div class="number">
+              ${h.no}
             </div>
 
-          </div>
+            <div>
 
-          <div
-            class="mark m-${h.mark}">
+              <div class="horse-name">
+                ${esc(h.name||"未入力")}
+              </div>
 
-            ${h.mark}
+              <div class="small">
+                ${h.frame
+                  ?h.frame+"枠"
+                  :"枠未選択"}
+              </div>
+
+            </div>
+
+            <div
+              class="mark m-${h.mark}">
+
+              ${h.mark}
+
+            </div>
 
           </div>
 
         </div>
 
-      </div>
-
-    `).join("");
+      `
+    ).join("");
 
   const resultText=
-    race.result.done?`
+    race.result.done
+      ?`
 
-      1着
-      ${race.result.firstGate
-        ?race.result.firstGate+"枠 "
-        :""
-      }
-      ${race.result.first||"—"}番
+        1着
+        ${race.result.first||"—"}番
+        ｜
+        2着
+        ${race.result.second||"—"}番
+        ｜
+        3着
+        ${race.result.third||"—"}番
 
-      ｜
-      2着
-      ${race.result.secondGate
-        ?race.result.secondGate+"枠 "
-        :""
-      }
-      ${race.result.second||"—"}番
+        <br><br>
 
-      ｜
-      3着
-      ${race.result.thirdGate
-        ?race.result.thirdGate+"枠 "
-        :""
-      }
-      ${race.result.third||"—"}番
+        判定：
+        <b>
+          ${
+            hit(race)
+              ?"🎯 的中"
+              :"✕ 不的中"
+          }
+        </b>
 
-      <br>
+        <br>
 
-      払戻
-      ${yen(race.result.returned)}
+        払戻
+        ${yen(race.result.returned)}
 
-      ｜
-      収支
+        <br>
 
-      <b class="${
-        profit(race)>=0
-          ?"plus"
-          :"minus"
-      }">
+        収支
 
-        ${profit(race)>=0?"+":""}
-        ${yen(profit(race))}
+        <b class="${
+          profit(race)>=0
+            ?"plus"
+            :"minus"
+        }">
 
-      </b>
+          ${profit(race)>=0?"+":""}
+          ${yen(profit(race))}
 
-    `:"結果未入力";
+        </b>
+
+      `
+      :"結果未入力";
 
   document.getElementById(
     "detailContent"
@@ -3509,7 +4266,9 @@ function detail(id){
 
     </div>
 
-    <h3>予想印・出走馬</h3>
+    <h3>
+      予想印
+    </h3>
 
     ${horses}
 
@@ -3530,7 +4289,7 @@ function detail(id){
         class="btn green"
         onclick="
           closeDetail();
-          resultEditor('${race.id}')
+          openResultEditor('${race.id}')
         ">
 
         結果を編集
@@ -3577,665 +4336,6 @@ function closeDetail(){
 }
 
 /* =========================
-   RESULT LIST
-========================= */
-
-function renderResultList(){
-
-  const box=
-    document.getElementById(
-      "resultList"
-    );
-
-  const pending=
-    db.races.filter(
-      r=>!r.result.done
-    );
-
-  if(!pending.length){
-
-    box.innerHTML=`
-
-      <div class="empty">
-        結果待ちのレースはありません。
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-  box.innerHTML=
-    pending.map(race=>`
-
-      <div class="raceitem">
-
-        <div>
-
-          <b>
-            ${esc(race.track)}
-            ${race.raceNo}R
-          </b>
-
-          <div class="meta">
-            ${esc(race.surface)}
-            ${esc(race.distance)}
-            ｜
-            ${race.fieldSize}頭
-          </div>
-
-        </div>
-
-        <button
-          class="btn primary"
-          onclick="
-            resultEditor('${race.id}')
-          ">
-
-          結果入力
-
-        </button>
-
-      </div>
-
-    `).join("");
-
-}
-
-/* =========================
-   ANALYSIS
-========================= */
-
-function setAnalysisMode(
-  mode,
-  button
-){
-
-  analysisMode=mode;
-
-  analysisFilter=null;
-
-  document.querySelectorAll(
-    ".analysis-tab"
-  ).forEach(
-    el=>el.classList.remove("active")
-  );
-
-  button.classList.add("active");
-
-  renderAnalysis();
-
-}
-
-function getAnalysisGroups(){
-
-  if(analysisMode==="all"){
-
-    return[
-      {
-        key:"all",
-        label:"全成績"
-      }
-    ];
-
-  }
-
-  if(analysisMode==="track"){
-
-    return TRACKS.map(x=>({
-      key:x,
-      label:x
-    }));
-
-  }
-
-  if(analysisMode==="surface"){
-
-    return SURFACES.map(x=>({
-      key:x,
-      label:x
-    }));
-
-  }
-
-  if(analysisMode==="distance"){
-
-    const all=[
-      ...DIST.芝,
-      ...DIST.ダート,
-      ...DIST.障害
-    ];
-
-    return [...new Set(all)].map(x=>({
-      key:x,
-      label:x
-    }));
-
-  }
-
-  if(analysisMode==="mark"){
-
-    return MARKS.map(x=>({
-      key:x,
-      label:x==="－"
-        ?"無印"
-        :x
-    }));
-
-  }
-
-  if(analysisMode==="field"){
-
-    return Array.from(
-      {length:14},
-      (_,i)=>({
-        key:String(i+5),
-        label:(i+5)+"頭"
-      })
-    );
-
-  }
-
-  return[];
-
-}
-
-function raceMatchesGroup(
-  race,
-  key
-){
-
-  if(
-    analysisMode==="all"
-  )
-    return true;
-
-  if(
-    analysisMode==="track"
-  )
-    return race.track===key;
-
-  if(
-    analysisMode==="surface"
-  )
-    return race.surface===key;
-
-  if(
-    analysisMode==="distance"
-  )
-    return race.distance===key;
-
-  if(
-    analysisMode==="field"
-  )
-    return String(
-      race.fieldSize
-    )===String(key);
-
-  if(
-    analysisMode==="mark"
-  ){
-
-    return race.horses.some(
-      h=>h.mark===key
-    );
-
-  }
-
-  return false;
-
-}
-
-function getAnalysisStats(
-  races
-){
-
-  const done=
-    races.filter(
-      r=>r.result.done
-    );
-
-  const stake=
-    races.reduce(
-      (sum,r)=>
-        sum+Number(r.stake||0),
-      0
-    );
-
-  const returned=
-    done.reduce(
-      (sum,r)=>
-        sum+
-        Number(
-          r.result.returned||0
-        ),
-      0
-    );
-
-  const hits=
-    done.filter(hit).length;
-
-  return{
-
-    races:races.length,
-
-    done:done.length,
-
-    hits,
-
-    stake,
-
-    returned,
-
-    profit:
-      returned-stake,
-
-    roi:
-      stake
-        ?returned/stake*100
-        :0,
-
-    hitRate:
-      done.length
-        ?hits/done.length*100
-        :0
-
-  };
-
-}
-
-function renderAnalysis(){
-
-  const filters=
-    document.getElementById(
-      "analysisFilters"
-    );
-
-  const result=
-    document.getElementById(
-      "analysisResult"
-    );
-
-  const groups=
-    getAnalysisGroups();
-
-  if(analysisMode==="all"){
-
-    filters.innerHTML="";
-
-  }else{
-
-    filters.innerHTML=`
-
-      <div class="filter-grid">
-
-        ${groups.map(g=>`
-
-          <button
-            class="filter-btn ${
-              analysisFilter===g.key
-                ?"active"
-                :""
-            }"
-            onclick="
-              chooseAnalysisFilter(
-                '${esc(g.key)}'
-              )
-            ">
-
-            ${esc(g.label)}
-
-          </button>
-
-        `).join("")}
-
-      </div>
-
-    `;
-
-  }
-
-  let selectedRaces=
-    db.races;
-
-  if(
-    analysisFilter!==null
-  ){
-
-    selectedRaces=
-      db.races.filter(
-        r=>
-          raceMatchesGroup(
-            r,
-            analysisFilter
-          )
-      );
-
-  }
-
-  const s=
-    getAnalysisStats(
-      selectedRaces
-    );
-
-  result.innerHTML=`
-
-    <div class="analysis-box">
-
-      <div class="analysis-title">
-
-        ${
-          analysisMode==="all"
-            ?"総合成績"
-            :
-          analysisFilter!==null
-            ?getAnalysisGroups()
-              .find(
-                g=>g.key===analysisFilter
-              )?.label||"選択条件"
-            :"条件をタップしてください"
-
-        }
-
-      </div>
-
-      <div class="analysis-mini">
-
-        <div>
-          <div class="small">
-            レース数
-          </div>
-          <b>${s.races}</b>
-        </div>
-
-        <div>
-          <div class="small">
-            的中率
-          </div>
-          <b>${s.hitRate.toFixed(1)}%</b>
-        </div>
-
-        <div>
-          <div class="small">
-            回収率
-          </div>
-          <b>${s.roi.toFixed(1)}%</b>
-        </div>
-
-        <div>
-          <div class="small">
-            収支
-          </div>
-          <b class="${
-            s.profit>=0
-              ?"plus"
-              :"minus"
-          }">
-            ${s.profit>=0?"+":""}
-            ${yen(s.profit)}
-          </b>
-        </div>
-
-      </div>
-
-      ${
-        analysisMode!=="all" &&
-        analysisFilter===null
-          ?`
-            <div
-              class="small center"
-              style="margin-top:10px">
-              上の条件をタップすると
-              詳細成績が表示されます。
-            </div>
-          `
-          :""
-      }
-
-    </div>
-
-  `;
-
-}
-
-function chooseAnalysisFilter(
-  key
-){
-
-  analysisFilter=key;
-
-  renderAnalysis();
-
-}
-
-/* =========================
-   RANKING
-========================= */
-
-function conditionStats(){
-
-  const groups=[];
-
-  TRACKS.forEach(track=>{
-
-    const s=
-      getAnalysisStats(
-        db.races.filter(
-          r=>r.track===track
-        )
-      );
-
-    if(s.done>0){
-
-      groups.push({
-        label:"🏟️ "+track,
-        ...s
-      });
-
-    }
-
-  });
-
-  SURFACES.forEach(surface=>{
-
-    const s=
-      getAnalysisStats(
-        db.races.filter(
-          r=>r.surface===surface
-        )
-      );
-
-    if(s.done>0){
-
-      groups.push({
-        label:"🏇 "+surface,
-        ...s
-      });
-
-    }
-
-  });
-
-  [...new Set([
-    ...DIST.芝,
-    ...DIST.ダート,
-    ...DIST.障害
-  ])].forEach(distance=>{
-
-    const s=
-      getAnalysisStats(
-        db.races.filter(
-          r=>r.distance===distance
-        )
-      );
-
-    if(s.done>0){
-
-      groups.push({
-        label:"📏 "+distance,
-        ...s
-      });
-
-    }
-
-  });
-
-  return groups;
-
-}
-
-function renderRankings(){
-
-  const groups=
-    conditionStats();
-
-  const strong=
-    [...groups]
-      .filter(
-        x=>x.done>=1
-      )
-      .sort(
-        (a,b)=>
-          b.roi-a.roi
-      )
-      .slice(0,5);
-
-  const weak=
-    [...groups]
-      .filter(
-        x=>x.done>=1
-      )
-      .sort(
-        (a,b)=>
-          a.roi-b.roi
-      )
-      .slice(0,5);
-
-  renderRankingBox(
-    "strongRanking",
-    strong,
-    true
-  );
-
-  renderRankingBox(
-    "weakRanking",
-    weak,
-    false
-  );
-
-}
-
-function renderRankingBox(
-  id,
-  arr,
-  strong
-){
-
-  const box=
-    document.getElementById(id);
-
-  if(!arr.length){
-
-    box.innerHTML=`
-
-      <div class="empty">
-        まだ十分な結果データがありません。
-        <br>
-        レース結果を入力すると
-        自動で分析されます。
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-  const max=
-    Math.max(
-      100,
-      ...arr.map(
-        x=>Math.max(
-          0,
-          x.roi
-        )
-      )
-    );
-
-  box.innerHTML=
-    arr.map(
-      (x,i)=>`
-
-        <div class="rank-item">
-
-          <div class="rank-head">
-
-            <div style="
-              display:flex;
-              align-items:center;
-              gap:8px">
-
-              <div class="rank-num">
-                ${i+1}
-              </div>
-
-              <div class="rank-name">
-                ${esc(x.label)}
-              </div>
-
-            </div>
-
-            <b class="${
-              x.roi>=100
-                ?"plus"
-                :"minus"
-            }">
-
-              ${x.roi.toFixed(1)}%
-
-            </b>
-
-          </div>
-
-          <div class="small"
-            style="margin-top:6px">
-
-            ${x.done}レース
-            ｜
-            的中率 ${x.hitRate.toFixed(1)}%
-            ｜
-            収支
-            ${x.profit>=0?"+":""}${yen(x.profit)}
-
-          </div>
-
-          <div class="rank-bar">
-
-            <div
-              class="rank-bar-fill"
-              style="
-                width:${
-                  Math.min(
-                    100,
-                    Math.max(
-                      4,
-                      x.roi/max*100
-                    )
-                  )
-                }%">
-            </div>
-
-          </div>
-
-        </div>
-
-      `
-    ).join("");
-
-}
-
-/* =========================
    STATS RENDER
 ========================= */
 
@@ -4278,13 +4378,13 @@ function renderStats(){
 
   el.className=
     "v "+
-    (s.profit>=0
-      ?"plus"
-      :"minus");
+    (
+      s.profit>=0
+        ?"plus"
+        :"minus"
+    );
 
-  renderAnalysis();
-
-  renderRankings();
+  renderDetailStats();
 
   drawChart();
 
@@ -4349,13 +4449,15 @@ function drawChart(){
   db.races
     .slice()
     .reverse()
-    .forEach(race=>{
+    .forEach(
+      race=>{
 
-      total+=profit(race);
+        total+=profit(race);
 
-      values.push(total);
+        values.push(total);
 
-    });
+      }
+    );
 
   if(!values.length){
 
@@ -4513,7 +4615,9 @@ function showPage(id){
     ".page"
   ).forEach(
     el=>
-      el.classList.remove("active")
+      el.classList.remove(
+        "active"
+      )
   );
 
   const page=
@@ -4527,7 +4631,9 @@ function showPage(id){
     ".nav button"
   ).forEach(
     el=>
-      el.classList.remove("active")
+      el.classList.remove(
+        "active"
+      )
   );
 
   const nav=
@@ -4635,7 +4741,9 @@ window.addEventListener(
     if(
       document.getElementById(
         "stats"
-      ).classList.contains("active")
+      ).classList.contains(
+        "active"
+      )
     ){
 
       drawChart();

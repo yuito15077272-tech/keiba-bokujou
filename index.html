@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -7,113 +7,618 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="競馬牧場DX">
-<meta name="description" content="競馬の収支を管理しながら愛馬を育成するWebアプリ">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon.svg">
+<meta name="description" content="競馬の収支を管理する自分専用Webアプリ">
 <title>競馬牧場DX</title>
 <style>
 :root{--bg:#f2f5f9;--card:#fff;--ink:#172033;--muted:#718096;--line:#e4e9f0;--accent:#6957e8;--green:#14966a;--red:#d94b57;--dark:#101828;--gold:#e0a72e}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{background:var(--bg)}body{margin:0;background:linear-gradient(#101828 0 238px,var(--bg) 238px);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
-button,input,select{font:inherit}.app{max-width:720px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 14px 30px}
-header{color:#fff;padding:4px 5px 18px}.eyebrow{font-size:11px;letter-spacing:.12em;opacity:.65;font-weight:800}.brand{font-size:27px;font-weight:900;margin:5px 0}.sub{font-size:12px;opacity:.72}
+html{background:var(--bg)}
+body{margin:0;background:linear-gradient(#101828 0 245px,var(--bg) 245px);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+button,input,select{font:inherit}
+.app{max-width:720px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 14px 35px}
+header{color:#fff;padding:4px 5px 18px}
+.eyebrow{font-size:11px;letter-spacing:.12em;opacity:.65;font-weight:800}
+.brand{font-size:28px;font-weight:900;margin:5px 0}
+.sub{font-size:12px;opacity:.72}
 .hero{background:linear-gradient(135deg,#27334a,#111a2b);color:#fff;border-radius:25px;padding:18px;box-shadow:0 14px 35px #0b132255;overflow:hidden}
-.heroTop{display:flex;align-items:center;gap:13px}.horse{font-size:48px}.rank{font-size:19px;font-weight:900}.rankDesc{font-size:11px;color:#bac5d7;margin-top:3px}
-.balance{font-size:31px;font-weight:900;margin-top:13px}.plus{color:#73dfb5}.minus{color:#ff929b}.progress{height:9px;background:#364157;border-radius:20px;margin-top:14px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8c78ff,#e4c05c);border-radius:20px;transition:.35s}.next{display:flex;justify-content:space-between;color:#bcc5d4;font-size:10px;margin-top:7px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}.card{background:var(--card);border-radius:17px;padding:13px;box-shadow:0 7px 24px #26364d10}.card small{color:var(--muted);font-size:10px}.card b{display:block;font-size:18px;margin-top:3px}
-section{margin-top:17px}.title{font-size:16px;font-weight:900;margin:0 3px 9px}.panel{background:#fff;border-radius:20px;padding:15px;box-shadow:0 7px 24px #26364d10}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}label{display:block;color:var(--muted);font-size:10px;font-weight:800;margin-bottom:5px}input,select{width:100%;border:1px solid var(--line);background:#f8fafc;border-radius:12px;padding:12px;outline:0;font-size:16px}input:focus,select:focus{border-color:#968aff;background:#fff}.primary{width:100%;border:0;border-radius:13px;background:var(--accent);color:#fff;font-weight:900;padding:13px;margin-top:1px}
-.stats{display:grid;grid-template-columns:1fr 1fr}.statline{padding:10px 4px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:12px}.statline:nth-last-child(-n+2){border-bottom:0}.statline span{color:var(--muted)}
-.badges{display:grid;grid-template-columns:1fr 1fr;gap:9px}.badge{padding:12px;border:1px solid var(--line);border-radius:16px;background:#fff}.badge.locked{opacity:.38}.bi{font-size:23px}.bt{font-weight:900;font-size:12px;margin-top:4px}.bd{font-size:10px;color:var(--muted);margin-top:2px}
-.row{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.row:first-child{padding-top:0}.row:last-child{border-bottom:0;padding-bottom:0}.name{font-weight:900;font-size:13px}.meta{font-size:10px;color:var(--muted);margin-top:3px}.money{text-align:right;white-space:nowrap}.small{font-size:10px;color:var(--muted)}.profit{font-weight:900;font-size:13px;margin-top:2px}
-.empty{text-align:center;color:var(--muted);font-size:12px;padding:16px 0}.danger{width:100%;border:0;background:transparent;color:var(--muted);font-size:11px;padding:12px}
-.chart{height:150px;width:100%;display:block}.note{font-size:11px;color:var(--muted);line-height:1.7}
-.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:#182234;color:#fff;padding:10px 15px;border-radius:999px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:10}.toast.show{opacity:1;transform:translateX(-50%)}
-@media(min-width:600px){.form{grid-template-columns:1.4fr 1fr 1fr 1fr}.full{grid-column:auto}.primary{height:47px}.badges{grid-template-columns:repeat(3,1fr)}}
+.heroTop{display:flex;align-items:center;gap:13px}
+.horse{font-size:48px}
+.rank{font-size:19px;font-weight:900}
+.rankDesc{font-size:11px;color:#bac5d7;margin-top:3px}
+.balance{font-size:31px;font-weight:900;margin-top:13px}
+.plus{color:#73dfb5!important}
+.minus{color:#ff929b!important}
+.progress{height:9px;background:#364157;border-radius:20px;margin-top:14px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8c78ff,#e4c05c);border-radius:20px;transition:.35s}
+.next{display:flex;justify-content:space-between;color:#bcc5d4;font-size:10px;margin-top:7px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.card{background:var(--card);border-radius:17px;padding:13px;box-shadow:0 7px 24px #26364d10}
+.card small{color:var(--muted);font-size:10px}
+.card b{display:block;font-size:18px;margin-top:3px}
+section{margin-top:17px}
+.title{font-size:16px;font-weight:900;margin:0 3px 9px}
+.panel{background:#fff;border-radius:20px;padding:15px;box-shadow:0 7px 24px #26364d10}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.full{grid-column:1/-1}
+label{display:block;color:var(--muted);font-size:10px;font-weight:800;margin-bottom:5px}
+input,select{width:100%;border:1px solid var(--line);background:#f8fafc;border-radius:12px;padding:12px;outline:0;font-size:16px}
+input:focus,select:focus{border-color:#968aff;background:#fff}
+.primary{width:100%;border:0;border-radius:13px;background:var(--accent);color:#fff;font-weight:900;padding:14px}
+.primary:active{transform:scale(.98)}
+.stats{display:grid;grid-template-columns:1fr 1fr}
+.statline{padding:10px 4px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-size:12px}
+.statline span{color:var(--muted)}
+.statline:nth-last-child(-n+2){border-bottom:0}
+.row{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.row:first-child{padding-top:0}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.name{font-weight:900;font-size:13px}
+.meta{font-size:10px;color:var(--muted);margin-top:3px}
+.money{text-align:right;white-space:nowrap}
+.small{font-size:10px;color:var(--muted)}
+.profit{font-weight:900;font-size:13px;margin-top:2px}
+.empty{text-align:center;color:var(--muted);font-size:12px;padding:18px 0}
+.delete{border:0;background:#fff0f1;color:var(--red);border-radius:9px;font-size:10px;padding:6px 8px;margin-top:5px}
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.badge{padding:12px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.badge.locked{opacity:.35}
+.bi{font-size:23px}
+.bt{font-weight:900;font-size:12px;margin-top:4px}
+.bd{font-size:10px;color:var(--muted);margin-top:2px}
+.chart{height:170px;width:100%;display:block}
+.monthBox{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.monthCard{background:#f8fafc;border-radius:14px;padding:12px}
+.monthCard small{font-size:10px;color:var(--muted)}
+.monthCard b{display:block;font-size:18px;margin-top:4px}
+.note{font-size:11px;color:var(--muted);line-height:1.7}
+.danger{width:100%;border:0;background:transparent;color:var(--muted);font-size:11px;padding:12px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:#182234;color:#fff;padding:10px 15px;border-radius:999px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:20}
+.toast.show{opacity:1;transform:translateX(-50%)}
+@media(min-width:600px){.form{grid-template-columns:1fr 1fr 1fr 1fr}.full{grid-column:1/-1}.badges{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
 <div class="app">
-<header><div class="eyebrow">HORSE RACING · TRAINING GAME</div><div class="brand">競馬牧場DX</div><div class="sub">収支を積み上げて、愛馬を育てよう。</div></header>
+<header>
+<div class="eyebrow">HORSE RACING · MONEY MANAGEMENT</div>
+<div class="brand">競馬牧場DX</div>
+<div class="sub">収支を記録して、自分の馬券力を数字で見える化。</div>
+</header>
 
 <div class="hero">
- <div class="heroTop"><div class="horse" id="horse">🐎</div><div><div class="rank" id="rank">新馬</div><div class="rankDesc" id="rankDesc">ここから育成スタート！</div></div></div>
- <div class="balance" id="balance">¥0</div><div class="progress"><i id="bar"></i></div><div class="next"><span>育成進捗</span><span id="next">次のランクまで ¥10,000</span></div>
+<div class="heroTop">
+<div class="horse" id="horse">🐎</div>
+<div>
+<div class="rank" id="rank">新馬</div>
+<div class="rankDesc" id="rankDesc">ここから育成スタート！</div>
+</div>
+</div>
+<div class="balance" id="balance">¥0</div>
+<div class="progress"><i id="bar"></i></div>
+<div class="next"><span>育成進捗</span><span id="next">次のランクまで ¥10,000</span></div>
 </div>
 
 <div class="grid">
-<div class="card"><small>総投資</small><b id="totalBet">¥0</b></div><div class="card"><small>総回収</small><b id="totalReturn">¥0</b></div>
-<div class="card"><small>総収支</small><b id="totalProfit">¥0</b></div><div class="card"><small>回収率</small><b id="roi">—</b></div>
-<div class="card"><small>レース数</small><b id="raceCount">0R</b></div><div class="card"><small>的中率</small><b id="hitRate">—</b></div>
+<div class="card"><small>総投資</small><b id="totalBet">¥0</b></div>
+<div class="card"><small>総払戻</small><b id="totalReturn">¥0</b></div>
+<div class="card"><small>総収支</small><b id="totalProfit">¥0</b></div>
+<div class="card"><small>回収率</small><b id="roi">—</b></div>
+<div class="card"><small>レース数</small><b id="raceCount">0R</b></div>
+<div class="card"><small>的中率</small><b id="hitRate">—</b></div>
 </div>
 
-<section><h2 class="title">愛馬ステータス</h2><div class="panel stats">
-<div class="statline"><span>通算勝利</span><b id="wins">0勝</b></div><div class="statline"><span>現在の連勝</span><b id="streak">0連勝</b></div>
-<div class="statline"><span>最高月間収支</span><b id="bestMonth">¥0</b></div><div class="statline"><span>1レース最高収支</span><b id="bestRace">¥0</b></div>
-</div></section>
+<section>
+<h2 class="title">🏇 愛馬ステータス</h2>
+<div class="panel stats">
+<div class="statline"><span>勝ちレース</span><b id="wins">0勝</b></div>
+<div class="statline"><span>現在の連勝</span><b id="streak">0連勝</b></div>
+<div class="statline"><span>最高月間収支</span><b id="bestMonth">¥0</b></div>
+<div class="statline"><span>最高レース収支</span><b id="bestRace">¥0</b></div>
+</div>
+</section>
 
-<section><h2 class="title">レースを記録</h2><div class="panel"><form id="form"><div class="form">
-<div><label>レース名</label><input id="race" required placeholder="例：新潟記念"></div>
-<div><label>投資額</label><input id="bet" required type="number" min="0" inputmode="numeric" placeholder="3000"></div>
-<div><label>回収額</label><input id="ret" required type="number" min="0" inputmode="numeric" placeholder="7200"></div>
-<div><label>券種</label><select id="type"><option>3連複</option><option>3連単</option><option>馬連</option><option>馬単</option><option>ワイド</option><option>単勝</option><option>複勝</option><option>その他</option></select></div>
-<div class="full"><button class="primary">＋ 収支を記録</button></div>
-</div></form></div></section>
+<section>
+<h2 class="title">📝 レースを記録</h2>
+<div class="panel">
+<form id="form">
+<div class="form">
 
-<section><h2 class="title">実績・称号</h2><div class="badges" id="badges"></div></section>
+<div>
+<label>日付</label>
+<input id="date" type="date" required>
+</div>
 
-<section><h2 class="title">収支推移</h2><div class="panel"><canvas class="chart" id="chart"></canvas></div></section>
+<div>
+<label>競馬場</label>
+<select id="place">
+<option>札幌</option><option>函館</option><option>福島</option><option>新潟</option>
+<option>東京</option><option>中山</option><option>中京</option><option>京都</option>
+<option>阪神</option><option>小倉</option>
+</select>
+</div>
 
-<section><h2 class="title">券種別成績</h2><div class="panel" id="types"><div class="empty">データが貯まると表示されます。</div></div></section>
+<div>
+<label>R番号</label>
+<select id="raceNo">
+<option>1R</option><option>2R</option><option>3R</option><option>4R</option>
+<option>5R</option><option>6R</option><option>7R</option><option>8R</option>
+<option>9R</option><option>10R</option><option>11R</option><option>12R</option>
+</select>
+</div>
 
-<section><h2 class="title">収支履歴</h2><div class="panel" id="history"><div class="empty">まだ記録がありません。</div></div></section>
+<div>
+<label>券種</label>
+<select id="type">
+<option>3連複</option><option>3連単</option><option>馬連</option><option>馬単</option>
+<option>ワイド</option><option>単勝</option><option>複勝</option><option>その他</option>
+</select>
+</div>
 
-<section><div class="panel note">このアプリはブラウザ内にデータを保存します。外部サーバーには送信しません。SafariのWebサイトデータを削除すると記録が消える場合があります。</div><button class="danger" id="reset">すべての記録を削除</button></section>
+<div class="full">
+<label>レース名</label>
+<input id="race" required placeholder="例：新潟記念">
+</div>
+
+<div>
+<label>投資額</label>
+<input id="bet" required type="number" min="0" inputmode="numeric" placeholder="3000">
+</div>
+
+<div>
+<label>払戻額</label>
+<input id="ret" required type="number" min="0" inputmode="numeric" placeholder="7200">
+</div>
+
+<div class="full">
+<button class="primary">＋ 収支を記録</button>
+</div>
+
+</div>
+</form>
+</div>
+</section>
+
+<section>
+<h2 class="title">📅 今月・今年</h2>
+<div class="monthBox">
+<div class="monthCard"><small>今月の収支</small><b id="monthProfit">¥0</b></div>
+<div class="monthCard"><small>今年の収支</small><b id="yearProfit">¥0</b></div>
+</div>
+</section>
+
+<section>
+<h2 class="title">🏟️ 競馬場別成績</h2>
+<div class="panel" id="places"><div class="empty">データが貯まると表示されます。</div></div>
+</section>
+
+<section>
+<h2 class="title">🎫 券種別成績</h2>
+<div class="panel" id="types"><div class="empty">データが貯まると表示されます。</div></div>
+</section>
+
+<section>
+<h2 class="title">📈 収支推移</h2>
+<div class="panel"><canvas class="chart" id="chart"></canvas></div>
+</section>
+
+<section>
+<h2 class="title">🏆 実績・称号</h2>
+<div class="badges" id="badges"></div>
+</section>
+
+<section>
+<h2 class="title">📋 収支履歴</h2>
+<div class="panel" id="history"><div class="empty">まだ記録がありません。</div></div>
+</section>
+
+<section>
+<div class="panel note">このアプリはiPhoneのブラウザ内に収支データを保存します。外部サーバーには送信しません。SafariのWebサイトデータを削除すると記録が消える場合があります。</div>
+<button class="danger" id="reset">すべての記録を削除</button>
+</section>
+
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
-const KEY="keiba_bokujou_dx_records";
+const KEY="keiba_bokujou_dx_records_v2";
 let records=JSON.parse(localStorage.getItem(KEY)||"[]");
+
 const levels=[
- {n:"新馬",m:0,d:"ここから育成スタート！",h:"🐎"},{n:"1勝馬",m:10000,d:"まずは1勝。着実に成長中。",h:"🐴"},
- {n:"オープン馬",m:30000,d:"一線級が見えてきた！",h:"🏇"},{n:"重賞馬",m:60000,d:"重賞級の実力を獲得。",h:"🐎✨"},
- {n:"GⅠ馬",m:100000,d:"GⅠの舞台へ。",h:"🏆🐎"},{n:"伝説馬",m:200000,d:"牧場の看板馬。伝説級！",h:"👑🐎"}];
+{n:"新馬",m:0,d:"ここから育成スタート！",h:"🐎"},
+{n:"1勝馬",m:10000,d:"まずは1勝。着実に成長中。",h:"🐴"},
+{n:"オープン馬",m:30000,d:"一線級が見えてきた！",h:"🏇"},
+{n:"重賞馬",m:60000,d:"重賞級の実力を獲得。",h:"🐎✨"},
+{n:"GⅠ馬",m:100000,d:"GⅠの舞台へ。",h:"🏆🐎"},
+{n:"伝説馬",m:200000,d:"牧場の看板馬。伝説級！",h:"👑🐎"}
+];
+
 const badges=[
-["🌱","初陣","1レース記録",r=>r.length>=1],["🏇","調教師見習い","5レース記録",r=>r.length>=5],
-["📚","データ収集家","10レース記録",r=>r.length>=10],["💰","黒字化","総収支＋1万円",r=>sum(r)>=10000],
-["💎","大当たり","1レース＋1万円",r=>r.some(x=>x.ret-x.bet>=10000)],["👑","伝説への道","総収支＋20万円",r=>sum(r)>=200000]];
-const $=id=>document.getElementById(id),yen=n=>"¥"+Math.round(n).toLocaleString("ja-JP");
-function sum(a=records){return a.reduce((s,r)=>s+r.ret-r.bet,0)}
-function save(){localStorage.setItem(KEY,JSON.stringify(records))}
+["🌱","初陣","1レース記録",r=>r.length>=1],
+["🏇","調教師見習い","5レース記録",r=>r.length>=5],
+["📚","データ収集家","10レース記録",r=>r.length>=10],
+["💰","黒字化","総収支＋1万円",r=>sum(r)>=10000],
+["💎","大当たり","1レース＋1万円",r=>r.some(x=>x.ret-x.bet>=10000)],
+["🔥","連勝街道","3連勝達成",r=>maxStreak(r)>=3],
+["👑","伝説への道","総収支＋20万円",r=>sum(r)>=200000]
+];
+
+const $=id=>document.getElementById(id);
+const yen=n=>"¥"+Math.round(n).toLocaleString("ja-JP");
+
+function sum(a=records){
+return a.reduce((s,r)=>s+r.ret-r.bet,0);
+}
+
+function save(){
+localStorage.setItem(KEY,JSON.stringify(records));
+}
+
+function maxStreak(arr){
+let best=0,cur=0;
+arr.forEach(r=>{
+if(r.ret>r.bet){cur++;best=Math.max(best,cur)}
+else{cur=0}
+});
+return best;
+}
+
+function currentStreak(){
+let cur=0;
+for(let i=records.length-1;i>=0;i--){
+if(records[i].ret>records[i].bet)cur++;
+else break;
+}
+return cur;
+}
+
+function todayString(){
+let d=new Date();
+return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+
 function render(){
- const bet=records.reduce((s,r)=>s+r.bet,0),ret=records.reduce((s,r)=>s+r.ret,0),p=ret-bet;
- $("totalBet").textContent=yen(bet);$("totalReturn").textContent=yen(ret);$("totalProfit").textContent=(p>=0?"+":"")+yen(p);
- $("totalProfit").className=p>=0?"plus":"minus";$("raceCount").textContent=records.length+"R";$("roi").textContent=bet?(ret/bet*100).toFixed(1)+"%":"—";
- $("hitRate").textContent=records.length?(records.filter(r=>r.ret>0).length/records.length*100).toFixed(1)+"%":"—";
- let idx=0;for(let i=levels.length-1;i>=0;i--)if(p>=levels[i].m){idx=i;break}let lv=levels[idx];$("rank").textContent=lv.n;$("rankDesc").textContent=lv.d;$("horse").textContent=lv.h;
- $("balance").textContent=(p>=0?"+":"")+yen(p);$("balance").className="balance "+(p>=0?"plus":"minus");
- let pct=100,nt="最高ランク到達！";if(idx<levels.length-1){let nm=levels[idx+1].m;pct=Math.max(0,Math.min(100,(p-lv.m)/(nm-lv.m)*100));nt="次のランクまで "+yen(Math.max(0,nm-p))}$("bar").style.width=pct+"%";$("next").textContent=nt;
- $("wins").textContent=records.filter(r=>r.ret>r.bet).length+"勝";let st=0;for(let i=records.length-1;i>=0&&records[i].ret>records[i].bet;i--)st++;$("streak").textContent=st+"連勝";
- $("bestRace").textContent=yen(Math.max(0,...records.map(r=>r.ret-r.bet),0));let months={};records.forEach(r=>months[r.date.slice(0,7)]=(months[r.date.slice(0,7)]||0)+r.ret-r.bet);$("bestMonth").textContent=yen(Math.max(0,...Object.values(months),0));
- $("badges").innerHTML=badges.map(b=>`<div class="badge ${b[3](records)?"":"locked"}"><div class="bi">${b[0]}</div><div class="bt">${b[1]}</div><div class="bd">${b[3](records)?"達成！":b[2]}</div></div>`).join("");
- let types={};records.forEach(r=>{types[r.type]??={n:0,b:0,rt:0};types[r.type].n++;types[r.type].b+=r.bet;types[r.type].rt+=r.ret});
- $("types").innerHTML=Object.keys(types).length?Object.entries(types).map(([k,x])=>{let q=x.rt-x.b;return `<div class="row"><div><div class="name">${esc(k)}</div><div class="meta">${x.n}R · 回収率 ${(x.rt/x.b*100).toFixed(1)}%</div></div><div class="money"><div class="profit ${q>=0?"plus":"minus"}">${q>=0?"+":""}${yen(q)}</div></div></div>`}).join(""):'<div class="empty">データが貯まると表示されます。</div>';
- $("history").innerHTML=records.length?records.slice().reverse().map(r=>{let q=r.ret-r.bet;return `<div class="row"><div><div class="name">${esc(r.name)}</div><div class="meta">${r.date} · ${esc(r.type)}</div></div><div class="money"><div class="small">投資 ${yen(r.bet)} → 回収 ${yen(r.ret)}</div><div class="profit ${q>=0?"plus":"minus"}">${q>=0?"+":""}${yen(q)}</div></div></div>`}).join(""):'<div class="empty">まだ記録がありません。</div>';
- draw();
+
+const bet=records.reduce((s,r)=>s+r.bet,0);
+const ret=records.reduce((s,r)=>s+r.ret,0);
+const p=ret-bet;
+
+$("totalBet").textContent=yen(bet);
+$("totalReturn").textContent=yen(ret);
+$("totalProfit").textContent=(p>=0?"+":"")+yen(p);
+$("totalProfit").className=p>=0?"plus":"minus";
+$("raceCount").textContent=records.length+"R";
+$("roi").textContent=bet?(ret/bet*100).toFixed(1)+"%":"—";
+$("hitRate").textContent=records.length?(records.filter(r=>r.ret>0).length/records.length*100).toFixed(1)+"%":"—";
+
+let idx=0;
+
+for(let i=levels.length-1;i>=0;i--){
+if(p>=levels[i].m){idx=i;break}
 }
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+let lv=levels[idx];
+
+$("rank").textContent=lv.n;
+$("rankDesc").textContent=lv.d;
+$("horse").textContent=lv.h;
+$("balance").textContent=(p>=0?"+":"")+yen(p);
+$("balance").className="balance "+(p>=0?"plus":"minus");
+
+let pct=100,nt="最高ランク到達！";
+
+if(idx<levels.length-1){
+let nm=levels[idx+1].m;
+pct=Math.max(0,Math.min(100,(p-lv.m)/(nm-lv.m)*100));
+nt="次のランクまで "+yen(Math.max(0,nm-p));
+}
+
+$("bar").style.width=pct+"%";
+$("next").textContent=nt;
+$("wins").textContent=records.filter(r=>r.ret>r.bet).length+"勝";
+$("streak").textContent=currentStreak()+"連勝";
+
+let months={};
+
+records.forEach(r=>{
+let key=r.date.slice(0,7);
+months[key]=(months[key]||0)+r.ret-r.bet;
+});
+
+$("bestMonth").textContent=yen(Math.max(0,...Object.values(months),0));
+$("bestRace").textContent=yen(Math.max(0,...records.map(r=>r.ret-r.bet),0));
+
+const now=new Date();
+const ym=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0");
+const y=String(now.getFullYear());
+
+const monthSum=records.filter(r=>r.date.slice(0,7)===ym).reduce((s,r)=>s+r.ret-r.bet,0);
+const yearSum=records.filter(r=>r.date.slice(0,4)===y).reduce((s,r)=>s+r.ret-r.bet,0);
+
+$("monthProfit").textContent=(monthSum>=0?"+":"")+yen(monthSum);
+$("monthProfit").className=monthSum>=0?"plus":"minus";
+
+$("yearProfit").textContent=(yearSum>=0?"+":"")+yen(yearSum);
+$("yearProfit").className=yearSum>=0?"plus":"minus";
+
+renderPlaces();
+renderTypes();
+renderBadges();
+renderHistory();
+draw();
+}
+
+function renderPlaces(){
+
+let data={};
+
+records.forEach(r=>{
+if(!data[r.place])data[r.place]={n:0,bet:0,ret:0};
+data[r.place].n++;
+data[r.place].bet+=r.bet;
+data[r.place].ret+=r.ret;
+});
+
+const keys=Object.keys(data);
+
+if(!keys.length){
+$("places").innerHTML='<div class="empty">データが貯まると表示されます。</div>';
+return;
+}
+
+$("places").innerHTML=keys.map(k=>{
+
+let x=data[k];
+let p=x.ret-x.bet;
+let roi=x.bet?x.ret/x.bet*100:0;
+
+return `
+<div class="row">
+<div>
+<div class="name">🏟️ ${esc(k)}</div>
+<div class="meta">${x.n}R · 投資 ${yen(x.bet)} · 回収 ${yen(x.ret)}</div>
+</div>
+<div class="money">
+<div class="small">回収率 ${roi.toFixed(1)}%</div>
+<div class="profit ${p>=0?"plus":"minus"}">${p>=0?"+":""}${yen(p)}</div>
+</div>
+</div>
+`;
+
+}).join("");
+}
+
+function renderTypes(){
+
+let data={};
+
+records.forEach(r=>{
+if(!data[r.type])data[r.type]={n:0,bet:0,ret:0};
+data[r.type].n++;
+data[r.type].bet+=r.bet;
+data[r.type].ret+=r.ret;
+});
+
+const keys=Object.keys(data);
+
+if(!keys.length){
+$("types").innerHTML='<div class="empty">データが貯まると表示されます。</div>';
+return;
+}
+
+$("types").innerHTML=keys.map(k=>{
+
+let x=data[k];
+let p=x.ret-x.bet;
+let roi=x.bet?x.ret/x.bet*100:0;
+
+return `
+<div class="row">
+<div>
+<div class="name">🎫 ${esc(k)}</div>
+<div class="meta">${x.n}R · 投資 ${yen(x.bet)} · 回収 ${yen(x.ret)}</div>
+</div>
+<div class="money">
+<div class="small">回収率 ${roi.toFixed(1)}%</div>
+<div class="profit ${p>=0?"plus":"minus"}">${p>=0?"+":""}${yen(p)}</div>
+</div>
+</div>
+`;
+
+}).join("");
+}
+
+function renderBadges(){
+
+$("badges").innerHTML=badges.map(b=>{
+
+let ok=b[3](records);
+
+return `
+<div class="badge ${ok?"":"locked"}">
+<div class="bi">${b[0]}</div>
+<div class="bt">${b[1]}</div>
+<div class="bd">${ok?"達成！":b[2]}</div>
+</div>
+`;
+
+}).join("");
+}
+
+function renderHistory(){
+
+if(!records.length){
+$("history").innerHTML='<div class="empty">まだ記録がありません。</div>';
+return;
+}
+
+$("history").innerHTML=records.slice().reverse().map((r,reverseIndex)=>{
+
+let realIndex=records.length-1-reverseIndex;
+let p=r.ret-r.bet;
+
+return `
+<div class="row">
+<div>
+<div class="name">${esc(r.name)}</div>
+<div class="meta">${esc(r.date)} · ${esc(r.place)} · ${esc(r.raceNo)} · ${esc(r.type)}</div>
+<button class="delete" onclick="removeRecord(${realIndex})">削除</button>
+</div>
+
+<div class="money">
+<div class="small">投資 ${yen(r.bet)}</div>
+<div class="small">払戻 ${yen(r.ret)}</div>
+<div class="profit ${p>=0?"plus":"minus"}">${p>=0?"+":""}${yen(p)}</div>
+</div>
+</div>
+`;
+
+}).join("");
+}
+
+function removeRecord(index){
+
+if(!confirm("この収支記録を削除しますか？"))return;
+
+records.splice(index,1);
+save();
+render();
+toast("記録を削除しました");
+
+}
+
+function esc(s){
+
+return String(s).replace(
+/[&<>"']/g,
+m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m])
+);
+
+}
+
 function draw(){
- const c=$("chart"),d=devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*d;c.height=h*d;let x=c.getContext("2d");x.scale(d,d);x.clearRect(0,0,w,h);
- if(!records.length){x.fillStyle="#718096";x.font="12px sans-serif";x.textAlign="center";x.fillText("収支を登録するとグラフが表示されます",w/2,h/2);return}
- let vals=[],v=0;records.forEach(r=>{v+=r.ret-r.bet;vals.push(v)});let min=Math.min(0,...vals),max=Math.max(0,...vals),range=max-min||1;
- x.strokeStyle="#e4e9f0";x.lineWidth=1;x.beginPath();x.moveTo(0,h/2);x.lineTo(w,h/2);x.stroke();
- x.strokeStyle="#6957e8";x.lineWidth=3;x.lineJoin="round";x.beginPath();vals.forEach((q,i)=>{let px=vals.length===1?w/2:i/(vals.length-1)*w,py=(max-q)/range*(h-20)+10;i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke();
+
+const c=$("chart");
+const d=devicePixelRatio||1;
+const w=c.clientWidth;
+const h=c.clientHeight;
+
+c.width=w*d;
+c.height=h*d;
+
+let x=c.getContext("2d");
+
+x.scale(d,d);
+x.clearRect(0,0,w,h);
+
+if(!records.length){
+
+x.fillStyle="#718096";
+x.font="12px sans-serif";
+x.textAlign="center";
+x.fillText("収支を登録するとグラフが表示されます",w/2,h/2);
+return;
 }
-$("form").addEventListener("submit",e=>{e.preventDefault();let d=new Date();records.push({name:$("race").value.trim(),bet:+$("bet").value,ret:+$("ret").value,type:$("type").value,date:d.toLocaleDateString("ja-JP")});save();e.target.reset();render();toast("愛馬に経験値が入りました！")});
-$("reset").addEventListener("click",()=>{if(confirm("すべての収支記録を削除しますか？")){records=[];save();render();toast("記録を削除しました")}})
-function toast(t){let e=$("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1800)}
-window.addEventListener("resize",draw);render();
-if("serviceWorker" in navigator && location.protocol!=="file:"){navigator.serviceWorker.register("sw.js").catch(()=>{})}
+
+let vals=[],v=0;
+
+records.forEach(r=>{
+v+=r.ret-r.bet;
+vals.push(v);
+});
+
+let min=Math.min(0,...vals);
+let max=Math.max(0,...vals);
+let range=max-min||1;
+
+x.strokeStyle="#e4e9f0";
+x.lineWidth=1;
+
+let zeroY=(max)/range*(h-20)+10;
+
+x.beginPath();
+x.moveTo(0,zeroY);
+x.lineTo(w,zeroY);
+x.stroke();
+
+x.strokeStyle="#6957e8";
+x.lineWidth=3;
+x.lineJoin="round";
+x.beginPath();
+
+vals.forEach((q,i)=>{
+
+let px=vals.length===1?w/2:i/(vals.length-1)*w;
+let py=(max-q)/range*(h-20)+10;
+
+if(i)x.lineTo(px,py);
+else x.moveTo(px,py);
+
+});
+
+x.stroke();
+
+}
+
+$("date").value=todayString();
+
+$("form").addEventListener("submit",e=>{
+
+e.preventDefault();
+
+let bet=Number($("bet").value);
+let ret=Number($("ret").value);
+
+if(bet<0||ret<0){
+toast("金額を確認してください");
+return;
+}
+
+records.push({
+date:$("date").value,
+place:$("place").value,
+raceNo:$("raceNo").value,
+name:$("race").value.trim(),
+bet:bet,
+ret:ret,
+type:$("type").value
+});
+
+save();
+
+e.target.reset();
+$("date").value=todayString();
+
+render();
+
+toast("愛馬に経験値が入りました！");
+
+});
+
+$("reset").addEventListener("click",()=>{
+
+if(confirm("すべての収支記録を削除しますか？")){
+records=[];
+save();
+render();
+toast("記録を削除しました");
+}
+
+});
+
+function toast(t){
+
+let e=$("toast");
+e.textContent=t;
+e.classList.add("show");
+
+setTimeout(()=>e.classList.remove("show"),1800);
+
+}
+
+window.addEventListener("resize",draw);
+
+render();
+
 </script>
-</body></html>
+</body>
+</html>

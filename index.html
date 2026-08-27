@@ -322,7 +322,9 @@ font-weight:950;
 margin-top:3px
 }
 
-/* HORSE */
+/* =========================
+HORSE SELECT
+========================= */
 
 .horse{
 border:1px solid var(--line);
@@ -334,9 +336,29 @@ background:#fff
 
 .horse-head{
 display:grid;
-grid-template-columns:44px 44px 1fr auto;
+grid-template-columns:42px 42px minmax(0,1fr) auto;
 gap:7px;
 align-items:center
+}
+
+.horse-name-input{
+height:42px!important;
+font-weight:800;
+min-width:0
+}
+
+/* 小さい枠・馬番 */
+
+.mini-select{
+width:42px;
+height:38px;
+border-radius:9px;
+display:grid;
+place-items:center;
+font-weight:950;
+font-size:12px;
+border:0;
+padding:0
 }
 
 .frame-mini{
@@ -346,7 +368,8 @@ border-radius:9px;
 display:grid;
 place-items:center;
 font-weight:950;
-font-size:15px
+font-size:12px;
+border:2px solid transparent
 }
 
 .number-mini{
@@ -356,14 +379,9 @@ border-radius:9px;
 display:grid;
 place-items:center;
 font-weight:950;
-font-size:18px;
+font-size:16px;
 background:#f8fafc;
 border:1px solid #d0d5dd
-}
-
-.horse-name-input{
-height:42px!important;
-font-weight:800
 }
 
 .mark-btn{
@@ -371,7 +389,8 @@ border:1px solid #cfd4dc;
 background:#f8fafc;
 border-radius:10px;
 padding:8px 10px;
-min-width:62px;
+min-width:50px;
+height:40px;
 font-weight:950
 }
 
@@ -388,12 +407,16 @@ margin-top:8px
 }
 
 .horse-action{
-height:38px;
+height:36px;
 border:0;
 border-radius:9px;
 background:#eef2f6;
-font-size:12px;
+font-size:11px;
 font-weight:900
+}
+
+.horse-action:active{
+transform:scale(.98)
 }
 
 /* FRAME */
@@ -486,6 +509,27 @@ font-size:9px;
 font-weight:800
 }
 
+/* MARK */
+
+.mark-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px
+}
+
+.mark{
+border:1px solid #d0d5dd;
+background:#f8fafc;
+border-radius:11px;
+height:48px;
+font-size:20px;
+font-weight:950
+}
+
+.mark:hover{
+background:#eef2f6
+}
+
 /* RACE */
 
 .raceitem{
@@ -531,141 +575,13 @@ gap:8px
 }
 
 /* RESULT */
-/* RESULT HORSE TABLE */
-.result-input-table{
-border:1px solid var(--line);
-border-radius:12px;
-overflow:hidden;
-margin-top:10px;
-background:#fff
-}
-
-.result-input-header,
-.result-input-row{
-display:grid;
-grid-template-columns:58px 58px minmax(0,1fr);
-gap:8px;
-align-items:center;
-}
-
-.result-input-header{
-padding:8px 10px;
-background:#f8fafc;
-color:var(--muted);
-font-size:11px;
-font-weight:950;
-border-bottom:1px solid var(--line);
-}
-
-.result-input-row{
-padding:8px 10px;
-min-height:50px;
-border-bottom:1px solid var(--line);
-}
-
-.result-input-row:last-child{
-border-bottom:0
-}
-
-.result-input-frame{
-height:34px;
-border-radius:8px;
-display:grid;
-place-items:center;
-font-size:12px;
-font-weight:950;
-}
-
-.result-input-number{
-height:34px;
-border:1px solid #d0d5dd;
-border-radius:8px;
-display:grid;
-place-items:center;
-font-size:15px;
-font-weight:950;
-background:#f8fafc;
-}
-
-.result-input-name{
-min-width:0;
-font-size:13px;
-font-weight:850;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-}
-
-.result-place-select{
-width:100%;
-height:44px;
-border:2px solid #d0d5dd;
-border-radius:11px;
-background:#fff;
-padding:0 10px;
-font-weight:900;
-color:var(--ink);
-}
-
-.result-place-select:focus{
-border-color:var(--blue);
-outline:none;
-box-shadow:0 0 0 3px #2563eb18
-}
-.result-horse-header{
-display:grid;
-grid-template-columns:58px 58px 1fr;
-gap:8px;
-padding:8px 10px;
-font-size:11px;
-font-weight:950;
-color:var(--muted);
-border-bottom:1px solid var(--line);
-}
-
-.result-horse-row{
-display:grid;
-grid-template-columns:58px 58px 1fr;
-gap:8px;
-align-items:center;
-padding:9px 10px;
-border-bottom:1px solid var(--line);
-min-height:48px;
-}
-
-.result-frame{
-height:34px;
-border-radius:8px;
-display:grid;
-place-items:center;
-font-size:12px;
-font-weight:950;
-}
-
-.result-number{
-height:34px;
-border:1px solid #d0d5dd;
-border-radius:8px;
-display:grid;
-place-items:center;
-font-size:16px;
-font-weight:950;
-background:#f8fafc;
-}
-
-.result-name{
-font-size:13px;
-font-weight:850;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-}
 
 .result-horse-list{
 border:1px solid var(--line);
 border-radius:12px;
-overflow:hidden;
+overflow:hidden
 }
+
 .result-horse{
 border:1px solid var(--line);
 border-radius:13px;
@@ -719,6 +635,59 @@ background:#111827;
 color:#fff
 }
 
+/* RESULT HORSE */
+
+.result-input-table{
+border:1px solid var(--line);
+border-radius:12px;
+overflow:hidden;
+margin-top:10px;
+background:#fff
+}
+
+.result-input-row{
+display:grid;
+grid-template-columns:42px 42px minmax(0,1fr);
+gap:8px;
+align-items:center;
+padding:8px 10px;
+min-height:50px;
+border-bottom:1px solid var(--line)
+}
+
+.result-input-row:last-child{
+border-bottom:0
+}
+
+.result-input-frame{
+height:34px;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:11px;
+font-weight:950
+}
+
+.result-input-number{
+height:34px;
+border:1px solid #d0d5dd;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:14px;
+font-weight:950;
+background:#f8fafc
+}
+
+.result-input-name{
+min-width:0;
+font-size:13px;
+font-weight:850;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap
+}
+
 /* DETAILED STATS */
 
 .detail-tabs{
@@ -755,21 +724,6 @@ font-size:12px
 
 .detail-row b{
 font-weight:950
-}
-
-.detail-numbers{
-display:flex;
-flex-wrap:wrap;
-gap:5px;
-margin-top:6px
-}
-
-.detail-chip{
-background:#f1f5f9;
-border-radius:999px;
-padding:4px 7px;
-font-size:10px;
-font-weight:900
 }
 
 .analysis-summary{
@@ -1069,7 +1023,6 @@ PREDICT
 
 <h2>📝 予想を登録</h2>
 
-
 <div class="grid2">
 
 <div>
@@ -1131,7 +1084,7 @@ PREDICT
 <h2>🐴 出走馬</h2>
 
 <div class="small">
-枠・馬番・馬名・印を入力してください。
+馬名の左側から「枠番」「馬番」をタップ選択できます。
 </div>
 
 <div id="horses"></div>
@@ -1310,11 +1263,6 @@ onclick="setDetailTab('field',this)">
 頭数別
 </button>
 
-<button class="detail-tab"
-onclick="setDetailTab('popularity',this)">
-人気別
-</button>
-
 </div>
 
 <div id="detailBox" class="detail-box"></div>
@@ -1438,10 +1386,7 @@ onclick="if(event.target===this)closeNumber()">
 
 <h2>🔢 馬番を選択</h2>
 
-<div
-id="numberChoices"
-class="number-grid">
-</div>
+<div id="numberChoices" class="number-grid"></div>
 
 <button
 class="btn light full"
@@ -1470,10 +1415,7 @@ onclick="if(event.target===this)closeResultSelect()">
 🏁 着順を選択
 </h2>
 
-<div
-id="resultHorseChoices"
-class="number-grid">
-</div>
+<div id="resultHorseChoices" class="number-grid"></div>
 
 <button
 class="btn light full"
@@ -1515,9 +1457,7 @@ onclick="if(event.target===this)closeDetail()">
 ✨ 進化！ ✨
 </div>
 
-<div id="evoChar"
-class="character-wrap evo-glow">
-</div>
+<div id="evoChar" class="character-wrap evo-glow"></div>
 
 <h2 id="evoTitle"></h2>
 
@@ -1543,7 +1483,7 @@ onclick="closeEvo()">
 <script>
 "use strict";
 
-const STORE="keiba_bokujou_v9";
+const STORE="keiba_bokujou_v10";
 
 const TRACKS=[
 "札幌","函館","福島","新潟","東京",
@@ -1615,7 +1555,7 @@ DATABASE
 function freshDB(){
 
 return{
-version:9,
+version:10,
 races:[],
 lastEvolution:1
 };
@@ -1660,7 +1600,7 @@ className:r.className||"その他",
 ground:r.ground||"良",
 
 fieldSize:Number(r.fieldSize)||
-horses.length||1,
+horses.length||5,
 
 stake:Number(r.stake)||0,
 
@@ -1680,11 +1620,7 @@ hitStatus:r.result?.hitStatus||"auto",
 
 done:!!r.result?.done
 
-},
-
-odds:Number(r.odds)||0,
-
-popularity:Number(r.popularity)||0
+}
 
 };
 
@@ -1695,11 +1631,23 @@ function loadDB(){
 
 try{
 
-const raw=
-localStorage.getItem(STORE)||
-localStorage.getItem("keiba_bokujou_v8")||
-localStorage.getItem("keiba_bokujou_v7")||
-localStorage.getItem("keiba_bokujou_v6");
+const keys=[
+STORE,
+"keiba_bokujou_v9",
+"keiba_bokujou_v8",
+"keiba_bokujou_v7",
+"keiba_bokujou_v6"
+];
+
+let raw=null;
+
+for(const k of keys){
+
+raw=localStorage.getItem(k);
+
+if(raw)break;
+
+}
 
 if(!raw)return freshDB();
 
@@ -1707,7 +1655,7 @@ const x=JSON.parse(raw);
 
 x.races=(x.races||[]).map(normalizeRace);
 
-x.version=9;
+x.version=10;
 
 return x;
 
@@ -2254,7 +2202,7 @@ Array.from(
 {length:14},
 (_,i)=>i+5
 ),
-8,
+5,
 false,
 "頭"
 );
@@ -2268,7 +2216,11 @@ syncFieldSize;
 updateDistance();
 
 horsesForm=[
-blankHorse(1)
+blankHorse(1),
+blankHorse(2),
+blankHorse(3),
+blankHorse(4),
+blankHorse(5)
 ];
 
 renderHorses();
@@ -2426,14 +2378,21 @@ row.innerHTML=`
 
 <div class="horse-head">
 
-<div
-class="frame-mini ${frameColorClass(h.frame)}">
-${h.frame}枠
-</div>
+<button
+class="frame-mini ${frameColorClass(h.frame)}"
+onclick="openFrame(${i})">
 
-<div class="number-mini">
+${h.frame}
+
+</button>
+
+<button
+class="number-mini"
+onclick="openNumber(${i})">
+
 ${h.no}
-</div>
+
+</button>
 
 <input
 class="horse-name-input"
@@ -2457,7 +2416,7 @@ ${h.mark==="－"?"印":h.mark}
 class="horse-action"
 onclick="openFrame(${i})">
 
-🎨 枠 ${h.frame}
+🎨 枠番を選択
 
 </button>
 
@@ -2465,7 +2424,7 @@ onclick="openFrame(${i})">
 class="horse-action"
 onclick="openNumber(${i})">
 
-🔢 馬番 ${h.no}
+🔢 馬番を選択
 
 </button>
 
@@ -2498,8 +2457,7 @@ MARKS.forEach(m=>{
 const b=
 document.createElement("button");
 
-b.className=
-"mark m-"+m;
+b.className="mark";
 
 b.textContent=
 m==="－"?
@@ -2562,11 +2520,11 @@ frameColorClass(f)+
 (horsesForm[i].frame===f?
 " selected":"");
 
-b.textContent=f;
+b.textContent=f+"枠";
 
 b.onclick=()=>{
 
-horsesForm[i].frame=f;
+horsesForm[frameHorse].frame=f;
 
 closeFrame();
 
@@ -2620,14 +2578,15 @@ horsesForm[i].no===n?
 " selected":""
 );
 
-b.textContent=n;
+b.textContent=n+"番";
 
 b.onclick=()=>{
 
 horsesForm[numberHorse].no=n;
 
-horsesForm[numberHorse].frame=
-frameFromNo(n);
+/*
+枠番は変更しない
+*/
 
 closeNumber();
 
@@ -2637,7 +2596,7 @@ renderHorses();
 
 box.appendChild(b);
 
-}
+});
 
 document
 .getElementById("numberModal")
@@ -2816,12 +2775,16 @@ document
 .value="良";
 
 horsesForm=[
-blankHorse(1)
+blankHorse(1),
+blankHorse(2),
+blankHorse(3),
+blankHorse(4),
+blankHorse(5)
 ];
 
 document
 .getElementById("fieldSize")
-.value=8;
+.value=5;
 
 renderHorses();
 
@@ -2993,6 +2956,8 @@ onclick="resultEditor('${r.id}')">
 `).join("");
 
 }
+
+
 function resultEditor(id){
 
 const r=
@@ -3021,23 +2986,11 @@ ${esc(r.className)}
 </div>
 
 
-<!-- 出走馬一覧 -->
-
 <div class="card" style="margin-top:10px">
 
 <h3>🐴 出走馬</h3>
 
-<div class="small">
-枠番・馬番・馬名
-</div>
-
 <div class="result-input-table">
-
-<div class="result-input-header">
-<div>枠番</div>
-<div>馬番</div>
-<div>馬名</div>
-</div>
 
 ${r.horses.map(h=>`
 
@@ -3067,8 +3020,6 @@ ${esc(h.name||"馬名未入力")}
 </div>
 
 
-<!-- 着順 -->
-
 <div class="card">
 
 <h3>🏁 着順</h3>
@@ -3077,8 +3028,6 @@ ${esc(h.name||"馬名未入力")}
 
 </div>
 
-
-<!-- 的中判定 -->
 
 <div class="card">
 
@@ -3109,6 +3058,7 @@ onclick="setHit('miss')">
 </button>
 
 <button
+id="autoBtn"
 class="place-btn ${
 r.result.hitStatus==="auto"?"active":""
 }"
@@ -3123,46 +3073,9 @@ onclick="setHit('auto')">
 </div>
 
 
-<!-- オッズ -->
-
 <div class="card">
 
-<h3>💰 オッズ・人気</h3>
-
-<div class="grid2">
-
-<div>
-
-<label>人気</label>
-
-<input
-id="resultPop"
-type="number"
-min="1"
-value="${r.popularity||""}"
-placeholder="例：3">
-
-</div>
-
-<div>
-
-<label>オッズ</label>
-
-<input
-id="resultOdds"
-type="number"
-min="0"
-step="0.1"
-value="${r.odds||""}"
-placeholder="例：8.5">
-
-</div>
-
-</div>
-
-<div style="margin-top:10px">
-
-<label>払戻金</label>
+<h3>💰 払戻金</h3>
 
 <input
 id="ret"
@@ -3170,71 +3083,6 @@ type="number"
 min="0"
 value="${r.result.returned||0}"
 placeholder="例：3500">
-
-</div>
-
-</div>
-
-
-<button
-class="btn green full"
-onclick="saveResult('${r.id}')">
-
-結果を保存して収支に反映
-
-</button>
-
-
-<button
-class="btn light full"
-style="margin-top:8px"
-onclick="renderResultList()">
-
-結果待ち一覧へ
-
-</button>
-
-`;
-
-renderResultPlaces();
-
-showPage("result");
-
-}
-
-
-placeholder="例：3">
-
-</div>
-
-<div>
-
-<label>オッズ</label>
-
-<input
-id="resultOdds"
-type="number"
-min="0"
-step="0.1"
-value="${r.odds||""}"
-placeholder="例：8.5">
-
-</div>
-
-</div>
-
-<div style="margin-top:10px">
-
-<label>払戻金</label>
-
-<input
-id="ret"
-type="number"
-min="0"
-value="${r.result.returned||0}"
-placeholder="例：3500">
-
-</div>
 
 </div>
 
@@ -3364,7 +3212,7 @@ String(h.no)?
 
 b.innerHTML=`
 
-${h.no}
+${h.no}番
 <br>
 <small>
 ${esc(h.name||"馬名未入力")}
@@ -3431,9 +3279,7 @@ v==="miss"
 );
 
 document
-.querySelectorAll(
-"#resultList .place-btn"
-)[2]
+.getElementById("autoBtn")
 ?.classList.toggle(
 "active",
 v==="auto"
@@ -3459,16 +3305,6 @@ r.result.done=true;
 r.result.returned=
 Number(
 document.getElementById("ret").value
-)||0;
-
-r.popularity=
-Number(
-document.getElementById("resultPop").value
-)||0;
-
-r.odds=
-Number(
-document.getElementById("resultOdds").value
 )||0;
 
 persist();
@@ -3705,9 +3541,7 @@ document.getElementById(
 
 <br><br>
 
-予想登録
-・的中
-・高回収でEXPを獲得！
+予想登録・的中・高回収でEXPを獲得！
 
 `;
 
@@ -3834,7 +3668,7 @@ r.horses.map(h=>`
 <div
 class="frame-mini ${frameColorClass(h.frame)}">
 
-${h.frame}枠
+${h.frame}
 
 </div>
 
@@ -3846,7 +3680,7 @@ ${h.no}
 ${esc(h.name||"未入力")}
 </div>
 
-<div class="mark m-${h.mark}">
+<div class="mark">
 ${h.mark}
 </div>
 
@@ -4042,22 +3876,11 @@ keys=[r.ground];
 else if(detailTab==="field")
 keys=[r.fieldSize+"頭"];
 
-else if(detailTab==="popularity")
-keys=[
-r.popularity?
-r.popularity+"番人気":
-"人気未入力"
-];
-
 else if(detailTab==="frame"){
 
 keys=
 [...new Set(
 r.horses
-.filter(h=>
-h.frame>=1 &&
-h.frame<=8
-)
 .map(h=>h.frame+"枠")
 )];
 

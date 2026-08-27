@@ -532,7 +532,86 @@ gap:8px
 
 /* RESULT */
 /* RESULT HORSE TABLE */
+.result-input-table{
+border:1px solid var(--line);
+border-radius:12px;
+overflow:hidden;
+margin-top:10px;
+background:#fff
+}
 
+.result-input-header,
+.result-input-row{
+display:grid;
+grid-template-columns:58px 58px minmax(0,1fr);
+gap:8px;
+align-items:center;
+}
+
+.result-input-header{
+padding:8px 10px;
+background:#f8fafc;
+color:var(--muted);
+font-size:11px;
+font-weight:950;
+border-bottom:1px solid var(--line);
+}
+
+.result-input-row{
+padding:8px 10px;
+min-height:50px;
+border-bottom:1px solid var(--line);
+}
+
+.result-input-row:last-child{
+border-bottom:0
+}
+
+.result-input-frame{
+height:34px;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:12px;
+font-weight:950;
+}
+
+.result-input-number{
+height:34px;
+border:1px solid #d0d5dd;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:15px;
+font-weight:950;
+background:#f8fafc;
+}
+
+.result-input-name{
+min-width:0;
+font-size:13px;
+font-weight:850;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+
+.result-place-select{
+width:100%;
+height:44px;
+border:2px solid #d0d5dd;
+border-radius:11px;
+background:#fff;
+padding:0 10px;
+font-weight:900;
+color:var(--ink);
+}
+
+.result-place-select:focus{
+border-color:var(--blue);
+outline:none;
+box-shadow:0 0 0 3px #2563eb18
+}
 .result-horse-header{
 display:grid;
 grid-template-columns:58px 58px 1fr;
@@ -2914,8 +2993,6 @@ onclick="resultEditor('${r.id}')">
 `).join("");
 
 }
-
-
 function resultEditor(id){
 
 const r=
@@ -2930,21 +3007,80 @@ resultRace=r;
 document.getElementById("resultList").innerHTML=`
 
 <div class="small">
-
-${r.track}
+${esc(r.track)}
 ${r.raceNo}R
 ｜
 ${r.surface}
 ${r.distance}
 ｜
 ${r.fieldSize}頭
+｜
+${esc(r.className)}
+｜
+馬場 ${esc(r.ground)}
+</div>
+
+
+<!-- 出走馬一覧 -->
+
+<div class="card" style="margin-top:10px">
+
+<h3>🐴 出走馬</h3>
+
+<div class="small">
+枠番・馬番・馬名
+</div>
+
+<div class="result-input-table">
+
+<div class="result-input-header">
+<div>枠番</div>
+<div>馬番</div>
+<div>馬名</div>
+</div>
+
+${r.horses.map(h=>`
+
+<div class="result-input-row">
+
+<div class="
+result-input-frame
+${frameColorClass(h.frame)}
+">
+${h.frame}枠
+</div>
+
+<div class="result-input-number">
+${h.no}番
+</div>
+
+<div class="result-input-name">
+${esc(h.name||"馬名未入力")}
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
 
 </div>
 
 
-<div
-class="card"
-style="margin-top:10px;background:#f8fafc">
+<!-- 着順 -->
+
+<div class="card">
+
+<h3>🏁 着順</h3>
+
+<div id="resultPlaces"></div>
+
+</div>
+
+
+<!-- 的中判定 -->
+
+<div class="card">
 
 <h3>🎯 的中判定</h3>
 
@@ -2952,7 +3088,9 @@ style="margin-top:10px;background:#f8fafc">
 
 <button
 id="hitBtn"
-class="place-btn ${r.result.hitStatus==="hit"?"active":""}"
+class="place-btn ${
+r.result.hitStatus==="hit"?"active":""
+}"
 onclick="setHit('hit')">
 
 🎯 的中
@@ -2961,7 +3099,9 @@ onclick="setHit('hit')">
 
 <button
 id="missBtn"
-class="place-btn ${r.result.hitStatus==="miss"?"active":""}"
+class="place-btn ${
+r.result.hitStatus==="miss"?"active":""
+}"
 onclick="setHit('miss')">
 
 ❌ 不的中
@@ -2969,7 +3109,9 @@ onclick="setHit('miss')">
 </button>
 
 <button
-class="place-btn ${r.result.hitStatus==="auto"?"active":""}"
+class="place-btn ${
+r.result.hitStatus==="auto"?"active":""
+}"
 onclick="setHit('auto')">
 
 自動判定
@@ -2981,14 +3123,7 @@ onclick="setHit('auto')">
 </div>
 
 
-<div class="card">
-
-<h3>🏁 着順</h3>
-
-<div id="resultPlaces"></div>
-
-</div>
-
+<!-- オッズ -->
 
 <div class="card">
 
@@ -3005,6 +3140,69 @@ id="resultPop"
 type="number"
 min="1"
 value="${r.popularity||""}"
+placeholder="例：3">
+
+</div>
+
+<div>
+
+<label>オッズ</label>
+
+<input
+id="resultOdds"
+type="number"
+min="0"
+step="0.1"
+value="${r.odds||""}"
+placeholder="例：8.5">
+
+</div>
+
+</div>
+
+<div style="margin-top:10px">
+
+<label>払戻金</label>
+
+<input
+id="ret"
+type="number"
+min="0"
+value="${r.result.returned||0}"
+placeholder="例：3500">
+
+</div>
+
+</div>
+
+
+<button
+class="btn green full"
+onclick="saveResult('${r.id}')">
+
+結果を保存して収支に反映
+
+</button>
+
+
+<button
+class="btn light full"
+style="margin-top:8px"
+onclick="renderResultList()">
+
+結果待ち一覧へ
+
+</button>
+
+`;
+
+renderResultPlaces();
+
+showPage("result");
+
+}
+
+
 placeholder="例：3">
 
 </div>

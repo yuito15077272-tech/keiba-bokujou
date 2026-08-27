@@ -531,7 +531,62 @@ gap:8px
 }
 
 /* RESULT */
+/* RESULT HORSE TABLE */
 
+.result-horse-header{
+display:grid;
+grid-template-columns:58px 58px 1fr;
+gap:8px;
+padding:8px 10px;
+font-size:11px;
+font-weight:950;
+color:var(--muted);
+border-bottom:1px solid var(--line);
+}
+
+.result-horse-row{
+display:grid;
+grid-template-columns:58px 58px 1fr;
+gap:8px;
+align-items:center;
+padding:9px 10px;
+border-bottom:1px solid var(--line);
+min-height:48px;
+}
+
+.result-frame{
+height:34px;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:12px;
+font-weight:950;
+}
+
+.result-number{
+height:34px;
+border:1px solid #d0d5dd;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:16px;
+font-weight:950;
+background:#f8fafc;
+}
+
+.result-name{
+font-size:13px;
+font-weight:850;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+
+.result-horse-list{
+border:1px solid var(--line);
+border-radius:12px;
+overflow:hidden;
+}
 .result-horse{
 border:1px solid var(--line);
 border-radius:13px;

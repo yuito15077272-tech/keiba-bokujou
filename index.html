@@ -607,13 +607,52 @@ min-width:42px
 }
 
 .result-select{
-border:2px solid #d0d5dd;
+border:1px solid #d0d5dd;
 border-radius:11px;
 background:#fff;
-padding:10px;
+padding:10px 11px;
 font-weight:950;
 flex:1;
-text-align:left
+text-align:left;
+line-height:1.5;
+}
+
+.result-select.active{
+border-color:#111827;
+background:#f8fafc;
+}
+
+.result-frame-chip{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:48px;
+height:32px;
+padding:0 7px;
+border-radius:8px;
+font-size:12px;
+font-weight:950;
+margin-right:5px;
+}
+
+.result-number-chip{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:42px;
+height:32px;
+padding:0 7px;
+border:1px solid #d0d5dd;
+border-radius:8px;
+background:#f8fafc;
+font-size:15px;
+font-weight:950;
+margin-right:7px;
+}
+
+.result-horse-name{
+font-size:13px;
+font-weight:900;
 }
 
 .result-select.active{
@@ -2311,7 +2350,7 @@ ${h.no}
 <input
 class="horse-name-input"
 data-name="${i}"
-value="${esc(h.name)}"
+value="${esc(h.name)母らら}"
 placeholder="馬名を入力">
 
 <button
@@ -2799,11 +2838,61 @@ toast("削除しました");
 RESULT
 ========================= */
 
-function renderResultList(){
+funct
+function renderResultPlaces(){
 
 const box=
-document.getElementById("resultList");
+document.getElementById("resultPlaces");
 
+const r=resultRace;
+
+if(!r)return;
+
+box.innerHTML="";
+
+["first","second","third"]
+.forEach((key,i)=>{
+
+const title=
+["1着","2着","3着"][i];
+
+const value=
+r.result[key]||"";
+
+const div=
+document.createElement("div");
+
+div.className="result-horse";
+
+div.innerHTML=`
+
+<div class="result-top">
+
+<div class="result-place">
+🏆 ${title}
+</div>
+
+<button
+class="result-select ${value?"active":""}"
+onclick="openResultSelect('${key}')">
+
+${
+value?
+resultHorseLabel(value,r):
+"タップして馬を選択"
+}
+
+</button>
+
+</div>
+
+`;
+
+box.appendChild(div);
+
+});
+
+}
 const pending=
 db.races.filter(
 r=>!r.result.done
@@ -3001,22 +3090,49 @@ showPage("result");
 }
 
 function renderResultPlaces(){
+function renderResultPlaces(){
 
 const box=
 document.getElementById("resultPlaces");
 
 const r=resultRace;
 
+if(!r)return;
+
 box.innerHTML="";
 
-["first","second","third"]
-.forEach((key,i)=>{
+const places=[
+{
+key:"first",
+label:"1着"
+},
+{
+key:"second",
+label:"2着"
+},
+{
+key:"third",
+label:"3着"
+}
+];
 
-const title=
-["1着","2着","3着"][i];
+places.forEach(p=>{
 
-const value=
-r.result[key]||"";
+const no=
+r.result[p.key]||"";
+
+const h=
+r.horses.find(
+x=>String(x.no)===String(no)
+);
+
+const frame=
+h?.frame||
+(no?frameFromNo(no):"");
+
+const name=
+h?.name||
+(no?"馬名未入力":"未選択");
 
 const div=
 document.createElement("div");
@@ -3025,15 +3141,43 @@ div.className="result-horse";
 
 div.innerHTML=`
 
-<div class="result-top">
+<div class="result-place-title">
+${p.label}
+</div>
 
-<div class="result-place">
-${title}
+<div class="result-result-row">
+
+<div class="result-frame-box
+${frame?frameColorClass(frame):""}">
+${frame?frame+"枠":"枠"}
+</div>
+
+<div class="result-number-box">
+${no||"番"}
+</div>
+
+<div class="result-name-box">
+${esc(name)}
 </div>
 
 <button
-class="result-select ${value?"active":""}"
-onclick="openResultSelect('${key}')">
+class="result-change-btn"
+onclick="openResultSelect('${p.key}')">
+
+変更
+
+</button>
+
+</div>
+
+`;
+
+box.appendChild(div);
+
+});
+
+}
+
 
 ${value?
 resultHorseLabel(value,r):
@@ -3058,11 +3202,26 @@ r.horses.find(
 x=>String(x.no)===String(no)
 );
 
+const frame=
+h?.frame||frameFromNo(no);
+
+const name=
+h?.name||"馬名未入力";
+
 return`
 
-${h?.frame||frameFromNo(no)}枠・
+<span
+class="result-frame-chip ${frameColorClass(frame)}">
+${frame}枠
+</span>
+
+<span class="result-number-chip">
 ${no}番
-${h?.name||"馬名未入力"}
+</span>
+
+<span class="result-horse-name">
+${esc(name)}
+</span>
 
 `;
 

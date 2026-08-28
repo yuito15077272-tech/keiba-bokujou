@@ -585,7 +585,97 @@ $("savePredictionBtn").addEventListener(
   "click",
   function(){
 
-    alert("予想保存機能は次のブロックで完成させます。");
+    const track = $("track").value;
+    const raceNo = $("raceNo").value;
+    const surface = $("surface").value;
+    const distance = $("distance").value;
+    const raceClass = $("raceClass").value;
+    const ground = $("ground").value;
+    const fieldSize = $("fieldSize").value;
+    const raceName = $("raceName").value.trim();
+
+    const investment =
+      Number($("investment").value) || 0;
+
+    const returnAmount =
+      Number($("returnAmount").value) || 0;
+
+    const horses = getHorseData();
+
+    if(!track){
+      alert("競馬場を選択してください。");
+      return;
+    }
+
+    if(!raceNo){
+      alert("レース番号を選択してください。");
+      return;
+    }
+
+    if(!fieldSize){
+      alert("頭数を選択してください。");
+      return;
+    }
+
+    if(horses.length === 0){
+      alert("出走馬を入力してください。");
+      return;
+    }
+
+    const prediction = {
+
+      id:
+        Date.now().toString(),
+
+      createdAt:
+        new Date().toISOString(),
+
+      raceName,
+
+      track,
+
+      raceNo,
+
+      surface,
+
+      distance,
+
+      raceClass,
+
+      ground,
+
+      fieldSize:
+        Number(fieldSize),
+
+      horses,
+
+      investment,
+
+      returnAmount,
+
+      profit:
+        returnAmount - investment,
+
+      result:{
+        first:"",
+        second:"",
+        third:""
+      }
+
+    };
+
+    appState.predictions.unshift(prediction);
+
+    appState.currentPredictionId =
+      prediction.id;
+
+    saveData();
+
+    alert("予想を保存しました！");
+
+    renderResultPage();
+
+    showPage("resultPage");
 
   }
 );
@@ -594,7 +684,415 @@ $("savePredictionBtn").addEventListener(
 loadData();
 
 setupDistance();
+  
+function getHorseData(){
 
+  const rows =
+    document.querySelectorAll(".horse-row");
+
+  const horses = [];
+
+  rows.forEach((row,index)=>{
+
+    const frame =
+      row.querySelector(".horse-frame");
+
+    const number =
+      row.querySelector(".horse-number");
+
+    const name =
+      row.querySelector(".horse-name");
+
+    const mark =
+      row.querySelector(".horse-mark");
+
+    const popularity =
+      row.querySelector(".horse-popularity");
+
+    horses.push({
+
+      id: index + 1,
+
+      frame: frame ? frame.value : "",
+
+      number: number ? number.value : "",
+
+      name: name ? name.value : "",
+
+      mark: mark ? mark.value : "",
+
+      popularity:
+        popularity ? popularity.value : ""
+
+    });
+
+  });
+
+  return horses;
+
+}
+
+
+function restoreHorseData(horses){
+
+  if(!Array.isArray(horses)) return;
+
+  $("horseList").innerHTML = "";
+
+  horseCount = 0;
+
+  horses.forEach(horse=>{
+
+    createHorseRow();
+
+    const rows =
+      document.querySelectorAll(".horse-row");
+
+    const row =
+      rows[rows.length - 1];
+
+    if(!row) return;
+
+    const frame =
+      row.querySelector(".horse-frame");
+
+    const number =
+      row.querySelector(".horse-number");
+
+    const name =
+      row.querySelector(".horse-name");
+
+    const mark =
+      row.querySelector(".horse-mark");
+
+    const popularity =
+      row.querySelector(".horse-popularity");
+
+    if(frame){
+      frame.value = horse.frame || "";
+    }
+
+    if(number){
+      number.value = horse.number || "";
+    }
+
+    if(name){
+      name.value = horse.name || "";
+    }
+
+    if(mark){
+      mark.value = horse.mark || "";
+    }
+
+    if(popularity){
+      popularity.value =
+        horse.popularity || "";
+    }
+
+  });
+
+}
+  function renderResultPage(){
+
+  const container = $("resultContent");
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  if(appState.predictions.length === 0){
+
+    container.innerHTML = `
+      <div class="empty">
+        まだ保存された予想がありません。
+      </div>
+    `;
+
+    return;
+
+  }
+
+  const list = document.createElement("div");
+
+  appState.predictions.forEach(prediction=>{
+
+    const item = document.createElement("div");
+
+    item.style.border = "1px solid #e4e7ec";
+    item.style.borderRadius = "12px";
+    item.style.padding = "12px";
+    item.style.marginBottom = "10px";
+    item.style.background = "#fff";
+
+    const title =
+      prediction.raceName ||
+      `${prediction.track} ${prediction.raceNo}`;
+
+    item.innerHTML = `
+
+      <div style="font-weight:800;font-size:15px;">
+        ${escapeHTML(title)}
+      </div>
+
+      <div style="
+        margin-top:5px;
+        font-size:12px;
+        color:#667085;
+      ">
+        ${escapeHTML(prediction.track)}
+        ${escapeHTML(prediction.raceNo)}
+        ／
+        ${escapeHTML(prediction.surface)}
+        ${escapeHTML(prediction.distance)}m
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        style="margin-top:10px;"
+        onclick="openResultEditor('${prediction.id}')">
+        🏁 結果を入力
+      </button>
+
+    `;
+
+    list.appendChild(item);
+
+  });
+
+  container.appendChild(list);
+
+}
+
+
+function openResultEditor(id){
+
+  const prediction =
+    appState.predictions.find(
+      item => item.id === id
+    );
+
+  if(!prediction){
+
+    alert("予想データが見つかりません。");
+
+    return;
+
+  }
+
+  appState.currentPredictionId = id;
+
+  saveData();
+
+  const container = $("resultContent");
+
+  container.innerHTML = `
+
+    <div style="
+      background:#f8fafc;
+      border-radius:12px;
+      padding:12px;
+      margin-bottom:14px;
+    ">
+
+      <div style="
+        font-weight:800;
+        font-size:16px;
+      ">
+        ${escapeHTML(
+          prediction.raceName ||
+          prediction.track + " " + prediction.raceNo
+        )}
+      </div>
+
+      <div style="
+        margin-top:5px;
+        font-size:12px;
+        color:#667085;
+      ">
+        ${escapeHTML(prediction.track)}
+        ${escapeHTML(prediction.raceNo)}
+      </div>
+
+    </div>
+
+
+    <div class="field" style="margin-bottom:12px;">
+
+      <label>🥇 1着</label>
+
+      <select id="resultFirst">
+
+        <option value="">選択してください</option>
+
+        ${createResultOptions(
+          prediction.horses,
+          prediction.result.first
+        )}
+
+      </select>
+
+    </div>
+
+
+    <div class="field" style="margin-bottom:12px;">
+
+      <label>🥈 2着</label>
+
+      <select id="resultSecond">
+
+        <option value="">選択してください</option>
+
+        ${createResultOptions(
+          prediction.horses,
+          prediction.result.second
+        )}
+
+      </select>
+
+    </div>
+
+
+    <div class="field" style="margin-bottom:16px;">
+
+      <label>🥉 3着</label>
+
+      <select id="resultThird">
+
+        <option value="">選択してください</option>
+
+        ${createResultOptions(
+          prediction.horses,
+          prediction.result.third
+        )}
+
+      </select>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      onclick="saveRaceResult('${prediction.id}')">
+      💾 結果を保存
+    </button>
+
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      style="margin-top:8px;"
+      onclick="renderResultPage()">
+      ← レース一覧へ戻る
+    </button>
+
+  `;
+
+}
+
+
+function createResultOptions(horses, selected){
+
+  if(!Array.isArray(horses)){
+    return "";
+  }
+
+  return horses.map(horse=>{
+
+    const value =
+      horse.number || horse.id;
+
+    const name =
+      horse.name || "馬名未入力";
+
+    const label =
+      horse.number
+      ? `${horse.number}番 ${name}`
+      : name;
+
+    return `
+      <option
+        value="${escapeHTML(String(value))}"
+        ${String(selected) === String(value) ? "selected" : ""}>
+        ${escapeHTML(label)}
+      </option>
+    `;
+
+  }).join("");
+
+}
+
+
+function saveRaceResult(id){
+
+  const prediction =
+    appState.predictions.find(
+      item => item.id === id
+    );
+
+  if(!prediction){
+
+    alert("予想データが見つかりません。");
+
+    return;
+
+  }
+
+  const first = $("resultFirst").value;
+  const second = $("resultSecond").value;
+  const third = $("resultThird").value;
+
+  if(!first || !second || !third){
+
+    alert("1着・2着・3着をすべて選択してください。");
+
+    return;
+
+  }
+
+  if(
+    first === second ||
+    first === third ||
+    second === third
+  ){
+
+    alert("1着・2着・3着は別々の馬を選択してください。");
+
+    return;
+
+  }
+
+  prediction.result = {
+
+    first,
+    second,
+    third
+
+  };
+
+  prediction.resultSavedAt =
+    new Date().toISOString();
+
+  saveData();
+
+  alert("レース結果を保存しました！");
+
+  renderResultPage();
+
+}
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
 </script>
 
 </body>

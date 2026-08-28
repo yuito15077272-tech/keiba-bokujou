@@ -360,20 +360,121 @@ select:focus{
   </section>
 
 
-  <section id="statsPage" class="page">
+<section id="statsPage" class="page">
 
-    <div class="card">
-      <div class="card-title">📊 成績分析</div>
+  <div class="card">
 
-      <div id="statsContent">
-        <div class="empty">
-          まだデータがありません。
-        </div>
-      </div>
+    <div class="card-title">📊 成績分析</div>
+
+    <div class="stats-summary" id="statsSummary"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">🏇 競馬場別</div>
+
+    <div id="trackStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">📏 距離別</div>
+
+    <div id="distanceStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">🌱 芝・ダート・障害</div>
+
+    <div id="surfaceStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">🏆 クラス別</div>
+
+    <div id="classStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">🌦 馬場状態別</div>
+
+    <div id="groundStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">🎽 枠番別</div>
+
+    <div id="frameStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">◎ 印別</div>
+
+    <div id="markStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">🐎 頭数別</div>
+
+    <div id="fieldSizeStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">🔥 人気別</div>
+
+    <div id="popularityStats"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">📈 累計収支</div>
+
+    <div style="
+      width:100%;
+      overflow:hidden;
+    ">
+
+      <canvas
+        id="profitChart"
+        style="
+          width:100%;
+          max-width:100%;
+          height:260px;
+        ">
+      </canvas>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 </main>
 
@@ -1091,6 +1192,1312 @@ function escapeHTML(value){
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
+}
+  // ==============================
+// 起動時の初期処理
+// ==============================
+
+function initializeApp(){
+
+  // 結果画面を最新状態にする
+  renderResultPage();
+
+  // 保存データがあれば
+  // 最後に選択していたレースを記憶
+  if(appState.currentPredictionId){
+
+    const exists =
+      appState.predictions.some(
+        prediction =>
+          prediction.id ===
+          appState.currentPredictionId
+      );
+
+    if(!exists){
+
+      appState.currentPredictionId = null;
+
+      saveData();
+
+    }
+
+  }
+
+}
+
+
+// ページ表示時に結果画面を更新
+document.querySelectorAll(".nav button")
+.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      if(
+        this.dataset.page ===
+        "resultPage"
+      ){
+
+        renderResultPage();
+
+      }
+
+      if(
+        this.dataset.page ===
+        "statsPage"
+      ){
+
+        renderStatsPage();
+
+      }
+
+    }
+  );
+
+});
+
+
+initializeApp();
+// ==============================
+// 分析用 共通集計
+// ==============================
+
+function getFinishedPredictions(){
+
+  return appState.predictions.filter(
+    prediction =>
+      prediction &&
+      prediction.result &&
+      prediction.result.first &&
+      prediction.result.second &&
+      prediction.result.third
+  );
+
+}
+
+
+function formatYen(value){
+
+  const number = Number(value) || 0;
+
+  return number.toLocaleString("ja-JP") + "円";
+
+}
+
+
+function calculateStats(items){
+
+  const total =
+    items.length;
+
+  if(total === 0){
+
+    return {
+      total:0,
+      wins:0,
+      places:0,
+      returns:0,
+      investment:0,
+      profit:0,
+      recovery:0
+    };
+
+  }
+
+  let wins = 0;
+  let places = 0;
+  let returns = 0;
+  let investment = 0;
+  let profit = 0;
+
+  items.forEach(item=>{
+
+    investment +=
+      Number(item.investment) || 0;
+
+    returns +=
+      Number(item.returnAmount) || 0;
+
+    profit +=
+      Number(item.profit) || 0;
+
+    if(
+      item.result &&
+      item.result.first
+    ){
+      wins++;
+    }
+
+    if(
+      item.result &&
+      (
+        item.result.first ||
+        item.result.second ||
+        item.result.third
+      )
+    ){
+      places++;
+    }
+
+  });
+
+  const recovery =
+    investment > 0
+    ? (returns / investment) * 100
+    : 0;
+
+  return {
+
+    total,
+
+    wins,
+
+    places,
+
+    returns,
+
+    investment,
+
+    profit,
+
+    recovery
+
+  };
+
+}
+
+
+function createStatsTable(
+  data,
+  emptyText = "データがありません。"
+){
+
+  if(!data || data.length === 0){
+
+    return `
+      <div class="empty">
+        ${emptyText}
+      </div>
+    `;
+
+  }
+
+  return `
+
+    <div style="
+      overflow-x:auto;
+      width:100%;
+    ">
+
+      <table style="
+        width:100%;
+        border-collapse:collapse;
+        font-size:12px;
+        min-width:500px;
+      ">
+
+        <thead>
+
+          <tr>
+
+            <th style="
+              text-align:left;
+              padding:10px 6px;
+              border-bottom:2px solid #e4e7ec;
+            ">
+              項目
+            </th>
+
+            <th style="
+              text-align:right;
+              padding:10px 6px;
+              border-bottom:2px solid #e4e7ec;
+            ">
+              件数
+            </th>
+
+            <th style="
+              text-align:right;
+              padding:10px 6px;
+              border-bottom:2px solid #e4e7ec;
+            ">
+              投資
+            </th>
+
+            <th style="
+              text-align:right;
+              padding:10px 6px;
+              border-bottom:2px solid #e4e7ec;
+            ">
+              回収
+            </th>
+
+            <th style="
+              text-align:right;
+              padding:10px 6px;
+              border-bottom:2px solid #e4e7ec;
+            ">
+              収支
+            </th>
+
+            <th style="
+              text-align:right;
+              padding:10px 6px;
+              border-bottom:2px solid #e4e7ec;
+            ">
+              回収率
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${data.map(row=>{
+
+            const profitClass =
+              Number(row.profit) >= 0
+              ? "color:#15803d;"
+              : "color:#dc2626;";
+
+            return `
+
+              <tr>
+
+                <td style="
+                  padding:10px 6px;
+                  border-bottom:1px solid #eef0f3;
+                  font-weight:700;
+                ">
+                  ${escapeHTML(row.label)}
+                </td>
+
+                <td style="
+                  text-align:right;
+                  padding:10px 6px;
+                  border-bottom:1px solid #eef0f3;
+                ">
+                  ${row.total}
+                </td>
+
+                <td style="
+                  text-align:right;
+                  padding:10px 6px;
+                  border-bottom:1px solid #eef0f3;
+                ">
+                  ${formatYen(row.investment)}
+                </td>
+
+                <td style="
+                  text-align:right;
+                  padding:10px 6px;
+                  border-bottom:1px solid #eef0f3;
+                ">
+                  ${formatYen(row.returns)}
+                </td>
+
+                <td style="
+                  text-align:right;
+                  padding:10px 6px;
+                  border-bottom:1px solid #eef0f3;
+                  font-weight:800;
+                  ${profitClass}
+                ">
+                  ${formatYen(row.profit)}
+                </td>
+
+                <td style="
+                  text-align:right;
+                  padding:10px 6px;
+                  border-bottom:1px solid #eef0f3;
+                  font-weight:800;
+                ">
+                  ${row.recovery.toFixed(1)}%
+                </td>
+
+              </tr>
+
+            `;
+
+          }).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+function groupPredictionsBy(
+  predictions,
+  keyFunction
+){
+
+  const groups = {};
+
+  predictions.forEach(prediction=>{
+
+    const key =
+      keyFunction(prediction);
+
+    if(
+      key === null ||
+      key === undefined ||
+      key === ""
+    ){
+      return;
+    }
+
+    if(!groups[key]){
+      groups[key] = [];
+    }
+
+    groups[key].push(prediction);
+
+  });
+
+  return groups;
+
+}
+
+
+function buildPredictionStats(
+  predictions,
+  keyFunction
+){
+
+  const groups =
+    groupPredictionsBy(
+      predictions,
+      keyFunction
+    );
+
+  return Object.keys(groups)
+    .map(label=>{
+
+      const stats =
+        calculateStats(
+          groups[label]
+        );
+
+      return {
+
+        label,
+
+        total:
+          stats.total,
+
+        investment:
+          stats.investment,
+
+        returns:
+          stats.returns,
+
+        profit:
+          stats.profit,
+
+        recovery:
+          stats.recovery
+
+      };
+
+    });
+
+}
+// ==============================
+// 分析ページ表示
+// ==============================
+
+function renderStatsPage(){
+
+  const predictions =
+    getFinishedPredictions();
+
+  // ------------------------------
+  // 全体集計
+  // ------------------------------
+
+  const overall =
+    calculateStats(predictions);
+
+  const summary =
+    $("statsSummary");
+
+  if(summary){
+
+    summary.innerHTML = `
+
+      <div style="
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+      ">
+
+        <div style="
+          background:#f8fafc;
+          border-radius:12px;
+          padding:12px;
+        ">
+          <div style="
+            font-size:11px;
+            color:#667085;
+          ">
+            レース数
+          </div>
+
+          <div style="
+            font-size:22px;
+            font-weight:800;
+            margin-top:4px;
+          ">
+            ${overall.total}
+          </div>
+        </div>
+
+
+        <div style="
+          background:#f8fafc;
+          border-radius:12px;
+          padding:12px;
+        ">
+          <div style="
+            font-size:11px;
+            color:#667085;
+          ">
+            投資額
+          </div>
+
+          <div style="
+            font-size:20px;
+            font-weight:800;
+            margin-top:4px;
+          ">
+            ${formatYen(overall.investment)}
+          </div>
+        </div>
+
+
+        <div style="
+          background:#f8fafc;
+          border-radius:12px;
+          padding:12px;
+        ">
+          <div style="
+            font-size:11px;
+            color:#667085;
+          ">
+            回収額
+          </div>
+
+          <div style="
+            font-size:20px;
+            font-weight:800;
+            margin-top:4px;
+          ">
+            ${formatYen(overall.returns)}
+          </div>
+        </div>
+
+
+        <div style="
+          background:#f8fafc;
+          border-radius:12px;
+          padding:12px;
+        ">
+          <div style="
+            font-size:11px;
+            color:#667085;
+          ">
+            収支
+          </div>
+
+          <div style="
+            font-size:20px;
+            font-weight:800;
+            margin-top:4px;
+          ">
+            ${formatYen(overall.profit)}
+          </div>
+        </div>
+
+
+        <div style="
+          background:#f8fafc;
+          border-radius:12px;
+          padding:12px;
+          grid-column:1 / -1;
+        ">
+          <div style="
+            font-size:11px;
+            color:#667085;
+          ">
+            回収率
+          </div>
+
+          <div style="
+            font-size:24px;
+            font-weight:800;
+            margin-top:4px;
+          ">
+            ${overall.recovery.toFixed(1)}%
+          </div>
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  // ------------------------------
+  // 競馬場別
+  // ------------------------------
+
+  const trackStats =
+    buildPredictionStats(
+      predictions,
+      prediction => prediction.track
+    );
+
+  const trackBox =
+    $("trackStats");
+
+  if(trackBox){
+
+    trackBox.innerHTML =
+      createStatsTable(trackStats);
+
+  }
+
+
+  // ------------------------------
+  // 距離別
+  // ------------------------------
+
+  const distanceStats =
+    buildPredictionStats(
+      predictions,
+      prediction =>
+        prediction.distance
+        ? prediction.distance + "m"
+        : ""
+    );
+
+  const distanceBox =
+    $("distanceStats");
+
+  if(distanceBox){
+
+    distanceBox.innerHTML =
+      createStatsTable(distanceStats);
+
+  }
+
+
+  // ------------------------------
+  // 芝・ダート・障害
+  // ------------------------------
+
+  const surfaceStats =
+    buildPredictionStats(
+      predictions,
+      prediction => prediction.surface
+    );
+
+  const surfaceBox =
+    $("surfaceStats");
+
+  if(surfaceBox){
+
+    surfaceBox.innerHTML =
+      createStatsTable(surfaceStats);
+
+  }
+
+
+  // ------------------------------
+  // クラス別
+  // ------------------------------
+
+  const classStats =
+    buildPredictionStats(
+      predictions,
+      prediction => prediction.raceClass
+    );
+
+  const classBox =
+    $("classStats");
+
+  if(classBox){
+
+    classBox.innerHTML =
+      createStatsTable(classStats);
+
+  }
+
+
+  // ------------------------------
+  // 馬場状態別
+  // ------------------------------
+
+  const groundStats =
+    buildPredictionStats(
+      predictions,
+      prediction => prediction.ground
+    );
+
+  const groundBox =
+    $("groundStats");
+
+  if(groundBox){
+
+    groundBox.innerHTML =
+      createStatsTable(groundStats);
+
+  }
+
+
+  // ------------------------------
+  // 枠番別
+  // ------------------------------
+
+  const frameGroups = {};
+
+  predictions.forEach(prediction=>{
+
+    if(!Array.isArray(prediction.horses)){
+      return;
+    }
+
+    prediction.horses.forEach(horse=>{
+
+      if(!horse.frame){
+        return;
+      }
+
+      if(!frameGroups[horse.frame]){
+        frameGroups[horse.frame] = [];
+      }
+
+      frameGroups[horse.frame].push({
+        investment:
+          prediction.investment,
+
+        returnAmount:
+          prediction.returnAmount,
+
+        profit:
+          prediction.profit,
+
+        result:
+          prediction.result
+      });
+
+    });
+
+  });
+
+  const frameStats =
+    Object.keys(frameGroups)
+      .sort((a,b)=>Number(a)-Number(b))
+      .map(label=>{
+
+        const stats =
+          calculateStats(
+            frameGroups[label]
+          );
+
+        return {
+
+          label:
+            label + "枠",
+
+          total:
+            stats.total,
+
+          investment:
+            stats.investment,
+
+          returns:
+            stats.returns,
+
+          profit:
+            stats.profit,
+
+          recovery:
+            stats.recovery
+
+        };
+
+      });
+
+  const frameBox =
+    $("frameStats");
+
+  if(frameBox){
+
+    frameBox.innerHTML =
+      createStatsTable(frameStats);
+
+  }
+
+
+  // ------------------------------
+  // 印別
+  // ------------------------------
+
+  const markGroups = {};
+
+  predictions.forEach(prediction=>{
+
+    if(!Array.isArray(prediction.horses)){
+      return;
+    }
+
+    prediction.horses.forEach(horse=>{
+
+      if(!horse.mark){
+        return;
+      }
+
+      if(!markGroups[horse.mark]){
+        markGroups[horse.mark] = [];
+      }
+
+      markGroups[horse.mark].push({
+
+        investment:
+          prediction.investment,
+
+        returnAmount:
+          prediction.returnAmount,
+
+        profit:
+          prediction.profit,
+
+        result:
+          prediction.result
+
+      });
+
+    });
+
+  });
+
+  const markStats =
+    Object.keys(markGroups)
+      .map(label=>{
+
+        const stats =
+          calculateStats(
+            markGroups[label]
+          );
+
+        return {
+
+          label,
+
+          total:
+            stats.total,
+
+          investment:
+            stats.investment,
+
+          returns:
+            stats.returns,
+
+          profit:
+            stats.profit,
+
+          recovery:
+            stats.recovery
+
+        };
+
+      });
+
+  const markBox =
+    $("markStats");
+
+  if(markBox){
+
+    markBox.innerHTML =
+      createStatsTable(markStats);
+
+  }
+
+
+  // ------------------------------
+  // 頭数別
+  // ------------------------------
+
+  const fieldSizeStats =
+    buildPredictionStats(
+      predictions,
+      prediction =>
+        prediction.fieldSize
+        ? prediction.fieldSize + "頭"
+        : ""
+    );
+
+  const fieldSizeBox =
+    $("fieldSizeStats");
+
+  if(fieldSizeBox){
+
+    fieldSizeBox.innerHTML =
+      createStatsTable(fieldSizeStats);
+
+  }
+
+
+  // ------------------------------
+  // 人気別
+  // ------------------------------
+
+  const popularityGroups = {};
+
+  predictions.forEach(prediction=>{
+
+    if(!Array.isArray(prediction.horses)){
+      return;
+    }
+
+    prediction.horses.forEach(horse=>{
+
+      if(!horse.popularity){
+        return;
+      }
+
+      const key =
+        horse.popularity + "番人気";
+
+      if(!popularityGroups[key]){
+        popularityGroups[key] = [];
+      }
+
+      popularityGroups[key].push({
+
+        investment:
+          prediction.investment,
+
+        returnAmount:
+          prediction.returnAmount,
+
+        profit:
+          prediction.profit,
+
+        result:
+          prediction.result
+
+      });
+
+    });
+
+  });
+
+  const popularityStats =
+    Object.keys(popularityGroups)
+      .sort(
+        (a,b)=>
+          parseInt(a) -
+          parseInt(b)
+      )
+      .map(label=>{
+
+        const stats =
+          calculateStats(
+            popularityGroups[label]
+          );
+
+        return {
+
+          label,
+
+          total:
+            stats.total,
+
+          investment:
+            stats.investment,
+
+          returns:
+            stats.returns,
+
+          profit:
+            stats.profit,
+
+          recovery:
+            stats.recovery
+
+        };
+
+      });
+
+  const popularityBox =
+    $("popularityStats");
+
+  if(popularityBox){
+
+    popularityBox.innerHTML =
+      createStatsTable(
+        popularityStats
+      );
+
+  }
+
+
+  // ------------------------------
+  // 累計収支グラフ
+  // ------------------------------
+
+  renderProfitChart(
+    predictions
+  );
+
+}
+// ==============================
+// 累計収支グラフ
+// ==============================
+
+function renderProfitChart(predictions){
+
+  const canvas = $("profitChart");
+
+  if(!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  const width =
+    canvas.clientWidth || 320;
+
+  const height = 260;
+
+  const ratio =
+    window.devicePixelRatio || 1;
+
+  canvas.width =
+    width * ratio;
+
+  canvas.height =
+    height * ratio;
+
+  canvas.style.height =
+    height + "px";
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  if(
+    !predictions ||
+    predictions.length === 0
+  ){
+
+    ctx.fillStyle = "#98a2b3";
+
+    ctx.font =
+      "14px -apple-system,BlinkMacSystemFont,sans-serif";
+
+    ctx.textAlign = "center";
+
+    ctx.fillText(
+      "結果が保存されたレースがありません",
+      width / 2,
+      height / 2
+    );
+
+    return;
+
+  }
+
+
+  let cumulative = 0;
+
+  const values = [];
+
+  predictions.forEach(prediction=>{
+
+    cumulative +=
+      Number(prediction.profit) || 0;
+
+    values.push(cumulative);
+
+  });
+
+
+  let minValue =
+    Math.min(0,...values);
+
+  let maxValue =
+    Math.max(0,...values);
+
+
+  if(minValue === maxValue){
+
+    minValue -= 1000;
+
+    maxValue += 1000;
+
+  }
+
+
+  const paddingLeft = 48;
+  const paddingRight = 12;
+  const paddingTop = 20;
+  const paddingBottom = 35;
+
+  const chartWidth =
+    width -
+    paddingLeft -
+    paddingRight;
+
+  const chartHeight =
+    height -
+    paddingTop -
+    paddingBottom;
+
+
+  function xPosition(index){
+
+    if(values.length === 1){
+      return paddingLeft +
+        chartWidth / 2;
+    }
+
+    return paddingLeft +
+      (
+        index /
+        (values.length - 1)
+      ) *
+      chartWidth;
+
+  }
+
+
+  function yPosition(value){
+
+    return paddingTop +
+      (
+        maxValue - value
+      ) /
+      (
+        maxValue - minValue
+      ) *
+      chartHeight;
+
+  }
+
+
+  // ------------------------------
+  // グリッド
+  // ------------------------------
+
+  ctx.strokeStyle = "#e4e7ec";
+
+  ctx.lineWidth = 1;
+
+  for(let i=0;i<=4;i++){
+
+    const value =
+      minValue +
+      (
+        maxValue - minValue
+      ) *
+      (i / 4);
+
+    const y =
+      yPosition(value);
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      paddingLeft,
+      y
+    );
+
+    ctx.lineTo(
+      width - paddingRight,
+      y
+    );
+
+    ctx.stroke();
+
+
+    ctx.fillStyle =
+      "#667085";
+
+    ctx.font =
+      "10px -apple-system,BlinkMacSystemFont,sans-serif";
+
+    ctx.textAlign =
+      "right";
+
+    ctx.fillText(
+      Math.round(value).toLocaleString("ja-JP"),
+      paddingLeft - 6,
+      y + 3
+    );
+
+  }
+
+
+  // ------------------------------
+  // 0円ライン
+  // ------------------------------
+
+  if(
+    minValue <= 0 &&
+    maxValue >= 0
+  ){
+
+    const zeroY =
+      yPosition(0);
+
+    ctx.strokeStyle =
+      "#98a2b3";
+
+    ctx.lineWidth = 1.5;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      paddingLeft,
+      zeroY
+    );
+
+    ctx.lineTo(
+      width - paddingRight,
+      zeroY
+    );
+
+    ctx.stroke();
+
+  }
+
+
+  // ------------------------------
+  // グラフ線
+  // ------------------------------
+
+  ctx.beginPath();
+
+  values.forEach((value,index)=>{
+
+    const x =
+      xPosition(index);
+
+    const y =
+      yPosition(value);
+
+    if(index === 0){
+
+      ctx.moveTo(x,y);
+
+    }else{
+
+      ctx.lineTo(x,y);
+
+    }
+
+  });
+
+
+  ctx.strokeStyle =
+    "#2563eb";
+
+  ctx.lineWidth = 3;
+
+  ctx.lineJoin = "round";
+
+  ctx.lineCap = "round";
+
+  ctx.stroke();
+
+
+  // ------------------------------
+  // ポイント
+  // ------------------------------
+
+  values.forEach((value,index)=>{
+
+    const x =
+      xPosition(index);
+
+    const y =
+      yPosition(value);
+
+    ctx.beginPath();
+
+    ctx.arc(
+      x,
+      y,
+      3,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fillStyle =
+      "#2563eb";
+
+    ctx.fill();
+
+  });
+
+
+  // ------------------------------
+  // X軸
+  // ------------------------------
+
+  ctx.fillStyle =
+    "#667085";
+
+  ctx.font =
+    "10px -apple-system,BlinkMacSystemFont,sans-serif";
+
+  ctx.textAlign =
+    "center";
+
+
+  if(values.length > 0){
+
+    ctx.fillText(
+      "1",
+      xPosition(0),
+      height - 10
+    );
+
+    if(values.length > 1){
+
+      ctx.fillText(
+        String(values.length),
+        xPosition(values.length - 1),
+        height - 10
+      );
+
+    }
+
+  }
 
 }
 </script>

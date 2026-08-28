@@ -5952,5 +5952,909 @@ READY
 console.log(
 "🏇 競馬牧場 FINAL PATCH loaded"
 );
+<script>
+"use strict";
 
+/* =====================================================
+⑨ FINAL FIX
+===================================================== */
+
+/* -----------------------------------------------------
+1. 馬名を保持したまま再描画
+----------------------------------------------------- */
+
+function saveHorseNames(){
+
+horsesForm.forEach((h,i)=>{
+
+const input=
+document.querySelector(
+`[data-name="${i}"]`
+);
+
+if(input){
+
+h.name=input.value;
+
+}
+
+});
+
+}
+
+
+/* -----------------------------------------------------
+2. 枠・馬番・印を開く前に馬名を保存
+----------------------------------------------------- */
+
+const originalOpenMark=
+window.openMark;
+
+window.openMark=function(i){
+
+saveHorseNames();
+
+if(typeof originalOpenMark==="function"){
+
+originalOpenMark(i);
+
+}
+
+};
+
+
+const originalOpenFrame=
+window.openFrame;
+
+window.openFrame=function(i){
+
+saveHorseNames();
+
+if(typeof originalOpenFrame==="function"){
+
+originalOpenFrame(i);
+
+}
+
+};
+
+
+const originalOpenNumber=
+window.openNumber;
+
+window.openNumber=function(i){
+
+saveHorseNames();
+
+if(typeof originalOpenNumber==="function"){
+
+originalOpenNumber(i);
+
+}
+
+};
+
+
+/* -----------------------------------------------------
+3. 馬名入力中に別操作しても保持
+----------------------------------------------------- */
+
+document.addEventListener(
+"input",
+e=>{
+
+if(
+e.target &&
+e.target.matches(".horse-name-input")
+){
+
+const i=
+Number(e.target.dataset.name);
+
+if(
+Number.isInteger(i) &&
+horsesForm[i]
+){
+
+horsesForm[i].name=
+e.target.value;
+
+}
+
+}
+
+});
+
+
+/* -----------------------------------------------------
+4. 結果入力ボタンを確実に動かす
+----------------------------------------------------- */
+
+document.addEventListener(
+"click",
+e=>{
+
+const btn=
+e.target.closest(
+'button[onclick^="resultEditor"]'
+);
+
+if(!btn)return;
+
+const match=
+btn.getAttribute("onclick")
+.match(
+/resultEditor\(['"](.+?)['"]\)/
+);
+
+if(!match)return;
+
+e.preventDefault();
+e.stopPropagation();
+
+const id=match[1];
+
+if(typeof resultEditor==="function"){
+
+resultEditor(id);
+
+}
+
+},
+true
+);
+
+
+/* -----------------------------------------------------
+5. 結果入力画面を直接開く処理
+----------------------------------------------------- */
+
+window.openResultById=function(id){
+
+const r=
+db.races.find(
+x=>String(x.id)===
+String(id)
+);
+
+if(!r){
+
+toast("レースが見つかりません");
+
+return;
+
+}
+
+resultRace=r;
+
+const list=
+document.getElementById(
+"resultList"
+);
+
+if(!list)return;
+
+list.innerHTML=`
+
+<div class="card"
+style="background:#f8fafc">
+
+<div class="race-name">
+
+🏆 ${esc(
+r.raceName||
+"レース名未設定"
+)}
+
+</div>
+
+<div class="small">
+
+${esc(r.date)}
+｜
+${esc(r.track)}
+${r.raceNo}R
+｜
+${esc(r.surface)}
+${esc(r.distance)}
+｜
+${r.fieldSize}頭
+｜
+${esc(r.className)}
+｜
+馬場 ${esc(r.ground)}
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🎯 的中判定</h3>
+
+<div class="place-buttons">
+
+<button
+id="hitBtn"
+class="place-btn ${
+r.result.hitStatus==="hit"?
+"active":""
+}"
+onclick="setHit('hit')">
+
+🎯 的中
+
+</button>
+
+<button
+id="missBtn"
+class="place-btn ${
+r.result.hitStatus==="miss"?
+"active":""
+}"
+onclick="setHit('miss')">
+
+❌ 不的中
+
+</button>
+
+<button
+id="autoBtn"
+class="place-btn ${
+r.result.hitStatus==="auto"?
+"active":""
+}"
+onclick="setHit('auto')">
+
+自動判定
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>🏁 着順</h3>
+
+<div id="resultPlaces"></div>
+
+</div>
+
+
+<div class="card">
+
+<h3>💰 オッズ・人気・払戻</h3>
+
+<div class="grid2">
+
+<div>
+
+<label>人気</label>
+
+<input
+id="resultPop"
+type="number"
+min="1"
+value="${r.popularity||""}"
+placeholder="例：3">
+
+</div>
+
+<div>
+
+<label>オッズ</label>
+
+<input
+id="resultOdds"
+type="number"
+min="0"
+step="0.1"
+value="${r.odds||""}"
+placeholder="例：8.5">
+
+</div>
+
+</div>
+
+
+<div style="margin-top:10px">
+
+<label>払戻金</label>
+
+<input
+id="ret"
+type="number"
+min="0"
+value="${r.result.returned||0}"
+placeholder="例：3500">
+
+</div>
+
+</div>
+
+
+<button
+class="btn green full"
+onclick="saveResult('${r.id}')">
+
+💾 結果を保存して収支に反映
+
+</button>
+
+
+<button
+class="btn light full"
+style="margin-top:8px"
+onclick="renderResultList()">
+
+結果待ち一覧へ
+
+</button>
+
+`;
+
+renderResultPlaces();
+
+showPage("result");
+
+};
+
+
+/* -----------------------------------------------------
+6. 結果一覧のボタンを確実にする
+----------------------------------------------------- */
+
+function renderResultList(){
+
+const box=
+document.getElementById("resultList");
+
+if(!box)return;
+
+const pending=
+db.races.filter(
+r=>!r.result.done
+);
+
+if(!pending.length){
+
+box.innerHTML=
+`
+<div class="empty">
+
+結果待ちのレースはありません。<br>
+予想を登録するとここに表示されます。
+
+</div>
+`;
+
+return;
+
+}
+
+box.innerHTML=
+pending.map(r=>`
+
+<div class="raceitem">
+
+<div>
+
+<div class="race-name">
+
+${esc(
+r.raceName||
+"レース名未設定"
+)}
+
+</div>
+
+<b>
+
+${esc(r.date)}
+｜
+${esc(r.track)}
+${r.raceNo}R
+
+</b>
+
+<div class="meta">
+
+${esc(r.surface)}
+${esc(r.distance)}
+｜
+${r.fieldSize}頭
+｜
+${esc(r.className)}
+｜
+馬場 ${esc(r.ground)}
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+data-result-id="${esc(r.id)}">
+
+結果入力
+
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* 結果入力ボタン */
+
+document.addEventListener(
+"click",
+e=>{
+
+const btn=
+e.target.closest(
+"[data-result-id]"
+);
+
+if(!btn)return;
+
+openResultById(
+btn.dataset.resultId
+);
+
+}
+);
+
+
+/* -----------------------------------------------------
+7. 不要な詳細分析を削除
+----------------------------------------------------- */
+
+function removeUnwantedTabs(){
+
+const unwanted=[
+"枠番別",
+"印別",
+"頭数別",
+"人気別"
+];
+
+document
+.querySelectorAll(
+".detail-tab"
+)
+.forEach(tab=>{
+
+const text=
+tab.textContent.trim();
+
+if(
+unwanted.includes(text)
+){
+
+tab.remove();
+
+}
+
+});
+
+}
+
+
+/* -----------------------------------------------------
+8. グラフの目盛りを5000円刻みにする
+----------------------------------------------------- */
+
+function drawChart(){
+
+const canvas=
+document.getElementById("chart");
+
+if(!canvas)return;
+
+const ctx=
+canvas.getContext("2d");
+
+const rect=
+canvas.getBoundingClientRect();
+
+const dpr=
+window.devicePixelRatio||1;
+
+const width=
+Math.max(1,rect.width);
+
+const height=
+Math.max(1,rect.height);
+
+canvas.width=
+width*dpr;
+
+canvas.height=
+height*dpr;
+
+ctx.setTransform(
+dpr,
+0,
+0,
+dpr,
+0,
+0
+);
+
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
+
+
+const done=
+db.races.filter(
+r=>r.result.done
+)
+.slice()
+.reverse();
+
+
+let values=[0];
+
+let total=0;
+
+done.forEach(r=>{
+
+total+=profit(r);
+
+values.push(total);
+
+});
+
+
+if(values.length===1){
+
+values.push(0);
+
+}
+
+
+let min=Math.min(...values);
+let max=Math.max(...values);
+
+
+/* 5000円単位で上下を丸める */
+
+min=
+Math.floor(
+min/5000
+)*5000;
+
+max=
+Math.ceil(
+max/5000
+)*5000;
+
+
+/* 最低でも±5000円 */
+
+if(min===max){
+
+min-=5000;
+max+=5000;
+
+}
+
+
+/* 上下に余白 */
+
+const range=max-min;
+
+if(range<10000){
+
+min-=5000;
+max+=5000;
+
+}
+
+
+const padX=24;
+const padY=22;
+
+const graphW=
+width-padX*2;
+
+const graphH=
+height-padY*2;
+
+
+/* グリッド */
+
+ctx.strokeStyle=
+"#e4e7ec";
+
+ctx.lineWidth=1;
+
+const start=
+Math.ceil(min/5000)*5000;
+
+for(
+let y=start;
+y<=max;
+y+=5000
+){
+
+const py=
+padY+
+(max-y)/
+(max-min)*
+graphH;
+
+ctx.beginPath();
+
+ctx.moveTo(
+padX,
+py
+);
+
+ctx.lineTo(
+width-padX,
+py
+);
+
+ctx.stroke();
+
+}
+
+
+/* 0円ライン */
+
+if(
+min<=0 &&
+max>=0
+){
+
+const py=
+padY+
+(max-0)/
+(max-min)*
+graphH;
+
+ctx.strokeStyle=
+"#98a2b3";
+
+ctx.lineWidth=1.5;
+
+ctx.beginPath();
+
+ctx.moveTo(
+padX,
+py
+);
+
+ctx.lineTo(
+width-padX,
+py
+);
+
+ctx.stroke();
+
+}
+
+
+/* グラフ線 */
+
+ctx.strokeStyle=
+"#2563eb";
+
+ctx.lineWidth=4;
+
+ctx.lineJoin="round";
+
+ctx.lineCap="round";
+
+ctx.beginPath();
+
+values.forEach((v,i)=>{
+
+const x=
+padX+
+(i/(values.length-1))*
+graphW;
+
+const y=
+padY+
+(max-v)/
+(max-min)*
+graphH;
+
+if(i===0){
+
+ctx.moveTo(x,y);
+
+}else{
+
+ctx.lineTo(x,y);
+
+}
+
+});
+
+ctx.stroke();
+
+
+/* ポイント */
+
+ctx.fillStyle=
+"#111827";
+
+values.forEach((v,i)=>{
+
+const x=
+padX+
+(i/(values.length-1))*
+graphW;
+
+const y=
+padY+
+(max-v)/
+(max-min)*
+graphH;
+
+ctx.beginPath();
+
+ctx.arc(
+x,
+y,
+5,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+});
+
+
+/* 左側の5000円目盛り */
+
+const scale=
+document.querySelector(
+".chart-scale"
+);
+
+if(scale){
+
+scale.innerHTML="";
+
+for(
+let y=start;
+y<=max;
+y+=5000
+){
+
+if(y<min)continue;
+
+const py=
+padY+
+(max-y)/
+(max-min)*
+graphH;
+
+const label=
+document.createElement("div");
+
+label.className=
+"scale-label";
+
+label.style.top=
+py+"px";
+
+const sign=
+y>0?"+":"";
+
+label.textContent=
+sign+
+y.toLocaleString("ja-JP")+
+"円";
+
+scale.appendChild(label);
+
+}
+
+}
+
+}
+
+
+/* -----------------------------------------------------
+9. 成績画面を開いた時に不要タブを消す
+----------------------------------------------------- */
+
+const originalShowPage=
+window.showPage;
+
+window.showPage=function(id){
+
+if(
+typeof originalShowPage==="function"
+){
+
+originalShowPage(id);
+
+}
+
+if(id==="stats"){
+
+setTimeout(()=>{
+
+removeUnwantedTabs();
+
+drawChart();
+
+},100);
+
+}
+
+};
+
+
+/* -----------------------------------------------------
+10. 起動時にも不要タブを削除
+----------------------------------------------------- */
+
+setTimeout(()=>{
+
+removeUnwantedTabs();
+
+if(
+document
+.getElementById("stats")
+?.classList.contains("active")
+){
+
+drawChart();
+
+}
+
+},300);
+
+
+/* -----------------------------------------------------
+11. リサイズ対応
+----------------------------------------------------- */
+
+window.addEventListener(
+"resize",
+()=>{
+
+if(
+document
+.getElementById("stats")
+?.classList.contains("active")
+){
+
+drawChart();
+
+}
+
+}
+);
+
+
+/* =====================================================
+⑨ COMPLETE
+===================================================== */
+
+console.log(
+"🏇 競馬牧場 ⑨ FINAL FIX loaded"
+);
+
+</script>
 </script>

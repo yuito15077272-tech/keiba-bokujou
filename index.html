@@ -35,11 +35,17 @@ font-family:-apple-system,BlinkMacSystemFont,
 "Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
 }
 
-body{min-height:100vh;}
+body{
+min-height:100vh;
+}
 
-button,input,select,textarea{font:inherit;}
+button,input,select,textarea{
+font:inherit;
+}
 
-button{cursor:pointer;}
+button{
+cursor:pointer;
+}
 
 .app{
 max-width:760px;
@@ -93,7 +99,9 @@ display:none;
 padding:14px;
 }
 
-.page.active{display:block;}
+.page.active{
+display:block;
+}
 
 /* CARD */
 
@@ -136,7 +144,9 @@ padding:10px 12px;
 outline:none;
 }
 
-input,select{height:46px;}
+input,select{
+height:46px;
+}
 
 textarea{
 min-height:130px;
@@ -151,7 +161,9 @@ border-color:var(--blue);
 box-shadow:0 0 0 3px #2563eb18;
 }
 
-select{font-weight:800;}
+select{
+font-weight:800;
+}
 
 .grid2{
 display:grid;
@@ -173,25 +185,60 @@ padding:10px 13px;
 font-weight:950;
 }
 
-.btn:active{transform:scale(.985);}
+.btn:active{
+transform:scale(.985);
+}
 
-.primary{background:var(--navy);color:#fff;}
-.green{background:var(--green);color:#fff;}
-.red{background:var(--red);color:#fff;}
-.light{background:#eef2f6;color:var(--ink);}
-.gold{background:#f4d66d;color:#3b2b00;}
-.blue{background:var(--blue);color:#fff;}
-.full{width:100%;}
+.primary{
+background:var(--navy);
+color:#fff;
+}
+
+.green{
+background:var(--green);
+color:#fff;
+}
+
+.red{
+background:var(--red);
+color:#fff;
+}
+
+.light{
+background:#eef2f6;
+color:var(--ink);
+}
+
+.gold{
+background:#f4d66d;
+color:#3b2b00;
+}
+
+.blue{
+background:var(--blue);
+color:#fff;
+}
+
+.full{
+width:100%;
+}
 
 .small{
 font-size:12px;
 color:var(--muted);
 }
 
-.center{text-align:center;}
+.center{
+text-align:center;
+}
 
-.plus{color:var(--green)!important;}
-.minus{color:var(--red)!important;}
+.plus{
+color:var(--green)!important;
+}
+
+.minus{
+color:var(--red)!important;
+}
 
 .divider{
 height:1px;
@@ -363,14 +410,46 @@ font-weight:950;
 font-size:17px;
 }
 
-.frame-1{background:#fff;color:#111;border-color:#999;}
-.frame-2{background:#111;color:#fff;}
-.frame-3{background:#dc2626;color:#fff;}
-.frame-4{background:#2563eb;color:#fff;}
-.frame-5{background:#facc15;color:#111;}
-.frame-6{background:#16a34a;color:#fff;}
-.frame-7{background:#f97316;color:#fff;}
-.frame-8{background:#f472b6;color:#111;}
+.frame-1{
+background:#fff;
+color:#111;
+border-color:#999;
+}
+
+.frame-2{
+background:#111;
+color:#fff;
+}
+
+.frame-3{
+background:#dc2626;
+color:#fff;
+}
+
+.frame-4{
+background:#2563eb;
+color:#fff;
+}
+
+.frame-5{
+background:#facc15;
+color:#111;
+}
+
+.frame-6{
+background:#16a34a;
+color:#fff;
+}
+
+.frame-7{
+background:#f97316;
+color:#fff;
+}
+
+.frame-8{
+background:#f472b6;
+color:#111;
+}
 
 .frame-btn.selected{
 box-shadow:0 0 0 3px #111827;
@@ -426,27 +505,8 @@ background:#111827;
 color:#fff;
 }
 
-.mark-choice.mark-delete{font-size:13px;}
-
-/* IMPORT */
-
-.import-box{
-background:#f8fafc;
-border:1px dashed #cbd5e1;
-border-radius:13px;
-padding:12px;
-}
-
-.import-example{
-background:#fff;
-border:1px solid var(--line);
-border-radius:10px;
-padding:10px;
-font-size:11px;
-line-height:1.8;
-font-family:monospace;
-overflow:auto;
-white-space:nowrap;
+.mark-choice.mark-delete{
+font-size:13px;
 }
 
 /* RACE */
@@ -637,7 +697,9 @@ border-bottom:1px solid var(--line);
 font-size:12px;
 }
 
-.detail-row b{font-weight:950;}
+.detail-row b{
+font-weight:950;
+}
 
 .analysis-summary{
 display:grid;
@@ -658,51 +720,6 @@ text-align:center;
 display:block;
 font-size:16px;
 margin-top:2px;
-}
-
-/* CHART */
-
-.chart-wrap{
-position:relative;
-width:100%;
-height:270px;
-border:1px solid var(--line);
-border-radius:12px;
-background:#fff;
-overflow:hidden;
-}
-
-#chart{
-position:absolute;
-left:58px;
-right:0;
-top:0;
-height:270px;
-width:calc(100% - 58px);
-border:0;
-background:transparent;
-}
-
-.chart-scale{
-position:absolute;
-left:0;
-top:0;
-bottom:0;
-width:58px;
-border-right:1px solid var(--line);
-background:#f8fafc;
-z-index:2;
-pointer-events:none;
-}
-
-.scale-label{
-position:absolute;
-right:7px;
-font-size:10px;
-font-weight:900;
-color:#667085;
-transform:translateY(-50%);
-white-space:nowrap;
 }
 
 /* NAV */
@@ -735,7 +752,9 @@ font-size:20px;
 line-height:21px;
 }
 
-.nav button.active{color:#111827;}
+.nav button.active{
+color:#111827;
+}
 
 /* MODAL */
 
@@ -748,7 +767,9 @@ background:#0008;
 align-items:flex-end;
 }
 
-.modal.show{display:flex;}
+.modal.show{
+display:flex;
+}
 
 .sheet{
 width:100%;
@@ -834,9 +855,13 @@ border:1px solid var(--line);
 border-radius:15px;
 }
 
-.app{padding-bottom:20px;}
+.app{
+padding-bottom:20px;
+}
 
-.toast{bottom:20px;}
+.toast{
+bottom:20px;
+}
 
 }
 </style>
@@ -855,574 +880,1102 @@ border-radius:15px;
 </div>
 </div>
 </header>
-
-
-<!-- HOME -->
-
-<section id="home" class="page active">
-
-<div class="hero">
-
-<div class="hero-title">🏇 競馬牧場</div>
-
-<div class="hero-sub">
-予想を登録して、結果を残す。<br>
-あなた自身の予想データを蓄積していこう。
-</div>
-
-<div class="quick-grid">
-
-<div class="quick">
-<div class="quick-label">総レース</div>
-<div class="quick-value" id="homeRaces">0</div>
-</div>
-
-<div class="quick">
-<div class="quick-label">的中率</div>
-<div class="quick-value" id="homeHitRate">0.0%</div>
-</div>
-
-<div class="quick">
-<div class="quick-label">回収率</div>
-<div class="quick-value" id="homeROI">0.0%</div>
-</div>
-
-<div class="quick">
-<div class="quick-label">累計収支</div>
-<div class="quick-value" id="homeProfit">0円</div>
-</div>
-
-</div>
-</div>
-
-
-<div class="card">
-
-<h2>📊 現在の成績</h2>
-
-<div class="statgrid">
-
-<div class="stat">
-<div class="small">総レース</div>
-<div id="sRaces" class="v">0</div>
-</div>
-
-<div class="stat">
-<div class="small">結果入力済</div>
-<div id="sDone" class="v">0</div>
-</div>
-
-<div class="stat">
-<div class="small">的中</div>
-<div id="sHits" class="v">0</div>
-</div>
-
-<div class="stat">
-<div class="small">的中率</div>
-<div id="sHitRate" class="v">0.0%</div>
-</div>
-
-<div class="stat">
-<div class="small">回収率</div>
-<div id="sROI" class="v">0.0%</div>
-</div>
-
-<div class="stat">
-<div class="small">累計収支</div>
-<div id="sProfit" class="v">0円</div>
-</div>
-
-</div>
-</div>
-
-
-<button class="btn primary full" onclick="showPage('predict')">
-📝 予想を登録する
-</button>
-
-
-<div class="card" style="margin-top:12px">
-
-<h2>💡 使い方</h2>
-
-<div class="small" style="line-height:1.8">
-
-① 日付・競馬場・Rを選択<br>
-② <b>レース名を入力</b><br>
-③ 出走馬をまとめて登録<br>
-④ ◎○▲☆△をタップ<br>
-⑤ 予想を保存<br>
-⑥ レース終了後に結果を入力<br>
-⑦ 成績が自動集計
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PREDICT -->
-
-<section id="predict" class="page">
-
-<div class="card">
-
-<h2>📝 予想を登録</h2>
-
-<div class="grid2">
-
-<div>
-<label>開催日</label>
-<input id="raceDate" type="date">
-</div>
-
-<div>
-<label>競馬場</label>
-<select id="track"></select>
-</div>
-
-</div>
-
-
-<div class="grid2" style="margin-top:10px">
-
-<div>
-<label>レース</label>
-<select id="raceNo"></select>
-</div>
-
-<div>
-<label>頭数</label>
-<select id="fieldSize"></select>
-</div>
-
-</div>
-
-
-<!-- ★ レース名追加 -->
-
-<div style="margin-top:10px">
-
-<label>🏆 レース名</label>
-
-<input
-id="raceName"
-class="race-name-input"
-type="text"
-maxlength="80"
-placeholder="例：新潟記念、3歳未勝利、○○特別">
-
-<div class="small" style="margin-top:5px">
-※ レース名は履歴・結果・詳細画面にも表示されます。
-</div>
-
-</div>
-
-
-<div class="grid2" style="margin-top:10px">
-
-<div>
-<label>芝・ダート・障害</label>
-<select id="surface"></select>
-</div>
-
-<div>
-<label>距離</label>
-<select id="distance"></select>
-</div>
-
-</div>
-
-
-<div class="grid2" style="margin-top:10px">
-
-<div>
-<label>クラス</label>
-<select id="classChoices"></select>
-</div>
-
-<div>
-<label>馬場状態</label>
-<select id="groundChoices"></select>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>🐴 出走馬</h2>
-
-<div class="small" style="line-height:1.7;margin-bottom:10px">
-出走表をまとめて貼り付けできます。<br>
-形式：<b>枠番,馬番,馬名</b>
-</div>
-
-<div class="import-box">
-
-<textarea
-id="horseBulk"
-placeholder="例：
-1,1,アーモンドアイ
-1,2,イクイノックス
-2,3,タイトルホルダー
-2,4,ソールオリエンス"></textarea>
-
-<div style="margin-top:8px">
-
-<button class="btn blue full" onclick="importHorses()">
-🐴 出走馬を一括登録
-</button>
-
-</div>
-
-<div class="import-example" style="margin-top:8px">
-
-1,1,馬名<br>
-1,2,馬名<br>
-2,3,馬名<br>
-2,4,馬名
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-
-<h2 style="margin-bottom:0">🏇 登録馬</h2>
-
-<button class="btn light" onclick="addHorse()">
-＋ 1頭追加
-</button>
-
-</div>
-
-<div class="small" style="margin-top:8px">
-枠番・馬番・馬名・印を確認してください。
-</div>
-
-<div id="horses"></div>
-
-</div>
-
-
-<div class="card">
-
-<label>投資額</label>
-
-<input
-id="stake"
-type="number"
-min="0"
-step="100"
-placeholder="例：1000">
-
-</div>
-
-
-<button class="btn green full" onclick="savePrediction()">
-予想を登録する
-</button>
-
-
-<button
-id="editCancel"
-class="btn light full"
-style="display:none;margin-top:8px"
-onclick="cancelEdit()">
-
-編集をキャンセル
-
-</button>
-
-</section>
-
-
-<!-- RESULT -->
-
-<section id="result" class="page">
-
-<div class="card">
-
-<h2>🏁 結果入力</h2>
-
-<div id="resultList"></div>
-
-</div>
-
-</section>
-
-
-<!-- HISTORY -->
-
-<section id="history" class="page">
-
-<div class="card">
-
-<h2>📋 予想履歴</h2>
-
-<div id="historyList"></div>
-
-</div>
-
-</section>
-
-
-<!-- STATS -->
-
-<section id="stats" class="page">
-
-<div class="card">
-
-<h2>📊 成績集計</h2>
-
-<div class="statgrid">
-
-<div class="stat">
-<div class="small">総レース</div>
-<div id="tRaces" class="v">0</div>
-</div>
-
-<div class="stat">
-<div class="small">的中率</div>
-<div id="tHitRate" class="v">0.0%</div>
-</div>
-
-<div class="stat">
-<div class="small">投資</div>
-<div id="tStake" class="v">0円</div>
-</div>
-
-<div class="stat">
-<div class="small">回収</div>
-<div id="tReturn" class="v">0円</div>
-</div>
-
-<div class="stat">
-<div class="small">回収率</div>
-<div id="tROI" class="v">0.0%</div>
-</div>
-
-<div class="stat">
-<div class="small">収支</div>
-<div id="tProfit" class="v">0円</div>
-</div>
-
-</div>
-</div>
-
-
-<div class="card">
-
-<h2>🔎 詳細成績</h2>
-
-<div class="detail-tabs">
-
-<button class="detail-tab active" onclick="setDetailTab('track',this)">
-競馬場別
-</button>
-
-<button class="detail-tab" onclick="setDetailTab('distance',this)">
-距離別
-</button>
-
-<button class="detail-tab" onclick="setDetailTab('surface',this)">
-芝・ダート・障害
-</button>
-
-<button class="detail-tab" onclick="setDetailTab('class',this)">
-クラス別
-</button>
-
-<button class="detail-tab" onclick="setDetailTab('ground',this)">
-馬場状態別
-</button>
-
-</div>
-
-<div id="detailBox" class="detail-box"></div>
-
-</div>
-
-
-<div class="card">
-
-<h2>📈 累計収支</h2>
-
-<div class="chart-wrap">
-
-<div id="chartScale" class="chart-scale"></div>
-
-<canvas id="chart"></canvas>
-
-</div>
-
-<div id="chartNote"
-class="small center"
-style="margin-top:7px">
-結果入力したレースから自動計算
-</div>
-
-</div>
-
-</section>
-
-
-<!-- NAV -->
-
-<nav class="nav">
-
-<button id="nav-home" onclick="showPage('home')">
-<strong>🏠</strong>
-ホーム
-</button>
-
-<button id="nav-predict" onclick="showPage('predict')">
-<strong>📝</strong>
-予想
-</button>
-
-<button id="nav-history" onclick="showPage('history')">
-<strong>📋</strong>
-履歴
-</button>
-
-<button id="nav-stats" onclick="showPage('stats')">
-<strong>📊</strong>
-成績
-</button>
-
-</nav>
-
-</div>
-
-
-<!-- MARK MODAL -->
-
-<div id="markModal"
-class="modal"
-onclick="if(event.target===this)closeMark()">
-
-<div class="sheet">
-
-<div class="sheet-title">🎯 印を選択</div>
-
-<div id="markChoices" class="mark-grid"></div>
-
-<button class="btn light full"
-style="margin-top:10px"
-onclick="closeMark()">
-閉じる
-</button>
-
-</div>
-</div>
-
-
-<!-- FRAME MODAL -->
-
-<div id="frameModal"
-class="modal"
-onclick="if(event.target===this)closeFrame()">
-
-<div class="sheet">
-
-<div class="sheet-title">🎨 枠番を選択</div>
-
-<div id="frameChoices" class="frame-grid"></div>
-
-<button class="btn light full"
-style="margin-top:10px"
-onclick="closeFrame()">
-閉じる
-</button>
-
-</div>
-</div>
-
-
-<!-- NUMBER MODAL -->
-
-<div id="numberModal"
-class="modal"
-onclick="if(event.target===this)closeNumber()">
-
-<div class="sheet">
-
-<div class="sheet-title">🔢 馬番を選択</div>
-
-<div id="numberChoices" class="number-grid"></div>
-
-<button class="btn light full"
-style="margin-top:10px"
-onclick="closeNumber()">
-閉じる
-</button>
-
-</div>
-</div>
-
-
-<!-- RESULT MODAL -->
-
-<div id="resultModal"
-class="modal"
-onclick="if(event.target===this)closeResultSelect()">
-
-<div class="sheet">
-
-<div id="resultModalTitle"
-class="sheet-title">
-🏁 着順を選択
-</div>
-
-<div id="resultHorseChoices"
-class="number-grid"></div>
-
-<button class="btn light full"
-style="margin-top:10px"
-onclick="closeResultSelect()">
-閉じる
-</button>
-
-</div>
-</div>
-
-
-<!-- DETAIL MODAL -->
-
-<div id="detailModal"
-class="modal"
-onclick="if(event.target===this)closeDetail()">
-
-<div class="sheet">
-
-<div id="detailContent"></div>
-
-</div>
-</div>
-
-
-<div id="toast" class="toast"></div>
-
-
+<style>
+
+:root{
+--bg:#eef2f5;
+--card:#ffffff;
+--ink:#172033;
+--muted:#667085;
+--line:#e1e6ec;
+--navy:#101827;
+--navy2:#1d2b3d;
+--blue:#2563eb;
+--blue2:#3b82f6;
+--green:#16a34a;
+--red:#dc2626;
+--gold:#d4a72c;
+--orange:#f97316;
+--shadow:0 5px 18px rgba(15,23,42,.07);
+}
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+margin:0;
+padding:0;
+background:
+linear-gradient(
+180deg,
+#e9eef3 0,
+#f5f7f9 280px,
+#f4f6f8 100%
+);
+color:var(--ink);
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Hiragino Kaku Gothic ProN",
+"Yu Gothic",
+Meiryo,
+sans-serif;
+}
+
+body{
+min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+font:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+.app{
+width:100%;
+max-width:760px;
+margin:auto;
+padding-bottom:94px;
+}
+
+
+/* =====================================================
+HEADER
+===================================================== */
+
+header{
+position:sticky;
+top:0;
+z-index:30;
+padding:
+calc(12px + env(safe-area-inset-top))
+15px 13px;
+background:
+linear-gradient(
+135deg,
+#0b1220,
+#1d2b3d
+);
+color:#fff;
+box-shadow:
+0 4px 18px rgba(0,0,0,.16);
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:11px;
+}
+
+.brand-mark{
+width:45px;
+height:45px;
+border-radius:14px;
+display:grid;
+place-items:center;
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.16),
+rgba(255,255,255,.05)
+);
+border:1px solid rgba(255,255,255,.1);
+font-size:26px;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.1);
+}
+
+.title{
+font-size:23px;
+font-weight:950;
+letter-spacing:.02em;
+}
+
+.subtitle{
+font-size:11px;
+color:#cbd5e1;
+margin-top:3px;
+}
+
+
+/* =====================================================
+PAGE
+===================================================== */
+
+.page{
+display:none;
+padding:14px;
+}
+
+.page.active{
+display:block;
+}
+
+
+/* =====================================================
+CARD
+===================================================== */
+
+.card{
+background:rgba(255,255,255,.97);
+border:1px solid rgba(226,232,240,.95);
+border-radius:18px;
+padding:15px;
+margin-bottom:12px;
+box-shadow:var(--shadow);
+}
+
+h2{
+font-size:18px;
+margin:0 0 12px;
+font-weight:950;
+letter-spacing:-.02em;
+}
+
+h3{
+font-size:15px;
+margin:0 0 9px;
+font-weight:950;
+}
+
+label{
+display:block;
+font-size:12px;
+font-weight:900;
+color:var(--muted);
+margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+width:100%;
+border:1px solid #d5dbe3;
+border-radius:12px;
+background:#fff;
+color:var(--ink);
+padding:10px 12px;
+outline:none;
+transition:
+border-color .15s,
+box-shadow .15s;
+}
+
+input,
+select{
+height:46px;
+}
+
+textarea{
+min-height:130px;
+resize:vertical;
+line-height:1.6;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-color:var(--blue);
+box-shadow:
+0 0 0 3px rgba(37,99,235,.1);
+}
+
+select{
+font-weight:800;
+}
+
+.grid2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
+}
+
+.grid3{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+}
+
+
+/* =====================================================
+BUTTON
+===================================================== */
+
+.btn{
+border:0;
+border-radius:12px;
+min-height:44px;
+padding:10px 13px;
+font-weight:950;
+transition:
+transform .08s,
+opacity .15s;
+}
+
+.btn:active{
+transform:scale(.985);
+}
+
+.primary{
+background:
+linear-gradient(
+135deg,
+#101827,
+#25364b
+);
+color:#fff;
+}
+
+.green{
+background:
+linear-gradient(
+135deg,
+#15803d,
+#16a34a
+);
+color:#fff;
+}
+
+.red{
+background:
+linear-gradient(
+135deg,
+#b91c1c,
+#dc2626
+);
+color:#fff;
+}
+
+.blue{
+background:
+linear-gradient(
+135deg,
+#1d4ed8,
+#2563eb
+);
+color:#fff;
+}
+
+.light{
+background:#eef2f6;
+color:var(--ink);
+}
+
+.gold{
+background:#f4d66d;
+color:#3b2b00;
+}
+
+.full{
+width:100%;
+}
+
+.small{
+font-size:12px;
+color:var(--muted);
+}
+
+.center{
+text-align:center;
+}
+
+.plus{
+color:var(--green)!important;
+}
+
+.minus{
+color:var(--red)!important;
+}
+
+.divider{
+height:1px;
+background:var(--line);
+margin:12px 0;
+}
+
+
+/* =====================================================
+HOME HERO
+===================================================== */
+
+.hero{
+position:relative;
+overflow:hidden;
+background:
+linear-gradient(
+135deg,
+#0d1625 0%,
+#1d3047 65%,
+#263f5a 100%
+);
+color:#fff;
+border-radius:20px;
+padding:19px;
+margin-bottom:12px;
+box-shadow:
+0 8px 25px rgba(15,23,42,.18);
+}
+
+.hero:after{
+content:"";
+position:absolute;
+width:150px;
+height:150px;
+right:-55px;
+top:-60px;
+border-radius:50%;
+background:
+rgba(255,255,255,.05);
+}
+
+.hero-title{
+font-size:22px;
+font-weight:950;
+letter-spacing:.01em;
+}
+
+.hero-sub{
+font-size:12px;
+color:#cbd5e1;
+margin-top:5px;
+line-height:1.65;
+}
+
+.quick-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
+margin-top:14px;
+}
+
+.quick{
+position:relative;
+z-index:1;
+border:1px solid rgba(255,255,255,.1);
+background:rgba(255,255,255,.075);
+border-radius:13px;
+padding:11px;
+backdrop-filter:blur(3px);
+}
+
+.quick-label{
+font-size:11px;
+color:#cbd5e1;
+}
+
+.quick-value{
+font-size:20px;
+font-weight:950;
+margin-top:3px;
+}
+
+
+/* =====================================================
+STATS
+===================================================== */
+
+.statgrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+
+.stat{
+background:
+linear-gradient(
+180deg,
+#fafbfd,
+#f5f7fa
+);
+border:1px solid var(--line);
+border-radius:13px;
+padding:10px;
+}
+
+.stat .v{
+font-size:20px;
+font-weight:950;
+margin-top:3px;
+}
+
+
+/* =====================================================
+HORSE
+===================================================== */
+
+.horse{
+border:1px solid #e0e5eb;
+border-radius:15px;
+padding:10px;
+margin:8px 0;
+background:#fff;
+box-shadow:
+0 2px 8px rgba(15,23,42,.035);
+}
+
+.horse-head{
+display:grid;
+grid-template-columns:44px 44px 1fr auto;
+gap:7px;
+align-items:center;
+}
+
+.frame-mini{
+width:42px;
+height:38px;
+border-radius:9px;
+display:grid;
+place-items:center;
+font-weight:950;
+font-size:14px;
+}
+
+.number-mini{
+width:42px;
+height:38px;
+border-radius:9px;
+display:grid;
+place-items:center;
+font-weight:950;
+font-size:17px;
+background:#f8fafc;
+border:1px solid #d0d5dd;
+}
+
+.horse-name-input{
+height:42px!important;
+font-weight:800;
+min-width:0;
+}
+
+.mark-btn{
+border:1px solid #cfd4dc;
+background:#f8fafc;
+border-radius:10px;
+padding:8px 10px;
+min-width:60px;
+font-weight:950;
+}
+
+.mark-btn.set{
+background:#111827;
+color:#fff;
+}
+
+.horse-actions{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:7px;
+margin-top:8px;
+}
+
+.horse-action{
+height:38px;
+border:0;
+border-radius:9px;
+background:#eef2f6;
+font-size:11px;
+font-weight:900;
+}
+
+.remove-horse{
+background:#fee2e2;
+color:#991b1b;
+}
+
+
+/* =====================================================
+FRAME
+===================================================== */
+
+.frame-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:7px;
+}
+
+.frame-btn{
+height:48px;
+border:2px solid #cbd5e1;
+border-radius:10px;
+font-weight:950;
+font-size:17px;
+}
+
+.frame-1{
+background:#fff;
+color:#111;
+border-color:#999;
+}
+
+.frame-2{
+background:#111;
+color:#fff;
+}
+
+.frame-3{
+background:#dc2626;
+color:#fff;
+}
+
+.frame-4{
+background:#2563eb;
+color:#fff;
+}
+
+.frame-5{
+background:#facc15;
+color:#111;
+}
+
+.frame-6{
+background:#16a34a;
+color:#fff;
+}
+
+.frame-7{
+background:#f97316;
+color:#fff;
+}
+
+.frame-8{
+background:#f472b6;
+color:#111;
+}
+
+.frame-btn.selected{
+box-shadow:
+0 0 0 3px #111827;
+}
+
+
+/* =====================================================
+NUMBER
+===================================================== */
+
+.number-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+}
+
+.num-btn{
+border:1px solid #d0d5dd;
+background:#f8fafc;
+border-radius:11px;
+padding:11px 5px;
+min-height:52px;
+font-weight:950;
+}
+
+.num-btn.selected{
+background:#111827;
+color:#fff;
+border-color:#111827;
+}
+
+.num-btn small{
+font-size:9px;
+font-weight:800;
+}
+
+
+/* =====================================================
+MARK
+===================================================== */
+
+.mark-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+}
+
+.mark-choice{
+border:1px solid #d0d5dd;
+background:#f8fafc;
+border-radius:11px;
+min-height:52px;
+font-size:20px;
+font-weight:950;
+}
+
+.mark-choice.selected{
+background:#111827;
+color:#fff;
+}
+
+.mark-choice.mark-delete{
+font-size:13px;
+}
+
+
+/* =====================================================
+RACE
+===================================================== */
+
+.raceitem{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+border:1px solid #e0e5eb;
+border-radius:14px;
+padding:12px;
+margin:8px 0;
+background:#fff;
+box-shadow:
+0 2px 7px rgba(15,23,42,.035);
+}
+
+.meta{
+font-size:12px;
+color:var(--muted);
+margin-top:3px;
+line-height:1.5;
+}
+
+.race-name{
+font-size:15px;
+font-weight:950;
+margin-bottom:4px;
+}
+
+.race-name-input{
+font-weight:800;
+}
+
+.badge{
+border-radius:999px;
+padding:5px 9px;
+font-size:11px;
+font-weight:950;
+background:#eef2f6;
+white-space:nowrap;
+}
+
+.badge.ok{
+background:#dcfce7;
+color:#166534;
+}
+
+.badge.ng{
+background:#fee2e2;
+color:#991b1b;
+}
+
+.sheet-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+
+/* =====================================================
+RESULT
+===================================================== */
+
+.result-horse{
+border:1px solid #e0e5eb;
+border-radius:13px;
+padding:10px;
+margin:8px 0;
+background:#fff;
+}
+
+.result-place-title{
+font-size:13px;
+font-weight:950;
+margin-bottom:7px;
+}
+
+.result-result-row{
+display:grid;
+grid-template-columns:48px 48px 1fr 52px;
+gap:7px;
+align-items:center;
+}
+
+.result-frame-box{
+height:38px;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:11px;
+font-weight:950;
+}
+
+.result-number-box{
+height:38px;
+border:1px solid #d0d5dd;
+border-radius:8px;
+display:grid;
+place-items:center;
+font-size:16px;
+font-weight:950;
+background:#f8fafc;
+}
+
+.result-name-box{
+font-size:13px;
+font-weight:900;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+
+.result-change-btn{
+height:38px;
+border:0;
+border-radius:9px;
+background:#eef2f6;
+font-size:11px;
+font-weight:950;
+}
+
+.place-buttons{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+}
+
+.place-btn{
+border:0;
+border-radius:11px;
+padding:13px 5px;
+font-weight:950;
+background:#eef2f6;
+}
+
+.place-btn.active{
+background:#111827;
+color:#fff;
+}
+
+.result-frame-chip{
+display:inline-block;
+padding:3px 7px;
+border-radius:6px;
+font-size:11px;
+font-weight:950;
+margin-left:4px;
+}
+
+.result-number-chip{
+display:inline-block;
+font-weight:950;
+margin-left:4px;
+}
+
+.result-horse-name{
+font-weight:900;
+margin-left:4px;
+}
+
+
+/* =====================================================
+DETAIL
+===================================================== */
+
+.detail-tabs{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:8px;
+}
+
+.detail-tab{
+border:1px solid var(--line);
+background:#f8fafc;
+border-radius:11px;
+padding:11px;
+font-weight:950;
+}
+
+.detail-tab.active{
+background:#111827;
+color:#fff;
+}
+
+.detail-box{
+margin-top:10px;
+}
+
+.detail-row{
+display:grid;
+grid-template-columns:92px 1fr;
+gap:8px;
+padding:11px 4px;
+border-bottom:1px solid var(--line);
+font-size:12px;
+}
+
+.detail-row b{
+font-weight:950;
+}
+
+.analysis-summary{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:7px;
+margin-top:10px;
+}
+
+.analysis-mini{
+background:#f8fafc;
+border:1px solid var(--line);
+border-radius:10px;
+padding:8px;
+text-align:center;
+}
+
+.analysis-mini b{
+display:block;
+font-size:16px;
+margin-top:2px;
+}
+
+
+/* =====================================================
+CHART
+===================================================== */
+
+.chart-wrap{
+position:relative;
+width:100%;
+height:270px;
+border:1px solid #e0e5eb;
+border-radius:14px;
+background:#fff;
+overflow:hidden;
+}
+
+#chart{
+position:absolute;
+left:58px;
+right:0;
+top:0;
+height:270px;
+width:calc(100% - 58px);
+border:0;
+background:transparent;
+}
+
+.chart-scale{
+position:absolute;
+left:0;
+top:0;
+bottom:0;
+width:58px;
+border-right:1px solid var(--line);
+background:#f8fafc;
+z-index:2;
+pointer-events:none;
+}
+
+.scale-label{
+position:absolute;
+right:7px;
+font-size:10px;
+font-weight:900;
+color:#667085;
+transform:translateY(-50%);
+white-space:nowrap;
+}
+
+
+/* =====================================================
+NAV
+===================================================== */
+
+.nav{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+z-index:40;
+background:
+rgba(255,255,255,.96);
+backdrop-filter:blur(12px);
+border-top:1px solid var(--line);
+display:grid;
+grid-template-columns:repeat(4,1fr);
+padding-bottom:env(safe-area-inset-bottom);
+box-shadow:
+0 -4px 16px rgba(15,23,42,.06);
+}
+
+.nav button{
+border:0;
+background:transparent;
+color:#667085;
+padding:9px 3px 8px;
+font-size:11px;
+font-weight:900;
+}
+
+.nav button strong{
+display:block;
+font-size:20px;
+line-height:21px;
+}
+
+.nav button.active{
+color:#111827;
+}
+
+
+/* =====================================================
+MODAL
+===================================================== */
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+z-index:60;
+background:rgba(0,0,0,.52);
+align-items:flex-end;
+}
+
+.modal.show{
+display:flex;
+}
+
+.sheet{
+width:100%;
+max-width:760px;
+margin:auto;
+background:#fff;
+border-radius:21px 21px 0 0;
+padding:16px;
+max-height:90vh;
+overflow:auto;
+box-shadow:
+0 -8px 30px rgba(0,0,0,.18);
+}
+
+.sheet-title{
+font-size:18px;
+font-weight:950;
+margin-bottom:12px;
+}
+
+
+/* =====================================================
+TOAST
+===================================================== */
+
+.toast{
+position:fixed;
+left:50%;
+bottom:78px;
+z-index:90;
+transform:translate(-50%,20px);
+opacity:0;
+background:#111827;
+color:#fff;
+padding:11px 16px;
+border-radius:12px;
+font-weight:900;
+pointer-events:none;
+transition:.25s;
+white-space:nowrap;
+box-shadow:
+0 5px 18px rgba(0,0,0,.2);
+}
+
+.toast.show{
+opacity:1;
+transform:translate(-50%,0);
+}
+
+.empty{
+text-align:center;
+color:var(--muted);
+padding:26px 8px;
+line-height:1.7;
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:430px){
+
+.page{
+padding:12px;
+}
+
+.card{
+padding:14px;
+border-radius:17px;
+}
+
+.hero{
+border-radius:18px;
+padding:17px;
+}
+
+.horse-head{
+grid-template-columns:40px 40px 1fr auto;
+gap:5px;
+}
+
+.frame-mini,
+.number-mini{
+width:40px;
+}
+
+.mark-btn{
+min-width:52px;
+padding:7px 5px;
+}
+
+.result-result-row{
+grid-template-columns:43px 43px 1fr 48px;
+gap:5px;
+}
+
+}
+
+@media(min-width:700px){
+
+.nav{
+position:static;
+max-width:760px;
+margin:auto;
+border:1px solid var(--line);
+border-radius:15px;
+box-shadow:none;
+}
+
+.app{
+padding-bottom:20px;
+}
+
+.toast{
+bottom:20px;
+}
+
+}
+
+</style>
 <script>
 "use strict";
-
 
 /* =====================================================
 DATABASE
 ===================================================== */
 
-const STORE="keiba_bokujou_v10";
+const STORE="keiba_bokujou_v11";
 
 const TRACKS=[
 "札幌","函館","福島","新潟","東京",
@@ -1471,6 +2024,10 @@ const DIST={
 };
 
 
+/* =====================================================
+STATE
+===================================================== */
+
 let db=loadDB();
 
 let editId=null;
@@ -1479,6 +2036,7 @@ let frameHorse=null;
 let numberHorse=null;
 let resultRace=null;
 let detailTab="track";
+
 let horsesForm=[];
 
 
@@ -1489,7 +2047,7 @@ DATABASE
 function freshDB(){
 
 return{
-version:10,
+version:11,
 races:[]
 };
 
@@ -1523,8 +2081,6 @@ todayString(),
 track:r.track||"東京",
 
 raceNo:Number(r.raceNo)||1,
-
-/* ★ レース名を保存 */
 
 raceName:String(
 r.raceName||
@@ -1576,12 +2132,24 @@ function loadDB(){
 
 try{
 
-const raw=
-localStorage.getItem(STORE)||
-localStorage.getItem("keiba_bokujou_v9")||
-localStorage.getItem("keiba_bokujou_v8")||
-localStorage.getItem("keiba_bokujou_v7")||
-localStorage.getItem("keiba_bokujou_v6");
+const keys=[
+STORE,
+"keiba_bokujou_v10",
+"keiba_bokujou_v9",
+"keiba_bokujou_v8",
+"keiba_bokujou_v7",
+"keiba_bokujou_v6"
+];
+
+let raw=null;
+
+for(const key of keys){
+
+raw=localStorage.getItem(key);
+
+if(raw)break;
+
+}
 
 if(!raw)return freshDB();
 
@@ -1589,7 +2157,7 @@ const x=JSON.parse(raw);
 
 x.races=(x.races||[]).map(normalizeRace);
 
-x.version=10;
+x.version=11;
 
 return x;
 
@@ -1611,6 +2179,10 @@ JSON.stringify(db)
 
 }
 
+
+/* =====================================================
+UTILITY
+===================================================== */
 
 function esc(s){
 
@@ -1690,9 +2262,13 @@ const d=new Date();
 
 const y=d.getFullYear();
 
-const m=String(d.getMonth()+1).padStart(2,"0");
+const m=String(
+d.getMonth()+1
+).padStart(2,"0");
 
-const day=String(d.getDate()).padStart(2,"0");
+const day=String(
+d.getDate()
+).padStart(2,"0");
 
 return`${y}-${m}-${day}`;
 
@@ -1701,7 +2277,10 @@ return`${y}-${m}-${day}`;
 
 function toast(msg){
 
-const e=document.getElementById("toast");
+const e=
+document.getElementById("toast");
+
+if(!e)return;
 
 e.textContent=msg;
 
@@ -1823,11 +2402,15 @@ arr.forEach(x=>{
 let text=x;
 
 if(race){
+
 text=x+"R";
+
 }
 
 else if(suffix){
+
 text=x+suffix;
+
 }
 
 s.add(
@@ -1847,27 +2430,29 @@ DISTANCE
 
 function updateDistance(){
 
-const s=
-document.getElementById("surface").value;
+const surface=
+document.getElementById(
+"surface"
+).value;
 
-let d=
-s==="芝"?
+let defaultDistance=
+surface==="芝"?
 "1600m":
-s==="ダート"?
+surface==="ダート"?
 "1200m":
 "3000m";
 
 fillSelect(
 "distance",
-DIST[s],
-d
+DIST[surface],
+defaultDistance
 );
 
 }
 
 
 /* =====================================================
-HORSES
+HORSE FORM
 ===================================================== */
 
 function blankHorse(no){
@@ -1891,18 +2476,26 @@ function syncFieldSize(){
 
 const n=
 Number(
-document.getElementById("fieldSize").value
+document.getElementById(
+"fieldSize"
+).value
 );
 
-while(horsesForm.length<n){
+while(
+horsesForm.length<n
+){
 
 horsesForm.push(
-blankHorse(horsesForm.length+1)
+blankHorse(
+horsesForm.length+1
+)
 );
 
 }
 
-if(horsesForm.length>n){
+if(
+horsesForm.length>n
+){
 
 horsesForm=
 horsesForm.slice(0,n);
@@ -1970,7 +2563,11 @@ RENDER HORSES
 function renderHorses(){
 
 const box=
-document.getElementById("horses");
+document.getElementById(
+"horses"
+);
+
+if(!box)return;
 
 box.innerHTML="";
 
@@ -2000,7 +2597,9 @@ value="${esc(h.name)}"
 placeholder="馬名">
 
 <button
-class="mark-btn ${h.mark!=="－"?"set":""}"
+class="mark-btn ${
+h.mark!=="－"?"set":""
+}"
 onclick="openMark(${i})">
 
 ${h.mark==="－"?"印":h.mark}
@@ -2047,96 +2646,6 @@ box.appendChild(row);
 
 
 /* =====================================================
-BULK IMPORT
-===================================================== */
-
-function importHorses(){
-
-const text=
-document.getElementById(
-"horseBulk"
-).value.trim();
-
-if(!text){
-
-toast("出走馬データを入力してください");
-
-return;
-
-}
-
-const lines=
-text
-.split(/\r?\n/)
-.map(x=>x.trim())
-.filter(Boolean);
-
-const result=[];
-
-lines.forEach(line=>{
-
-let parts=
-line.split(/[,\t、]+/)
-.map(x=>x.trim())
-.filter(Boolean);
-
-if(parts.length<3)return;
-
-const frame=Number(parts[0]);
-const no=Number(parts[1]);
-const name=parts.slice(2).join(" ");
-
-if(
-!Number.isFinite(frame)||
-!Number.isFinite(no)||
-!name
-)return;
-
-result.push({
-
-frame:Math.min(8,Math.max(1,frame)),
-
-no:Math.min(18,Math.max(1,no)),
-
-name,
-
-mark:"－"
-
-});
-
-});
-
-if(!result.length){
-
-toast("読み込めるデータがありません");
-
-return;
-
-}
-
-result.sort(
-(a,b)=>a.no-b.no
-);
-
-horsesForm=result;
-
-document.getElementById(
-"fieldSize"
-).value=
-horsesForm.length;
-
-document.getElementById(
-"horseBulk"
-).value="";
-
-renderHorses();
-
-toast(`${result.length}頭を登録しました`);
-
-}
-
-
-/* =====================================================
 COLLECT FORM
 ===================================================== */
 
@@ -2150,7 +2659,10 @@ document.querySelector(
 );
 
 if(input){
-h.name=input.value.trim();
+
+h.name=
+input.value.trim();
+
 }
 
 });
@@ -2174,8 +2686,6 @@ document.getElementById(
 "raceNo"
 ).value
 ),
-
-/* ★ レース名を取得 */
 
 raceName:
 document.getElementById(
@@ -2213,7 +2723,9 @@ document.getElementById(
 )||0,
 
 horses:
-horsesForm.map(h=>({...h}))
+horsesForm.map(
+h=>({...h})
+)
 
 };
 
@@ -2221,7 +2733,7 @@ horsesForm.map(h=>({...h}))
 
 
 /* =====================================================
-SAVE
+SAVE PREDICTION
 ===================================================== */
 
 function savePrediction(){
@@ -2261,16 +2773,21 @@ return;
 
 }
 
+
 if(editId){
 
 const r=
 db.races.find(
-x=>String(x.id)===String(editId)
+x=>String(x.id)===
+String(editId)
 );
 
 if(r){
 
-Object.assign(r,form);
+Object.assign(
+r,
+form
+);
 
 }
 
@@ -2278,9 +2795,16 @@ toast("予想を更新しました");
 
 editId=null;
 
+const cancel=
 document.getElementById(
 "editCancel"
-).style.display="none";
+);
+
+if(cancel){
+
+cancel.style.display="none";
+
+}
 
 }else{
 
@@ -2331,8 +2855,6 @@ document.getElementById(
 "raceNo"
 ).value="1";
 
-/* ★ レース名もリセット */
-
 document.getElementById(
 "raceName"
 ).value="";
@@ -2359,10 +2881,6 @@ document.getElementById(
 "stake"
 ).value="";
 
-document.getElementById(
-"horseBulk"
-).value="";
-
 horsesForm=[
 blankHorse(1)
 ];
@@ -2380,9 +2898,16 @@ function cancelEdit(){
 
 editId=null;
 
+const cancel=
 document.getElementById(
 "editCancel"
-).style.display="none";
+);
+
+if(cancel){
+
+cancel.style.display="none";
+
+}
 
 resetForm();
 
@@ -2399,7 +2924,8 @@ function editRace(id){
 
 const r=
 db.races.find(
-x=>String(x.id)===String(id)
+x=>String(x.id)===
+String(id)
 );
 
 if(!r)return;
@@ -2413,13 +2939,13 @@ r.date||todayString();
 
 document.getElementById(
 "track"
-).value=r.track;
+).value=
+r.track;
 
 document.getElementById(
 "raceNo"
-).value=r.raceNo;
-
-/* ★ レース名を編集画面へ */
+).value=
+r.raceNo;
 
 document.getElementById(
 "raceName"
@@ -2428,21 +2954,25 @@ r.raceName||"";
 
 document.getElementById(
 "surface"
-).value=r.surface;
+).value=
+r.surface;
 
 updateDistance();
 
 document.getElementById(
 "distance"
-).value=r.distance;
+).value=
+r.distance;
 
 document.getElementById(
 "classChoices"
-).value=r.className;
+).value=
+r.className;
 
 document.getElementById(
 "groundChoices"
-).value=r.ground;
+).value=
+r.ground;
 
 horsesForm=
 r.horses.map(h=>({
@@ -2466,7 +2996,8 @@ horsesForm.length;
 
 document.getElementById(
 "stake"
-).value=r.stake||"";
+).value=
+r.stake||"";
 
 renderHorses();
 
@@ -2491,7 +3022,8 @@ if(!confirm(
 
 db.races=
 db.races.filter(
-r=>String(r.id)!==String(id)
+r=>String(r.id)!==
+String(id)
 );
 
 persist();
@@ -2529,7 +3061,8 @@ b.className=
 "mark-choice"+
 (
 horsesForm[i].mark===m?
-" selected":""
+" selected":
+""
 );
 
 b.textContent=
@@ -2539,7 +3072,9 @@ m;
 
 b.onclick=()=>{
 
-horsesForm[markHorse].mark=m;
+horsesForm[
+markHorse
+].mark=m;
 
 closeMark();
 
@@ -2594,14 +3129,17 @@ b.className=
 frameColorClass(f)+
 (
 horsesForm[i].frame===f?
-" selected":""
+" selected":
+""
 );
 
 b.textContent=f+"枠";
 
 b.onclick=()=>{
 
-horsesForm[frameHorse].frame=f;
+horsesForm[
+frameHorse
+].frame=f;
 
 closeFrame();
 
@@ -2655,14 +3193,17 @@ b.className=
 "num-btn"+
 (
 horsesForm[i].no===n?
-" selected":""
+" selected":
+""
 );
 
 b.textContent=n;
 
 b.onclick=()=>{
 
-horsesForm[numberHorse].no=n;
+horsesForm[
+numberHorse
+].no=n;
 
 closeNumber();
 
@@ -2690,8 +3231,7 @@ document.getElementById(
 numberHorse=null;
 
 }
-
-
+  <script>
 /* =====================================================
 RESULT LIST
 ===================================================== */
@@ -2699,9 +3239,9 @@ RESULT LIST
 function renderResultList(){
 
 const box=
-document.getElementById(
-"resultList"
-);
+document.getElementById("resultList");
+
+if(!box)return;
 
 const pending=
 db.races.filter(
@@ -2737,14 +3277,14 @@ ${r.raceNo}R
 
 <div class="meta">
 
-${r.surface}
-${r.distance}
+${esc(r.surface)}
+${esc(r.distance)}
 ｜
 ${r.fieldSize}頭
 ｜
-${r.className}
+${esc(r.className)}
 ｜
-馬場 ${r.ground}
+馬場 ${esc(r.ground)}
 
 </div>
 
@@ -2773,7 +3313,8 @@ function resultEditor(id){
 
 const r=
 db.races.find(
-x=>String(x.id)===String(id)
+x=>String(x.id)===
+String(id)
 );
 
 if(!r)return;
@@ -2797,12 +3338,12 @@ ${esc(r.date)}
 ${esc(r.track)}
 ${r.raceNo}R
 ｜
-${r.surface}
-${r.distance}
+${esc(r.surface)}
+${esc(r.distance)}
 ｜
 ${r.fieldSize}頭
 ｜
-${r.className}
+${esc(r.className)}
 
 </div>
 
@@ -2973,7 +3514,8 @@ r.result[p.key]||"";
 
 const h=
 r.horses.find(
-x=>String(x.no)===String(no)
+x=>String(x.no)===
+String(no)
 );
 
 const frame=
@@ -3061,7 +3603,8 @@ b.className=
 (
 String(r.result[place])===
 String(h.no)?
-" selected":""
+" selected":
+""
 );
 
 b.innerHTML=`
@@ -3156,7 +3699,8 @@ function saveResult(id){
 
 const r=
 db.races.find(
-x=>String(x.id)===String(id)
+x=>String(x.id)===
+String(id)
 );
 
 if(!r)return;
@@ -3190,1040 +3734,6 @@ showPage("result");
 
 
 /* =====================================================
-STATS
-===================================================== */
-
-function stats(){
-
-const done=
-db.races.filter(
-r=>r.result.done
-);
-
-const stake=
-db.races.reduce(
-(a,r)=>
-a+Number(r.stake||0),
-0
-);
-
-const returned=
-done.reduce(
-(a,r)=>
-a+Number(r.result.returned||0),
-0
-);
-
-const hits=
-done.filter(hit).length;
-
-return{
-
-races:db.races.length,
-
-done:done.length,
-
-hits,
-
-stake,
-
-returned,
-
-profit:
-returned-stake,
-
-roi:
-stake?
-returned/stake*100:
-0,
-
-hitRate:
-done.length?
-hits/done.length*100:
-0
-
-};
-
-}
-
-
-/* =====================================================
-HOME
-===================================================== */
-
-function renderHome(){
-
-const s=stats();
-
-document.getElementById(
-"homeRaces"
-).textContent=s.races;
-
-document.getElementById(
-"homeHitRate"
-).textContent=
-s.hitRate.toFixed(1)+"%";
-
-document.getElementById(
-"homeROI"
-).textContent=
-s.roi.toFixed(1)+"%";
-
-const hp=
-document.getElementById(
-"homeProfit"
-);
-
-hp.textContent=
-(s.profit>=0?"+":"")+
-yen(s.profit);
-
-hp.className=
-"quick-value "+
-(s.profit>=0?"plus":"minus");
-
-document.getElementById(
-"sRaces"
-).textContent=s.races;
-
-document.getElementById(
-"sDone"
-).textContent=s.done;
-
-document.getElementById(
-"sHits"
-).textContent=s.hits;
-
-document.getElementById(
-"sHitRate"
-).textContent=
-s.hitRate.toFixed(1)+"%";
-
-document.getElementById(
-"sROI"
-).textContent=
-s.roi.toFixed(1)+"%";
-
-const p=
-document.getElementById(
-"sProfit"
-);
-
-p.textContent=
-(s.profit>=0?"+":"")+
-yen(s.profit);
-
-p.className=
-"v "+
-(s.profit>=0?"plus":"minus");
-
-}
-
-
-/* =====================================================
-HISTORY
-===================================================== */
-
-function renderHistory(){
-
-const box=
-document.getElementById(
-"historyList"
-);
-
-if(!db.races.length){
-
-box.innerHTML=
-'<div class="empty">まだ予想がありません。<br>最初のレースを登録しよう！</div>';
-
-return;
-
-}
-
-box.innerHTML=
-db.races.map(r=>{
-
-const p=profit(r);
-
-return`
-
-<div
-class="raceitem"
-onclick="detail('${r.id}')">
-
-<div>
-
-<div class="race-name">
-${esc(r.raceName||"レース名未設定")}
-</div>
-
-<b>
-${esc(r.date)}
-｜
-${esc(r.track)}
-${r.raceNo}R
-</b>
-
-<div class="meta">
-
-${r.surface}
-${r.distance}
-｜
-${r.fieldSize}頭
-｜
-${r.className}
-｜
-${r.ground}
-
-</div>
-
-</div>
-
-<div style="text-align:right">
-
-<span
-class="badge ${
-r.result.done?
-(hit(r)?"ok":"ng"):
-""
-}">
-
-${
-r.result.done?
-(hit(r)?"的中":"不的中"):
-"結果待ち"
-}
-
-</span>
-
-<div
-class="${
-p>=0?
-"plus":
-"minus"
-}"
-style="font-weight:950;margin-top:4px">
-
-${
-r.result.done?
-(p>=0?"+":"")+yen(p):
-"—"
-}
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
-
-}
-
-
-/* =====================================================
-DETAIL
-===================================================== */
-
-function detail(id){
-
-const r=
-db.races.find(
-x=>String(x.id)===String(id)
-);
-
-if(!r)return;
-
-const horses=
-r.horses.map(h=>`
-
-<div class="horse">
-
-<div class="horse-head">
-
-<div class="frame-mini ${frameColorClass(h.frame)}">
-${h.frame}枠
-</div>
-
-<div class="number-mini">
-${h.no}
-</div>
-
-<div style="
-font-size:13px;
-font-weight:900;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-">
-
-${esc(h.name||"未入力")}
-
-</div>
-
-<div style="
-font-size:19px;
-font-weight:950;
-text-align:center;
-">
-
-${h.mark}
-
-</div>
-
-</div>
-
-</div>
-
-`).join("");
-
-
-const result=
-r.result.done?
-
-`
-
-<div>
-<b>1着</b>
-${resultHorseLabel(r.result.first,r)}
-</div>
-
-<div style="margin-top:5px">
-<b>2着</b>
-${resultHorseLabel(r.result.second,r)}
-</div>
-
-<div style="margin-top:5px">
-<b>3着</b>
-${resultHorseLabel(r.result.third,r)}
-</div>
-
-<div style="margin-top:8px">
-払戻
-<b>${yen(r.result.returned)}</b>
-</div>
-
-<div style="margin-top:5px">
-収支
-
-<b class="${
-profit(r)>=0?"plus":"minus"
-}">
-
-${profit(r)>=0?"+":""}
-${yen(profit(r))}
-
-</b>
-
-</div>
-
-`
-
-:"結果未入力";
-
-
-document.getElementById(
-"detailContent"
-).innerHTML=`
-
-<h2>
-🏆 ${esc(r.raceName||"レース名未設定")}
-</h2>
-
-<div style="margin-bottom:8px">
-
-<b>
-${esc(r.date)}
-｜
-${esc(r.track)}
-${r.raceNo}R
-</b>
-
-</div>
-
-<div class="small">
-
-${r.surface}
-${r.distance}
-｜
-${r.fieldSize}頭
-｜
-${r.className}
-｜
-馬場 ${r.ground}
-
-</div>
-
-
-<div class="card" style="margin-top:10px">
-
-<b>結果</b>
-
-<div style="margin-top:8px">
-
-${result}
-
-</div>
-
-</div>
-
-
-<h3>予想印</h3>
-
-${horses}
-
-
-<div class="sheet-actions">
-
-<button
-class="btn primary"
-onclick="closeDetail();editRace('${r.id}')">
-
-予想を編集
-
-</button>
-
-<button
-class="btn green"
-onclick="closeDetail();resultEditor('${r.id}')">
-
-結果を編集
-
-</button>
-
-</div>
-
-
-<button
-class="btn red full"
-style="margin-top:8px"
-onclick="deleteRace('${r.id}')">
-
-この予想を削除
-
-</button>
-
-
-<button
-class="btn light full"
-style="margin-top:8px"
-onclick="closeDetail()">
-
-閉じる
-
-</button>
-
-`;
-
-document.getElementById(
-"detailModal"
-).classList.add("show");
-
-}
-
-
-function resultHorseLabel(no,r){
-
-if(!no){
-
-return`<span class="small">未選択</span>`;
-
-}
-
-const h=
-r.horses.find(
-x=>String(x.no)===String(no)
-);
-
-const frame=
-h?.frame||
-frameFromNo(no);
-
-const name=
-h?.name||
-"馬名未入力";
-
-return`
-
-<span class="result-frame-chip ${frameColorClass(frame)}">
-${frame}枠
-</span>
-
-<span class="result-number-chip">
-${no}番
-</span>
-
-<span class="result-horse-name">
-${esc(name)}
-</span>
-
-`;
-
-}
-
-
-function closeDetail(){
-
-document.getElementById(
-"detailModal"
-).classList.remove("show");
-
-}
-
-
-/* =====================================================
-DETAILED STATS
-===================================================== */
-
-function setDetailTab(tab,btn){
-
-detailTab=tab;
-
-document
-.querySelectorAll(".detail-tab")
-.forEach(x=>
-x.classList.remove("active")
-);
-
-btn.classList.add("active");
-
-renderDetailedStats();
-
-}
-
-
-function renderDetailedStats(){
-
-const box=
-document.getElementById(
-"detailBox"
-);
-
-const done=
-db.races.filter(
-r=>r.result.done
-);
-
-let map={};
-
-done.forEach(r=>{
-
-let key="";
-
-if(detailTab==="track"){
-key=r.track;
-}
-
-else if(detailTab==="distance"){
-key=r.distance;
-}
-
-else if(detailTab==="surface"){
-key=r.surface;
-}
-
-else if(detailTab==="class"){
-key=r.className;
-}
-
-else if(detailTab==="ground"){
-key=r.ground;
-}
-
-if(!key)return;
-
-if(!map[key]){
-
-map[key]={
-races:0,
-hits:0,
-stake:0,
-ret:0
-};
-
-}
-
-map[key].races++;
-
-if(hit(r)){
-map[key].hits++;
-}
-
-map[key].stake+=
-Number(r.stake||0);
-
-map[key].ret+=
-Number(r.result.returned||0);
-
-});
-
-const keys=
-Object.keys(map);
-
-if(!keys.length){
-
-box.innerHTML=
-'<div class="empty">結果入力が増えると詳細成績が表示されます。</div>';
-
-return;
-
-}
-
-keys.sort(
-(a,b)=>
-(map[b].ret/
-Math.max(map[b].stake,1))-
-(map[a].ret/
-Math.max(map[a].stake,1))
-);
-
-box.innerHTML=
-keys.map(k=>{
-
-const x=map[k];
-
-const roi=
-x.stake?
-x.ret/x.stake*100:
-0;
-
-const hitRate=
-x.races?
-x.hits/x.races*100:
-0;
-
-const balance=
-x.ret-x.stake;
-
-return`
-
-<div class="detail-row">
-
-<b>${esc(k)}</b>
-
-<div>
-
-<div>
-${x.races}R　
-的中 ${x.hits}R
-</div>
-
-<div class="analysis-summary">
-
-<div class="analysis-mini">
-的中率
-<b>${hitRate.toFixed(1)}%</b>
-</div>
-
-<div class="analysis-mini">
-回収率
-<b>${roi.toFixed(1)}%</b>
-</div>
-
-<div class="analysis-mini">
-収支
-
-<b class="${
-balance>=0?"plus":"minus"
-}">
-
-${balance>=0?"+":""}
-${yen(balance)}
-
-</b>
-
-</div>
-
-</div>
-
-<div class="small" style="margin-top:7px">
-
-投資 ${yen(x.stake)}
-｜
-回収 ${yen(x.ret)}
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
-
-}
-
-
-/* =====================================================
-STATS
-===================================================== */
-
-function renderStats(){
-
-const s=stats();
-
-document.getElementById(
-"tRaces"
-).textContent=s.races;
-
-document.getElementById(
-"tHitRate"
-).textContent=
-s.hitRate.toFixed(1)+"%";
-
-document.getElementById(
-"tStake"
-).textContent=
-yen(s.stake);
-
-document.getElementById(
-"tReturn"
-).textContent=
-yen(s.returned);
-
-document.getElementById(
-"tROI"
-).textContent=
-s.roi.toFixed(1)+"%";
-
-const p=
-document.getElementById(
-"tProfit"
-);
-
-p.textContent=
-(s.profit>=0?"+":"")+
-yen(s.profit);
-
-p.className=
-"v "+
-(s.profit>=0?"plus":"minus");
-
-renderDetailedStats();
-
-drawChart();
-
-}
-
-
-/* =====================================================
-CHART SCALE
-===================================================== */
-
-function buildChartScale(min,max){
-
-const scale=
-document.getElementById(
-"chartScale"
-);
-
-scale.innerHTML="";
-
-const step=5000;
-
-let start=
-Math.floor(min/step)*step;
-
-let end=
-Math.ceil(max/step)*step;
-
-if(start===end){
-
-start-=step;
-end+=step;
-
-}
-
-for(
-let value=start;
-value<=end;
-value+=step
-){
-
-const ratio=
-(end-value)/
-(end-start);
-
-const label=
-document.createElement("div");
-
-label.className="scale-label";
-
-label.style.top=
-(ratio*100)+"%";
-
-label.textContent=
-(value>=0?"+":"")+
-Number(value).toLocaleString("ja-JP")+
-"円";
-
-scale.appendChild(label);
-
-}
-
-return{start,end};
-
-}
-
-
-/* =====================================================
-CHART
-===================================================== */
-
-function drawChart(){
-
-const c=
-document.getElementById("chart");
-
-if(!c)return;
-
-const wrap=c.parentElement;
-
-const w=
-Math.max(
-260,
-wrap.clientWidth-58
-);
-
-const h=270;
-
-const dpr=
-Math.max(
-1,
-window.devicePixelRatio||1
-);
-
-c.width=w*dpr;
-c.height=h*dpr;
-
-c.style.width=w+"px";
-c.style.height=h+"px";
-
-const ctx=c.getContext("2d");
-
-ctx.setTransform(
-dpr,0,0,dpr,0,0
-);
-
-ctx.clearRect(0,0,w,h);
-
-const vals=[];
-
-let total=0;
-
-db.races
-.slice()
-.reverse()
-.forEach(r=>{
-
-if(!r.result.done)return;
-
-total+=profit(r);
-
-vals.push(total);
-
-});
-
-if(!vals.length){
-
-buildChartScale(-5000,5000);
-
-ctx.fillStyle="#667085";
-ctx.font="12px sans-serif";
-ctx.textAlign="center";
-
-ctx.fillText(
-"結果入力したレースが増えるとグラフが表示されます",
-w/2,
-135
-);
-
-document.getElementById(
-"chartNote"
-).textContent=
-"結果入力したレースから自動計算";
-
-return;
-
-}
-
-let min=
-Math.min(0,...vals);
-
-let max=
-Math.max(0,...vals);
-
-const scale=
-buildChartScale(min,max);
-
-const range=
-Math.max(
-10000,
-scale.end-scale.start
-);
-
-const padX=14;
-const padY=18;
-
-const y=v=>
-padY+
-(scale.end-v)/
-range*
-(h-padY*2);
-
-const x=i=>
-vals.length===1?
-w/2:
-padX+
-i*
-(w-padX*2)/
-(vals.length-1);
-
-
-/* グリッド */
-
-for(
-let value=scale.start;
-value<=scale.end;
-value+=5000
-){
-
-const yy=y(value);
-
-ctx.beginPath();
-
-ctx.moveTo(0,yy);
-ctx.lineTo(w,yy);
-
-ctx.strokeStyle=
-value===0?
-"#98a2b3":
-"#e4e7ec";
-
-ctx.lineWidth=
-value===0?
-1.5:
-1;
-
-ctx.stroke();
-
-}
-
-
-/* 折れ線 */
-
-ctx.beginPath();
-
-vals.forEach((v,i)=>{
-
-if(i===0){
-
-ctx.moveTo(
-x(i),
-y(v)
-);
-
-}else{
-
-ctx.lineTo(
-x(i),
-y(v)
-);
-
-}
-
-});
-
-ctx.strokeStyle="#2563eb";
-ctx.lineWidth=3;
-ctx.lineJoin="round";
-ctx.lineCap="round";
-
-ctx.stroke();
-
-
-/* 面 */
-
-if(vals.length>1){
-
-ctx.beginPath();
-
-ctx.moveTo(
-x(0),
-y(vals[0])
-);
-
-vals.forEach((v,i)=>{
-
-ctx.lineTo(
-x(i),
-y(v)
-);
-
-});
-
-ctx.lineTo(
-x(vals.length-1),
-y(0)
-);
-
-ctx.lineTo(
-x(0),
-y(0)
-);
-
-ctx.closePath();
-
-ctx.fillStyle="#2563eb14";
-
-ctx.fill();
-
-}
-
-
-/* ポイント */
-
-vals.forEach((v,i)=>{
-
-ctx.beginPath();
-
-ctx.arc(
-x(i),
-y(v),
-4,
-0,
-Math.PI*2
-);
-
-ctx.fillStyle=
-v>=0?
-"#16a34a":
-"#dc2626";
-
-ctx.fill();
-
-ctx.strokeStyle="#fff";
-ctx.lineWidth=2;
-
-ctx.stroke();
-
-});
-
-
-document.getElementById(
-"chartNote"
-).textContent=
-`${vals.length}レース｜最終累計 ${
-total>=0?"+":""
-}${yen(total)}`;
-
-}
-
-
-/* =====================================================
 PAGE
 ===================================================== */
 
@@ -4235,9 +3745,14 @@ document
 x.classList.remove("active")
 );
 
-document
-.getElementById(id)
-?.classList.add("active");
+const page=
+document.getElementById(id);
+
+if(page){
+
+page.classList.add("active");
+
+}
 
 document
 .querySelectorAll(".nav button")
@@ -4245,14 +3760,27 @@ document
 x.classList.remove("active")
 );
 
-document
-.getElementById("nav-"+id)
-?.classList.add("active");
+const nav=
+document.getElementById(
+"nav-"+id
+);
+
+if(nav){
+
+nav.classList.add("active");
+
+}
 
 window.scrollTo({
 top:0,
 behavior:"smooth"
 });
+
+if(id==="result"){
+
+renderResultList();
+
+}
 
 if(id==="stats"){
 
@@ -4263,34 +3791,11 @@ drawChart,
 
 }
 
-if(id==="result"){
-
-renderResultList();
-
-}
-
 }
 
 
 /* =====================================================
-REFRESH
-===================================================== */
-
-function refresh(){
-
-renderHome();
-
-renderHistory();
-
-renderResultList();
-
-renderStats();
-
-}
-
-
-/* =====================================================
-KEYBOARD
+ESC KEY
 ===================================================== */
 
 document.addEventListener(
@@ -4307,37 +3812,4 @@ closeDetail();
 
 }
 );
-
-
-/* =====================================================
-RESIZE
-===================================================== */
-
-window.addEventListener(
-"resize",
-()=>{
-
-if(
-document.getElementById(
-"stats"
-).classList.contains("active")
-){
-
-drawChart();
-
-}
-
-}
-);
-
-
-/* =====================================================
-START
-===================================================== */
-
-init();
-
 </script>
-
-</body>
-</html>

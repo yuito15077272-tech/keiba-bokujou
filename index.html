@@ -200,10 +200,16 @@ select:focus{
 <main class="container">
 
   <nav class="nav">
-    <button class="active" data-page="inputPage">入力</button>
-    <button data-page="resultPage">結果</button>
-    <button data-page="statsPage">分析</button>
-  </nav>
+  <button class="active" data-page="inputPage">入力</button>
+  <button data-page="resultPage">結果</button>
+  <button data-page="statsPage">分析</button>
+</nav>
+  <nav class="nav">
+  <button class="active" data-page="inputPage">入力</button>
+  <button data-page="resultPage">結果</button>
+  <button data-page="statsPage">分析</button>
+  <button data-page="historyPage">履歴</button>
+</nav>
 
   <section id="inputPage" class="page active">
 
@@ -475,7 +481,23 @@ select:focus{
   </div>
 
 </section>
+<section id="historyPage" class="page">
 
+  <div class="card">
+
+    <div class="card-title">📚 予想履歴</div>
+
+    <div id="historyContent">
+
+      <div class="empty">
+        まだ予想が保存されていません。
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 </main>
 
 <script>
@@ -1252,7 +1274,14 @@ document.querySelectorAll(".nav button")
         renderStatsPage();
 
       }
+if(
+  this.dataset.page ===
+  "historyPage"
+){
 
+  renderHistoryPage();
+
+}
     }
   );
 
@@ -2498,6 +2527,317 @@ function renderProfitChart(predictions){
     }
 
   }
+
+}
+// ==============================
+// 予想履歴
+// ==============================
+
+function renderHistoryPage(){
+
+  const container =
+    $("historyContent");
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  if(appState.predictions.length === 0){
+
+    container.innerHTML = `
+      <div class="empty">
+        まだ予想が保存されていません。
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  appState.predictions.forEach(
+    prediction => {
+
+      const item =
+        document.createElement("div");
+
+      item.style.border =
+        "1px solid #e4e7ec";
+
+      item.style.borderRadius =
+        "14px";
+
+      item.style.padding =
+        "14px";
+
+      item.style.marginBottom =
+        "10px";
+
+      item.style.background =
+        "#fff";
+
+
+      const title =
+        prediction.raceName ||
+        (
+          prediction.track +
+          " " +
+          prediction.raceNo
+        );
+
+
+      const profit =
+        Number(prediction.profit) || 0;
+
+
+      const profitText =
+        profit >= 0
+        ? "+" + formatYen(profit)
+        : "-" + formatYen(Math.abs(profit));
+
+
+      const resultSaved =
+        prediction.result &&
+        prediction.result.first &&
+        prediction.result.second &&
+        prediction.result.third;
+
+
+      const resultLabel =
+        resultSaved
+        ? "🏁 結果入力済み"
+        : "⏳ 結果未入力";
+
+
+      const horses =
+        Array.isArray(prediction.horses)
+        ? prediction.horses
+        : [];
+
+
+      const horseText =
+        horses
+          .filter(horse => horse.name)
+          .map(horse => {
+
+            const number =
+              horse.number
+              ? horse.number + "番 "
+              : "";
+
+            const mark =
+              horse.mark
+              ? " " + horse.mark
+              : "";
+
+            return (
+              number +
+              escapeHTML(horse.name) +
+              mark
+            );
+
+          })
+          .join("、");
+
+
+      item.innerHTML = `
+
+        <div style="
+          font-size:16px;
+          font-weight:800;
+        ">
+          ${escapeHTML(title)}
+        </div>
+
+
+        <div style="
+          margin-top:6px;
+          font-size:12px;
+          color:#667085;
+        ">
+          ${escapeHTML(prediction.track)}
+          ${escapeHTML(prediction.raceNo)}
+          ／
+          ${escapeHTML(prediction.surface)}
+          ${escapeHTML(
+            prediction.distance || ""
+          )}m
+        </div>
+
+
+        <div style="
+          margin-top:10px;
+          padding-top:10px;
+          border-top:1px solid #eef0f3;
+          font-size:13px;
+          line-height:1.8;
+        ">
+
+          <div>
+            💰 投資：
+            ${formatYen(
+              prediction.investment
+            )}
+          </div>
+
+          <div>
+            💵 回収：
+            ${formatYen(
+              prediction.returnAmount
+            )}
+          </div>
+
+          <div style="
+            font-weight:800;
+          ">
+            📊 収支：
+            ${profitText}
+          </div>
+
+          <div>
+            ${resultLabel}
+          </div>
+
+        </div>
+
+
+        ${
+          horseText
+          ? `
+            <div style="
+              margin-top:10px;
+              padding:10px;
+              background:#f8fafc;
+              border-radius:10px;
+              font-size:12px;
+              line-height:1.8;
+            ">
+              🐎 ${horseText}
+            </div>
+          `
+          : ""
+        }
+
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          style="margin-top:10px;"
+          onclick="openHistoryResult('${prediction.id}')">
+          ${resultSaved
+            ? "🏁 結果を確認"
+            : "🏁 結果を入力"}
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          style="margin-top:8px;"
+          onclick="deletePrediction('${prediction.id}')">
+          🗑 この予想を削除
+        </button>
+
+      `;
+
+
+      container.appendChild(item);
+
+    }
+  );
+
+}
+
+
+function openHistoryResult(id){
+
+  const prediction =
+    appState.predictions.find(
+      item => item.id === id
+    );
+
+  if(!prediction){
+
+    alert("予想データが見つかりません。");
+
+    return;
+
+  }
+
+  appState.currentPredictionId =
+    id;
+
+  saveData();
+
+  showPage("resultPage");
+
+  openResultEditor(id);
+
+}
+
+
+function deletePrediction(id){
+
+  const prediction =
+    appState.predictions.find(
+      item => item.id === id
+    );
+
+  if(!prediction){
+
+    return;
+
+  }
+
+
+  const title =
+    prediction.raceName ||
+    (
+      prediction.track +
+      " " +
+      prediction.raceNo
+    );
+
+
+  const confirmed =
+    confirm(
+      "「" +
+      title +
+      "」の予想を削除しますか？\n\n" +
+      "この操作は元に戻せません。"
+    );
+
+
+  if(!confirmed){
+
+    return;
+
+  }
+
+
+  appState.predictions =
+    appState.predictions.filter(
+      item => item.id !== id
+    );
+
+
+  if(
+    appState.currentPredictionId === id
+  ){
+
+    appState.currentPredictionId =
+      null;
+
+  }
+
+
+  saveData();
+
+  renderHistoryPage();
+
+  renderResultPage();
+
+  renderStatsPage();
 
 }
 </script>

@@ -198,12 +198,7 @@ select:focus{
 </header>
 
 <main class="container">
-
-  <nav class="nav">
-  <button class="active" data-page="inputPage">入力</button>
-  <button data-page="resultPage">結果</button>
-  <button data-page="statsPage">分析</button>
-</nav>
+  
   <nav class="nav">
   <button class="active" data-page="inputPage">入力</button>
   <button data-page="resultPage">結果</button>
@@ -621,57 +616,206 @@ function createHorseRow(){
 
   row.className = "horse-row";
 
-  row.style.marginBottom = "10px";
-  row.style.padding = "10px";
+  row.style.marginBottom = "8px";
+  row.style.padding = "8px";
   row.style.border = "1px solid #e4e7ec";
-  row.style.borderRadius = "12px";
+  row.style.borderRadius = "10px";
+  row.style.background = "#fff";
 
   row.innerHTML = `
 
-    <div class="grid">
+    <div style="
+      display:grid;
+      grid-template-columns:72px 58px minmax(0,1fr) 58px;
+      gap:6px;
+      align-items:end;
+    ">
 
+      <!-- 枠番 -->
       <div class="field">
-        <label>枠</label>
+
+        <label>枠番</label>
+
         <select class="horse-frame">
+
           <option value="">枠</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
+
+          <option value="1">① 1枠</option>
+          <option value="2">② 2枠</option>
+          <option value="3">③ 3枠</option>
+          <option value="4">④ 4枠</option>
+          <option value="5">⑤ 5枠</option>
+          <option value="6">⑥ 6枠</option>
+          <option value="7">⑦ 7枠</option>
+          <option value="8">⑧ 8枠</option>
+
         </select>
+
       </div>
 
+
+      <!-- 馬番 -->
       <div class="field">
+
         <label>馬番</label>
-        <input class="horse-number" type="number" inputmode="numeric" placeholder="馬番">
-      </div>
 
-      <div class="field full">
-        <label>馬名</label>
-        <input class="horse-name" type="text" placeholder="馬名">
-      </div>
+        <select class="horse-number">
 
-      <div class="field">
-        <label>印</label>
-        <select class="horse-mark">
-          ${MARKS.map(mark=>`
-            <option value="${mark}">${mark || "なし"}</option>
-          `).join("")}
+          <option value="">番</option>
+
+          ${Array.from(
+            {length:18},
+            (_,i)=>`
+              <option value="${i+1}">
+                ${i+1}
+              </option>
+            `
+          ).join("")}
+
         </select>
+
       </div>
 
+
+      <!-- 馬名 -->
       <div class="field">
-        <label>人気</label>
-        <input class="horse-popularity" type="number" inputmode="numeric" placeholder="人気">
+
+        <label>馬名</label>
+
+        <input
+          class="horse-name"
+          type="text"
+          placeholder="馬名"
+        >
+
+      </div>
+
+
+      <!-- 印 -->
+      <div class="field">
+
+        <label>印</label>
+
+        <select class="horse-mark">
+
+          ${MARKS.map(mark=>`
+
+            <option value="${mark}">
+              ${mark || "なし"}
+            </option>
+
+          `).join("")}
+
+        </select>
+
       </div>
 
     </div>
 
   `;
+
+
+  const frameSelect =
+    row.querySelector(".horse-frame");
+
+
+  function updateFrameColor(){
+
+    const frame =
+      frameSelect.value;
+
+    const frameColors = {
+
+      "1":{
+        background:"#fff",
+        color:"#111",
+        border:"#999"
+      },
+
+      "2":{
+        background:"#222",
+        color:"#fff",
+        border:"#222"
+      },
+
+      "3":{
+        background:"#e53935",
+        color:"#fff",
+        border:"#e53935"
+      },
+
+      "4":{
+        background:"#1976d2",
+        color:"#fff",
+        border:"#1976d2"
+      },
+
+      "5":{
+        background:"#fdd835",
+        color:"#111",
+        border:"#fdd835"
+      },
+
+      "6":{
+        background:"#43a047",
+        color:"#fff",
+        border:"#43a047"
+      },
+
+      "7":{
+        background:"#f57c00",
+        color:"#fff",
+        border:"#f57c00"
+      },
+
+      "8":{
+        background:"#f48fb1",
+        color:"#111",
+        border:"#f48fb1"
+      }
+
+    };
+
+
+    const color =
+      frameColors[frame];
+
+
+    if(color){
+
+      frameSelect.style.background =
+        color.background;
+
+      frameSelect.style.color =
+        color.color;
+
+      frameSelect.style.border =
+        "2px solid " + color.border;
+
+      frameSelect.style.fontWeight =
+        "800";
+
+    }else{
+
+      frameSelect.style.background =
+        "#fff";
+
+      frameSelect.style.color =
+        "#172033";
+
+      frameSelect.style.border =
+        "1px solid #d0d5dd";
+
+    }
+
+  }
+
+
+  frameSelect.addEventListener(
+    "change",
+    updateFrameColor
+  );
+
 
   $("horseList").appendChild(row);
 

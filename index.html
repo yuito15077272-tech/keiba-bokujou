@@ -276,7 +276,9 @@ select:focus{
             <option>2勝クラス</option>
             <option>3勝クラス</option>
             <option>オープン</option>
-            <option>重賞</option>
+            <option>G3</option>
+<option>G2</option>
+<option>G1</option>
           </select>
         </div>
 
@@ -639,15 +641,14 @@ function createHorseRow(){
         <select class="horse-frame">
 
           <option value="">枠</option>
-
-          <option value="1">① 1枠</option>
-          <option value="2">② 2枠</option>
-          <option value="3">③ 3枠</option>
-          <option value="4">④ 4枠</option>
-          <option value="5">⑤ 5枠</option>
-          <option value="6">⑥ 6枠</option>
-          <option value="7">⑦ 7枠</option>
-          <option value="8">⑧ 8枠</option>
+          <option value="1">1枠</option>
+<option value="2">2枠</option>
+<option value="3">3枠</option>
+<option value="4">4枠</option>
+<option value="5">5枠</option>
+<option value="6">6枠</option>
+<option value="7">7枠</option>
+<option value="8">8枠</option>
 
         </select>
 
@@ -698,14 +699,15 @@ function createHorseRow(){
 
         <select class="horse-mark">
 
-          ${MARKS.map(mark=>`
+   ${MARKS
+  .filter(mark => mark)
+  .map(mark=>`
 
-            <option value="${mark}">
-              ${mark || "なし"}
-            </option>
+    <option value="${mark}">
+      ${mark}
+    </option>
 
-          `).join("")}
-
+  `).join("")}       
         </select>
 
       </div>

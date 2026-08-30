@@ -2137,52 +2137,35 @@ function renderStatsPage(){
   );
 
 }
-
 /* =================================
    累計収支グラフ
 ================================= */
 
 function renderProfitChart(predictions){
 
-  const canvas =
-    $("profitChart");
+  const canvas = $("profitChart");
 
   if(!canvas) return;
 
+  const parent = canvas.parentElement;
 
-  const parent =
-    canvas.parentElement;
-
-  const width =
-    Math.max(
-      280,
-      parent
-      ? parent.clientWidth
-      : 320
-    );
+  const width = Math.max(
+    280,
+    parent ? parent.clientWidth : 320
+  );
 
   const height = 260;
+  const ratio = window.devicePixelRatio || 1;
 
-  const ratio =
-    window.devicePixelRatio || 1;
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
 
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
 
-  canvas.width =
-    width * ratio;
+  const ctx = canvas.getContext("2d");
 
-  canvas.height =
-    height * ratio;
-
-  canvas.style.width =
-    width + "px";
-
-  canvas.style.height =
-    height + "px";
-
-
-  const ctx =
-    canvas.getContext("2d");
-
+  if(!ctx) return;
 
   ctx.setTransform(
     ratio,
@@ -2193,7 +2176,6 @@ function renderProfitChart(predictions){
     0
   );
 
-
   ctx.clearRect(
     0,
     0,
@@ -2201,20 +2183,18 @@ function renderProfitChart(predictions){
     height
   );
 
+  /* -----------------------------
+     結果データがない場合
+  ----------------------------- */
 
   if(
-    !predictions ||
+    !Array.isArray(predictions) ||
     predictions.length === 0
   ){
 
-    ctx.fillStyle =
-      "#98a2b3";
-
-    ctx.font =
-      "14px sans-serif";
-
-    ctx.textAlign =
-      "center";
+    ctx.fillStyle = "#98a2b3";
+    ctx.font = "14px sans-serif";
+    ctx.textAlign = "center";
 
     ctx.fillText(
       "結果が保存されたレースがありません",
@@ -2223,29 +2203,55 @@ function renderProfitChart(predictions){
     );
 
     return;
-
   }
 
+
+  /* -----------------------------
+     累計収支データ作成
+  ----------------------------- */
 
   let cumulative = 0;
 
   const values = [];
-
 
   predictions
     .slice()
     .reverse()
     .forEach(prediction=>{
 
-      cumulative +=
-        Number(prediction.profit) || 0;
+      const profit =
+        Number(prediction.profit) ||
+        (
+          (Number(prediction.returnAmount) || 0) -
+          (Number(prediction.investment) || 0)
+        );
 
-      values.push(
-        cumulative
-      );
+      cumulative += profit;
+
+      values.push(cumulative);
 
     });
 
+
+  if(values.length === 0){
+
+    ctx.fillStyle = "#98a2b3";
+    ctx.font = "14px sans-serif";
+    ctx.textAlign = "center";
+
+    ctx.fillText(
+      "グラフに表示できるデータがありません",
+      width / 2,
+      height / 2
+    );
+
+    return;
+  }
+
+
+  /* -----------------------------
+     最大・最小
+  ----------------------------- */
 
   const dataMin =
     Math.min(0,...values);
@@ -2254,53 +2260,51 @@ function renderProfitChart(predictions){
     Math.max(0,...values);
 
 
+  let range =
+    Math.max(
+      Math.abs(dataMin),
+      Math.abs(dataMax)
+    );
+
+
+  if(range === 0){
+    range = 1000;
+  }
+
+
+  const step =
+    range <= 1000
+    ? 500
+    : range <= 5000
+      ? 1000
+      : range <= 10000
+        ? 2000
+        : 5000;
+
+
   let minValue =
-    Math.floor(
-      dataMin / 500
-    ) * 500;
+    Math.floor(dataMin / step) * step;
 
   let maxValue =
-    Math.ceil(
-      dataMax / 500
-    ) * 500;
+    Math.ceil(dataMax / step) * step;
 
 
-  if(
-    minValue === 0 &&
-    maxValue === 0
-  ){
+  if(minValue === maxValue){
 
-    minValue = -1000;
-    maxValue = 1000;
+    minValue -= step;
+    maxValue += step;
 
   }
 
 
-  if(
-    minValue === 0 &&
-    maxValue > 0
-  ){
-
-    minValue = -500;
-
-  }
-
-
-  if(
-    maxValue === 0 &&
-    minValue < 0
-  ){
-
-    maxValue = 500;
-
-  }
-
+  /* -----------------------------
+     描画領域
+  ----------------------------- */
 
   const paddingLeft = 62;
   const paddingRight = 14;
   const paddingTop = 20;
   const paddingBottom = 35;
-
 
   const chartWidth =
     width -
@@ -2312,6 +2316,10 @@ function renderProfitChart(predictions){
     paddingTop -
     paddingBottom;
 
+
+  /* -----------------------------
+     座標計算
+  ----------------------------- */
 
   function xPosition(index){
 
@@ -2326,8 +2334,10 @@ function renderProfitChart(predictions){
 
     return (
       paddingLeft +
-      index /
-      (values.length - 1) *
+      (
+        index /
+        (values.length - 1)
+      ) *
       chartWidth
     );
 
@@ -2350,20 +2360,19 @@ function renderProfitChart(predictions){
   }
 
 
+  /* -----------------------------
+     横グリッド
+  ----------------------------- */
+
   for(
-    let value=maxValue;
-    value>=minValue;
-    value-=500
+    let value = minValue;
+    value <= maxValue;
+    value += step
   ){
 
     const y =
       yPosition(value);
 
-
-    ctx.strokeStyle =
-      "#e4e7ec";
-
-    ctx.lineWidth = 1;
 
     ctx.beginPath();
 
@@ -2373,9 +2382,14 @@ function renderProfitChart(predictions){
     );
 
     ctx.lineTo(
-      width-paddingRight,
+      width - paddingRight,
       y
     );
+
+    ctx.strokeStyle =
+      "#e4e7ec";
+
+    ctx.lineWidth = 1;
 
     ctx.stroke();
 
@@ -2390,30 +2404,31 @@ function renderProfitChart(predictions){
       "right";
 
 
-    const label =
-      value > 0
-      ? "+" +
-        value.toLocaleString("ja-JP")
-      : value.toLocaleString("ja-JP");
+    let label =
+      value.toLocaleString("ja-JP");
+
+
+    if(value > 0){
+      label = "+" + label;
+    }
 
 
     ctx.fillText(
       label,
-      paddingLeft-7,
-      y+3
+      paddingLeft - 7,
+      y + 3
     );
 
   }
 
 
+  /* -----------------------------
+     0円ライン
+  ----------------------------- */
+
   const zeroY =
     yPosition(0);
 
-
-  ctx.strokeStyle =
-    "#667085";
-
-  ctx.lineWidth = 2;
 
   ctx.beginPath();
 
@@ -2423,15 +2438,23 @@ function renderProfitChart(predictions){
   );
 
   ctx.lineTo(
-    width-paddingRight,
+    width - paddingRight,
     zeroY
   );
+
+  ctx.strokeStyle =
+    "#667085";
+
+  ctx.lineWidth = 2;
 
   ctx.stroke();
 
 
-  ctx.beginPath();
+  /* -----------------------------
+     グラフ線
+  ----------------------------- */
 
+  ctx.beginPath();
 
   values.forEach(
     (value,index)=>{
@@ -2445,11 +2468,17 @@ function renderProfitChart(predictions){
 
       if(index === 0){
 
-        ctx.moveTo(x,y);
+        ctx.moveTo(
+          x,
+          y
+        );
 
       }else{
 
-        ctx.lineTo(x,y);
+        ctx.lineTo(
+          x,
+          y
+        );
 
       }
 
@@ -2471,6 +2500,10 @@ function renderProfitChart(predictions){
   ctx.stroke();
 
 
+  /* -----------------------------
+     ポイント
+  ----------------------------- */
+
   values.forEach(
     (value,index)=>{
 
@@ -2486,7 +2519,7 @@ function renderProfitChart(predictions){
       ctx.arc(
         x,
         y,
-        3,
+        4,
         0,
         Math.PI * 2
       );
@@ -2499,6 +2532,10 @@ function renderProfitChart(predictions){
     }
   );
 
+
+  /* -----------------------------
+     X軸
+  ----------------------------- */
 
   ctx.fillStyle =
     "#667085";
@@ -2513,7 +2550,7 @@ function renderProfitChart(predictions){
   ctx.fillText(
     "1",
     xPosition(0),
-    height-10
+    height - 10
   );
 
 
@@ -2521,14 +2558,13 @@ function renderProfitChart(predictions){
 
     ctx.fillText(
       String(values.length),
-      xPosition(values.length-1),
-      height-10
+      xPosition(values.length - 1),
+      height - 10
     );
 
   }
 
 }
-
 
 /* =================================
    履歴

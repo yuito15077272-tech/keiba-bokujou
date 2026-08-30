@@ -732,28 +732,92 @@ function showPage(pageId){
   }
 
 }
-
-
 /* =================================
    ナビゲーション
+   確実にページ切り替え
 ================================= */
 
-document
-  .querySelectorAll(".nav button")
-  .forEach(button=>{
+function showPage(pageId){
 
-    button.addEventListener(
-      "click",
-      function(){
+  const pages =
+    document.querySelectorAll(".page");
 
-        showPage(
-          this.dataset.page
-        );
+  pages.forEach(function(page){
 
-      }
-    );
+    page.classList.remove("active");
 
   });
+
+
+  const target =
+    document.getElementById(pageId);
+
+  if(target){
+
+    target.classList.add("active");
+
+  }
+
+
+  const buttons =
+    document.querySelectorAll(".nav button");
+
+  buttons.forEach(function(button){
+
+    button.classList.remove("active");
+
+    if(
+      button.getAttribute("data-page") === pageId
+    ){
+
+      button.classList.add("active");
+
+    }
+
+  });
+
+
+  /* ページごとの更新 */
+
+  if(pageId === "resultPage"){
+
+    renderResultPage();
+
+  }
+
+
+  if(pageId === "statsPage"){
+
+    renderStatsPage();
+
+  }
+
+
+  if(pageId === "historyPage"){
+
+    renderHistoryPage();
+
+  }
+
+}
+
+
+/* ナビボタン */
+
+document.querySelectorAll(".nav button").forEach(
+  function(button){
+
+    button.onclick = function(){
+
+      const pageId =
+        this.getAttribute("data-page");
+
+      showPage(pageId);
+
+    };
+
+  }
+);
 
 
 /* =================================

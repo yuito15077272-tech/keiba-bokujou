@@ -2137,6 +2137,7 @@ function renderStatsPage(){
   );
 
 }
+
 /* =================================
    累計収支グラフ
 ================================= */
@@ -2183,9 +2184,7 @@ function renderProfitChart(predictions){
     height
   );
 
-  /* -----------------------------
-     結果データがない場合
-  ----------------------------- */
+  /* 結果データ確認 */
 
   if(
     !Array.isArray(predictions) ||
@@ -2205,6 +2204,282 @@ function renderProfitChart(predictions){
     return;
   }
 
+  /* 累計収支 */
+
+  let cumulative = 0;
+
+  const values = [];
+
+  predictions
+    .slice()
+    .reverse()
+    .forEach(prediction => {
+
+      const profit =
+        Number(prediction.profit) ||
+        (
+          (Number(prediction.returnAmount) || 0) -
+          (Number(prediction.investment) || 0)
+        );
+
+      cumulative += profit;
+
+      values.push(cumulative);
+
+    });
+
+  if(values.length === 0) return;
+
+  /* 最大・最小 */
+
+  const dataMin =
+    Math.min(0, ...values);
+
+  const dataMax =
+    Math.max(0, ...values);
+
+  let minValue =
+    Math.floor(dataMin / 500) * 500;
+
+  let maxValue =
+    Math.ceil(dataMax / 500) * 500;
+
+  if(minValue === maxValue){
+
+    minValue -= 1000;
+    maxValue += 1000;
+
+  }else{
+
+    if(minValue === 0){
+      minValue = -500;
+    }
+
+    if(maxValue === 0){
+      maxValue = 500;
+    }
+
+  }
+
+  const paddingLeft = 62;
+  const paddingRight = 14;
+  const paddingTop = 20;
+  const paddingBottom = 35;
+
+  const chartWidth =
+    width -
+    paddingLeft -
+    paddingRight;
+
+  const chartHeight =
+    height -
+    paddingTop -
+    paddingBottom;
+
+  function xPosition(index){
+
+    if(values.length === 1){
+
+      return paddingLeft +
+        chartWidth / 2;
+
+    }
+
+    return paddingLeft +
+      (
+        index /
+        (values.length - 1)
+      ) *
+      chartWidth;
+
+  }
+
+  function yPosition(value){
+
+    return paddingTop +
+      (
+        (maxValue - value) /
+        (maxValue - minValue)
+      ) *
+      chartHeight;
+
+  }
+
+  /* 横線 */
+
+  const step = 500;
+
+  for(
+    let value = minValue;
+    value <= maxValue;
+    value += step
+  ){
+
+    const y =
+      yPosition(value);
+
+    ctx.beginPath();
+
+    ctx.strokeStyle =
+      "#e4e7ec";
+
+    ctx.lineWidth = 1;
+
+    ctx.moveTo(
+      paddingLeft,
+      y
+    );
+
+    ctx.lineTo(
+      width - paddingRight,
+      y
+    );
+
+    ctx.stroke();
+
+    ctx.fillStyle =
+      "#667085";
+
+    ctx.font =
+      "10px sans-serif";
+
+    ctx.textAlign =
+      "right";
+
+    const label =
+      value > 0
+      ? "+" +
+        value.toLocaleString("ja-JP")
+      : value.toLocaleString("ja-JP");
+
+    ctx.fillText(
+      label,
+      paddingLeft - 7,
+      y + 3
+    );
+
+  }
+
+  /* 0円ライン */
+
+  const zeroY =
+    yPosition(0);
+
+  ctx.beginPath();
+
+  ctx.strokeStyle =
+    "#667085";
+
+  ctx.lineWidth = 2;
+
+  ctx.moveTo(
+    paddingLeft,
+    zeroY
+  );
+
+  ctx.lineTo(
+    width - paddingRight,
+    zeroY
+  );
+
+  ctx.stroke();
+
+  /* グラフ線 */
+
+  ctx.beginPath();
+
+  values.forEach(
+    (value, index) => {
+
+      const x =
+        xPosition(index);
+
+      const y =
+        yPosition(value);
+
+      if(index === 0){
+
+        ctx.moveTo(x, y);
+
+      }else{
+
+        ctx.lineTo(x, y);
+
+      }
+
+    }
+  );
+
+  ctx.strokeStyle =
+    "#2563eb";
+
+  ctx.lineWidth = 3;
+
+  ctx.lineJoin =
+    "round";
+
+  ctx.lineCap =
+    "round";
+
+  ctx.stroke();
+
+  /* ポイント */
+
+  values.forEach(
+    (value, index) => {
+
+      const x =
+        xPosition(index);
+
+      const y =
+        yPosition(value);
+
+      ctx.beginPath();
+
+      ctx.arc(
+        x,
+        y,
+        4,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fillStyle =
+        "#2563eb";
+
+      ctx.fill();
+
+    }
+  );
+
+  /* 下部ラベル */
+
+  ctx.fillStyle =
+    "#667085";
+
+  ctx.font =
+    "10px sans-serif";
+
+  ctx.textAlign =
+    "center";
+
+  ctx.fillText(
+    "1",
+    xPosition(0),
+    height - 10
+  );
+
+  if(values.length > 1){
+
+    ctx.fillText(
+      String(values.length),
+      xPosition(values.length - 1),
+      height - 10
+    );
+
+  }
+
+}
 
   /* -----------------------------
      累計収支データ作成

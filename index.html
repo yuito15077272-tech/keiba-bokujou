@@ -670,6 +670,25 @@ function loadData(){
    ページ切り替え
 ================================= */
 
+
+
+
+/* ナビボタン */
+
+document.querySelectorAll(".nav button").forEach(
+  function(button){
+
+    button.onclick = function(){
+
+      const pageId =
+        this.getAttribute("data-page");
+
+      showPage(pageId);
+
+    };
+
+  }
+);
 function showPage(pageId){
 
   document
@@ -778,25 +797,6 @@ function showPage(pageId){
   }
 
 }
-
-
-/* ナビボタン */
-
-document.querySelectorAll(".nav button").forEach(
-  function(button){
-
-    button.onclick = function(){
-
-      const pageId =
-        this.getAttribute("data-page");
-
-      showPage(pageId);
-
-    };
-
-  }
-);
-
 
 /* =================================
    距離・頭数

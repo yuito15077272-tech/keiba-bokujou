@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0f172a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -10,23 +10,29 @@
 <title>競馬牧場</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html,body{
   margin:0;
   padding:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",
+  "Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
   background:#f4f6f8;
   color:#172033;
 }
 
-body{padding-bottom:40px}
+body{
+  padding-bottom:40px;
+}
 
-button,input,select{font:inherit}
+button,input,select{
+  font:inherit;
+}
 
 button{
   -webkit-tap-highlight-color:transparent;
-  cursor:pointer;
 }
 
 .header{
@@ -55,6 +61,35 @@ button{
   padding:14px;
 }
 
+.nav{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:14px;
+}
+
+.nav button{
+  min-height:44px;
+  border:0;
+  border-radius:10px;
+  background:#fff;
+  color:#475467;
+  font-weight:800;
+}
+
+.nav button.active{
+  background:#2563eb;
+  color:#fff;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
 .card{
   background:#fff;
   border-radius:16px;
@@ -81,7 +116,9 @@ button{
   gap:6px;
 }
 
-.field.full{grid-column:1/-1}
+.field.full{
+  grid-column:1/-1;
+}
 
 label{
   font-size:12px;
@@ -110,6 +147,7 @@ input:focus,select:focus{
   border:0;
   border-radius:12px;
   font-weight:800;
+  cursor:pointer;
 }
 
 .btn-primary{
@@ -127,31 +165,6 @@ input:focus,select:focus{
   color:#b91c1c;
 }
 
-.nav{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-bottom:14px;
-}
-
-.nav button{
-  min-height:44px;
-  border:0;
-  border-radius:10px;
-  background:#fff;
-  color:#475467;
-  font-weight:800;
-}
-
-.nav button.active{
-  background:#2563eb;
-  color:#fff;
-}
-
-.page{display:none}
-
-.page.active{display:block}
-
 .empty{
   text-align:center;
   color:#98a2b3;
@@ -166,129 +179,65 @@ input:focus,select:focus{
   background:#fff;
 }
 
-.summary-grid{
+.stat-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
 }
 
-.summary-box{
+.stat-box{
   background:#f8fafc;
   border-radius:12px;
   padding:12px;
 }
 
-.summary-label{
+.stat-label{
   font-size:11px;
   color:#667085;
 }
 
-.summary-value{
+.stat-value{
   font-size:21px;
   font-weight:800;
   margin-top:4px;
 }
 
-.stats-table-wrap{
-  overflow-x:auto;
+.table-wrap{
   width:100%;
+  overflow-x:auto;
 }
 
 .stats-table{
   width:100%;
+  min-width:500px;
   border-collapse:collapse;
   font-size:12px;
-  min-width:520px;
+}
+
+.stats-table th,
+.stats-table td{
+  padding:10px 6px;
+  border-bottom:1px solid #eef0f3;
 }
 
 .stats-table th{
   text-align:right;
-  padding:10px 6px;
   border-bottom:2px solid #e4e7ec;
-  white-space:nowrap;
 }
 
-.stats-table th:first-child{
+.stats-table th:first-child,
+.stats-table td:first-child{
   text-align:left;
 }
 
-.stats-table td{
-  padding:10px 6px;
-  border-bottom:1px solid #eef0f3;
-  white-space:nowrap;
-}
-
-.stats-table td:first-child{
-  font-weight:700;
-}
-
-.profit-plus{
+.profit-positive{
   color:#15803d;
   font-weight:800;
 }
 
-.profit-minus{
+.profit-negative{
   color:#dc2626;
   font-weight:800;
-}
-
-.badge{
-  display:inline-block;
-  padding:4px 8px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:800;
-  background:#e9eef5;
-}
-
-.badge-ok{
-  background:#dcfce7;
-  color:#15803d;
-}
-
-.badge-wait{
-  background:#fef3c7;
-  color:#92400e;
-}
-
-.race-card{
-  border:1px solid #e4e7ec;
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:10px;
-  background:#fff;
-}
-
-.race-title{
-  font-size:16px;
-  font-weight:800;
-}
-
-.race-meta{
-  margin-top:6px;
-  font-size:12px;
-  color:#667085;
-  line-height:1.7;
-}
-
-.horse-list{
-  margin-top:10px;
-  padding:10px;
-  background:#f8fafc;
-  border-radius:10px;
-  font-size:12px;
-  line-height:1.9;
-}
-
-.result-box{
-  background:#f8fafc;
-  border-radius:12px;
-  padding:12px;
-  margin-bottom:14px;
-}
-
-canvas{
-  display:block;
 }
 
 @media(max-width:600px){
@@ -323,289 +272,368 @@ canvas{
 <main class="container">
 
 <nav class="nav">
-  <button class="active" data-page="inputPage">入力</button>
-  <button data-page="resultPage">結果</button>
-  <button data-page="statsPage">分析</button>
-  <button data-page="historyPage">履歴</button>
+  <button type="button" class="active" data-page="inputPage">入力</button>
+  <button type="button" data-page="resultPage">結果</button>
+  <button type="button" data-page="statsPage">分析</button>
+  <button type="button" data-page="historyPage">履歴</button>
 </nav>
 
-<!-- ============================= -->
-<!-- 入力 -->
-<!-- ============================= -->
+
+<!-- =========================
+     入力
+========================= -->
 
 <section id="inputPage" class="page active">
 
-<div class="card">
+  <div class="card">
 
-<div class="card-title">🏇 レース情報</div>
+    <div class="card-title">🏇 レース情報</div>
 
-<div class="grid">
+    <div class="grid">
 
-<div class="field">
-<label>競馬場</label>
-<select id="track">
-<option value="">選択してください</option>
-<option>札幌</option>
-<option>函館</option>
-<option>福島</option>
-<option>新潟</option>
-<option>東京</option>
-<option>中山</option>
-<option>中京</option>
-<option>京都</option>
-<option>阪神</option>
-<option>小倉</option>
-</select>
-</div>
+      <div class="field">
+        <label>競馬場</label>
+        <select id="track">
+          <option value="">選択してください</option>
+          <option>札幌</option>
+          <option>函館</option>
+          <option>福島</option>
+          <option>新潟</option>
+          <option>東京</option>
+          <option>中山</option>
+          <option>中京</option>
+          <option>京都</option>
+          <option>阪神</option>
+          <option>小倉</option>
+        </select>
+      </div>
 
-<div class="field">
-<label>レース番号</label>
-<select id="raceNo">
-<option value="">選択</option>
-<option>1R</option>
-<option>2R</option>
-<option>3R</option>
-<option>4R</option>
-<option>5R</option>
-<option>6R</option>
-<option>7R</option>
-<option>8R</option>
-<option>9R</option>
-<option>10R</option>
-<option>11R</option>
-<option>12R</option>
-</select>
-</div>
+      <div class="field">
+        <label>レース番号</label>
+        <select id="raceNo">
+          <option value="">選択</option>
+          <option>1R</option>
+          <option>2R</option>
+          <option>3R</option>
+          <option>4R</option>
+          <option>5R</option>
+          <option>6R</option>
+          <option>7R</option>
+          <option>8R</option>
+          <option>9R</option>
+          <option>10R</option>
+          <option>11R</option>
+          <option>12R</option>
+        </select>
+      </div>
 
-<div class="field">
-<label>馬場</label>
-<select id="surface">
-<option value="">選択してください</option>
-<option>芝</option>
-<option>ダート</option>
-<option>障害</option>
-</select>
-</div>
+      <div class="field">
+        <label>馬場</label>
+        <select id="surface">
+          <option value="">選択してください</option>
+          <option>芝</option>
+          <option>ダート</option>
+          <option>障害</option>
+        </select>
+      </div>
 
-<div class="field">
-<label>距離</label>
-<select id="distance">
-<option value="">選択してください</option>
-</select>
-</div>
+      <div class="field">
+        <label>距離</label>
+        <select id="distance">
+          <option value="">選択してください</option>
+        </select>
+      </div>
 
-<div class="field">
-<label>クラス</label>
-<select id="raceClass">
-<option value="">選択してください</option>
-<option>新馬</option>
-<option>未勝利</option>
-<option>1勝クラス</option>
-<option>2勝クラス</option>
-<option>3勝クラス</option>
-<option>オープン</option>
-<option>G3</option>
-<option>G2</option>
-<option>G1</option>
-</select>
-</div>
+      <div class="field">
+        <label>クラス</label>
+        <select id="raceClass">
+          <option value="">選択してください</option>
+          <option>新馬</option>
+          <option>未勝利</option>
+          <option>1勝クラス</option>
+          <option>2勝クラス</option>
+          <option>3勝クラス</option>
+          <option>オープン</option>
+          <option>G3</option>
+          <option>G2</option>
+          <option>G1</option>
+        </select>
+      </div>
 
-<div class="field">
-<label>馬場状態</label>
-<select id="ground">
-<option value="">選択してください</option>
-<option>良</option>
-<option>稍重</option>
-<option>重</option>
-<option>不良</option>
-</select>
-</div>
+      <div class="field">
+        <label>馬場状態</label>
+        <select id="ground">
+          <option value="">選択してください</option>
+          <option>良</option>
+          <option>稍重</option>
+          <option>重</option>
+          <option>不良</option>
+        </select>
+      </div>
 
-<div class="field">
-<label>頭数</label>
-<select id="fieldSize">
-<option value="">選択してください</option>
-</select>
-</div>
+      <div class="field">
+        <label>頭数</label>
+        <select id="fieldSize">
+          <option value="">選択してください</option>
+        </select>
+      </div>
 
-</div>
-</div>
+    </div>
+  </div>
 
-<div class="card">
 
-<div class="card-title">🐎 出走馬</div>
+  <div class="card">
 
-<div id="horseList"></div>
+    <div class="card-title">🐎 出走馬</div>
 
-<button class="btn btn-secondary" id="addHorseBtn">
-＋ 馬を追加
-</button>
+    <div id="horseList"></div>
 
-</div>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      id="addHorseBtn">
+      ＋ 馬を追加
+    </button>
 
-<div class="card">
+  </div>
 
-<div class="card-title">💰 収支</div>
 
-<div class="grid">
+  <div class="card">
 
-<div class="field">
-<label>投資額</label>
-<input id="investment" type="number" inputmode="numeric" placeholder="0">
-</div>
+    <div class="card-title">💰 収支</div>
 
-<div class="field">
-<label>回収額</label>
-<input id="returnAmount" type="number" inputmode="numeric" placeholder="0">
-</div>
+    <div class="grid">
 
-<div class="field full">
-<label>レース名・メモ</label>
-<input id="raceName" type="text" placeholder="例：新潟記念">
-</div>
+      <div class="field">
+        <label>投資額</label>
+        <input
+          id="investment"
+          type="number"
+          inputmode="numeric"
+          placeholder="0">
+      </div>
 
-</div>
-</div>
+      <div class="field">
+        <label>回収額</label>
+        <input
+          id="returnAmount"
+          type="number"
+          inputmode="numeric"
+          placeholder="0">
+      </div>
 
-<button class="btn btn-primary" id="savePredictionBtn">
-💾 予想を保存
-</button>
+      <div class="field full">
+        <label>レース名・メモ</label>
+        <input
+          id="raceName"
+          type="text"
+          placeholder="例：新潟記念">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    id="savePredictionBtn">
+    💾 予想を保存
+  </button>
 
 </section>
 
-<!-- ============================= -->
-<!-- 結果 -->
-<!-- ============================= -->
+
+<!-- =========================
+     結果
+========================= -->
 
 <section id="resultPage" class="page">
 
-<div class="card">
+  <div class="card">
 
-<div class="card-title">🏁 結果入力</div>
+    <div class="card-title">🏁 結果入力</div>
 
-<div id="resultContent"></div>
+    <div id="resultContent">
+      <div class="empty">
+        保存した予想を選択すると結果を入力できます。
+      </div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
-<!-- ============================= -->
-<!-- 分析 -->
-<!-- ============================= -->
+
+<!-- =========================
+     分析
+========================= -->
 
 <section id="statsPage" class="page">
 
-<div class="card">
+  <div class="card">
 
-<div class="card-title">📊 成績分析</div>
+    <div class="card-title">📊 成績分析</div>
 
-<div id="statsSummary"></div>
+    <div id="statsSummary"></div>
 
-</div>
+  </div>
 
-<div class="card">
-<div class="card-title">🏇 競馬場別</div>
-<div id="trackStats"></div>
-</div>
 
-<div class="card">
-<div class="card-title">📏 距離別</div>
-<div id="distanceStats"></div>
-</div>
+  <div class="card">
+    <div class="card-title">🏇 競馬場別</div>
+    <div id="trackStats"></div>
+  </div>
 
-<div class="card">
-<div class="card-title">🌱 芝・ダート・障害</div>
-<div id="surfaceStats"></div>
-</div>
 
-<div class="card">
-<div class="card-title">🏆 クラス別</div>
-<div id="classStats"></div>
-</div>
+  <div class="card">
+    <div class="card-title">📏 距離別</div>
+    <div id="distanceStats"></div>
+  </div>
 
-<div class="card">
-<div class="card-title">🌦 馬場状態別</div>
-<div id="groundStats"></div>
-</div>
 
-<div class="card">
-<div class="card-title">🎽 枠番別</div>
-<div id="frameStats"></div>
-</div>
+  <div class="card">
+    <div class="card-title">🌱 芝・ダート・障害</div>
+    <div id="surfaceStats"></div>
+  </div>
 
-<div class="card">
-<div class="card-title">🎯 印別</div>
-<div id="markStats"></div>
-</div>
 
-<div class="card">
-<div class="card-title">🐎 頭数別</div>
-<div id="fieldSizeStats"></div>
-</div>
+  <div class="card">
+    <div class="card-title">🏆 クラス別</div>
+    <div id="classStats"></div>
+  </div>
 
-<div class="card">
-<div class="card-title">🔥 人気別</div>
-<div id="popularityStats"></div>
-</div>
 
-<div class="card">
+  <div class="card">
+    <div class="card-title">🌦 馬場状態別</div>
+    <div id="groundStats"></div>
+  </div>
 
-<div class="card-title">📈 累計収支</div>
 
-<div style="width:100%;overflow:hidden">
-<canvas id="profitChart"></canvas>
-</div>
+  <div class="card">
+    <div class="card-title">🎽 枠番別</div>
+    <div id="frameStats"></div>
+  </div>
 
-</div>
+
+  <div class="card">
+    <div class="card-title">⭐ 印別</div>
+    <div id="markStats"></div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-title">🐎 頭数別</div>
+    <div id="fieldSizeStats"></div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-title">🔥 人気別</div>
+    <div id="popularityStats"></div>
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">📈 累計収支</div>
+
+    <div style="width:100%;overflow:hidden;">
+
+      <canvas
+        id="profitChart"
+        style="display:block;width:100%;height:260px;">
+      </canvas>
+
+    </div>
+
+  </div>
 
 </section>
 
-<!-- ============================= -->
-<!-- 履歴 -->
-<!-- ============================= -->
+
+<!-- =========================
+     履歴
+========================= -->
 
 <section id="historyPage" class="page">
 
-<div class="card">
+  <div class="card">
 
-<div class="card-title">📚 予想履歴</div>
+    <div class="card-title">📚 予想履歴</div>
 
-<div id="historyContent"></div>
+    <div id="historyContent">
+      <div class="empty">
+        まだ予想が保存されていません。
+      </div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
 </main>
 
+
 <script>
 
-/* =========================================
+/* =================================
    基本設定
-========================================= */
+================================= */
 
-const DISTANCES=[
-1000,1100,1200,1300,1400,1500,1600,
-1700,1800,1900,2000,2100,2200,2300,
-2400,2500,2600,3000,3200,3400,3600
+const STORAGE_KEY = "keiba_bokujou_final_v2";
+
+const DISTANCES = [
+  1000,1100,1200,1300,1400,1500,1600,
+  1700,1800,1900,2000,2100,2200,2300,
+  2400,2500,2600,3000,3200,3400,3600
 ];
 
-const MARKS=["◎","○","▲","☆","△","消","－"];
+const MARKS = [
+  "◎",
+  "○",
+  "▲",
+  "☆",
+  "△",
+  "消",
+  "－"
+];
 
-const STORAGE_KEY="keiba_bokujou_final";
-
-const appState={
+const appState = {
   predictions:[],
   currentPredictionId:null
 };
+
+
+/* =================================
+   ID取得
+================================= */
 
 function $(id){
   return document.getElementById(id);
 }
 
-/* =========================================
-   保存・読み込み
-========================================= */
+
+/* =================================
+   HTMLエスケープ
+================================= */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =================================
+   データ保存
+================================= */
 
 function saveData(){
 
@@ -616,125 +644,179 @@ function saveData(){
 
 }
 
+
+/* =================================
+   データ読み込み
+================================= */
+
 function loadData(){
 
   try{
 
-    const saved=
+    const saved =
       localStorage.getItem(STORAGE_KEY);
 
-    if(!saved)return;
+    if(!saved) return;
 
-    const data=JSON.parse(saved);
+    const data =
+      JSON.parse(saved);
 
-    if(!data || typeof data!=="object")return;
+    if(!data || typeof data !== "object"){
+      return;
+    }
 
-    appState.predictions=
+    appState.predictions =
       Array.isArray(data.predictions)
       ? data.predictions
       : [];
 
-    appState.currentPredictionId=
+    appState.currentPredictionId =
       data.currentPredictionId || null;
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "データ読み込みエラー:",
+      error
+    );
 
-    appState.predictions=[];
-
-    appState.currentPredictionId=null;
-
-  }
-
-}
-
-/* =========================================
-   初期選択肢
-========================================= */
-
-function setupDistance(){
-
-  const select=$("distance");
-
-  DISTANCES.forEach(distance=>{
-
-    const option=document.createElement("option");
-
-    option.value=distance;
-
-    option.textContent=distance+"m";
-
-    select.appendChild(option);
-
-  });
-
-}
-
-function setupFieldSize(){
-
-  const select=$("fieldSize");
-
-  for(let i=1;i<=18;i++){
-
-    const option=document.createElement("option");
-
-    option.value=i;
-
-    option.textContent=i+"頭";
-
-    select.appendChild(option);
+    appState.predictions = [];
+    appState.currentPredictionId = null;
 
   }
 
 }
 
-/* =========================================
+
+/* =================================
    ページ切り替え
-========================================= */
+================================= */
 
 function showPage(pageId){
 
-  document.querySelectorAll(".page").forEach(page=>{
-    page.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".page")
+    .forEach(page=>{
+      page.classList.remove("active");
+    });
 
-  const page=$(pageId);
+  const target =
+    $(pageId);
 
-  if(page){
-    page.classList.add("active");
+  if(target){
+    target.classList.add("active");
   }
 
-  document.querySelectorAll(".nav button").forEach(button=>{
+  document
+    .querySelectorAll(".nav button")
+    .forEach(button=>{
 
-    button.classList.toggle(
-      "active",
-      button.dataset.page===pageId
+      button.classList.toggle(
+        "active",
+        button.dataset.page === pageId
+      );
+
+    });
+
+
+  if(pageId === "resultPage"){
+    renderResultPage();
+  }
+
+  if(pageId === "statsPage"){
+    renderStatsPage();
+  }
+
+  if(pageId === "historyPage"){
+    renderHistoryPage();
+  }
+
+}
+
+
+/* =================================
+   ナビゲーション
+================================= */
+
+document
+  .querySelectorAll(".nav button")
+  .forEach(button=>{
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        showPage(
+          this.dataset.page
+        );
+
+      }
     );
 
   });
 
+
+/* =================================
+   距離・頭数
+================================= */
+
+function setupSelects(){
+
+  const distance =
+    $("distance");
+
+  DISTANCES.forEach(value=>{
+
+    const option =
+      document.createElement("option");
+
+    option.value = value;
+    option.textContent = value + "m";
+
+    distance.appendChild(option);
+
+  });
+
+
+  const fieldSize =
+    $("fieldSize");
+
+  for(let i=1;i<=18;i++){
+
+    const option =
+      document.createElement("option");
+
+    option.value = i;
+    option.textContent = i + "頭";
+
+    fieldSize.appendChild(option);
+
+  }
+
 }
 
-/* =========================================
-   馬入力
-========================================= */
 
-let horseCount=0;
+/* =================================
+   馬入力
+================================= */
+
+let horseCount = 0;
+
 
 function createHorseRow(){
 
   horseCount++;
 
-  const row=document.createElement("div");
+  const row =
+    document.createElement("div");
 
-  row.className="horse-row";
+  row.className = "horse-row";
 
-  row.innerHTML=`
+  row.innerHTML = `
 
     <div style="
       display:grid;
-      grid-template-columns:70px 58px minmax(0,1fr) 58px;
+      grid-template-columns:72px 58px minmax(0,1fr) 58px;
       gap:6px;
       align-items:end;
     ">
@@ -746,6 +828,7 @@ function createHorseRow(){
         <select class="horse-frame">
 
           <option value="">枠</option>
+
           <option value="1">1枠</option>
           <option value="2">2枠</option>
           <option value="3">3枠</option>
@@ -759,6 +842,7 @@ function createHorseRow(){
 
       </div>
 
+
       <div class="field">
 
         <label>馬番</label>
@@ -769,16 +853,14 @@ function createHorseRow(){
 
           ${Array.from(
             {length:18},
-            (_,i)=>`
-              <option value="${i+1}">
-                ${i+1}
-              </option>
-            `
+            (_,i)=>
+              `<option value="${i+1}">${i+1}</option>`
           ).join("")}
 
         </select>
 
       </div>
+
 
       <div class="field">
 
@@ -787,10 +869,10 @@ function createHorseRow(){
         <input
           class="horse-name"
           type="text"
-          placeholder="馬名"
-        >
+          placeholder="馬名">
 
       </div>
+
 
       <div class="field">
 
@@ -798,13 +880,9 @@ function createHorseRow(){
 
         <select class="horse-mark">
 
-          <option value="">印</option>
-
-          ${MARKS.map(mark=>`
-            <option value="${mark}">
-              ${mark}
-            </option>
-          `).join("")}
+          ${MARKS.map(mark=>
+            `<option value="${mark}">${mark}</option>`
+          ).join("")}
 
         </select>
 
@@ -812,103 +890,44 @@ function createHorseRow(){
 
     </div>
 
-    <div class="field" style="margin-top:7px">
-
-      <label>人気</label>
-
-      <select class="horse-popularity">
-
-        <option value="">人気</option>
-
-        ${Array.from(
-          {length:18},
-          (_,i)=>`
-            <option value="${i+1}">
-              ${i+1}番人気
-            </option>
-          `
-        ).join("")}
-
-      </select>
-
-    </div>
   `;
 
-  const frame=row.querySelector(".horse-frame");
-
-  frame.addEventListener(
-    "change",
-    ()=>updateFrameColor(frame)
-  );
 
   $("horseList").appendChild(row);
 
 }
 
-function updateFrameColor(select){
 
-  const colors={
-    "1":["#fff","#111","#999"],
-    "2":["#222","#fff","#222"],
-    "3":["#e53935","#fff","#e53935"],
-    "4":["#1976d2","#fff","#1976d2"],
-    "5":["#fdd835","#111","#fdd835"],
-    "6":["#43a047","#fff","#43a047"],
-    "7":["#f57c00","#fff","#f57c00"],
-    "8":["#f48fb1","#111","#f48fb1"]
-  };
-
-  const color=colors[select.value];
-
-  if(color){
-
-    select.style.background=color[0];
-    select.style.color=color[1];
-    select.style.border="2px solid "+color[2];
-    select.style.fontWeight="800";
-
-  }else{
-
-    select.style.background="#fff";
-    select.style.color="#172033";
-    select.style.border="1px solid #d0d5dd";
-
-  }
-
-}
-
-/* =========================================
-   馬データ取得
-========================================= */
+/* =================================
+   馬取得
+================================= */
 
 function getHorseData(){
 
-  const rows=
+  const rows =
     document.querySelectorAll(".horse-row");
 
-  const horses=[];
+  const horses = [];
 
   rows.forEach((row,index)=>{
 
-    const frame=row.querySelector(".horse-frame");
-    const number=row.querySelector(".horse-number");
-    const name=row.querySelector(".horse-name");
-    const mark=row.querySelector(".horse-mark");
-    const popularity=row.querySelector(".horse-popularity");
-
     horses.push({
 
-      id:index+1,
+      id:index + 1,
 
-      frame:frame ? frame.value : "",
+      frame:
+        row.querySelector(".horse-frame")?.value || "",
 
-      number:number ? number.value : "",
+      number:
+        row.querySelector(".horse-number")?.value || "",
 
-      name:name ? name.value.trim() : "",
+      name:
+        row.querySelector(".horse-name")?.value.trim() || "",
 
-      mark:mark ? mark.value : "",
+      mark:
+        row.querySelector(".horse-mark")?.value || "",
 
-      popularity:popularity ? popularity.value : ""
+      popularity:""
 
     });
 
@@ -918,184 +937,215 @@ function getHorseData(){
 
 }
 
-/* =========================================
-   馬データ復元
-========================================= */
 
-function restoreHorseData(horses){
+/* =================================
+   頭数変更
+================================= */
 
-  $("horseList").innerHTML="";
+$("fieldSize")
+  .addEventListener(
+    "change",
+    function(){
 
-  horseCount=0;
+      const size =
+        Number(this.value);
 
-  if(!Array.isArray(horses))return;
+      $("horseList").innerHTML = "";
 
-  horses.forEach(horse=>{
+      horseCount = 0;
 
-    createHorseRow();
+      if(!size) return;
 
-    const rows=
-      document.querySelectorAll(".horse-row");
-
-    const row=
-      rows[rows.length-1];
-
-    if(!row)return;
-
-    const frame=row.querySelector(".horse-frame");
-    const number=row.querySelector(".horse-number");
-    const name=row.querySelector(".horse-name");
-    const mark=row.querySelector(".horse-mark");
-    const popularity=row.querySelector(".horse-popularity");
-
-    if(frame){
-
-      frame.value=horse.frame || "";
-
-      updateFrameColor(frame);
+      for(let i=0;i<size;i++){
+        createHorseRow();
+      }
 
     }
+  );
 
-    if(number){
-      number.value=horse.number || "";
-    }
 
-    if(name){
-      name.value=horse.name || "";
-    }
+/* =================================
+   馬追加
+================================= */
 
-    if(mark){
-      mark.value=horse.mark || "";
-    }
+$("addHorseBtn")
+  .addEventListener(
+    "click",
+    createHorseRow
+  );
 
-    if(popularity){
-      popularity.value=horse.popularity || "";
-    }
 
-  });
-
-}
-
-/* =========================================
+/* =================================
    予想保存
-========================================= */
+================================= */
 
-function savePrediction(){
+$("savePredictionBtn")
+  .addEventListener(
+    "click",
+    function(){
 
-  const track=$("track").value;
-  const raceNo=$("raceNo").value;
-  const surface=$("surface").value;
-  const distance=$("distance").value;
-  const raceClass=$("raceClass").value;
-  const ground=$("ground").value;
-  const fieldSize=$("fieldSize").value;
-  const raceName=$("raceName").value.trim();
+      const track =
+        $("track").value;
 
-  const investment=
-    Number($("investment").value)||0;
+      const raceNo =
+        $("raceNo").value;
 
-  const returnAmount=
-    Number($("returnAmount").value)||0;
+      const surface =
+        $("surface").value;
 
-  const horses=getHorseData();
+      const distance =
+        $("distance").value;
 
-  if(!track){
+      const raceClass =
+        $("raceClass").value;
 
-    alert("競馬場を選択してください。");
-    return;
+      const ground =
+        $("ground").value;
 
-  }
+      const fieldSize =
+        $("fieldSize").value;
 
-  if(!raceNo){
+      const raceName =
+        $("raceName").value.trim();
 
-    alert("レース番号を選択してください。");
-    return;
+      const investment =
+        Number(
+          $("investment").value
+        ) || 0;
 
-  }
+      const returnAmount =
+        Number(
+          $("returnAmount").value
+        ) || 0;
 
-  if(!fieldSize){
+      const horses =
+        getHorseData();
 
-    alert("頭数を選択してください。");
-    return;
 
-  }
+      if(!track){
 
-  if(horses.length===0){
+        alert(
+          "競馬場を選択してください。"
+        );
 
-    alert("出走馬を入力してください。");
-    return;
+        return;
 
-  }
+      }
 
-  const prediction={
 
-    id:Date.now().toString(),
+      if(!raceNo){
 
-    createdAt:new Date().toISOString(),
+        alert(
+          "レース番号を選択してください。"
+        );
 
-    raceName,
+        return;
 
-    track,
+      }
 
-    raceNo,
 
-    surface,
+      if(!fieldSize){
 
-    distance,
+        alert(
+          "頭数を選択してください。"
+        );
 
-    raceClass,
+        return;
 
-    ground,
+      }
 
-    fieldSize:Number(fieldSize),
 
-    horses,
+      if(horses.length === 0){
 
-    investment,
+        alert(
+          "出走馬を入力してください。"
+        );
 
-    returnAmount,
+        return;
 
-    profit:returnAmount-investment,
+      }
 
-    result:{
-      first:"",
-      second:"",
-      third:""
+
+      const prediction = {
+
+        id:
+          Date.now().toString(),
+
+        createdAt:
+          new Date().toISOString(),
+
+        raceName,
+
+        track,
+
+        raceNo,
+
+        surface,
+
+        distance,
+
+        raceClass,
+
+        ground,
+
+        fieldSize:
+          Number(fieldSize),
+
+        horses,
+
+        investment,
+
+        returnAmount,
+
+        profit:
+          returnAmount - investment,
+
+        result:{
+          first:"",
+          second:"",
+          third:""
+        }
+
+      };
+
+
+      appState.predictions.unshift(
+        prediction
+      );
+
+      appState.currentPredictionId =
+        prediction.id;
+
+      saveData();
+
+      alert(
+        "予想を保存しました！"
+      );
+
+      showPage(
+        "resultPage"
+      );
+
     }
+  );
 
-  };
 
-  appState.predictions.unshift(prediction);
-
-  appState.currentPredictionId=prediction.id;
-
-  saveData();
-
-  alert("予想を保存しました！");
-
-  renderResultPage();
-
-  renderHistoryPage();
-
-  showPage("resultPage");
-
-}
-
-/* =========================================
-   結果ページ
-========================================= */
+/* =================================
+   結果一覧
+================================= */
 
 function renderResultPage(){
 
-  const container=$("resultContent");
+  const container =
+    $("resultContent");
 
-  if(!container)return;
+  if(!container) return;
 
-  container.innerHTML="";
+  if(
+    appState.predictions.length === 0
+  ){
 
-  if(appState.predictions.length===0){
-
-    container.innerHTML=`
+    container.innerHTML = `
       <div class="empty">
         まだ保存された予想がありません。
       </div>
@@ -1105,116 +1155,155 @@ function renderResultPage(){
 
   }
 
-  appState.predictions.forEach(prediction=>{
 
-    const item=document.createElement("div");
+  container.innerHTML = `
 
-    item.className="race-card";
+    <div>
+      ${appState.predictions.map(
+        prediction=>{
 
-    const title=
-      prediction.raceName ||
-      `${prediction.track} ${prediction.raceNo}`;
+          const title =
+            prediction.raceName ||
+            (
+              prediction.track +
+              " " +
+              prediction.raceNo
+            );
 
-    const saved=
-      prediction.result &&
-      prediction.result.first &&
-      prediction.result.second &&
-      prediction.result.third;
+          const resultSaved =
+            prediction.result &&
+            prediction.result.first &&
+            prediction.result.second &&
+            prediction.result.third;
 
-    item.innerHTML=`
+          return `
 
-      <div class="race-title">
-        ${escapeHTML(title)}
-      </div>
+            <div style="
+              border:1px solid #e4e7ec;
+              border-radius:12px;
+              padding:12px;
+              margin-bottom:10px;
+              background:#fff;
+            ">
 
-      <div class="race-meta">
-        ${escapeHTML(prediction.track || "")}
-        ${escapeHTML(prediction.raceNo || "")}
-        ／
-        ${escapeHTML(prediction.surface || "")}
-        ${prediction.distance
-          ? escapeHTML(prediction.distance)+"m"
-          : ""}
-        <br>
-        ${saved
-          ? '<span class="badge badge-ok">結果入力済み</span>'
-          : '<span class="badge badge-wait">結果未入力</span>'}
-      </div>
+              <div style="
+                font-weight:800;
+                font-size:15px;
+              ">
+                ${escapeHTML(title)}
+              </div>
 
-      <button
-        type="button"
-        class="btn btn-secondary"
-        style="margin-top:10px"
-        onclick="openResultEditor('${prediction.id}')">
+              <div style="
+                margin-top:5px;
+                font-size:12px;
+                color:#667085;
+              ">
+                ${escapeHTML(prediction.track)}
+                ${escapeHTML(prediction.raceNo)}
+                ／
+                ${escapeHTML(prediction.surface || "")}
+                ${escapeHTML(prediction.distance || "")}m
+              </div>
 
-        🏁 ${saved ? "結果を確認・変更" : "結果を入力"}
+              <div style="
+                margin-top:6px;
+                font-size:12px;
+                color:#667085;
+              ">
+                ${
+                  resultSaved
+                  ? "🏁 結果入力済み"
+                  : "⏳ 結果未入力"
+                }
+              </div>
 
-      </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                style="margin-top:10px;"
+                onclick="openResultEditor('${prediction.id}')">
+                🏁 結果を入力
+              </button>
 
-    `;
+            </div>
 
-    container.appendChild(item);
+          `;
 
-  });
+        }
+      ).join("")}
+    </div>
+
+  `;
 
 }
 
-/* =========================================
+
+/* =================================
    結果編集
-========================================= */
+================================= */
 
 function openResultEditor(id){
 
-  const prediction=
+  const prediction =
     appState.predictions.find(
-      item=>item.id===id
+      item => item.id === id
     );
 
   if(!prediction){
 
-    alert("予想データが見つかりません。");
+    alert(
+      "予想データが見つかりません。"
+    );
+
     return;
 
   }
 
-  appState.currentPredictionId=id;
+
+  appState.currentPredictionId = id;
 
   saveData();
 
-  const container=$("resultContent");
 
-  container.innerHTML=`
+  const container =
+    $("resultContent");
 
-    <div class="result-box">
+
+  container.innerHTML = `
+
+    <div style="
+      background:#f8fafc;
+      border-radius:12px;
+      padding:12px;
+      margin-bottom:14px;
+    ">
 
       <div style="
-        font-size:16px;
         font-weight:800;
+        font-size:16px;
       ">
         ${escapeHTML(
           prediction.raceName ||
-          prediction.track+" "+prediction.raceNo
+          (
+            prediction.track +
+            " " +
+            prediction.raceNo
+          )
         )}
-      </div>
-
-      <div style="
-        margin-top:5px;
-        font-size:12px;
-        color:#667085;
-      ">
-        ${escapeHTML(prediction.track || "")}
-        ${escapeHTML(prediction.raceNo || "")}
       </div>
 
     </div>
 
-    <div class="field" style="margin-bottom:12px">
+
+    <div class="field" style="margin-bottom:12px;">
 
       <label>🥇 1着</label>
 
       <select id="resultFirst">
 
-        <option value="">選択してください</option>
+        <option value="">
+          選択してください
+        </option>
 
         ${createResultOptions(
           prediction.horses,
@@ -1225,13 +1314,16 @@ function openResultEditor(id){
 
     </div>
 
-    <div class="field" style="margin-bottom:12px">
+
+    <div class="field" style="margin-bottom:12px;">
 
       <label>🥈 2着</label>
 
       <select id="resultSecond">
 
-        <option value="">選択してください</option>
+        <option value="">
+          選択してください
+        </option>
 
         ${createResultOptions(
           prediction.horses,
@@ -1242,13 +1334,16 @@ function openResultEditor(id){
 
     </div>
 
-    <div class="field" style="margin-bottom:16px">
+
+    <div class="field" style="margin-bottom:16px;">
 
       <label>🥉 3着</label>
 
       <select id="resultThird">
 
-        <option value="">選択してください</option>
+        <option value="">
+          選択してください
+        </option>
 
         ${createResultOptions(
           prediction.horses,
@@ -1259,52 +1354,57 @@ function openResultEditor(id){
 
     </div>
 
+
     <button
       type="button"
       class="btn btn-primary"
       onclick="saveRaceResult('${prediction.id}')">
-
       💾 結果を保存
-
     </button>
+
 
     <button
       type="button"
       class="btn btn-secondary"
-      style="margin-top:8px"
+      style="margin-top:8px;"
       onclick="renderResultPage()">
-
       ← レース一覧へ戻る
-
     </button>
 
   `;
 
 }
 
-function createResultOptions(horses,selected){
 
-  if(!Array.isArray(horses))return "";
+function createResultOptions(
+  horses,
+  selected
+){
+
+  if(!Array.isArray(horses)){
+    return "";
+  }
 
   return horses.map(horse=>{
 
-    const value=
-      horse.number || horse.id;
+    const value =
+      horse.number ||
+      horse.id;
 
-    const name=
-      horse.name || "馬名未入力";
-
-    const label=
+    const label =
       horse.number
-      ? `${horse.number}番 ${name}`
-      : name;
+      ? `${horse.number}番 ${horse.name || "馬名未入力"}`
+      : (horse.name || "馬名未入力");
 
     return `
       <option
         value="${escapeHTML(String(value))}"
-        ${String(selected)===String(value)
+        ${
+          String(selected) ===
+          String(value)
           ? "selected"
-          : ""}>
+          : ""
+        }>
         ${escapeHTML(label)}
       </option>
     `;
@@ -1313,75 +1413,101 @@ function createResultOptions(horses,selected){
 
 }
 
-/* =========================================
+
+/* =================================
    結果保存
-========================================= */
+================================= */
 
 function saveRaceResult(id){
 
-  const prediction=
+  const prediction =
     appState.predictions.find(
-      item=>item.id===id
+      item => item.id === id
     );
 
   if(!prediction){
 
-    alert("予想データが見つかりません。");
+    alert(
+      "予想データが見つかりません。"
+    );
+
     return;
 
   }
 
-  const first=$("resultFirst").value;
-  const second=$("resultSecond").value;
-  const third=$("resultThird").value;
+
+  const first =
+    $("resultFirst").value;
+
+  const second =
+    $("resultSecond").value;
+
+  const third =
+    $("resultThird").value;
+
 
   if(!first || !second || !third){
 
-    alert("1着・2着・3着をすべて選択してください。");
+    alert(
+      "1着・2着・3着をすべて選択してください。"
+    );
+
     return;
 
   }
+
 
   if(
-    first===second ||
-    first===third ||
-    second===third
+    first === second ||
+    first === third ||
+    second === third
   ){
 
-    alert("1着・2着・3着は別々の馬を選択してください。");
+    alert(
+      "1着・2着・3着は別々の馬を選択してください。"
+    );
+
     return;
 
   }
 
-  prediction.result={
-    first:first,
-    second:second,
-    third:third
+
+  prediction.result = {
+
+    first,
+    second,
+    third
+
   };
 
-  prediction.resultSavedAt=
+
+  prediction.resultSavedAt =
     new Date().toISOString();
+
 
   saveData();
 
-  alert("レース結果を保存しました！");
+
+  alert(
+    "レース結果を保存しました！"
+  );
+
 
   renderResultPage();
-
-  renderHistoryPage();
 
   renderStatsPage();
 
 }
 
-/* =========================================
-   分析対象
-========================================= */
+
+/* =================================
+   完了レース
+================================= */
 
 function getFinishedPredictions(){
 
   return appState.predictions.filter(
-    prediction=>
+    prediction =>
       prediction &&
       prediction.result &&
       prediction.result.first &&
@@ -1391,76 +1517,144 @@ function getFinishedPredictions(){
 
 }
 
-/* =========================================
-   共通
-========================================= */
+
+/* =================================
+   円表示
+================================= */
 
 function formatYen(value){
 
-  const number=Number(value)||0;
-
-  return number.toLocaleString("ja-JP")+"円";
-
-}
-
-function formatProfit(value){
-
-  const number=Number(value)||0;
-
-  if(number>0){
-    return "+"+formatYen(number);
-  }
-
-  if(number<0){
-    return "-"+formatYen(Math.abs(number));
-  }
-
-  return "0円";
+  return (
+    Number(value) || 0
+  ).toLocaleString("ja-JP") +
+  "円";
 
 }
+
+
+/* =================================
+   集計
+================================= */
 
 function calculateStats(items){
 
-  let investment=0;
-  let returns=0;
-  let profit=0;
+  if(!items || items.length === 0){
+
+    return {
+      total:0,
+      investment:0,
+      returns:0,
+      profit:0,
+      recovery:0
+    };
+
+  }
+
+
+  let investment = 0;
+  let returns = 0;
+  let profit = 0;
+
 
   items.forEach(item=>{
 
-    investment+=Number(item.investment)||0;
+    investment +=
+      Number(item.investment) || 0;
 
-    returns+=Number(item.returnAmount)||0;
+    returns +=
+      Number(item.returnAmount) || 0;
 
-    profit+=Number(item.profit)||0;
+    profit +=
+      Number(item.profit) || 0;
 
   });
 
-  const total=items.length;
 
-  const recovery=
-    investment>0
-    ? returns/investment*100
-    : 0;
+  return {
 
-  return{
-    total,
+    total:items.length,
+
     investment,
+
     returns,
+
     profit,
-    recovery
+
+    recovery:
+      investment > 0
+      ? returns / investment * 100
+      : 0
+
   };
 
 }
 
-/* =========================================
-   分析テーブル
-========================================= */
+
+/* =================================
+   グループ集計
+================================= */
+
+function buildStats(
+  predictions,
+  keyFunction
+){
+
+  const groups = {};
+
+  predictions.forEach(prediction=>{
+
+    const key =
+      keyFunction(prediction);
+
+    if(
+      key === null ||
+      key === undefined ||
+      key === ""
+    ){
+      return;
+    }
+
+    if(!groups[key]){
+      groups[key] = [];
+    }
+
+    groups[key].push(prediction);
+
+  });
+
+
+  return Object.keys(groups).map(
+    label=>{
+
+      const stats =
+        calculateStats(
+          groups[label]
+        );
+
+      return {
+        label,
+        total:stats.total,
+        investment:stats.investment,
+        returns:stats.returns,
+        profit:stats.profit,
+        recovery:stats.recovery
+      };
+
+    }
+  );
+
+}
+
+
+/* =================================
+   統計表
+================================= */
 
 function createStatsTable(data){
 
-  if(!data || data.length===0){
+  if(!data || data.length === 0){
 
-    return`
+    return `
       <div class="empty">
         データがありません。
       </div>
@@ -1468,9 +1662,10 @@ function createStatsTable(data){
 
   }
 
-  return`
 
-    <div class="stats-table-wrap">
+  return `
+
+    <div class="table-wrap">
 
       <table class="stats-table">
 
@@ -1489,56 +1684,50 @@ function createStatsTable(data){
 
         <tbody>
 
-          ${data.map(row=>{
+          ${data.map(row=>`
 
-            const cls=
-              Number(row.profit)>=0
-              ? "profit-plus"
-              : "profit-minus";
+            <tr>
 
-            return`
+              <td>
+                ${escapeHTML(row.label)}
+              </td>
 
-              <tr>
+              <td style="text-align:right;">
+                ${row.total}
+              </td>
 
-                <td>
-                  ${escapeHTML(row.label)}
-                </td>
+              <td style="text-align:right;">
+                ${formatYen(row.investment)}
+              </td>
 
-                <td style="text-align:right">
-                  ${row.total}
-                </td>
+              <td style="text-align:right;">
+                ${formatYen(row.returns)}
+              </td>
 
-                <td style="text-align:right">
-                  ${formatYen(row.investment)}
-                </td>
+              <td
+                style="text-align:right;"
+                class="${
+                  Number(row.profit) >= 0
+                  ? "profit-positive"
+                  : "profit-negative"
+                }">
+                ${
+                  Number(row.profit) >= 0
+                  ? "+"
+                  : ""
+                }${formatYen(row.profit)}
+              </td>
 
-                <td style="text-align:right">
-                  ${formatYen(row.returns)}
-                </td>
+              <td style="
+                text-align:right;
+                font-weight:800;
+              ">
+                ${row.recovery.toFixed(1)}%
+              </td>
 
-                <td
-                  class="${cls}"
-                  style="text-align:right">
+            </tr>
 
-                  ${formatProfit(row.profit)}
-
-                </td>
-
-                <td
-                  style="
-                    text-align:right;
-                    font-weight:800;
-                  ">
-
-                  ${Number(row.recovery).toFixed(1)}%
-
-                </td>
-
-              </tr>
-
-            `;
-
-          }).join("")}
+          `).join("")}
 
         </tbody>
 
@@ -1550,133 +1739,85 @@ function createStatsTable(data){
 
 }
 
-/* =========================================
-   グループ集計
-========================================= */
 
-function buildPredictionStats(predictions,keyFunction){
-
-  const groups={};
-
-  predictions.forEach(prediction=>{
-
-    const key=keyFunction(prediction);
-
-    if(
-      key===null ||
-      key===undefined ||
-      key===""
-    )return;
-
-    if(!groups[key]){
-      groups[key]=[];
-    }
-
-    groups[key].push(prediction);
-
-  });
-
-  return Object.keys(groups).map(label=>{
-
-    const stats=
-      calculateStats(groups[label]);
-
-    return{
-      label,
-      total:stats.total,
-      investment:stats.investment,
-      returns:stats.returns,
-      profit:stats.profit,
-      recovery:stats.recovery
-    };
-
-  });
-
-}
-
-/* =========================================
+/* =================================
    分析ページ
-========================================= */
+================================= */
 
 function renderStatsPage(){
 
-  const predictions=
+  const predictions =
     getFinishedPredictions();
 
-  const overall=
+
+  const overall =
     calculateStats(predictions);
 
-  const summary=$("statsSummary");
+
+  const summary =
+    $("statsSummary");
+
 
   if(summary){
 
-    summary.innerHTML=`
+    summary.innerHTML = `
 
-      <div class="summary-grid">
+      <div class="stat-grid">
 
-        <div class="summary-box">
-
-          <div class="summary-label">
-            結果入力済みレース
+        <div class="stat-box">
+          <div class="stat-label">
+            結果入力済み
           </div>
-
-          <div class="summary-value">
-            ${overall.total}
+          <div class="stat-value">
+            ${overall.total}レース
           </div>
-
         </div>
 
-        <div class="summary-box">
-
-          <div class="summary-label">
+        <div class="stat-box">
+          <div class="stat-label">
             投資額
           </div>
-
-          <div class="summary-value">
+          <div class="stat-value">
             ${formatYen(overall.investment)}
           </div>
-
         </div>
 
-        <div class="summary-box">
-
-          <div class="summary-label">
+        <div class="stat-box">
+          <div class="stat-label">
             回収額
           </div>
-
-          <div class="summary-value">
+          <div class="stat-value">
             ${formatYen(overall.returns)}
           </div>
-
         </div>
 
-        <div class="summary-box">
-
-          <div class="summary-label">
+        <div class="stat-box">
+          <div class="stat-label">
             収支
           </div>
 
-          <div class="summary-value ${
-            overall.profit>=0
-            ? "profit-plus"
-            : "profit-minus"
+          <div class="stat-value ${
+            overall.profit >= 0
+            ? "profit-positive"
+            : "profit-negative"
           }">
-
-            ${formatProfit(overall.profit)}
-
+            ${
+              overall.profit >= 0
+              ? "+"
+              : ""
+            }${formatYen(overall.profit)}
           </div>
 
         </div>
 
-        <div
-          class="summary-box"
-          style="grid-column:1/-1">
+        <div class="stat-box"
+             style="grid-column:1/-1;">
 
-          <div class="summary-label">
+          <div class="stat-label">
             回収率
           </div>
 
-          <div class="summary-value">
+          <div class="stat-value">
             ${overall.recovery.toFixed(1)}%
           </div>
 
@@ -1688,228 +1829,291 @@ function renderStatsPage(){
 
   }
 
-  /* 競馬場 */
 
-  $("trackStats").innerHTML=
+  $("trackStats").innerHTML =
     createStatsTable(
-      buildPredictionStats(
+      buildStats(
         predictions,
         p=>p.track
       )
     );
 
-  /* 距離 */
 
-  $("distanceStats").innerHTML=
+  $("distanceStats").innerHTML =
     createStatsTable(
-      buildPredictionStats(
+      buildStats(
         predictions,
-        p=>p.distance ? p.distance+"m" : ""
+        p=>p.distance
+          ? p.distance + "m"
+          : ""
       )
     );
 
-  /* 芝ダート障害 */
 
-  $("surfaceStats").innerHTML=
+  $("surfaceStats").innerHTML =
     createStatsTable(
-      buildPredictionStats(
+      buildStats(
         predictions,
         p=>p.surface
       )
     );
 
-  /* クラス */
 
-  $("classStats").innerHTML=
+  $("classStats").innerHTML =
     createStatsTable(
-      buildPredictionStats(
+      buildStats(
         predictions,
         p=>p.raceClass
       )
     );
 
-  /* 馬場 */
 
-  $("groundStats").innerHTML=
+  $("groundStats").innerHTML =
     createStatsTable(
-      buildPredictionStats(
+      buildStats(
         predictions,
         p=>p.ground
       )
     );
 
+
   /* 枠番 */
 
-  const frameGroups={};
+  const frameItems = [];
 
   predictions.forEach(prediction=>{
 
-    if(!Array.isArray(prediction.horses))return;
+    (prediction.horses || [])
+      .forEach(horse=>{
 
-    prediction.horses.forEach(horse=>{
+        if(!horse.frame) return;
 
-      if(!horse.frame)return;
+        frameItems.push({
+          label:horse.frame + "枠",
+          investment:prediction.investment,
+          returnAmount:prediction.returnAmount,
+          profit:prediction.profit
+        });
 
-      if(!frameGroups[horse.frame]){
-        frameGroups[horse.frame]=[];
-      }
-
-      frameGroups[horse.frame].push(prediction);
-
-    });
+      });
 
   });
 
-  const frameStats=
+
+  const frameGroups = {};
+
+  frameItems.forEach(item=>{
+
+    if(!frameGroups[item.label]){
+      frameGroups[item.label] = [];
+    }
+
+    frameGroups[item.label].push(item);
+
+  });
+
+
+  const frameStats =
     Object.keys(frameGroups)
-    .sort((a,b)=>Number(a)-Number(b))
-    .map(label=>{
+      .sort(
+        (a,b)=>
+          parseInt(a) -
+          parseInt(b)
+      )
+      .map(label=>{
 
-      const stats=
-        calculateStats(
-          frameGroups[label]
-        );
+        const stats =
+          calculateStats(
+            frameGroups[label]
+          );
 
-      return{
-        label:label+"枠",
-        total:stats.total,
-        investment:stats.investment,
-        returns:stats.returns,
-        profit:stats.profit,
-        recovery:stats.recovery
-      };
+        return {
+          label,
+          total:stats.total,
+          investment:stats.investment,
+          returns:stats.returns,
+          profit:stats.profit,
+          recovery:stats.recovery
+        };
 
-    });
+      });
 
-  $("frameStats").innerHTML=
+
+  $("frameStats").innerHTML =
     createStatsTable(frameStats);
+
 
   /* 印 */
 
-  const markGroups={};
+  const markItems = [];
 
   predictions.forEach(prediction=>{
 
-    if(!Array.isArray(prediction.horses))return;
+    (prediction.horses || [])
+      .forEach(horse=>{
 
-    prediction.horses.forEach(horse=>{
+        if(!horse.mark) return;
 
-      if(!horse.mark)return;
+        markItems.push({
+          label:horse.mark,
+          investment:prediction.investment,
+          returnAmount:prediction.returnAmount,
+          profit:prediction.profit
+        });
 
-      if(!markGroups[horse.mark]){
-        markGroups[horse.mark]=[];
-      }
-
-      markGroups[horse.mark].push(prediction);
-
-    });
+      });
 
   });
 
-  const markStats=
+
+  const markGroups = {};
+
+  markItems.forEach(item=>{
+
+    if(!markGroups[item.label]){
+      markGroups[item.label] = [];
+    }
+
+    markGroups[item.label].push(item);
+
+  });
+
+
+  const markStats =
     Object.keys(markGroups)
-    .map(label=>{
+      .map(label=>{
 
-      const stats=
-        calculateStats(
-          markGroups[label]
-        );
+        const stats =
+          calculateStats(
+            markGroups[label]
+          );
 
-      return{
-        label,
-        total:stats.total,
-        investment:stats.investment,
-        returns:stats.returns,
-        profit:stats.profit,
-        recovery:stats.recovery
-      };
+        return {
+          label,
+          total:stats.total,
+          investment:stats.investment,
+          returns:stats.returns,
+          profit:stats.profit,
+          recovery:stats.recovery
+        };
 
-    });
+      });
 
-  $("markStats").innerHTML=
+
+  $("markStats").innerHTML =
     createStatsTable(markStats);
 
-  /* 頭数 */
 
-  $("fieldSizeStats").innerHTML=
+  $("fieldSizeStats").innerHTML =
     createStatsTable(
-      buildPredictionStats(
+      buildStats(
         predictions,
-        p=>p.fieldSize ? p.fieldSize+"頭" : ""
+        p=>p.fieldSize
+          ? p.fieldSize + "頭"
+          : ""
       )
     );
 
+
   /* 人気 */
 
-  const popularityGroups={};
+  const popularityItems = [];
 
   predictions.forEach(prediction=>{
 
-    if(!Array.isArray(prediction.horses))return;
+    (prediction.horses || [])
+      .forEach(horse=>{
 
-    prediction.horses.forEach(horse=>{
+        if(!horse.popularity) return;
 
-      if(!horse.popularity)return;
+        popularityItems.push({
+          label:
+            horse.popularity +
+            "番人気",
 
-      const key=
-        horse.popularity+"番人気";
+          investment:
+            prediction.investment,
 
-      if(!popularityGroups[key]){
-        popularityGroups[key]=[];
-      }
+          returnAmount:
+            prediction.returnAmount,
 
-      popularityGroups[key].push(prediction);
+          profit:
+            prediction.profit
+        });
 
-    });
+      });
 
   });
 
-  const popularityStats=
+
+  const popularityGroups = {};
+
+  popularityItems.forEach(item=>{
+
+    if(!popularityGroups[item.label]){
+      popularityGroups[item.label] = [];
+    }
+
+    popularityGroups[item.label].push(item);
+
+  });
+
+
+  const popularityStats =
     Object.keys(popularityGroups)
-    .sort(
-      (a,b)=>
-        parseInt(a,10)-parseInt(b,10)
-    )
-    .map(label=>{
+      .sort(
+        (a,b)=>
+          parseInt(a) -
+          parseInt(b)
+      )
+      .map(label=>{
 
-      const stats=
-        calculateStats(
-          popularityGroups[label]
-        );
+        const stats =
+          calculateStats(
+            popularityGroups[label]
+          );
 
-      return{
-        label,
-        total:stats.total,
-        investment:stats.investment,
-        returns:stats.returns,
-        profit:stats.profit,
-        recovery:stats.recovery
-      };
+        return {
+          label,
+          total:stats.total,
+          investment:stats.investment,
+          returns:stats.returns,
+          profit:stats.profit,
+          recovery:stats.recovery
+        };
 
-    });
+      });
 
-  $("popularityStats").innerHTML=
-    createStatsTable(popularityStats);
 
-  /* グラフ */
+  $("popularityStats").innerHTML =
+    createStatsTable(
+      popularityStats
+    );
 
-  renderProfitChart(predictions);
+
+  renderProfitChart(
+    predictions
+  );
 
 }
 
-/* =========================================
-   グラフ
-========================================= */
+
+/* =================================
+   累計収支グラフ
+================================= */
 
 function renderProfitChart(predictions){
 
-  const canvas=$("profitChart");
+  const canvas =
+    $("profitChart");
 
-  if(!canvas)return;
+  if(!canvas) return;
 
-  const parent=canvas.parentElement;
 
-  const width=
+  const parent =
+    canvas.parentElement;
+
+  const width =
     Math.max(
       280,
       parent
@@ -1917,21 +2121,28 @@ function renderProfitChart(predictions){
       : 320
     );
 
-  const height=260;
+  const height = 260;
 
-  const ratio=
+  const ratio =
     window.devicePixelRatio || 1;
 
-  canvas.width=width*ratio;
 
-  canvas.height=height*ratio;
+  canvas.width =
+    width * ratio;
 
-  canvas.style.width="100%";
+  canvas.height =
+    height * ratio;
 
-  canvas.style.height=height+"px";
+  canvas.style.width =
+    width + "px";
 
-  const ctx=
+  canvas.style.height =
+    height + "px";
+
+
+  const ctx =
     canvas.getContext("2d");
+
 
   ctx.setTransform(
     ratio,
@@ -1942,6 +2153,7 @@ function renderProfitChart(predictions){
     0
   );
 
+
   ctx.clearRect(
     0,
     0,
@@ -1949,107 +2161,154 @@ function renderProfitChart(predictions){
     height
   );
 
-  if(!predictions.length){
 
-    ctx.fillStyle="#98a2b3";
+  if(
+    !predictions ||
+    predictions.length === 0
+  ){
 
-    ctx.font=
-      "14px -apple-system,BlinkMacSystemFont,sans-serif";
+    ctx.fillStyle =
+      "#98a2b3";
 
-    ctx.textAlign="center";
+    ctx.font =
+      "14px sans-serif";
+
+    ctx.textAlign =
+      "center";
 
     ctx.fillText(
       "結果が保存されたレースがありません",
-      width/2,
-      height/2
+      width / 2,
+      height / 2
     );
 
     return;
 
   }
 
-  let cumulative=0;
 
-  const values=[];
+  let cumulative = 0;
+
+  const values = [];
+
 
   predictions
     .slice()
     .reverse()
     .forEach(prediction=>{
 
-      cumulative+=
-        Number(prediction.profit)||0;
+      cumulative +=
+        Number(prediction.profit) || 0;
 
-      values.push(cumulative);
+      values.push(
+        cumulative
+      );
 
     });
 
-  let dataMin=
+
+  const dataMin =
     Math.min(0,...values);
 
-  let dataMax=
+  const dataMax =
     Math.max(0,...values);
 
-  let minValue=
-    Math.floor(dataMin/500)*500;
 
-  let maxValue=
-    Math.ceil(dataMax/500)*500;
+  let minValue =
+    Math.floor(
+      dataMin / 500
+    ) * 500;
 
-  if(minValue===maxValue){
+  let maxValue =
+    Math.ceil(
+      dataMax / 500
+    ) * 500;
 
-    minValue-=1000;
-    maxValue+=1000;
+
+  if(
+    minValue === 0 &&
+    maxValue === 0
+  ){
+
+    minValue = -1000;
+    maxValue = 1000;
 
   }
 
-  if(minValue===0 && maxValue>0){
-    minValue=-500;
+
+  if(
+    minValue === 0 &&
+    maxValue > 0
+  ){
+
+    minValue = -500;
+
   }
 
-  if(maxValue===0 && minValue<0){
-    maxValue=500;
+
+  if(
+    maxValue === 0 &&
+    minValue < 0
+  ){
+
+    maxValue = 500;
+
   }
 
-  const paddingLeft=62;
-  const paddingRight=14;
-  const paddingTop=20;
-  const paddingBottom=35;
 
-  const chartWidth=
-    width-paddingLeft-paddingRight;
+  const paddingLeft = 62;
+  const paddingRight = 14;
+  const paddingTop = 20;
+  const paddingBottom = 35;
 
-  const chartHeight=
-    height-paddingTop-paddingBottom;
+
+  const chartWidth =
+    width -
+    paddingLeft -
+    paddingRight;
+
+  const chartHeight =
+    height -
+    paddingTop -
+    paddingBottom;
+
 
   function xPosition(index){
 
-    if(values.length===1){
-      return paddingLeft+chartWidth/2;
+    if(values.length === 1){
+
+      return (
+        paddingLeft +
+        chartWidth / 2
+      );
+
     }
 
-    return(
-      paddingLeft+
-      index/(values.length-1)*
+    return (
+      paddingLeft +
+      index /
+      (values.length - 1) *
       chartWidth
     );
 
   }
 
+
   function yPosition(value){
 
-    const range=
-      maxValue-minValue;
-
-    return(
-      paddingTop+
-      (maxValue-value)/range*
+    return (
+      paddingTop +
+      (
+        maxValue - value
+      ) /
+      (
+        maxValue - minValue
+      ) *
       chartHeight
     );
 
   }
 
-  /* グリッド */
 
   for(
     let value=maxValue;
@@ -2057,11 +2316,14 @@ function renderProfitChart(predictions){
     value-=500
   ){
 
-    const y=yPosition(value);
+    const y =
+      yPosition(value);
 
-    ctx.strokeStyle="#e4e7ec";
 
-    ctx.lineWidth=1;
+    ctx.strokeStyle =
+      "#e4e7ec";
+
+    ctx.lineWidth = 1;
 
     ctx.beginPath();
 
@@ -2077,17 +2339,23 @@ function renderProfitChart(predictions){
 
     ctx.stroke();
 
-    ctx.fillStyle="#667085";
 
-    ctx.font=
-      "10px -apple-system,BlinkMacSystemFont,sans-serif";
+    ctx.fillStyle =
+      "#667085";
 
-    ctx.textAlign="right";
+    ctx.font =
+      "10px sans-serif";
 
-    const label=
-      value>0
-      ? "+"+value.toLocaleString("ja-JP")
+    ctx.textAlign =
+      "right";
+
+
+    const label =
+      value > 0
+      ? "+" +
+        value.toLocaleString("ja-JP")
       : value.toLocaleString("ja-JP");
+
 
     ctx.fillText(
       label,
@@ -2097,13 +2365,15 @@ function renderProfitChart(predictions){
 
   }
 
-  /* 0円 */
 
-  const zeroY=yPosition(0);
+  const zeroY =
+    yPosition(0);
 
-  ctx.strokeStyle="#667085";
 
-  ctx.lineWidth=2;
+  ctx.strokeStyle =
+    "#667085";
+
+  ctx.lineWidth = 2;
 
   ctx.beginPath();
 
@@ -2119,68 +2389,86 @@ function renderProfitChart(predictions){
 
   ctx.stroke();
 
-  /* 線 */
 
   ctx.beginPath();
 
-  values.forEach((value,index)=>{
 
-    const x=xPosition(index);
-    const y=yPosition(value);
+  values.forEach(
+    (value,index)=>{
 
-    if(index===0){
+      const x =
+        xPosition(index);
 
-      ctx.moveTo(x,y);
+      const y =
+        yPosition(value);
 
-    }else{
 
-      ctx.lineTo(x,y);
+      if(index === 0){
+
+        ctx.moveTo(x,y);
+
+      }else{
+
+        ctx.lineTo(x,y);
+
+      }
 
     }
+  );
 
-  });
 
-  ctx.strokeStyle="#2563eb";
+  ctx.strokeStyle =
+    "#2563eb";
 
-  ctx.lineWidth=3;
+  ctx.lineWidth = 3;
 
-  ctx.lineJoin="round";
+  ctx.lineJoin =
+    "round";
 
-  ctx.lineCap="round";
+  ctx.lineCap =
+    "round";
 
   ctx.stroke();
 
-  /* 点 */
 
-  values.forEach((value,index)=>{
+  values.forEach(
+    (value,index)=>{
 
-    const x=xPosition(index);
-    const y=yPosition(value);
+      const x =
+        xPosition(index);
 
-    ctx.beginPath();
+      const y =
+        yPosition(value);
 
-    ctx.arc(
-      x,
-      y,
-      3,
-      0,
-      Math.PI*2
-    );
 
-    ctx.fillStyle="#2563eb";
+      ctx.beginPath();
 
-    ctx.fill();
+      ctx.arc(
+        x,
+        y,
+        3,
+        0,
+        Math.PI * 2
+      );
 
-  });
+      ctx.fillStyle =
+        "#2563eb";
 
-  /* X軸 */
+      ctx.fill();
 
-  ctx.fillStyle="#667085";
+    }
+  );
 
-  ctx.font=
-    "10px -apple-system,BlinkMacSystemFont,sans-serif";
 
-  ctx.textAlign="center";
+  ctx.fillStyle =
+    "#667085";
+
+  ctx.font =
+    "10px sans-serif";
+
+  ctx.textAlign =
+    "center";
+
 
   ctx.fillText(
     "1",
@@ -2188,7 +2476,8 @@ function renderProfitChart(predictions){
     height-10
   );
 
-  if(values.length>1){
+
+  if(values.length > 1){
 
     ctx.fillText(
       String(values.length),
@@ -2200,21 +2489,24 @@ function renderProfitChart(predictions){
 
 }
 
-/* =========================================
+
+/* =================================
    履歴
-========================================= */
+================================= */
 
 function renderHistoryPage(){
 
-  const container=$("historyContent");
+  const container =
+    $("historyContent");
 
-  if(!container)return;
+  if(!container) return;
 
-  container.innerHTML="";
 
-  if(appState.predictions.length===0){
+  if(
+    appState.predictions.length === 0
+  ){
 
-    container.innerHTML=`
+    container.innerHTML = `
       <div class="empty">
         まだ予想が保存されていません。
       </div>
@@ -2224,182 +2516,203 @@ function renderHistoryPage(){
 
   }
 
-  appState.predictions.forEach(prediction=>{
 
-    const item=document.createElement("div");
+  container.innerHTML =
+    appState.predictions
+      .map(prediction=>{
 
-    item.className="race-card";
+        const title =
+          prediction.raceName ||
+          (
+            prediction.track +
+            " " +
+            prediction.raceNo
+          );
 
-    const title=
-      prediction.raceName ||
-      prediction.track+" "+prediction.raceNo;
 
-    const profit=
-      Number(prediction.profit)||0;
+        const profit =
+          Number(prediction.profit) || 0;
 
-    const resultSaved=
-      prediction.result &&
-      prediction.result.first &&
-      prediction.result.second &&
-      prediction.result.third;
 
-    const horses=
-      Array.isArray(prediction.horses)
-      ? prediction.horses
-      : [];
+        const resultSaved =
+          prediction.result &&
+          prediction.result.first &&
+          prediction.result.second &&
+          prediction.result.third;
 
-    const horseText=
-      horses
-      .filter(horse=>horse.name)
-      .map(horse=>{
 
-        const number=
-          horse.number
-          ? horse.number+"番 "
-          : "";
+        const horses =
+          Array.isArray(prediction.horses)
+          ? prediction.horses
+          : [];
 
-        const mark=
-          horse.mark
-          ? " "+horse.mark
-          : "";
 
-        const popularity=
-          horse.popularity
-          ? " "+horse.popularity+"人気"
-          : "";
+        const horseText =
+          horses
+            .filter(h=>h.name)
+            .map(h=>{
 
-        return(
-          number+
-          escapeHTML(horse.name)+
-          mark+
-          popularity
-        );
+              const number =
+                h.number
+                ? h.number + "番 "
+                : "";
+
+              const mark =
+                h.mark
+                ? " " + h.mark
+                : "";
+
+              return (
+                number +
+                escapeHTML(h.name) +
+                mark
+              );
+
+            })
+            .join("、");
+
+
+        return `
+
+          <div style="
+            border:1px solid #e4e7ec;
+            border-radius:14px;
+            padding:14px;
+            margin-bottom:10px;
+            background:#fff;
+          ">
+
+            <div style="
+              font-size:16px;
+              font-weight:800;
+            ">
+              ${escapeHTML(title)}
+            </div>
+
+
+            <div style="
+              margin-top:6px;
+              font-size:12px;
+              color:#667085;
+            ">
+              ${escapeHTML(prediction.track)}
+              ${escapeHTML(prediction.raceNo)}
+              ／
+              ${escapeHTML(prediction.surface || "")}
+              ${escapeHTML(prediction.distance || "")}m
+            </div>
+
+
+            <div style="
+              margin-top:10px;
+              line-height:1.8;
+              font-size:13px;
+            ">
+
+              <div>
+                💰 投資：
+                ${formatYen(prediction.investment)}
+              </div>
+
+              <div>
+                💵 回収：
+                ${formatYen(prediction.returnAmount)}
+              </div>
+
+              <div class="${
+                profit >= 0
+                ? "profit-positive"
+                : "profit-negative"
+              }">
+                📊 収支：
+                ${profit >= 0 ? "+" : ""}
+                ${formatYen(profit)}
+              </div>
+
+              <div>
+                ${
+                  resultSaved
+                  ? "🏁 結果入力済み"
+                  : "⏳ 結果未入力"
+                }
+              </div>
+
+            </div>
+
+
+            ${
+              horseText
+              ? `
+                <div style="
+                  margin-top:10px;
+                  padding:10px;
+                  background:#f8fafc;
+                  border-radius:10px;
+                  font-size:12px;
+                  line-height:1.8;
+                ">
+                  🐎 ${horseText}
+                </div>
+              `
+              : ""
+            }
+
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              style="margin-top:10px;"
+              onclick="openHistoryResult('${prediction.id}')">
+              ${
+                resultSaved
+                ? "🏁 結果を確認"
+                : "🏁 結果を入力"
+              }
+            </button>
+
+
+            <button
+              type="button"
+              class="btn btn-danger"
+              style="margin-top:8px;"
+              onclick="deletePrediction('${prediction.id}')">
+              🗑 この予想を削除
+            </button>
+
+          </div>
+
+        `;
 
       })
-      .join("、");
-
-    item.innerHTML=`
-
-      <div class="race-title">
-        ${escapeHTML(title)}
-      </div>
-
-      <div class="race-meta">
-
-        ${escapeHTML(prediction.track || "")}
-        ${escapeHTML(prediction.raceNo || "")}
-        ／
-        ${escapeHTML(prediction.surface || "")}
-        ${prediction.distance
-          ? escapeHTML(prediction.distance)+"m"
-          : ""}
-
-      </div>
-
-      <div style="
-        margin-top:10px;
-        padding-top:10px;
-        border-top:1px solid #eef0f3;
-        font-size:13px;
-        line-height:1.8;
-      ">
-
-        <div>
-          💰 投資：
-          ${formatYen(prediction.investment)}
-        </div>
-
-        <div>
-          💵 回収：
-          ${formatYen(prediction.returnAmount)}
-        </div>
-
-        <div style="font-weight:800">
-          📊 収支：
-          <span class="${
-            profit>=0
-            ? "profit-plus"
-            : "profit-minus"
-          }">
-
-            ${formatProfit(profit)}
-
-          </span>
-        </div>
-
-        <div>
-
-          ${
-            resultSaved
-            ? '<span class="badge badge-ok">🏁 結果入力済み</span>'
-            : '<span class="badge badge-wait">⏳ 結果未入力</span>'
-          }
-
-        </div>
-
-      </div>
-
-      ${
-        horseText
-        ? `
-          <div class="horse-list">
-            🐎 ${horseText}
-          </div>
-        `
-        : ""
-      }
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        style="margin-top:10px"
-        onclick="openHistoryResult('${prediction.id}')">
-
-        🏁 ${
-          resultSaved
-          ? "結果を確認"
-          : "結果を入力"
-        }
-
-      </button>
-
-      <button
-        type="button"
-        class="btn btn-danger"
-        style="margin-top:8px"
-        onclick="deletePrediction('${prediction.id}')">
-
-        🗑 この予想を削除
-
-      </button>
-
-    `;
-
-    container.appendChild(item);
-
-  });
+      .join("");
 
 }
 
-/* =========================================
-   履歴から結果へ
-========================================= */
+
+/* =================================
+   履歴から結果
+================================= */
 
 function openHistoryResult(id){
 
-  const prediction=
+  const prediction =
     appState.predictions.find(
       item=>item.id===id
     );
 
   if(!prediction){
 
-    alert("予想データが見つかりません。");
+    alert(
+      "予想データが見つかりません。"
+    );
+
     return;
 
   }
 
-  appState.currentPredictionId=id;
+
+  appState.currentPredictionId =
+    id;
 
   saveData();
 
@@ -2409,45 +2722,59 @@ function openHistoryResult(id){
 
 }
 
-/* =========================================
+
+/* =================================
    削除
-========================================= */
+================================= */
 
 function deletePrediction(id){
 
-  const prediction=
+  const prediction =
     appState.predictions.find(
       item=>item.id===id
     );
 
-  if(!prediction)return;
+  if(!prediction) return;
 
-  const title=
+
+  const title =
     prediction.raceName ||
-    prediction.track+" "+prediction.raceNo;
-
-  const confirmed=
-    confirm(
-      "「"+
-      title+
-      "」の予想を削除しますか？\n\n"+
-      "この操作は元に戻せません。"
+    (
+      prediction.track +
+      " " +
+      prediction.raceNo
     );
 
-  if(!confirmed)return;
 
-  appState.predictions=
+  if(
+    !confirm(
+      "「" +
+      title +
+      "」の予想を削除しますか？\n\n" +
+      "この操作は元に戻せません。"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  appState.predictions =
     appState.predictions.filter(
       item=>item.id!==id
     );
 
+
   if(
-    appState.currentPredictionId===id
+    appState.currentPredictionId === id
   ){
 
-    appState.currentPredictionId=null;
+    appState.currentPredictionId =
+      null;
 
   }
+
 
   saveData();
 
@@ -2459,108 +2786,16 @@ function deletePrediction(id){
 
 }
 
-/* =========================================
-   HTMLエスケープ
-========================================= */
 
-function escapeHTML(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-/* =========================================
-   ボタン
-========================================= */
-
-$("addHorseBtn").addEventListener(
-  "click",
-  createHorseRow
-);
-
-$("fieldSize").addEventListener(
-  "change",
-  function(){
-
-    const size=
-      Number(this.value);
-
-    if(!size)return;
-
-    $("horseList").innerHTML="";
-
-    horseCount=0;
-
-    for(let i=0;i<size;i++){
-
-      createHorseRow();
-
-    }
-
-  }
-);
-
-$("savePredictionBtn").addEventListener(
-  "click",
-  savePrediction
-);
-
-/* =========================================
-   ナビ
-========================================= */
-
-document
-.querySelectorAll(".nav button")
-.forEach(button=>{
-
-  button.addEventListener(
-    "click",
-    function(){
-
-      const page=
-        this.dataset.page;
-
-      showPage(page);
-
-      if(page==="resultPage"){
-
-        renderResultPage();
-
-      }
-
-      if(page==="statsPage"){
-
-        renderStatsPage();
-
-      }
-
-      if(page==="historyPage"){
-
-        renderHistoryPage();
-
-      }
-
-    }
-  );
-
-});
-
-/* =========================================
+/* =================================
    起動
-========================================= */
+================================= */
 
 function initializeApp(){
 
   loadData();
 
-  setupDistance();
-
-  setupFieldSize();
+  setupSelects();
 
   renderResultPage();
 
@@ -2570,11 +2805,39 @@ function initializeApp(){
 
 }
 
-/* =========================================
-   開始
-========================================= */
+
+/* =================================
+   実行
+================================= */
 
 initializeApp();
+
+
+/* =================================
+   グラフサイズ変更
+================================= */
+
+window.addEventListener(
+  "resize",
+  function(){
+
+    const active =
+      document
+        .querySelector(".page.active");
+
+    if(
+      active &&
+      active.id === "statsPage"
+    ){
+
+      renderProfitChart(
+        getFinishedPredictions()
+      );
+
+    }
+
+  }
+);
 
 </script>
 
